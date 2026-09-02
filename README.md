@@ -1,9 +1,12 @@
 # Attention 시각화 — LLM은 어떻게 다음 단어를 고르는가
 
-GPT(decoder-only Transformer)의 forward pass를 **단계별 애니메이션 + 한국어 설명**으로
-따라가는 인터랙티브 학습 사이트입니다.
+### 인공지능 작업하면서 자주 다시 사용안하면 흐릿해지는 개념들이나 내용들에 대해서 claude code 바이브코딩을 이용해서 시각화 해놓고 예제등을 만들어 두면 나중에 보고 확인할때 이해가 빠를것 같아서,테스트로 작성해본 repo이다. 유용하다면 앞으로도 자주 바이브코딩으로 시각화해서 올리는 방식을 이용할 것 같다.
 
 접속 : https://yooseungho0124.github.io/attention_visualization/#overview
+
+
+GPT(decoder-only Transformer)의 forward pass를 **단계별 애니메이션 + 한국어 설명**으로
+따라가는 인터랙티브 학습 사이트입니다.
 
 1. **모든 숫자가 진짜입니다.** 데모용으로 꾸며 넣은 값이 하나도 없습니다.
    이 저장소에 포함된 초소형 GPT(`TinyGPT`, 파라미터 15,168개)를 실제로 학습시킨 뒤,

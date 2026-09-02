@@ -3,6 +3,8 @@
 GPT(decoder-only Transformer)의 forward pass를 **단계별 애니메이션 + 한국어 설명**으로
 따라가는 인터랙티브 학습 사이트입니다.
 
+접속 : https://yooseungho0124.github.io/attention_visualization/#overview
+
 1. **모든 숫자가 진짜입니다.** 데모용으로 꾸며 넣은 값이 하나도 없습니다.
    이 저장소에 포함된 초소형 GPT(`TinyGPT`, 파라미터 15,168개)를 실제로 학습시킨 뒤,
    그 가중치로 브라우저에서 forward pass를 그대로 다시 계산해 화면에 그립니다.

@@ -337,7 +337,7 @@ WIKI.INDEX = [
 ['vqvae',2017,'Neural Discrete Representation Learning (VQ-VAE)','VQ-VAE','generative','vae',['vae']],
 ['vqgan',2021,'Taming Transformers for High-Resolution Image Synthesis (VQGAN)','VQGAN','generative','vae',['vqvae','gan','transformer']],
 ['dalle',2021,'Zero-Shot Text-to-Image Generation (DALL·E)','DALL·E','generative','vae',['vqvae','gpt3']],
-['ddpm',2020,'Denoising Diffusion Probabilistic Models','DDPM','generative','diffusion',['vae','unet']],
+['ddpm',2020,'Denoising Diffusion Probabilistic Models','DDPM','generative','diffusion',['diffusion-original','vae','unet']],
 ['score-sde',2021,'Score-Based Generative Modeling through SDEs','Score SDE','generative','diffusion',['ddpm']],
 ['ddim',2021,'Denoising Diffusion Implicit Models','DDIM','generative','diffusion',['ddpm']],
 ['cfg',2022,'Classifier-Free Diffusion Guidance','Classifier-Free Guidance','generative','diffusion',['ddpm']],
@@ -609,7 +609,33 @@ WIKI.INDEX = [
 ['math-dataset',2021,'Measuring Mathematical Problem Solving With the MATH Dataset','MATH','interp','eval',['gpt3','gsm8k']],
 ['bbh',2022,'Challenging BIG-Bench Tasks and Whether Chain-of-Thought Can Solve Them','BIG-Bench Hard','interp','eval',['bigbench','cot']],
 ['mbpp',2021,'Program Synthesis with Large Language Models (MBPP)','MBPP','code','bench',['humaneval']],
-['foundation-models',2021,'On the Opportunities and Risks of Foundation Models','파운데이션 모델 보고서','interp','eval',['gpt3','bert','clip']]
+['foundation-models',2021,'On the Opportunities and Risks of Foundation Models','파운데이션 모델 보고서','interp','eval',['gpt3','bert','clip']],
+
+// ════════ 4차 확장 — 참고문헌 채굴 2회차 ════════
+['diffusion-original',2015,'Deep Unsupervised Learning using Nonequilibrium Thermodynamics','확산 모델의 원조','generative','diffusion',['vae','backprop']],
+['grad-checkpointing',2016,'Training Deep Nets with Sublinear Memory Cost','gradient 체크포인팅','efficiency','serve',['backprop','resnet']],
+['mixed-precision',2017,'Mixed Precision Training','혼합 정밀도 학습','efficiency','serve',['adam','batchnorm']],
+['scaling-predictable',2017,'Deep Learning Scaling is Predictable, Empirically','예측 가능한 스케일링','llm','scale',['resnet','lstm']],
+['lm-limits',2016,'Exploring the Limits of Language Modeling','언어모델의 한계 탐색','nlp','seq',['lstm','nnlm']],
+['decoder-only-wiki',2018,'Generating Wikipedia by Summarizing Long Sequences','decoder-only Transformer','llm','core',['transformer']],
+['glue',2018,'GLUE: A Multi-Task Benchmark for Natural Language Understanding','GLUE','interp','eval',['elmo']],
+['decanlp',2018,'The Natural Language Decathlon: Multitask Learning as Question Answering','decaNLP','interp','eval',['seq2seq','elmo']],
+['xlnet',2019,'XLNet: Generalized Autoregressive Pretraining for Language Understanding','XLNet','llm','pretrain',['bert','transformer']],
+['glu-variants',2020,'GLU Variants Improve Transformer (SwiGLU)','SwiGLU','llm','core',['transformer','t5']],
+['scratchpad',2021,'Show Your Work: Scratchpads for Intermediate Computation','Scratchpad','agent','reason',['transformer','gpt3']],
+['retro',2021,'Improving Language Models by Retrieving from Trillions of Tokens (RETRO)','RETRO','ir','dense',['rag','realm','gopher']],
+['truthfulqa',2021,'TruthfulQA: Measuring How Models Mimic Human Falsehoods','TruthfulQA','interp','eval',['gpt3']],
+['boolq',2019,'BoolQ: Exploring the Surprising Difficulty of Natural Yes/No Questions','BoolQ','interp','eval',['bert','glue']],
+['triviaqa',2017,'TriviaQA: A Large Scale Distantly Supervised Challenge Dataset','TriviaQA','interp','eval',['seq2seq']],
+['openbookqa',2018,'Can a Suit of Armor Conduct Electricity? Open Book Question Answering','OpenBookQA','interp','eval',['arc-bench']],
+['carbon',2021,'Carbon Emissions and Large Neural Network Training','학습의 탄소 배출','llm','scale',['gpt3','scaling-laws']],
+['ethical-risks',2021,'Ethical and Social Risks of Harm from Language Models','언어모델의 위해 분류','privacy','safety',['gpt3','gopher']],
+['gpt-neox',2022,'GPT-NeoX-20B: An Open-Source Autoregressive Language Model','GPT-NeoX-20B','llm','open',['gpt3','the-pile']],
+['ul2',2022,'UL2: Unifying Language Learning Paradigms','UL2','llm','pretrain',['t5','bart','xlnet']],
+['cascaded-diffusion',2021,'Cascaded Diffusion Models for High Fidelity Image Generation','Cascaded Diffusion','generative','diffusion',['ddpm','sr3']],
+['sr3',2021,'Image Super-Resolution via Iterative Refinement (SR3)','SR3','generative','diffusion',['ddpm']],
+['coco-captions',2015,'Microsoft COCO Captions: Data Collection and Evaluation Server','COCO Captions','data','corpus',['imagenet']],
+['ucf101',2012,'UCF101: A Dataset of 101 Human Action Classes From Videos in The Wild','UCF101','video','understand',['imagenet']]
 ];
 
 WIKI.META = WIKI.INDEX.map(function(r){

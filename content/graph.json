@@ -1797,7 +1797,8 @@
     "seq2seq",
     "transformer",
     "tacotron2",
-    "gat"
+    "gat",
+    "din"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -1998,6 +1999,7 @@
     "dpr",
     "realm",
     "lottery",
+    "hubert",
     "sasrec",
     "bert4rec",
     "sentence-bert",
@@ -2200,10 +2202,12 @@
     "mmlu",
     "humaneval",
     "bigbench",
+    "vall-e",
     "the-pile",
     "dedup",
     "self-instruct",
-    "refinedweb"
+    "refinedweb",
+    "watermark"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -2245,6 +2249,8 @@
     "gpt4",
     "dit",
     "data-constrained",
+    "empirical-batch",
+    "double-descent",
     "extracting-training-data"
    ],
    "diagram": "compare",
@@ -2320,7 +2326,8 @@
     "megatron",
     "mmlu",
     "gsm8k",
-    "saycan"
+    "saycan",
+    "rt2"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -3203,6 +3210,7 @@
     "flamingo",
     "blip2",
     "lottery",
+    "openvla",
     "dp-sgd",
     "fedavg"
    ],
@@ -3999,6 +4007,8 @@
     "flow-matching",
     "consistency",
     "video-diffusion",
+    "videoldm",
+    "svd",
     "act",
     "diffusion-policy",
     "alphafold3"
@@ -4170,6 +4180,8 @@
     "clip",
     "blip",
     "video-diffusion",
+    "videoldm",
+    "svd",
     "laion5b"
    ],
    "diagram": "flow",
@@ -4250,7 +4262,9 @@
     "ldm",
     "dit",
     "consistency",
-    "diffusion-policy"
+    "diffusion-policy",
+    "rt2",
+    "pi0"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -4398,6 +4412,8 @@
     "llava",
     "whisper",
     "dpr",
+    "rt2",
+    "openvla",
     "laion5b",
     "datacomp"
    ],
@@ -4681,7 +4697,9 @@
    "in": [
     "bert",
     "whisper",
-    "audiolm"
+    "hubert",
+    "audiolm",
+    "vall-e"
    ],
    "diagram": "stack",
    "extLinks": 3,
@@ -4713,7 +4731,8 @@
     "seq2seq",
     "transformer",
     "t5",
-    "wav2vec2"
+    "wav2vec2",
+    "hubert"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -5177,6 +5196,7 @@
     "bigbench",
     "constitutional",
     "saycan",
+    "rt2",
     "reflexion"
    ],
    "diagram": "compare",
@@ -5514,7 +5534,8 @@
     "lora"
    ],
    "in": [
-    "dropout"
+    "dropout",
+    "double-descent"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -5773,7 +5794,9 @@
     "summarize-hf",
     "sae",
     "bigbench",
-    "red-teaming"
+    "red-teaming",
+    "universal-jailbreak",
+    "sleeper-agents"
    ],
    "diagram": "loop",
    "extLinks": 3,
@@ -5955,20 +5978,35 @@
    "mtime": "2026-09-09"
   },
   "hubert": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
-   "in": [
-    "audiolm"
+   "stage": "evergreen",
+   "bytes": 11381,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "out": [
+    "bert",
+    "wav2vec2",
+    "audiolm",
+    "encodec",
+    "whisper"
+   ],
+   "in": [
+    "audiolm",
+    "vall-e"
+   ],
+   "diagram": "loop",
+   "extLinks": 2,
    "tags": [
     "speech",
     "asr",
     "2021"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "vits": {
    "stage": "evergreen",
@@ -6055,9 +6093,11 @@
    ],
    "in": [
     "hifi-gan",
+    "hubert",
     "vits",
     "soundstream",
-    "audiolm"
+    "audiolm",
+    "vall-e"
    ],
    "diagram": "compare",
    "extLinks": 1,
@@ -6089,8 +6129,10 @@
    ],
    "in": [
     "wavenet",
+    "hubert",
     "soundstream",
-    "encodec"
+    "encodec",
+    "vall-e"
    ],
    "diagram": "loop",
    "extLinks": 1,
@@ -6102,23 +6144,37 @@
    "mtime": "2026-09-09"
   },
   "vall-e": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 12280,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "encodec",
+    "gpt3",
+    "audiolm",
+    "wav2vec2",
+    "hubert"
+   ],
    "in": [
     "wavenet",
     "soundstream",
     "encodec",
     "audiolm"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "speech",
     "codec",
     "2023"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "deepwalk": {
    "stage": "evergreen",
@@ -6404,6 +6460,7 @@
     "bert4rec"
    ],
    "in": [
+    "youtube-dnn",
     "wide-deep",
     "ncf",
     "sasrec"
@@ -6418,20 +6475,33 @@
    "mtime": "2026-09-09"
   },
   "youtube-dnn": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
-   "in": [
-    "mf"
+   "stage": "evergreen",
+   "bytes": 9674,
+   "sections": [
+    "venue",
+    "authors",
+    "math",
+    "numbers",
+    "links"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "out": [
+    "mf",
+    "two-tower",
+    "din"
+   ],
+   "in": [
+    "mf",
+    "din",
+    "two-tower"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "recsys",
     "deep",
     "2016"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "wide-deep": {
    "stage": "evergreen",
@@ -6481,7 +6551,8 @@
    ],
    "in": [
     "mf",
-    "wide-deep"
+    "wide-deep",
+    "two-tower"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -6508,7 +6579,8 @@
     "din"
    ],
    "in": [
-    "wide-deep"
+    "wide-deep",
+    "din"
    ],
    "diagram": "compare",
    "extLinks": 1,
@@ -6520,21 +6592,35 @@
    "mtime": "2026-09-09"
   },
   "din": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
-   "in": [
-    "ncf",
-    "deepfm"
+   "stage": "evergreen",
+   "bytes": 8682,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "out": [
+    "deepfm",
+    "bahdanau",
+    "youtube-dnn"
+   ],
+   "in": [
+    "youtube-dnn",
+    "ncf",
+    "deepfm",
+    "two-tower"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
    "tags": [
     "recsys",
     "deep",
     "2018"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "sasrec": {
    "stage": "evergreen",
@@ -6604,22 +6690,34 @@
    "mtime": "2026-09-09"
   },
   "two-tower": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 10251,
+   "sections": [
+    "venue",
+    "authors",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "youtube-dnn",
+    "ncf",
+    "din"
+   ],
    "in": [
     "mf",
+    "youtube-dnn",
     "sasrec",
     "bert4rec"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "compare",
+   "extLinks": 2,
    "tags": [
     "recsys",
     "deep",
     "2019"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "hnsw": {
    "stage": "evergreen",
@@ -7260,7 +7358,8 @@
    "in": [
     "timesformer",
     "videomae",
-    "make-a-video"
+    "make-a-video",
+    "videoldm"
    ],
    "diagram": "stack",
    "extLinks": 2,
@@ -7318,7 +7417,9 @@
     "svd"
    ],
    "in": [
-    "video-diffusion"
+    "video-diffusion",
+    "videoldm",
+    "svd"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -7330,38 +7431,68 @@
    "mtime": "2026-09-09"
   },
   "videoldm": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 9919,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "ldm",
+    "video-diffusion",
+    "make-a-video",
+    "ddpm",
+    "svd"
+   ],
    "in": [
     "video-diffusion",
-    "make-a-video"
+    "make-a-video",
+    "svd"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "stack",
+   "extLinks": 2,
    "tags": [
     "video",
     "generate",
     "2023"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "svd": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 10615,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "videoldm",
+    "make-a-video",
+    "ldm",
+    "datacomp",
+    "ddpm"
+   ],
    "in": [
     "video-diffusion",
-    "make-a-video"
+    "make-a-video",
+    "videoldm"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "video",
     "generate",
     "2023"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "gato": {
    "stage": "evergreen",
@@ -7412,7 +7543,9 @@
    ],
    "in": [
     "gato",
-    "rt1"
+    "rt1",
+    "rt2",
+    "pi0"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -7441,7 +7574,8 @@
     "rt2"
    ],
    "in": [
-    "gato"
+    "gato",
+    "rt2"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -7468,7 +7602,8 @@
     "ddpm"
    ],
    "in": [
-    "diffusion-policy"
+    "diffusion-policy",
+    "pi0"
    ],
    "diagram": "stack",
    "extLinks": 2,
@@ -7497,7 +7632,8 @@
     "flow-matching"
    ],
    "in": [
-    "act"
+    "act",
+    "pi0"
    ],
    "diagram": "loop",
    "extLinks": 2,
@@ -7509,55 +7645,106 @@
    "mtime": "2026-09-09"
   },
   "rt2": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 10489,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "rt1",
+    "palm",
+    "clip",
+    "saycan",
+    "cot",
+    "openvla",
+    "pi0",
+    "flow-matching"
+   ],
    "in": [
     "gato",
     "saycan",
-    "rt1"
+    "rt1",
+    "openvla",
+    "pi0"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "robotics",
     "vla",
     "2023"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "openvla": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 9635,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "rt2",
+    "lora",
+    "clip",
+    "pi0"
+   ],
    "in": [
     "gato",
-    "rt1"
+    "rt1",
+    "rt2",
+    "pi0"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "stack",
+   "extLinks": 2,
    "tags": [
     "robotics",
     "vla",
     "2024"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "pi0": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
-   "in": [
-    "diffusion-policy"
+   "stage": "evergreen",
+   "bytes": 10745,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "out": [
+    "rt2",
+    "openvla",
+    "act",
+    "diffusion-policy",
+    "flow-matching",
+    "saycan"
+   ],
+   "in": [
+    "diffusion-policy",
+    "rt2",
+    "openvla"
+   ],
+   "diagram": "split",
+   "extLinks": 2,
    "tags": [
     "robotics",
     "vla",
     "2024"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "fno": {
    "stage": "evergreen",
@@ -7944,6 +8131,7 @@
     "laion5b"
    ],
    "in": [
+    "svd",
     "laion5b"
    ],
    "diagram": "flow",
@@ -8026,7 +8214,9 @@
     "double-descent",
     "ntk"
    ],
-   "in": [],
+   "in": [
+    "double-descent"
+   ],
    "diagram": "compare",
    "extLinks": 2,
    "tags": [
@@ -8053,7 +8243,8 @@
     "lr-scaling"
    ],
    "in": [
-    "lr-scaling"
+    "lr-scaling",
+    "empirical-batch"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -8123,38 +8314,62 @@
    "mtime": "2026-09-09"
   },
   "empirical-batch": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 10615,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "large-batch",
+    "scaling-laws",
+    "fedavg"
+   ],
    "in": [
     "large-batch",
     "lr-scaling"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "theory",
     "optim",
     "2018"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "double-descent": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 10770,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "rethinking-generalization",
+    "scaling-laws",
+    "lottery"
+   ],
    "in": [
     "rethinking-generalization",
     "ntk"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "compare",
+   "extLinks": 2,
    "tags": [
     "theory",
     "general",
     "2019"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "dp-sgd": {
    "stage": "evergreen",
@@ -8205,6 +8420,7 @@
     "membership-inference"
    ],
    "in": [
+    "empirical-batch",
     "dp-sgd"
    ],
    "diagram": "loop",
@@ -8267,7 +8483,8 @@
    "in": [
     "dedup",
     "dp-sgd",
-    "membership-inference"
+    "membership-inference",
+    "watermark"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -8293,7 +8510,10 @@
     "instructgpt",
     "constitutional"
    ],
-   "in": [],
+   "in": [
+    "watermark",
+    "universal-jailbreak"
+   ],
    "diagram": "loop",
    "extLinks": 2,
    "tags": [
@@ -8304,48 +8524,85 @@
    "mtime": "2026-09-09"
   },
   "watermark": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 10503,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "gpt3",
+    "extracting-training-data",
+    "red-teaming"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "privacy",
     "safety",
     "2023"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "universal-jailbreak": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
-   "in": [
-    "extracting-training-data"
+   "stage": "evergreen",
+   "bytes": 9821,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "out": [
+    "constitutional",
+    "red-teaming",
+    "sleeper-agents"
+   ],
+   "in": [
+    "extracting-training-data",
+    "sleeper-agents"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "privacy",
     "attack",
     "2023"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "sleeper-agents": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
-   "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "stage": "growing",
+   "bytes": 10741,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "constitutional",
+    "universal-jailbreak"
+   ],
+   "in": [
+    "universal-jailbreak"
+   ],
+   "diagram": "loop",
+   "extLinks": 2,
    "tags": [
     "privacy",
     "safety",
     "2024"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "position-interpolation": {
    "stage": "evergreen",
@@ -8566,11 +8823,10 @@
  },
  "stats": {
   "total": 247,
-  "written": 232,
+  "written": 247,
   "byStage": {
-   "evergreen": 213,
-   "growing": 19,
-   "seed": 15
+   "evergreen": 227,
+   "growing": 20
   },
   "byField": {
    "foundations": {
@@ -8603,7 +8859,7 @@
    },
    "speech": {
     "total": 12,
-    "written": 10
+    "written": 12
    },
    "rl": {
     "total": 12,
@@ -8623,7 +8879,7 @@
    },
    "recsys": {
     "total": 9,
-    "written": 6
+    "written": 9
    },
    "ir": {
     "total": 8,
@@ -8635,11 +8891,11 @@
    },
    "video": {
     "total": 9,
-    "written": 7
+    "written": 9
    },
    "robotics": {
     "total": 8,
-    "written": 5
+    "written": 8
    },
    "science": {
     "total": 8,
@@ -8651,11 +8907,11 @@
    },
    "theory": {
     "total": 6,
-    "written": 4
+    "written": 6
    },
    "privacy": {
     "total": 8,
-    "written": 5
+    "written": 8
    }
   }
  }

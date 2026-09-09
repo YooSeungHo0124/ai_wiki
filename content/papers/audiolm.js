@@ -68,7 +68,7 @@ pitfalls:[
 figures:[
  {f:'fig2-hierarchy.png',
   cap:'3단계 계층 구조. 1단계 semantic 토큰이 장기 구조를 정하고, 2단계가 이를 조건으로 RVQ 앞단(coarse) 토큰을, 3단계가 앞단을 조건으로 RVQ 뒷단(fine) 토큰을 예측한다. 마지막에 SoundStream 디코더가 fine 토큰까지 모두 모아 파형을 복원한다.',
-  src:'원문 Figure 2, p.5'}
+  src:'원문 Fig. 2, p.5'}
 ],
 
 quotes:[

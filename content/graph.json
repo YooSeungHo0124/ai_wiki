@@ -4848,7 +4848,8 @@
     "rlhf-prefs",
     "gato",
     "world-models",
-    "rainbow"
+    "rainbow",
+    "dreamer"
    ],
    "diagram": "loop",
    "extLinks": 3,
@@ -5117,7 +5118,8 @@
     "alphazero",
     "tot",
     "world-models",
-    "rainbow"
+    "rainbow",
+    "dreamer"
    ],
    "diagram": "loop",
    "extLinks": 3,
@@ -5757,7 +5759,8 @@
     "imagenet",
     "gpt3",
     "bigbench",
-    "chatbot-arena"
+    "chatbot-arena",
+    "helm"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -5854,7 +5857,8 @@
    ],
    "in": [
     "gpt3",
-    "mmlu"
+    "mmlu",
+    "helm"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -5925,7 +5929,8 @@
     "llama2",
     "summarize-hf",
     "tot",
-    "mmlu"
+    "mmlu",
+    "helm"
    ],
    "diagram": "loop",
    "extLinks": 3,
@@ -7706,7 +7711,8 @@
    ],
    "in": [
     "diffusion-policy",
-    "pi0"
+    "pi0",
+    "mobile-aloha"
    ],
    "diagram": "stack",
    "extLinks": 2,
@@ -7736,7 +7742,8 @@
    ],
    "in": [
     "act",
-    "pi0"
+    "pi0",
+    "mobile-aloha"
    ],
    "diagram": "loop",
    "extLinks": 2,
@@ -8507,7 +8514,8 @@
    "in": [
     "fedavg",
     "membership-inference",
-    "extracting-training-data"
+    "extracting-training-data",
+    "machine-unlearning"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -8565,7 +8573,8 @@
    "in": [
     "dp-sgd",
     "fedavg",
-    "extracting-training-data"
+    "extracting-training-data",
+    "machine-unlearning"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -8599,7 +8608,8 @@
     "dedup",
     "dp-sgd",
     "membership-inference",
-    "watermark"
+    "watermark",
+    "machine-unlearning"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -9577,7 +9587,9 @@
     "muzero",
     "dreamer"
    ],
-   "in": [],
+   "in": [
+    "dreamer"
+   ],
    "diagram": "loop",
    "extLinks": 2,
    "tags": [
@@ -9627,20 +9639,32 @@
    ]
   },
   "dreamer": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 9440,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "world-models",
+    "muzero",
+    "dqn"
+   ],
    "in": [
     "world-models"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "loop",
+   "extLinks": 2,
    "tags": [
     "rl",
     "world",
     "2020"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "pal": {
    "stage": "evergreen",
@@ -9750,7 +9774,8 @@
     "attention-not-explanation"
    ],
    "in": [
-    "grad-cam"
+    "grad-cam",
+    "shap"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -9780,7 +9805,8 @@
     "vit"
    ],
    "in": [
-    "lime"
+    "lime",
+    "shap"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -9792,21 +9818,33 @@
    "mtime": "2026-09-09"
   },
   "shap": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 10916,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "lime",
+    "grad-cam",
+    "attention-not-explanation"
+   ],
    "in": [
     "lime",
     "grad-cam"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "compare",
+   "extLinks": 2,
    "tags": [
     "interp",
     "xai",
     "2017"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "attention-not-explanation": {
    "stage": "seed",
@@ -9814,7 +9852,8 @@
    "sections": [],
    "out": [],
    "in": [
-    "lime"
+    "lime",
+    "shap"
    ],
    "diagram": null,
    "extLinks": 0,
@@ -9825,18 +9864,29 @@
    ]
   },
   "helm": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "growing",
+   "bytes": 9311,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "mmlu",
+    "bigbench",
+    "chatbot-arena"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "matrix",
+   "extLinks": 2,
    "tags": [
     "interp",
     "eval",
     "2022"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "conformer": {
    "stage": "evergreen",
@@ -9992,7 +10042,9 @@
     "openvla",
     "pi0"
    ],
-   "in": [],
+   "in": [
+    "mobile-aloha"
+   ],
    "diagram": "flow",
    "extLinks": 2,
    "tags": [
@@ -10003,18 +10055,30 @@
    "mtime": "2026-09-09"
   },
   "mobile-aloha": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 9953,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "act",
+    "diffusion-policy",
+    "open-x"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "robotics",
     "imitation",
     "2024"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "dolma": {
    "stage": "evergreen",
@@ -10126,18 +10190,30 @@
    "mtime": "2026-09-09"
   },
   "machine-unlearning": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 10481,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "dp-sgd",
+    "membership-inference",
+    "extracting-training-data"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "privacy",
     "dp",
     "2021"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "adamw": {
    "stage": "seed",
@@ -10438,11 +10514,11 @@
  },
  "stats": {
   "total": 314,
-  "written": 285,
+  "written": 290,
   "byStage": {
-   "evergreen": 264,
-   "growing": 21,
-   "seed": 29
+   "evergreen": 268,
+   "growing": 22,
+   "seed": 24
   },
   "byField": {
    "foundations": {
@@ -10479,7 +10555,7 @@
    },
    "rl": {
     "total": 16,
-    "written": 14
+    "written": 15
    },
    "agent": {
     "total": 15,
@@ -10487,7 +10563,7 @@
    },
    "interp": {
     "total": 20,
-    "written": 12
+    "written": 14
    },
    "graph": {
     "total": 9,
@@ -10511,7 +10587,7 @@
    },
    "robotics": {
     "total": 10,
-    "written": 9
+    "written": 10
    },
    "science": {
     "total": 8,
@@ -10527,7 +10603,7 @@
    },
    "privacy": {
     "total": 9,
-    "written": 8
+    "written": 9
    }
   }
  }

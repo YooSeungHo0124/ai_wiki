@@ -25,10 +25,14 @@ def main():
     x0, y0, x1, y1 = map(float, sys.argv[3:7])
     name = sys.argv[7].replace("/", "-")
 
-    src = os.path.join(SRC, slug, "pages", "p-%02d.png" % page)
-    if not os.path.exists(src):
-        alt = os.path.join(SRC, slug, "pages", "p-%d.png" % page)
-        src = alt if os.path.exists(alt) else src
+    # pdftoppm 은 총 쪽수에 따라 자릿수를 달리 붙인다 (p-3 / p-03 / p-003 …)
+    pdir = os.path.join(SRC, slug, "pages")
+    src = None
+    for w in (1, 2, 3, 4):
+        cand = os.path.join(pdir, "p-%0*d.png" % (w, page))
+        if os.path.exists(cand): src = cand; break
+    if src is None:
+        src = os.path.join(pdir, "p-%02d.png" % page)
     if not os.path.exists(src):
         print("페이지 이미지 없음: %s — 먼저 tools/fetch_paper.py %s" % (src, slug)); sys.exit(1)
 

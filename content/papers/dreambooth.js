@@ -43,7 +43,7 @@ math:[
 
 numbers:[
  {k:'입력 이미지 수', v:'3~5장', d:'대상 한 개당 학습에 쓰는 사진 수'},
- {k:'학습 스텝', v:'약 1000 iteration', d:'Imagen 기준 lr $10^{-5}$, U-Net만 미세조정할 때 lr $5\\times10^{-6}$'},
+ {k:'학습 스텝', v:'약 1000 iteration', d:'lr $10^{-5}$(Imagen) / $5\\times10^{-6}$(Stable Diffusion), λ=1, 프라이어 이미지 ~1000장 병행'},
  {k:'학습 시간', v:'TPUv4 5분 (Imagen)', d:'Stable Diffusion 기준으로도 약 5분'},
  {k:'DINO 유사도', v:'0.696 (Imagen) vs 0.569 (Textual Inversion)', d:'대상 정체성 보존도 — 실제 이미지 기준선은 0.774'},
  {k:'사용자 선호도', v:'주체 충실도 68% vs 22%', d:'DreamBooth(Stable Diffusion) vs Textual Inversion, 사람 평가'},

@@ -31,7 +31,7 @@ diagram:{type:'flow', cap:'PinSage 임베딩 파이프라인. 학습은 GPU 한 
   {t:'무작위 보행', s:'노드별 T개 이웃 샘플'},
   {t:'중요도 풀링', s:'방문빈도 가중 집계', acc:true},
   {t:'Convolve × K층', s:'concat + ReLU + 정규화'},
-  {t:'Max-margin 학습', s:'hard negative curriculum'},
+  {t:'Max-margin 학습', s:'hard neg. curriculum'},
   {t:'MapReduce 서빙', s:'30억 노드 <24시간'}
  ]},
 

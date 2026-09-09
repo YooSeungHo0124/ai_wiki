@@ -28,7 +28,7 @@ ideas:[
 
 diagram:{type:'compare', cap:'후발 융합(LLaVA류)과 Chameleon의 early fusion 비교.',
  left:{t:'후발 융합 (LLaVA류)', items:['CLIP 등 별도 비전 인코더','언어모델은 텍스트로 사전학습','투영층으로 나중에 접합','이미지는 이해 전용, 생성 불가']},
- right:{t:'Chameleon: early fusion', items:['이미지도 이산 토큰으로 변환','텍스트+이미지 토큰 처음부터 공동학습','별도 인코더·디코더 없음','임의 순서 이미지+텍스트 생성 가능']}},
+ right:{t:'Chameleon: 초기융합', items:['이미지도 이산 토큰으로 변환','텍스트+이미지 토큰 처음부터 공동학습','별도 인코더·디코더 없음','임의 순서 이미지+텍스트 생성 가능']}},
 
 math:[
  {expr:'z-loss: L += 1e-5 * log(Z)^2, where Z = sum_i exp(z_i)',

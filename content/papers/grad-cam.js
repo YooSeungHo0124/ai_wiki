@@ -77,7 +77,7 @@ quotes:[
  {t:'Our approach – Gradient-weighted Class Activation Mapping (Grad-CAM), uses the gradients of any target concept... flowing into the final convolutional layer to produce a coarse localization map highlighting the important regions in the image.',
   src:'Abstract, p.1'},
  {t:'Grad-CAM is a strict generalization of CAM.',
-  src:'Section 3, p.4 (context)'}
+  src:'Section 3.1, p.6'}
 ],
 
 links:[

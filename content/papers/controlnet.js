@@ -66,9 +66,9 @@ figures:[
  {f:'fig2-zeroconv.png',
   cap:'(a) 원래 블록은 x→y 그대로. (b) 원본 블록을 잠그고(자물쇠 아이콘) 옆에 trainable copy를 두어, 입력 쪽과 출력 쪽을 각각 zero convolution으로 연결한 뒤 더한다. 학습 시작 시 이 zero convolution의 출력이 0이라 (b)는 (a)와 정확히 같은 함수에서 출발한다.',
   src:'원문 Figure 2, p.3'},
- {f:'fig3-sdarch.png',
-  cap:'왼쪽(a)이 잠긴 원본 Stable Diffusion U-Net, 오른쪽(b)이 그 인코더 12블록 + 미들블록을 복제한 ControlNet(파란 상자). 복제본은 조건 c_f와 프롬프트·시간 임베딩을 함께 받아 처리한 뒤, zero convolution을 거쳐 원본의 디코더 skip-connection에 더해진다.',
-  src:'원문 Figure 3, p.4'}
+ {f:'fig1-canny-example.png',
+  cap:'같은 Canny 엣지 입력(맨 왼쪽)에서 프롬프트만 바꿔가며 생성한 결과들. 엣지가 정해주는 사슴의 윤곽·자세는 그대로 유지되면서 스타일·배경·조명만 프롬프트를 따라 바뀐다.',
+  src:'원문 Figure 1, p.1'}
 ],
 
 quotes:[

@@ -4073,7 +4073,8 @@
     "vqgan",
     "clip",
     "make-a-video",
-    "glide"
+    "glide",
+    "dalle2"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -4242,7 +4243,8 @@
     "flow-matching",
     "imagen",
     "controlnet",
-    "glide"
+    "glide",
+    "dalle2"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -4550,6 +4552,7 @@
     "internvl",
     "open-x",
     "glide",
+    "dalle2",
     "cpc"
    ],
    "diagram": "compare",
@@ -9477,7 +9480,8 @@
    ],
    "in": [
     "dreambooth",
-    "glide"
+    "glide",
+    "dalle2"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -10721,7 +10725,9 @@
     "sdxl",
     "controlnet"
    ],
-   "in": [],
+   "in": [
+    "dalle2"
+   ],
    "diagram": "compare",
    "extLinks": 2,
    "tags": [
@@ -10732,21 +10738,35 @@
    "mtime": "2026-09-09"
   },
   "dalle2": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 9303,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "glide",
+    "clip",
+    "cfg",
+    "imagen",
+    "dalle"
+   ],
    "in": [
     "imagen",
     "glide"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "generative",
     "diffusion",
     "2022"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "cpc": {
    "stage": "evergreen",
@@ -11035,6 +11055,20 @@
     "2019"
    ]
   },
+  "squad": {
+   "stage": "seed",
+   "bytes": 0,
+   "sections": [],
+   "out": [],
+   "in": [],
+   "diagram": null,
+   "extLinks": 0,
+   "tags": [
+    "interp",
+    "eval",
+    "2016"
+   ]
+  },
   "decanlp": {
    "stage": "seed",
    "bytes": 0,
@@ -11275,10 +11309,10 @@
   }
  },
  "stats": {
-  "total": 339,
-  "written": 312,
+  "total": 340,
+  "written": 313,
   "byStage": {
-   "evergreen": 287,
+   "evergreen": 288,
    "growing": 25,
    "seed": 27
   },
@@ -11305,7 +11339,7 @@
    },
    "generative": {
     "total": 29,
-    "written": 25
+    "written": 26
    },
    "multimodal": {
     "total": 11,
@@ -11328,7 +11362,7 @@
     "written": 13
    },
    "interp": {
-    "total": 26,
+    "total": 27,
     "written": 18
    },
    "privacy": {

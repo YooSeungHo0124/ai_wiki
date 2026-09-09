@@ -1191,6 +1191,7 @@
     "ddpm",
     "ldm",
     "dit",
+    "sasrec",
     "slowfast",
     "timesformer",
     "pangu-weather"
@@ -1884,6 +1885,7 @@
     "soundstream",
     "gat",
     "graphormer",
+    "sasrec",
     "alphacode",
     "starcoder",
     "gato",
@@ -1933,6 +1935,8 @@
     "gpt2",
     "t5",
     "gpt3",
+    "sasrec",
+    "bert4rec",
     "lr-scaling"
    ],
    "diagram": "compare",
@@ -1994,6 +1998,8 @@
     "dpr",
     "realm",
     "lottery",
+    "sasrec",
+    "bert4rec",
     "sentence-bert",
     "colbert",
     "codebert",
@@ -2912,7 +2918,8 @@
     "transformer",
     "gpt3",
     "flashattention",
-    "s4"
+    "s4",
+    "sasrec"
    ],
    "diagram": "matrix",
    "extLinks": 3,
@@ -3033,6 +3040,7 @@
     "zero",
     "mamba",
     "dit",
+    "sasrec",
     "yarn",
     "ring-attention"
    ],
@@ -6397,7 +6405,8 @@
    ],
    "in": [
     "wide-deep",
-    "ncf"
+    "ncf",
+    "sasrec"
    ],
    "diagram": "stack",
    "extLinks": 3,
@@ -6528,38 +6537,71 @@
    ]
   },
   "sasrec": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 8938,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "transformer",
+    "mf",
+    "vit",
+    "bert4rec",
+    "bert",
+    "gpt1",
+    "two-tower",
+    "sparse-attn",
+    "flashattention"
+   ],
    "in": [
     "mf",
-    "ncf"
+    "ncf",
+    "bert4rec"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "compare",
+   "extLinks": 2,
    "tags": [
     "recsys",
     "seq",
     "2018"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "bert4rec": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 8492,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "sasrec",
+    "bert",
+    "gpt1",
+    "two-tower"
+   ],
    "in": [
     "mf",
-    "ncf"
+    "ncf",
+    "sasrec"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "compare",
+   "extLinks": 2,
    "tags": [
     "recsys",
     "seq",
     "2019"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "two-tower": {
    "stage": "seed",
@@ -6567,7 +6609,9 @@
    "sections": [],
    "out": [],
    "in": [
-    "mf"
+    "mf",
+    "sasrec",
+    "bert4rec"
    ],
    "diagram": null,
    "extLinks": 0,
@@ -8522,11 +8566,11 @@
  },
  "stats": {
   "total": 247,
-  "written": 230,
+  "written": 232,
   "byStage": {
-   "evergreen": 211,
+   "evergreen": 213,
    "growing": 19,
-   "seed": 17
+   "seed": 15
   },
   "byField": {
    "foundations": {
@@ -8579,7 +8623,7 @@
    },
    "recsys": {
     "total": 9,
-    "written": 4
+    "written": 6
    },
    "ir": {
     "total": 8,

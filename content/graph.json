@@ -2238,7 +2238,8 @@
     "emergent",
     "gpt4",
     "dit",
-    "data-constrained"
+    "data-constrained",
+    "extracting-training-data"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -2349,7 +2350,8 @@
     "induction-heads",
     "grokking",
     "gsm8k",
-    "bigbench"
+    "bigbench",
+    "extracting-training-data"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -3192,7 +3194,9 @@
     "dit",
     "flamingo",
     "blip2",
-    "lottery"
+    "lottery",
+    "dp-sgd",
+    "fedavg"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -7781,7 +7785,9 @@
    ],
    "in": [
     "the-pile",
-    "data-constrained"
+    "data-constrained",
+    "dp-sgd",
+    "extracting-training-data"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -8107,34 +8113,64 @@
    ]
   },
   "dp-sgd": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
-   "in": [
-    "membership-inference"
+   "stage": "evergreen",
+   "bytes": 9384,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "out": [
+    "membership-inference",
+    "extracting-training-data",
+    "fedavg",
+    "lora",
+    "dedup"
+   ],
+   "in": [
+    "fedavg",
+    "membership-inference",
+    "extracting-training-data"
+   ],
+   "diagram": "flow",
+   "extLinks": 3,
    "tags": [
     "privacy",
     "dp",
     "2016"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "fedavg": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
-   "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "stage": "evergreen",
+   "bytes": 9050,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "dp-sgd",
+    "lora",
+    "membership-inference"
+   ],
+   "in": [
+    "dp-sgd"
+   ],
+   "diagram": "loop",
+   "extLinks": 2,
    "tags": [
     "privacy",
     "fed",
     "2017"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "membership-inference": {
    "stage": "evergreen",
@@ -8151,7 +8187,11 @@
     "dp-sgd",
     "extracting-training-data"
    ],
-   "in": [],
+   "in": [
+    "dp-sgd",
+    "fedavg",
+    "extracting-training-data"
+   ],
    "diagram": "flow",
    "extLinks": 2,
    "tags": [
@@ -8162,21 +8202,37 @@
    "mtime": "2026-09-09"
   },
   "extracting-training-data": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 8147,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "scaling-laws",
+    "dp-sgd",
+    "dedup",
+    "membership-inference",
+    "emergent",
+    "universal-jailbreak"
+   ],
    "in": [
     "dedup",
+    "dp-sgd",
     "membership-inference"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "privacy",
     "attack",
     "2021"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "red-teaming": {
    "stage": "evergreen",
@@ -8222,7 +8278,9 @@
    "bytes": 0,
    "sections": [],
    "out": [],
-   "in": [],
+   "in": [
+    "extracting-training-data"
+   ],
    "diagram": null,
    "extLinks": 0,
    "tags": [
@@ -8464,11 +8522,11 @@
  },
  "stats": {
   "total": 247,
-  "written": 227,
+  "written": 230,
   "byStage": {
-   "evergreen": 208,
+   "evergreen": 211,
    "growing": 19,
-   "seed": 20
+   "seed": 17
   },
   "byField": {
    "foundations": {
@@ -8553,7 +8611,7 @@
    },
    "privacy": {
     "total": 8,
-    "written": 2
+    "written": 5
    }
   }
  }

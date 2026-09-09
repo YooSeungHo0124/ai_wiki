@@ -41,7 +41,8 @@ WIKI.FIELDS = [
       {id:'pretrain', name:'사전학습 패러다임'},
       {id:'scale',    name:'스케일링 법칙'},
       {id:'align',    name:'정렬 · 지시 학습'},
-      {id:'open',     name:'오픈 웨이트 모델'}
+      {id:'open',     name:'오픈 웨이트 모델'},
+      {id:'context',  name:'긴 문맥'}
     ]},
 
   { id:'efficiency', name:'효율 · 시스템', en:'Efficiency & Systems',
@@ -70,8 +71,7 @@ WIKI.FIELDS = [
     blurb:'이미지·오디오를 언어와 같은 공간에 올리기. 대조학습으로 시작해 LLM에 눈을 붙이는 방향으로 수렴했다.',
     tracks:[
       {id:'contrastive', name:'대조학습 정렬'},
-      {id:'vlm',         name:'Vision-Language 모델'},
-      {id:'speech',      name:'음성 · 오디오'}
+      {id:'vlm',         name:'Vision-Language 모델'}
     ]},
 
   { id:'rl', name:'강화학습', en:'Reinforcement Learning',
@@ -100,6 +100,103 @@ WIKI.FIELDS = [
       {id:'interp', name:'내부 해석'},
       {id:'eval',   name:'벤치마크'},
       {id:'safety', name:'안전 · 정렬 연구'}
+    ]},
+
+  { id:'speech', name:'음성 · 오디오', en:'Speech & Audio',
+    color:'#d4885f',
+    blurb:'파형을 이해하고 만들어 내기. 음성 인식이 자기지도로 라벨 갈증을 푼 흐름과, 합성이 보코더 → 종단간 → 코덱 언어모델로 옮겨간 흐름이 나란히 간다.',
+    tracks:[
+      {id:'asr',   name:'음성 인식'},
+      {id:'tts',   name:'음성 합성'},
+      {id:'codec', name:'뉴럴 코덱 · 오디오 LM'}
+    ]},
+
+  { id:'graph', name:'그래프 신경망', en:'Graph Neural Networks',
+    color:'#6fb3a0',
+    blurb:'격자도 시퀀스도 아닌 데이터. 이웃에게 메시지를 보내 자기를 갱신한다는 한 가지 원리가 분자·소셜·추천·지식그래프로 퍼졌다.',
+    tracks:[
+      {id:'embed',      name:'그래프 임베딩'},
+      {id:'conv',       name:'그래프 합성곱'},
+      {id:'expressive', name:'표현력 · Transformer'}
+    ]},
+
+  { id:'recsys', name:'추천 시스템', en:'Recommender Systems',
+    color:'#c96f9e',
+    blurb:'가장 오래됐고 가장 돈이 되는 응용. 행렬 분해에서 딥러닝으로, 다시 사용자 행동을 시퀀스로 보는 방향으로 옮겨왔다.',
+    tracks:[
+      {id:'cf',   name:'협업 필터링'},
+      {id:'deep', name:'딥러닝 추천'},
+      {id:'seq',  name:'순차 추천'}
+    ]},
+
+  { id:'ir', name:'정보검색 · 임베딩', en:'Retrieval & Embeddings',
+    color:'#7a8fd8',
+    blurb:'"의미가 비슷한 것을 빨리 찾기". 문장을 벡터로 만드는 쪽과 수십억 벡터에서 근사 최근접을 찾는 쪽이 함께 발전해 오늘날 RAG의 바닥을 이룬다.',
+    tracks:[
+      {id:'embed', name:'문장 임베딩'},
+      {id:'late',  name:'후기 상호작용 · 희소'},
+      {id:'index', name:'벡터 인덱스'}
+    ]},
+
+  { id:'code', name:'코드 AI', en:'Code AI',
+    color:'#7fa650',
+    blurb:'코드는 실행해서 정답을 판정할 수 있는 드문 영역이다. 그 성질이 평가 방식과 강화학습·에이전트 연구를 다른 분야보다 빠르게 밀어붙였다.',
+    tracks:[
+      {id:'pretrain', name:'코드 사전학습'},
+      {id:'bench',    name:'평가'},
+      {id:'agent',    name:'소프트웨어 에이전트'}
+    ]},
+
+  { id:'video', name:'비디오 · 시공간', en:'Video',
+    color:'#b07fd8',
+    blurb:'시간 축이 하나 더 붙는 순간 연산량과 데이터 요구가 폭증한다. 이해 쪽과 생성 쪽 모두 "시간을 어떻게 다룰 것인가"의 답을 찾아왔다.',
+    tracks:[
+      {id:'understand', name:'비디오 이해'},
+      {id:'generate',   name:'비디오 생성'}
+    ]},
+
+  { id:'robotics', name:'로보틱스 · 구현 AI', en:'Robotics & Embodied AI',
+    color:'#d9a441',
+    blurb:'인터넷 데이터로 배운 능력을 몸을 가진 기계로 옮기기. 언어모델이 계획을 세우고 정책이 몸을 움직이는 구조로 수렴하고 있다.',
+    tracks:[
+      {id:'imitation', name:'모방학습 정책'},
+      {id:'vla',       name:'비전-언어-행동 모델'}
+    ]},
+
+  { id:'science', name:'과학을 위한 AI', en:'AI for Science',
+    color:'#4fa3b8',
+    blurb:'벤치마크가 아니라 실제 자연을 맞히는 분야. 단백질 구조·기상·재료·수학에서 기존 수치해석을 대체하거나 앞지른 사례들.',
+    tracks:[
+      {id:'bio',  name:'생명 · 단백질'},
+      {id:'phys', name:'물리 · 기상'},
+      {id:'math', name:'수학 · 재료'}
+    ]},
+
+  { id:'data', name:'데이터 중심 AI', en:'Data-Centric AI',
+    color:'#a88b6a',
+    blurb:'모델을 바꾸는 대신 데이터를 바꾼다. 무엇을 얼마나 넣느냐가 아키텍처보다 성능을 좌우한다는 것이 드러난 뒤 생긴 연구 계열.',
+    tracks:[
+      {id:'corpus', name:'대규모 코퍼스'},
+      {id:'curate', name:'정제 · 선별'},
+      {id:'synth',  name:'합성 데이터'}
+    ]},
+
+  { id:'theory', name:'학습 이론 · 일반화', en:'Learning Theory',
+    color:'#8f8fa8',
+    blurb:'왜 되는지 모르는 채로 잘 되던 것들에 설명을 붙이려는 시도. 고전 통계학습 이론이 딥러닝 앞에서 깨진 자리에서 시작한다.',
+    tracks:[
+      {id:'general', name:'일반화의 수수께끼'},
+      {id:'optim',   name:'최적화 · 배치 크기'}
+    ]},
+
+  { id:'privacy', name:'프라이버시 · 공격 · 안전', en:'Privacy & Security',
+    color:'#c9605f',
+    blurb:'모델은 학습 데이터를 기억하고, 사람은 모델을 속인다. 데이터를 지키는 쪽과 모델을 뚫는 쪽이 서로를 밀어 온 계보.',
+    tracks:[
+      {id:'dp',     name:'차등 프라이버시'},
+      {id:'fed',    name:'연합학습'},
+      {id:'attack', name:'공격 · 감사'},
+      {id:'safety', name:'모델 안전'}
     ]}
 ];
 
@@ -239,8 +336,8 @@ WIKI.INDEX = [
 ['blip2',2023,'BLIP-2: Bootstrapping Vision-Language Pre-training with Frozen Encoders','BLIP-2','multimodal','vlm',['blip','flamingo']],
 ['llava',2023,'Visual Instruction Tuning (LLaVA)','LLaVA','multimodal','vlm',['clip','instructgpt','llama']],
 ['qwen-vl',2023,'Qwen-VL: A Versatile Vision-Language Model','Qwen-VL','multimodal','vlm',['blip2','llava']],
-['wav2vec2',2020,'wav2vec 2.0: Self-Supervised Learning of Speech Representations','wav2vec 2.0','multimodal','speech',['transformer','bert']],
-['whisper',2022,'Robust Speech Recognition via Large-Scale Weak Supervision (Whisper)','Whisper','multimodal','speech',['transformer','wav2vec2']],
+['wav2vec2',2020,'wav2vec 2.0: Self-Supervised Learning of Speech Representations','wav2vec 2.0','speech','asr',['transformer','bert']],
+['whisper',2022,'Robust Speech Recognition via Large-Scale Weak Supervision (Whisper)','Whisper','speech','asr',['transformer','wav2vec2']],
 
 // ── rl ─────────────────────────────────────────────────────
 ['dqn',2015,'Human-Level Control through Deep Reinforcement Learning (DQN)','DQN','rl','value',['backprop','alexnet']],
@@ -277,7 +374,129 @@ WIKI.INDEX = [
 ['humaneval',2021,'Evaluating Large Language Models Trained on Code (Codex/HumanEval)','HumanEval','interp','eval',['gpt3']],
 ['bigbench',2022,'Beyond the Imitation Game (BIG-bench)','BIG-bench','interp','eval',['gpt3','mmlu']],
 ['constitutional',2022,'Constitutional AI: Harmlessness from AI Feedback','Constitutional AI','interp','safety',['instructgpt']],
-['chatbot-arena',2024,'Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference','Chatbot Arena','interp','eval',['mmlu','instructgpt']]
+['chatbot-arena',2024,'Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference','Chatbot Arena','interp','eval',['mmlu','instructgpt']],
+// ── speech ─────────────────────────────────────────────────
+['wavenet',2016,'WaveNet: A Generative Model for Raw Audio','WaveNet','speech','tts',['backprop']],
+['tacotron2',2018,'Natural TTS Synthesis by Conditioning WaveNet on Mel Spectrogram Predictions','Tacotron 2','speech','tts',['wavenet','seq2seq','bahdanau']],
+['fastspeech',2019,'FastSpeech: Fast, Robust and Controllable Text to Speech','FastSpeech','speech','tts',['tacotron2','transformer']],
+['hifi-gan',2020,'HiFi-GAN: Generative Adversarial Networks for Efficient and High Fidelity Speech Synthesis','HiFi-GAN','speech','tts',['wavenet','gan']],
+['hubert',2021,'HuBERT: Self-Supervised Speech Representation Learning by Masked Prediction','HuBERT','speech','asr',['wav2vec2','bert']],
+['vits',2021,'Conditional VAE with Adversarial Learning for End-to-End Text-to-Speech (VITS)','VITS','speech','tts',['fastspeech','vae','hifi-gan']],
+['soundstream',2021,'SoundStream: An End-to-End Neural Audio Codec','SoundStream','speech','codec',['wavenet','vqvae']],
+['encodec',2022,'High Fidelity Neural Audio Compression (EnCodec)','EnCodec','speech','codec',['soundstream','vqvae']],
+['audiolm',2022,'AudioLM: a Language Modeling Approach to Audio Generation','AudioLM','speech','codec',['encodec','hubert','gpt2']],
+['vall-e',2023,'Neural Codec Language Models are Zero-Shot Text to Speech Synthesizers (VALL-E)','VALL-E','speech','codec',['encodec','audiolm','gpt3']],
+
+// ── graph ──────────────────────────────────────────────────
+['deepwalk',2014,'DeepWalk: Online Learning of Social Representations','DeepWalk','graph','embed',['word2vec']],
+['node2vec',2016,'node2vec: Scalable Feature Learning for Networks','node2vec','graph','embed',['deepwalk','word2vec']],
+['gcn',2017,'Semi-Supervised Classification with Graph Convolutional Networks','GCN','graph','conv',['backprop','lenet']],
+['graphsage',2017,'Inductive Representation Learning on Large Graphs (GraphSAGE)','GraphSAGE','graph','conv',['gcn']],
+['mpnn',2017,'Neural Message Passing for Quantum Chemistry','MPNN','graph','conv',['gcn']],
+['gat',2018,'Graph Attention Networks','GAT','graph','conv',['gcn','bahdanau']],
+['gin',2019,'How Powerful are Graph Neural Networks? (GIN)','GIN','graph','expressive',['gcn','graphsage']],
+['graphormer',2021,'Do Transformers Really Perform Bad for Graph Representation? (Graphormer)','Graphormer','graph','expressive',['gat','transformer']],
+
+// ── recsys ─────────────────────────────────────────────────
+['mf',2009,'Matrix Factorization Techniques for Recommender Systems','행렬 분해','recsys','cf',[]],
+['youtube-dnn',2016,'Deep Neural Networks for YouTube Recommendations','YouTube DNN','recsys','deep',['mf','word2vec']],
+['wide-deep',2016,'Wide & Deep Learning for Recommender Systems','Wide & Deep','recsys','deep',['mf']],
+['ncf',2017,'Neural Collaborative Filtering','NCF','recsys','deep',['mf']],
+['deepfm',2017,'DeepFM: A Factorization-Machine based Neural Network for CTR Prediction','DeepFM','recsys','deep',['wide-deep']],
+['din',2018,'Deep Interest Network for Click-Through Rate Prediction','DIN','recsys','deep',['deepfm','bahdanau']],
+['sasrec',2018,'Self-Attentive Sequential Recommendation','SASRec','recsys','seq',['transformer','mf']],
+['bert4rec',2019,'BERT4Rec: Sequential Recommendation with Bidirectional Transformer','BERT4Rec','recsys','seq',['sasrec','bert']],
+['two-tower',2019,'Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations','투 타워','recsys','deep',['youtube-dnn','ncf']],
+
+// ── ir ─────────────────────────────────────────────────────
+['hnsw',2016,'Efficient and Robust Approximate Nearest Neighbor Search Using HNSW Graphs','HNSW','ir','index',[]],
+['faiss',2017,'Billion-Scale Similarity Search with GPUs (FAISS)','FAISS','ir','index',['hnsw']],
+['sentence-bert',2019,'Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks','Sentence-BERT','ir','embed',['bert']],
+['colbert',2020,'ColBERT: Efficient and Effective Passage Search via Late Interaction','ColBERT','ir','late',['bert','dpr']],
+['simcse',2021,'SimCSE: Simple Contrastive Learning of Sentence Embeddings','SimCSE','ir','embed',['sentence-bert','simclr']],
+['splade',2021,'SPLADE: Sparse Lexical and Expansion Model for Information Retrieval','SPLADE','ir','late',['bert','colbert']],
+['e5',2022,'Text Embeddings by Weakly-Supervised Contrastive Pre-training (E5)','E5','ir','embed',['simcse','sentence-bert']],
+['bge',2023,'C-Pack: Packed Resources For General Chinese Embeddings (BGE)','BGE','ir','embed',['e5']],
+
+// ── code ───────────────────────────────────────────────────
+['codebert',2020,'CodeBERT: A Pre-Trained Model for Programming and Natural Languages','CodeBERT','code','pretrain',['bert','roberta']],
+['codet5',2021,'CodeT5: Identifier-aware Unified Pre-trained Encoder-Decoder Models for Code','CodeT5','code','pretrain',['t5','codebert']],
+['alphacode',2022,'Competition-Level Code Generation with AlphaCode','AlphaCode','code','pretrain',['transformer','humaneval']],
+['starcoder',2023,'StarCoder: may the source be with you!','StarCoder','code','pretrain',['codet5','llama']],
+['codellama',2023,'Code Llama: Open Foundation Models for Code','Code Llama','code','pretrain',['llama2','starcoder']],
+['swe-bench',2023,'SWE-bench: Can Language Models Resolve Real-World GitHub Issues?','SWE-bench','code','bench',['humaneval','gpt4']],
+['deepseek-coder',2024,'DeepSeek-Coder: When the Large Language Model Meets Programming','DeepSeek-Coder','code','pretrain',['codellama','deepseek-v3']],
+['swe-agent',2024,'SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering','SWE-agent','code','agent',['swe-bench','react']],
+
+// ── video ──────────────────────────────────────────────────
+['two-stream',2014,'Two-Stream Convolutional Networks for Action Recognition in Videos','Two-Stream','video','understand',['alexnet']],
+['i3d',2017,'Quo Vadis, Action Recognition? A New Model and the Kinetics Dataset (I3D)','I3D','video','understand',['two-stream','googlenet']],
+['slowfast',2019,'SlowFast Networks for Video Recognition','SlowFast','video','understand',['i3d','resnet']],
+['timesformer',2021,'Is Space-Time Attention All You Need for Video Understanding? (TimeSformer)','TimeSformer','video','understand',['vit','i3d']],
+['video-diffusion',2022,'Video Diffusion Models','Video Diffusion','video','generate',['ddpm','unet']],
+['videomae',2022,'VideoMAE: Masked Autoencoders are Data-Efficient Learners for Video','VideoMAE','video','understand',['mae','timesformer']],
+['make-a-video',2022,'Make-A-Video: Text-to-Video Generation without Text-Video Data','Make-A-Video','video','generate',['video-diffusion','dalle']],
+['videoldm',2023,'Align your Latents: High-Resolution Video Synthesis with Latent Diffusion Models','Video LDM','video','generate',['ldm','video-diffusion']],
+['svd',2023,'Stable Video Diffusion: Scaling Latent Video Diffusion Models to Large Datasets','Stable Video Diffusion','video','generate',['videoldm','ldm']],
+
+// ── robotics ───────────────────────────────────────────────
+['gato',2022,'A Generalist Agent (Gato)','Gato','robotics','vla',['transformer','dqn']],
+['saycan',2022,'Do As I Can, Not As I Say: Grounding Language in Robotic Affordances (SayCan)','SayCan','robotics','vla',['palm','cot']],
+['rt1',2022,'RT-1: Robotics Transformer for Real-World Control at Scale','RT-1','robotics','vla',['gato','efficientnet']],
+['act',2023,'Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware (ACT / ALOHA)','ACT · ALOHA','robotics','imitation',['transformer','vae']],
+['diffusion-policy',2023,'Diffusion Policy: Visuomotor Policy Learning via Action Diffusion','Diffusion Policy','robotics','imitation',['ddpm','act']],
+['rt2',2023,'RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control','RT-2','robotics','vla',['rt1','clip','palm']],
+['openvla',2024,'OpenVLA: An Open-Source Vision-Language-Action Model','OpenVLA','robotics','vla',['rt2','llava']],
+['pi0',2024,'π0: A Vision-Language-Action Flow Model for General Robot Control','π0','robotics','vla',['openvla','diffusion-policy','flow-matching']],
+
+// ── science ────────────────────────────────────────────────
+['fno',2021,'Fourier Neural Operator for Parametric Partial Differential Equations','FNO','science','phys',['backprop']],
+['alphafold',2021,'Highly Accurate Protein Structure Prediction with AlphaFold','AlphaFold 2','science','bio',['transformer','resnet']],
+['esmfold',2023,'Evolutionary-Scale Prediction of Atomic-Level Protein Structure with a Language Model','ESMFold','science','bio',['alphafold','bert']],
+['graphcast',2023,'GraphCast: Learning Skillful Medium-Range Global Weather Forecasting','GraphCast','science','phys',['gcn','mpnn']],
+['pangu-weather',2023,'Accurate Medium-Range Global Weather Forecasting with 3D Neural Networks','Pangu-Weather','science','phys',['vit','fno']],
+['gnome',2023,'Scaling Deep Learning for Materials Discovery (GNoME)','GNoME','science','math',['gcn','mpnn']],
+['alphageometry',2024,'Solving Olympiad Geometry without Human Demonstrations','AlphaGeometry','science','math',['transformer','alphazero']],
+['alphafold3',2024,'Accurate Structure Prediction of Biomolecular Interactions with AlphaFold 3','AlphaFold 3','science','bio',['alphafold','ddpm']],
+
+// ── data ───────────────────────────────────────────────────
+['the-pile',2020,'The Pile: An 800GB Dataset of Diverse Text for Language Modeling','The Pile','data','corpus',['gpt3']],
+['dedup',2022,'Deduplicating Training Data Makes Language Models Better','중복 제거','data','curate',['the-pile','gpt2']],
+['laion5b',2022,'LAION-5B: An Open Large-Scale Dataset for Training Next Generation Image-Text Models','LAION-5B','data','corpus',['clip']],
+['self-instruct',2022,'Self-Instruct: Aligning Language Models with Self-Generated Instructions','Self-Instruct','data','synth',['gpt3','flan']],
+['refinedweb',2023,'The RefinedWeb Dataset for Falcon LLM','RefinedWeb','data','curate',['the-pile','chinchilla']],
+['datacomp',2023,'DataComp: In Search of the Next Generation of Multimodal Datasets','DataComp','data','curate',['laion5b','clip']],
+['phi-textbooks',2023,'Textbooks Are All You Need (phi-1)','교과서 데이터','data','synth',['self-instruct','chinchilla']],
+['data-constrained',2023,'Scaling Data-Constrained Language Models','데이터 제약 스케일링','data','curate',['chinchilla','scaling-laws']],
+
+// ── theory ─────────────────────────────────────────────────
+['rethinking-generalization',2017,'Understanding Deep Learning Requires Rethinking Generalization','일반화 재고','theory','general',['dropout','batchnorm']],
+['large-batch',2017,'On Large-Batch Training for Deep Learning: Generalization Gap and Sharp Minima','큰 배치의 함정','theory','optim',['adam','batchnorm']],
+['lr-scaling',2017,'Accurate, Large Minibatch SGD: Training ImageNet in 1 Hour','선형 스케일링 규칙','theory','optim',['large-batch','resnet']],
+['ntk',2018,'Neural Tangent Kernel: Convergence and Generalization in Neural Networks','신경 접선 커널','theory','general',['backprop']],
+['empirical-batch',2018,'An Empirical Model of Large-Batch Training','임계 배치 크기','theory','optim',['large-batch','adam']],
+['double-descent',2019,'Deep Double Descent: Where Bigger Models and More Data Hurt','이중 하강','theory','general',['rethinking-generalization','lottery']],
+
+// ── privacy ────────────────────────────────────────────────
+['dp-sgd',2016,'Deep Learning with Differential Privacy (DP-SGD)','DP-SGD','privacy','dp',['backprop']],
+['fedavg',2017,'Communication-Efficient Learning of Deep Networks from Decentralized Data (FedAvg)','FedAvg','privacy','fed',['backprop']],
+['membership-inference',2017,'Membership Inference Attacks Against Machine Learning Models','멤버십 추론 공격','privacy','attack',['dp-sgd']],
+['extracting-training-data',2021,'Extracting Training Data from Large Language Models','학습 데이터 추출','privacy','attack',['gpt2','membership-inference']],
+['red-teaming',2022,'Red Teaming Language Models to Reduce Harms','레드팀','privacy','safety',['instructgpt']],
+['watermark',2023,'A Watermark for Large Language Models','LLM 워터마크','privacy','safety',['gpt3']],
+['universal-jailbreak',2023,'Universal and Transferable Adversarial Attacks on Aligned Language Models','범용 탈옥 공격','privacy','attack',['llama2','gpt4']],
+['sleeper-agents',2024,'Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training','슬리퍼 에이전트','privacy','safety',['constitutional','instructgpt']],
+
+// ── llm / 긴 문맥 ──────────────────────────────────────────
+['position-interpolation',2023,'Extending Context Window of Large Language Models via Positional Interpolation','위치 보간','llm','context',['rope','llama']],
+['lost-in-the-middle',2023,'Lost in the Middle: How Language Models Use Long Contexts','중간을 잃다','llm','context',['gpt4','rag']],
+['yarn',2023,'YaRN: Efficient Context Window Extension of Large Language Models','YaRN','llm','context',['rope','position-interpolation']],
+['ring-attention',2023,'Ring Attention with Blockwise Transformers for Near-Infinite Context','Ring Attention','llm','context',['flashattention','transformer']],
+
+// ── agent / 도구 추가 ──────────────────────────────────────
+['reflexion',2023,'Reflexion: Language Agents with Verbal Reinforcement Learning','Reflexion','agent','tool',['react','cot']],
+['voyager',2023,'Voyager: An Open-Ended Embodied Agent with Large Language Models','Voyager','agent','tool',['react','gpt4']],
+['generative-agents',2023,'Generative Agents: Interactive Simulacra of Human Behavior','생성 에이전트','agent','tool',['react','gpt4']]
 ];
 
 WIKI.META = WIKI.INDEX.map(function(r){

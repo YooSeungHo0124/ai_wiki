@@ -2,8 +2,12 @@
 """논문 원문 수집 파이프라인 (개인 학습용 로컬 캐시)
 
     python3 tools/fetch_paper.py <slug> [<slug> ...]
+    python3 tools/fetch_paper.py <slug> --arxiv 2205.06175   # 노트가 아직 없을 때
     python3 tools/fetch_paper.py --all          # arxiv 필드가 있는 논문 전부
     python3 tools/fetch_paper.py --missing      # 아직 안 받은 것만
+
+arXiv ID 는 보통 content/papers/<slug>.js 의 arxiv 필드에서 읽는다.
+새 논문이라 노트가 아직 없으면 --arxiv 로 직접 준다.
 
 산출물 (/data/papers/<slug>/):
     paper.pdf      원문
@@ -96,6 +100,13 @@ def main():
                     if not os.path.exists(os.path.join(OUT, s, "paper.pdf"))]
         skipped = [s for s, v in meta.items() if not v["arxiv"]]
         print("대상 %d편 / arXiv ID 없음 %d편: %s" % (len(todo), len(skipped), " ".join(skipped)))
+    elif "--arxiv" in args:
+        i = args.index("--arxiv")
+        aid = args[i + 1] if i + 1 < len(args) else None
+        slugs = [a for j, a in enumerate(args) if j not in (i, i + 1)]
+        if not aid or len(slugs) != 1:
+            print("사용법: fetch_paper.py <slug> --arxiv <arXiv ID>"); return
+        todo = [(slugs[0], aid)]
     else:
         todo = [(s, meta.get(s, {}).get("arxiv")) for s in args]
     for slug, arxiv in todo:

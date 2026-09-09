@@ -22,7 +22,8 @@ WIKI.FIELDS = [
       {id:'detect',  name:'객체 탐지'},
       {id:'seg',     name:'분할(Segmentation)'},
       {id:'vit',     name:'Vision Transformer'},
-      {id:'selfsup', name:'자기지도 학습'}
+      {id:'selfsup', name:'자기지도 학습'},
+      {id:'dense',   name:'포즈 · 깊이 · 흐름'}
     ]},
 
   { id:'nlp', name:'언어 표현 (Transformer 이전)', en:'Classic NLP',
@@ -81,7 +82,8 @@ WIKI.FIELDS = [
       {id:'value',  name:'가치 기반'},
       {id:'policy', name:'정책 경사'},
       {id:'search', name:'탐색 + 학습'},
-      {id:'rlhf',   name:'사람 피드백 · LLM RL'}
+      {id:'rlhf',   name:'사람 피드백 · LLM RL'},
+      {id:'world',  name:'세계 모델'}
     ]},
 
   { id:'agent', name:'추론 · 도구 · 검색', en:'Reasoning & Agents',
@@ -99,7 +101,8 @@ WIKI.FIELDS = [
     tracks:[
       {id:'interp', name:'내부 해석'},
       {id:'eval',   name:'벤치마크'},
-      {id:'safety', name:'안전 · 정렬 연구'}
+      {id:'safety', name:'안전 · 정렬 연구'},
+      {id:'xai',    name:'설명가능성(XAI)'}
     ]},
 
   { id:'speech', name:'음성 · 오디오', en:'Speech & Audio',
@@ -496,7 +499,99 @@ WIKI.INDEX = [
 // ── agent / 도구 추가 ──────────────────────────────────────
 ['reflexion',2023,'Reflexion: Language Agents with Verbal Reinforcement Learning','Reflexion','agent','tool',['react','cot']],
 ['voyager',2023,'Voyager: An Open-Ended Embodied Agent with Large Language Models','Voyager','agent','tool',['react','gpt4']],
-['generative-agents',2023,'Generative Agents: Interactive Simulacra of Human Behavior','생성 에이전트','agent','tool',['react','gpt4']]
+['generative-agents',2023,'Generative Agents: Interactive Simulacra of Human Behavior','생성 에이전트','agent','tool',['react','gpt4']],
+
+// ════════ 2차 확장 ════════
+// ── vision ─────────────────────────────────────────────────
+['spatial-transformer',2015,'Spatial Transformer Networks','Spatial Transformer','vision','cnn',['alexnet','backprop']],
+['openpose',2017,'Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields','OpenPose','vision','dense',['fcn','vgg']],
+['senet',2018,'Squeeze-and-Excitation Networks','SENet','vision','cnn',['resnet','googlenet']],
+['mixup',2018,'mixup: Beyond Empirical Risk Minimization','mixup','vision','cnn',['resnet','dropout']],
+['raft',2020,'RAFT: Recurrent All-Pairs Field Transforms for Optical Flow','RAFT','vision','dense',['fcn','lstm']],
+['depth-anything',2024,'Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data','Depth Anything','vision','dense',['dinov2','sam']],
+
+// ── nlp / llm ──────────────────────────────────────────────
+['sentencepiece',2018,'SentencePiece: A Simple and Language Independent Subword Tokenizer','SentencePiece','nlp','repr',['bpe']],
+['bart',2019,'BART: Denoising Sequence-to-Sequence Pre-training','BART','llm','pretrain',['bert','t5','transformer']],
+['electra',2020,'ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators','ELECTRA','llm','pretrain',['bert','gan']],
+['qwen2',2024,'Qwen2 Technical Report','Qwen2','llm','open',['llama2','gqa','rope']],
+['olmo',2024,'OLMo: Accelerating the Science of Language Models','OLMo','llm','open',['llama','the-pile']],
+
+// ── efficiency ─────────────────────────────────────────────
+['flashattention2',2023,'FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning','FlashAttention-2','efficiency','attn',['flashattention']],
+['medusa',2024,'Medusa: Simple LLM Inference Acceleration with Multiple Decoding Heads','Medusa','efficiency','serve',['speculative','vllm']],
+['sglang',2024,'SGLang: Efficient Execution of Structured Language Model Programs','SGLang','efficiency','serve',['vllm','flashattention']],
+['mamba2',2024,'Transformers are SSMs: Generalized Models and Efficient Algorithms (Mamba-2)','Mamba-2','efficiency','ssm',['mamba','flashattention']],
+
+// ── generative ─────────────────────────────────────────────
+['imagen',2022,'Photorealistic Text-to-Image Diffusion Models with Deep Language Understanding','Imagen','generative','diffusion',['ddpm','cfg','t5']],
+['dreambooth',2023,'DreamBooth: Fine Tuning Text-to-Image Diffusion Models for Subject-Driven Generation','DreamBooth','generative','diffusion',['ldm','imagen']],
+['controlnet',2023,'Adding Conditional Control to Text-to-Image Diffusion Models (ControlNet)','ControlNet','generative','diffusion',['ldm','cfg']],
+['sdxl',2023,'SDXL: Improving Latent Diffusion Models for High-Resolution Image Synthesis','SDXL','generative','diffusion',['ldm','cfg']],
+
+// ── multimodal ─────────────────────────────────────────────
+['pali',2022,'PaLI: A Jointly-Scaled Multilingual Language-Image Model','PaLI','multimodal','vlm',['vit','t5','clip']],
+['chameleon',2024,'Chameleon: Mixed-Modal Early-Fusion Foundation Models','Chameleon','multimodal','vlm',['vqgan','llama2']],
+['internvl',2024,'InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks','InternVL','multimodal','vlm',['clip','llava','qwen-vl']],
+
+// ── rl ─────────────────────────────────────────────────────
+['world-models',2018,'World Models','World Models','rl','world',['vae','lstm']],
+['rainbow',2018,'Rainbow: Combining Improvements in Deep Reinforcement Learning','Rainbow','rl','value',['dqn']],
+['alphastar',2019,'Grandmaster Level in StarCraft II using Multi-Agent Reinforcement Learning','AlphaStar','rl','search',['alphazero','lstm','ppo']],
+['dreamer',2020,'Dream to Control: Learning Behaviors by Latent Imagination (Dreamer)','Dreamer','rl','world',['world-models','muzero']],
+
+// ── agent ──────────────────────────────────────────────────
+['pal',2022,'PAL: Program-aided Language Models','PAL','agent','reason',['cot','humaneval']],
+['least-to-most',2022,'Least-to-Most Prompting Enables Complex Reasoning in Large Language Models','Least-to-Most','agent','reason',['cot']],
+['self-refine',2023,'Self-Refine: Iterative Refinement with Self-Feedback','Self-Refine','agent','reason',['cot','reflexion']],
+
+// ── interp ─────────────────────────────────────────────────
+['lime',2016,'Why Should I Trust You? Explaining the Predictions of Any Classifier (LIME)','LIME','interp','xai',['backprop']],
+['grad-cam',2017,'Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization','Grad-CAM','interp','xai',['vgg','resnet']],
+['shap',2017,'A Unified Approach to Interpreting Model Predictions (SHAP)','SHAP','interp','xai',['lime']],
+['attention-not-explanation',2019,'Attention is not Explanation','attention은 설명이 아니다','interp','xai',['bahdanau','transformer']],
+['helm',2022,'Holistic Evaluation of Language Models (HELM)','HELM','interp','eval',['mmlu','bigbench']],
+
+// ── speech · graph · ir ────────────────────────────────────
+['conformer',2020,'Conformer: Convolution-augmented Transformer for Speech Recognition','Conformer','speech','asr',['transformer','resnet']],
+['pinsage',2018,'Graph Convolutional Neural Networks for Web-Scale Recommender Systems (PinSage)','PinSage','graph','conv',['graphsage','mf']],
+['bm25',1994,'Okapi at TREC-3 (BM25)','BM25','ir','late',[]],
+['monobert',2019,'Passage Re-ranking with BERT','monoBERT','ir','late',['bert','bm25']],
+
+// ── video · robotics · data · theory · privacy ─────────────
+['cogvideox',2024,'CogVideoX: Text-to-Video Diffusion Models with An Expert Transformer','CogVideoX','video','generate',['dit','videoldm']],
+['open-x',2023,'Open X-Embodiment: Robotic Learning Datasets and RT-X Models','Open X-Embodiment','robotics','vla',['rt1','rt2']],
+['mobile-aloha',2024,'Mobile ALOHA: Learning Bimanual Mobile Manipulation with Low-Cost Whole-Body Teleoperation','Mobile ALOHA','robotics','imitation',['act','diffusion-policy']],
+['dolma',2024,'Dolma: an Open Corpus of Three Trillion Tokens for Language Model Pretraining','Dolma','data','corpus',['the-pile','refinedweb']],
+['fineweb',2024,'The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale','FineWeb','data','curate',['refinedweb','dedup']],
+['information-bottleneck',2017,'Opening the Black Box of Deep Neural Networks via Information','정보 병목','theory','general',['backprop','rethinking-generalization']],
+['sam-optimizer',2021,'Sharpness-Aware Minimization for Efficiently Improving Generalization','SAM 옵티마이저','theory','optim',['large-batch','adam']],
+['machine-unlearning',2021,'Machine Unlearning','기계 망각','privacy','dp',['dp-sgd','membership-inference']],
+
+// ════════ 3차 확장 — 원문 참고문헌에서 캐낸 빈 자리 ════════
+// (tools/mine_refs.py 로 250편의 참고문헌을 훑어, 우리 위키가 공통으로
+//  참조하는데 없던 논문을 참조 빈도 순으로 추린 것)
+['adamw',2017,'Decoupled Weight Decay Regularization (AdamW)','AdamW','foundations','learning',['adam']],
+['gelu',2016,'Gaussian Error Linear Units (GELUs)','GELU','foundations','stabilize',['backprop','dropout']],
+['graves-rnn',2013,'Generating Sequences With Recurrent Neural Networks','Graves RNN','nlp','seq',['lstm']],
+['gnmt',2016,"Google's Neural Machine Translation System",'GNMT','nlp','seq',['seq2seq','bahdanau','bpe']],
+['sparse-transformers',2019,'Generating Long Sequences with Sparse Transformers','Sparse Transformer','efficiency','attn',['transformer']],
+['gopher',2021,'Scaling Language Models: Methods, Analysis & Insights from Training Gopher','Gopher','llm','scale',['gpt3','scaling-laws']],
+['lamda',2022,'LaMDA: Language Models for Dialog Applications','LaMDA','llm','align',['transformer','gpt3']],
+['opt',2022,'OPT: Open Pre-trained Transformer Language Models','OPT','llm','open',['gpt3']],
+['bloom',2022,'BLOOM: A 176B-Parameter Open-Access Multilingual Language Model','BLOOM','llm','open',['gpt3','opt']],
+['flan-t5',2022,'Scaling Instruction-Finetuned Language Models (Flan-T5)','Flan-T5','llm','align',['flan','t5','cot']],
+['general-assistant',2021,'A General Language Assistant as a Laboratory for Alignment','범용 어시스턴트','llm','align',['gpt3']],
+['anthropic-hh',2022,'Training a Helpful and Harmless Assistant with RLHF','HH-RLHF','llm','align',['instructgpt','summarize-hf','general-assistant']],
+['glide',2022,'GLIDE: Text-Guided Diffusion for Image Generation and Editing','GLIDE','generative','diffusion',['ddpm','cfg','clip']],
+['dalle2',2022,'Hierarchical Text-Conditional Image Generation with CLIP Latents (DALL·E 2)','DALL·E 2','generative','diffusion',['clip','glide','ddpm']],
+['cpc',2018,'Representation Learning with Contrastive Predictive Coding','CPC','vision','selfsup',['word2vec','backprop']],
+['arc-bench',2018,'Think you have Solved Question Answering? Try ARC','ARC','interp','eval',['elmo']],
+['hellaswag',2019,'HellaSwag: Can a Machine Really Finish Your Sentence?','HellaSwag','interp','eval',['bert','gpt2']],
+['math-dataset',2021,'Measuring Mathematical Problem Solving With the MATH Dataset','MATH','interp','eval',['gpt3','gsm8k']],
+['bbh',2022,'Challenging BIG-Bench Tasks and Whether Chain-of-Thought Can Solve Them','BIG-Bench Hard','interp','eval',['bigbench','cot']],
+['mbpp',2021,'Program Synthesis with Large Language Models (MBPP)','MBPP','code','bench',['humaneval']],
+['foundation-models',2021,'On the Opportunities and Risks of Foundation Models','파운데이션 모델 보고서','interp','eval',['gpt3','bert','clip']]
 ];
 
 WIKI.META = WIKI.INDEX.map(function(r){

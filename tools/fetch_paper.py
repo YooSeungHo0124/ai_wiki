@@ -13,7 +13,7 @@ arXiv ID 는 보통 content/papers/<slug>.js 의 arxiv 필드에서 읽는다.
     paper.pdf      원문
     meta.json      slug·arxiv·제목·페이지수·수집일
     text.txt       pdftotext -layout (인용문 검색용)
-    pages/p01.png  150dpi 페이지 렌더 (그림 위치를 눈으로 찾을 때)
+    pages/p01.png  150dpi 페이지 렌더 (최대 30쪽 — 그림 위치를 눈으로 찾을 때)
     images/        pdfimages 로 뽑은 삽입 이미지 (충분히 큰 것만)
 
 여기는 저장소가 아니라 로컬 캐시다. 위키에 실을 그림은
@@ -63,14 +63,21 @@ def fetch(slug, arxiv):
     # 본문 텍스트
     run(["pdftotext", "-layout", pdf, os.path.join(d, "text.txt")])
     # 페이지 렌더 (앞 14쪽이면 본문 그림은 거의 다 들어온다)
+    # 렌더 범위: 짧은 논문은 전부, 긴 논문도 부록 앞까지는 담는다.
+    # (14쪽으로 자르면 52쪽짜리 Mamba-2 의 Figure 6·10 에 닿지 못한다)
+    npg = 0
+    r0 = run(["pdfinfo", pdf])
+    m0 = re.search(r"Pages:\s+(\d+)", r0.stdout or "")
+    if m0: npg = int(m0.group(1))
+    last = min(npg, 30) if npg else 20
     pages = os.path.join(d, "pages"); os.makedirs(pages, exist_ok=True)
     if not os.listdir(pages):
-        run(["pdftoppm", "-png", "-r", "150", "-f", "1", "-l", "14",
+        run(["pdftoppm", "-png", "-r", "150", "-f", "1", "-l", str(last),
              pdf, os.path.join(pages, "p")])
     # 삽입 이미지
     imgs = os.path.join(d, "images"); os.makedirs(imgs, exist_ok=True)
     if not os.listdir(imgs):
-        run(["pdfimages", "-png", "-f", "1", "-l", "14", pdf, os.path.join(imgs, "im")])
+        run(["pdfimages", "-png", "-f", "1", "-l", str(last), pdf, os.path.join(imgs, "im")])
         for fn in list(os.listdir(imgs)):            # 아이콘·수식 조각 제거
             p = os.path.join(imgs, fn)
             if os.path.getsize(p) < 12000: os.remove(p)

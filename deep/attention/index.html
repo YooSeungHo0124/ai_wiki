@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Attention 시각화 — LLM은 어떻게 다음 단어를 고르는가</title>
+<meta name="description" content="실제로 학습시킨 초소형 GPT의 forward pass를 단계별 애니메이션으로 따라가며 attention, MLP, softmax, sampling, KV cache를 이해하는 한국어 시각화 사이트">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=4">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">▤</span>
+    <div>
+      <h1>Attention 시각화</h1>
+      <p>LLM은 어떻게 다음 단어를 고르는가 — 실제로 학습된 초소형 GPT로 따라가기</p>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-text" id="progressText">1 / 18</span>
+    <button class="ghost-btn" id="themeBtn" title="밝은/어두운 테마">◐</button>
+  </div>
+</header>
+
+<main>
+  <aside class="panel" id="panel">
+    <div class="toc-head">
+      <button class="toc-toggle" id="tocToggle">
+        <span class="chev">▾</span> 목차
+      </button>
+    </div>
+    <nav class="toc" id="toc"></nav>
+
+    <article class="narration" id="narration"></article>
+
+    <div class="navbtns">
+      <button id="prevBtn">‹ 이전</button>
+      <button id="nextBtn" class="primary">다음 ›</button>
+    </div>
+  </aside>
+
+  <section class="stage-wrap">
+    <div class="controls" id="controls"></div>
+    <div class="canvas" id="canvas"></div>
+    <footer class="stage-foot">
+      <span>모든 수치는 <b>TinyGPT</b>(2 layer · 3 head · d_model 24 · 파라미터 15,168개)의 실제 forward pass 결과입니다.</span>
+    </footer>
+  </section>
+</main>
+
+<script src="data/weights.js?v=4"></script>
+<script src="js/model.js?v=4"></script>
+<script src="js/viz.js?v=4"></script>
+<script src="js/chapters1.js?v=4"></script>
+<script src="js/chapters2.js?v=4"></script>
+<script src="js/app.js?v=4"></script>
+</body>
+</html>

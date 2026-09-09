@@ -1,0 +1,137 @@
+/* =============================================================
+ * 다이어그램 (HTML + CSS 렌더)  — js/wiki/diagram.js 와 짝
+ * 토큰은 css/tokens.css 에서 온다. 없으면 폴백값을 쓴다.
+ * ============================================================= */
+.dia{
+  margin:18px 0;
+  padding:18px 16px 14px;
+  background:var(--surface, var(--panel,#141a24));
+  border:1px solid var(--border, var(--line,#2b3547));
+  border-radius:12px;
+  overflow-x:auto;
+}
+.dia figcaption{
+  margin-top:12px; padding-top:10px;
+  border-top:1px solid var(--border-soft, var(--line-soft,#212a39));
+  font-size:12.5px; line-height:1.6;
+  color:var(--text-muted, var(--muted,#7f8da3));
+  text-align:center;
+}
+
+/* ---------- 공통 상자 ---------- */
+.dnode{
+  flex:0 1 auto;
+  min-width:104px; max-width:230px;
+  padding:10px 13px;
+  background:var(--surface-raised, var(--panel2,#1a2130));
+  border:1px solid var(--border, var(--line,#2b3547));
+  border-radius:9px;
+  text-align:center;
+  word-break:keep-all;      /* 한국어를 어절 단위로 끊는다 */
+  overflow-wrap:anywhere;   /* 그래도 넘치면 강제 줄바꿈 */
+}
+.dnode b{
+  display:block; font-size:13px; font-weight:600; line-height:1.45;
+  color:var(--text, #e3e9f3);
+}
+.dnode .ds{
+  display:block; margin-top:4px;
+  font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  font-size:10.5px; line-height:1.45;
+  color:var(--text-muted, var(--muted,#7f8da3));
+}
+.dnode.acc{
+  background:color-mix(in srgb, var(--accent,#4fd1c5) 14%, var(--surface-raised, var(--panel2,#1a2130)));
+  border-color:var(--accent-dim, #2e8b83);
+}
+
+/* ---------- 화살표 ---------- */
+.darr{ display:flex; align-items:center; justify-content:center;
+  flex:0 0 auto; color:var(--text-muted, var(--muted,#7f8da3)); }
+.darr i{ display:block; }
+.darr em{ font-style:normal; font-size:11px; white-space:nowrap; }
+.darr-r{ flex-direction:column; gap:2px; min-width:34px; }
+.darr-r i{ width:26px; height:1.5px; background:currentColor; position:relative; }
+.darr-r i::after{ content:""; position:absolute; right:-1px; top:-3px;
+  border-left:6px solid currentColor; border-top:4px solid transparent; border-bottom:4px solid transparent; }
+.darr-u{ flex-direction:row; gap:6px; height:22px; }
+.darr-u i{ width:1.5px; height:18px; background:currentColor; position:relative; }
+.darr-u i::after{ content:""; position:absolute; top:-1px; left:-3px;
+  border-bottom:6px solid currentColor; border-left:4px solid transparent; border-right:4px solid transparent; }
+
+/* ---------- flow ---------- */
+.dia-flow{ display:flex; align-items:stretch; justify-content:center;
+  flex-wrap:wrap; gap:6px 4px; }
+.dia-flow .dnode{ display:flex; flex-direction:column; justify-content:center; }
+
+/* ---------- stack ---------- */
+.dia-stack{ display:flex; flex-direction:column; align-items:center; gap:0; }
+.dia-stack .drow{ display:flex; align-items:center; gap:12px; width:100%;
+  max-width:620px; justify-content:center; }
+.dia-stack .dnode{ width:340px; max-width:100%; }
+.dia-stack .dnote{ flex:1 1 0; min-width:0; font-size:11.5px; line-height:1.5;
+  color:var(--text-muted, var(--muted,#7f8da3)); word-break:keep-all; }
+@media(max-width:640px){
+  .dia-stack .drow{ flex-direction:column; gap:4px; }
+  .dia-stack .dnote{ text-align:center; }
+}
+
+/* ---------- compare ---------- */
+.dia-compare{ display:grid; grid-template-columns:1fr auto 1fr; gap:14px; align-items:stretch; }
+.dia-compare .dcol{
+  padding:13px 15px; border-radius:10px;
+  background:var(--surface-raised, var(--panel2,#1a2130));
+  border:1px solid var(--border, var(--line,#2b3547));
+}
+.dia-compare .dcol.acc{
+  background:color-mix(in srgb, var(--accent,#4fd1c5) 10%, var(--surface-raised, var(--panel2,#1a2130)));
+  border-color:var(--accent-dim,#2e8b83);
+}
+.dia-compare h5{ margin:0 0 9px; font-size:13px; font-weight:700;
+  color:var(--text,#e3e9f3); word-break:keep-all; }
+.dia-compare ul{ margin:0; padding-left:16px; }
+.dia-compare li{ font-size:12.5px; line-height:1.65; margin-bottom:5px;
+  color:var(--text-dim, #aab6c8); word-break:keep-all; }
+.dia-compare .dvs{ align-self:center; font-size:19px; color:var(--accent,#4fd1c5); }
+@media(max-width:700px){
+  .dia-compare{ grid-template-columns:1fr; }
+  .dia-compare .dvs{ transform:rotate(90deg); }
+}
+
+/* ---------- loop ---------- */
+.dia-loop{ display:flex; flex-direction:column; align-items:center; gap:0; }
+.dia-loop .dloop-row{ display:flex; align-items:stretch; justify-content:center;
+  flex-wrap:wrap; gap:6px 4px; }
+.dia-loop .dnode{ display:flex; flex-direction:column; justify-content:center; }
+.dia-loop .dloop-back{
+  margin-top:10px; width:100%; max-width:640px; position:relative;
+  border:1.5px solid var(--border, var(--line,#2b3547)); border-top:0;
+  border-radius:0 0 10px 10px; height:22px;
+}
+.dia-loop .dloop-back span{
+  position:absolute; left:50%; top:11px; transform:translate(-50%,-50%);
+  background:var(--surface, var(--panel,#141a24)); padding:0 10px;
+  font-size:11.5px; color:var(--accent,#4fd1c5); white-space:nowrap;
+}
+
+/* ---------- split ---------- */
+.dia-split{ display:flex; flex-direction:column; align-items:center; }
+.dia-split .dsplit-top .dnode{ min-width:180px; }
+.dia-split .dsplit-rail{ width:1.5px; height:16px; background:var(--border, var(--line,#2b3547)); }
+.dia-split .dsplit-branches{ display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
+.dia-split .dbranch{ display:flex; flex-direction:column; align-items:center; }
+.dia-split .dbranch i{ width:1.5px; height:14px; background:var(--border, var(--line,#2b3547)); }
+.dia-split .dsplit-join{ margin-top:11px; font-size:11.5px;
+  color:var(--text-muted, var(--muted,#7f8da3)); text-align:center; }
+
+/* ---------- matrix ---------- */
+.dia-matrix table{ border-collapse:collapse; margin:0 auto; }
+.dia-matrix th{ font-size:11px; font-weight:500; padding:4px 6px;
+  color:var(--text-muted, var(--muted,#7f8da3)); white-space:nowrap; }
+.dia-matrix th.rh{ text-align:right; padding-right:10px; }
+.dia-matrix td.cell{ position:relative; width:40px; height:30px; padding:2px; }
+.dia-matrix td.cell span{ position:absolute; inset:2px; border-radius:4px;
+  background:var(--accent,#4fd1c5); }
+.dia-matrix td.cell em{ position:relative; display:block; text-align:center;
+  font-style:normal; font-family:"JetBrains Mono",monospace; font-size:10px;
+  line-height:26px; color:var(--text,#e3e9f3); mix-blend-mode:difference; }

@@ -1,0 +1,293 @@
+/* =============================================================
+ * AI Wiki — 인공지능 논문 계보
+ * 색·타이포·간격 변수는 css/tokens.css (design/DESIGN-SYSTEM.md 근거).
+ * 이 파일은 그 토큰을 소비하는 레이아웃/컴포넌트 규칙만 둔다.
+ * ============================================================= */
+*{box-sizing:border-box}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.card:focus-visible,.pill:focus-visible{border-radius:var(--radius)}
+svg .node:focus-visible rect{stroke:var(--accent);stroke-width:2}
+.brand:focus-visible{outline-offset:4px;border-radius:8px}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg-page);color:var(--text);
+  font-family:var(--font-kr);
+  font-size:var(--fs-body);line-height:var(--lh-body);-webkit-font-smoothing:antialiased}
+code,.mono{font-family:var(--font-mono)}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+button{font-family:inherit}
+
+/* ---------- topbar ---------- */
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:16px;
+  padding:10px 20px;background:color-mix(in srgb,var(--panel) 92%,transparent);
+  border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.brand{display:flex;align-items:center;gap:10px;cursor:pointer}
+.brand .logo{width:30px;height:30px;border-radius:8px;background:var(--accent);
+  color:#06201e;display:grid;place-items:center;font-weight:700;font-size:15px}
+.brand h1{margin:0;font-size:15px;letter-spacing:-.01em}
+.brand p{margin:0;font-size:11.5px;color:var(--muted);line-height:1.3}
+.spacer{flex:1}
+.searchbox{position:relative}
+.searchbox input{width:260px;padding:7px 11px;border-radius:8px;border:1px solid var(--line);
+  background:var(--panel2);color:var(--text);font-size:13px;outline:none}
+.searchbox input:focus{border-color:var(--accent-dim)}
+.results{position:absolute;top:38px;right:0;width:420px;max-width:90vw;max-height:60vh;overflow:auto;
+  background:var(--surface-raised);border:1px solid var(--border-strong);border-radius:var(--radius-lg);box-shadow:var(--shadow-3);padding:6px;display:none}
+.results.query-open{max-height:75vh}
+.results.on{display:block}
+.results .r{padding:7px 10px;border-radius:7px;cursor:pointer;font-size:13px}
+.results .r:hover,.results .r.sel{background:var(--panel3)}
+.results .r b{color:var(--text)}
+.results .r span{color:var(--muted);font-size:11.5px}
+.results .r .stage-ic{margin-left:2px}
+.results .r-empty{padding:14px 10px;color:var(--text-tertiary);font-size:13px}
+.results .r-count{padding:6px 10px 8px;color:var(--text-tertiary);font-size:11.5px;
+  border-bottom:1px solid var(--border-subtle);margin-bottom:4px;position:sticky;top:0;background:var(--surface-raised)}
+.ghost-btn{background:var(--panel2);border:1px solid var(--line);color:var(--text-dim);
+  border-radius:8px;padding:6px 10px;cursor:pointer;font-size:13px}
+.ghost-btn:hover{border-color:var(--accent-dim);color:var(--text)}
+
+/* ---------- shell ---------- */
+.wrap{max-width:1180px;margin:0 auto;padding:26px 20px 90px}
+.wrap.wide{max-width:1500px}
+.hero{padding:26px 0 10px}
+.hero h2{margin:0 0 8px;font-size:27px;letter-spacing:-.02em}
+.hero p{margin:0;color:var(--text-dim);max-width:760px}
+.kbd{font-family:"JetBrains Mono",monospace;font-size:11px;background:var(--panel3);
+  border:1px solid var(--line);border-radius:5px;padding:1px 5px;color:var(--text-dim)}
+
+/* ---------- field cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;margin-top:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 18px;cursor:pointer;transition:.14s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-2px);border-color:var(--accent-dim);box-shadow:var(--shadow)}
+.card .bar{position:absolute;left:0;top:0;bottom:0;width:4px}
+.card h3{margin:0 0 2px;font-size:16px}
+.card .en{font-size:11px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.card p{margin:9px 0 0;font-size:13px;color:var(--text-dim);line-height:1.6}
+.card .n{margin-top:11px;font-size:11.5px;color:var(--muted)}
+
+/* ---------- timeline ---------- */
+.tl-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:26px 0 10px}
+.chip{border:1px solid var(--line);background:var(--panel2);color:var(--text-dim);
+  border-radius:999px;padding:4px 11px;font-size:12px;cursor:pointer;user-select:none}
+.chip.on{color:#0d1118;border-color:transparent;font-weight:600}
+html[data-theme="light"] .chip.on{color:#fff}
+.graph-box{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:6px;overflow-x:auto}
+.graph-box svg{display:block}
+svg .edge{stroke:var(--graph-edge);stroke-width:var(--edge-lineage-width);fill:none;
+  transition:stroke var(--graph-sel-duration) var(--graph-sel-ease),stroke-width var(--graph-sel-duration) var(--graph-sel-ease),opacity var(--graph-sel-duration) var(--graph-sel-ease)}
+svg .edge.hi{stroke:var(--graph-edge-hi);stroke-width:var(--edge-lineage-width-hi)}
+svg .node rect{stroke:var(--graph-node-border);fill:var(--graph-node-fill);rx:7;transition:stroke var(--duration-fast) var(--ease-standard)}
+svg .node:hover rect,svg .node:focus-visible rect{stroke:var(--graph-node-border-hover)}
+svg .node.node-seed rect{stroke-dasharray:3 3}
+svg .node.node-growing rect,svg .node.node-sprout rect{stroke-width:1.6}
+svg .node text{fill:var(--text);font-size:11.5px}
+svg .node .yr{fill:var(--muted);font-size:10px}
+svg .lane{fill:var(--muted);font-size:11px}
+svg .lanebg{fill:var(--graph-lane-bg);opacity:1}
+svg .axis{stroke:var(--graph-axis);stroke-width:1}
+
+/* ---------- 그래프 선택 강조 (GRAPH-INTERACTION.md 시-2·시-3) ----------
+   채널 배분: 테두리 색 + 테두리 굵기 + 배경 fill(선택 노드 1개 예외) + 그룹 불투명도.
+   분야색(레인)·성장단계(점선/굵기 §5.1)는 건드리지 않는다 — 독립 채널. */
+svg .node{transition:opacity var(--graph-sel-duration) var(--graph-sel-ease)}
+svg .node rect{transition:stroke var(--graph-sel-duration) var(--graph-sel-ease),stroke-width var(--graph-sel-duration) var(--graph-sel-ease),fill var(--graph-sel-duration) var(--graph-sel-ease)}
+svg .node.sel-node rect{stroke:var(--graph-sel-node-border);stroke-width:var(--graph-sel-node-border-w);fill:var(--graph-sel-node-fill)}
+svg .node.sel-parent rect{stroke:var(--graph-sel-parent);stroke-width:var(--graph-sel-neighbor-border-w)}
+svg .node.sel-child rect{stroke:var(--graph-sel-child);stroke-width:var(--graph-sel-neighbor-border-w)}
+svg .node.sel-dim{opacity:var(--graph-dim-opacity)}
+svg .edge.sel-parent{stroke:var(--graph-sel-parent);stroke-width:var(--graph-sel-edge-w)}
+svg .edge.sel-child{stroke:var(--graph-sel-child);stroke-width:var(--graph-sel-edge-w)}
+svg .edge.sel-dim{opacity:var(--graph-dim-edge-opacity)}
+/* 레인 배경·연도축은 "좌표계"라 dim 대상에서 제외(시-3) — 별도 처리 불필요,
+   .lanebg/.axis는애초에 sel-dim 클래스를 받지 않는다. */
+
+/* ---------- 선택 정보 카드 (시-5) ---------- */
+.graph-card[hidden]{display:none}
+.graph-card{margin-top:8px;background:var(--graph-card-bg);border:1px solid var(--graph-card-border);
+  border-radius:var(--graph-card-radius);box-shadow:var(--graph-card-shadow);padding:14px 16px;
+  max-width:420px}
+.graph-card-inner{position:relative}
+.graph-card-close{position:absolute;top:-4px;right:-4px;width:24px;height:24px;border:0;background:transparent;
+  color:var(--text-tertiary);font-size:16px;line-height:1;cursor:pointer;border-radius:6px}
+.graph-card-close:hover{color:var(--text-secondary);background:var(--surface-sunken)}
+.graph-card-title{font-size:var(--fs-h4);color:var(--text-primary);font-weight:600;padding-right:20px}
+.graph-card-meta{display:flex;align-items:center;gap:8px;margin-top:6px}
+.graph-card-counts{margin-top:8px;font-size:13px;color:var(--text-secondary)}
+.graph-card-counts .cnt-parent{color:var(--graph-sel-parent)}
+.graph-card-counts .cnt-child{color:var(--graph-sel-child)}
+.graph-card-move{display:block;width:100%;margin-top:12px;padding:8px 12px;border-radius:var(--radius-sm);
+  font-size:13.5px;cursor:pointer;text-align:center;
+  background:var(--accent-strong);border:1px solid var(--accent-strong);color:var(--text-on-accent)}
+html[data-theme="dark"] .graph-card-move{background:transparent;border-color:var(--accent);color:var(--accent)}
+.graph-card-move:hover{opacity:.88}
+svg .axis-t{fill:var(--graph-axis-label);font-size:10.5px}
+
+/* ---------- paper page ---------- */
+.paper{display:grid;grid-template-columns:1fr 250px;gap:30px;align-items:start}
+@media(max-width:980px){.paper{grid-template-columns:1fr}.side{display:none}}
+.side{position:sticky;top:72px;font-size:13px}
+.side h4{margin:0 0 8px;font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.side a{display:block;padding:4px 0;color:var(--text-dim);border-left:2px solid var(--line);padding-left:10px}
+.side a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none}
+.crumb{font-size:12px;color:var(--muted);margin-bottom:10px}
+.crumb a{color:var(--muted)}
+.ptitle{margin:0 0 4px;font-size:26px;letter-spacing:-.02em;line-height:1.3}
+.psub{margin:0 0 14px;color:var(--text-dim);font-size:14px}
+.pmeta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.tag{font-size:11.5px;border:1px solid var(--line);background:var(--panel2);
+  color:var(--text-dim);border-radius:6px;padding:2px 8px}
+/* 태그 삼종 — 분야(색 있음) → 트랙/부가정보(색 없는 아웃라인) → 연도(칩 없음) */
+.chip-field{font-size:12px;font-weight:600;border:1px solid;border-radius:var(--radius-sm);padding:2px 9px}
+.chip-track{font-size:11.5px;border:1px solid var(--chip-track-border);background:var(--chip-track-bg);
+  color:var(--chip-track-text);border-radius:var(--radius-sm);padding:2px 8px}
+a.chip-track:hover{border-color:var(--accent-soft-border);color:var(--accent);text-decoration:none}
+.chip-year{font-size:12px;color:var(--chip-year-text);font-family:var(--font-mono);margin-left:2px}
+.tldr.skeleton{color:var(--muted);animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
+.tldr{background:var(--surface);border:1px solid var(--border-subtle);border-left:3px solid var(--accent);
+  border-radius:var(--radius-md);padding:14px 16px;font-size:15.5px;margin-bottom:24px}
+h3.sec{font-size:17px;margin:34px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--line-soft);
+  letter-spacing:-.01em;scroll-margin-top:70px}
+h3.sec .num{color:var(--muted);font-size:12px;margin-right:8px;font-family:"JetBrains Mono",monospace}
+.idea{background:var(--surface);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:14px 16px;margin-bottom:var(--sp-3)}
+.idea h4{margin:0 0 5px;font-size:var(--fs-h4);color:var(--accent)}
+.idea p{margin:0;font-size:14px;color:var(--text-secondary)}
+.math{background:var(--math-bg);border:0;border-top:1px solid var(--math-border);border-radius:var(--radius-md);
+  padding:14px 16px 12px;margin-bottom:10px}
+.math .e{font-family:var(--font-mono);font-size:var(--fs-code);color:var(--math-fg);white-space:pre-wrap;letter-spacing:.01em}
+.math .d{font-size:13px;color:var(--text-tertiary);margin-top:6px}
+table.nums{width:100%;border-collapse:collapse;font-size:13.5px}
+table.nums td,table.nums th{border-bottom:1px solid var(--border-subtle);padding:8px 10px;text-align:left}
+table.nums th{color:var(--text-tertiary);font-size:11.5px;font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+table.nums td.v{font-family:var(--font-mono);color:var(--accent);white-space:nowrap}
+ul.plain{margin:0;padding-left:19px;color:var(--text-secondary)}
+ul.plain li{margin-bottom:6px}
+.callout{background:var(--surface-sunken);border:0;border-left:3px solid var(--state-info);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:13px 16px;
+  font-size:13.5px;color:var(--text-secondary)}
+.callout b{color:var(--text)}
+.callout.warn{border-left-color:var(--state-warn)}
+.callout.warn ul.plain{padding-left:19px}
+.lineage{display:flex;gap:20px;flex-wrap:wrap;margin-top:6px}
+.lineage>div{flex:1;min-width:220px}
+.pill{display:inline-block;margin:3px 5px 3px 0;font-size:12.5px;border:1px solid transparent;
+  background:var(--surface-sunken);border-radius:999px;padding:3px 9px;cursor:pointer;color:var(--text-secondary)}
+.pill:hover{border-color:var(--accent-soft-border);color:var(--accent)}
+.deeplink{display:block;background:linear-gradient(135deg,var(--panel2),var(--panel));
+  border:1px solid var(--accent-dim);border-radius:12px;padding:16px 18px;margin:24px 0;color:var(--text)}
+.deeplink:hover{text-decoration:none;border-color:var(--accent)}
+.deeplink b{color:var(--accent)}
+.pagenav{display:flex;justify-content:space-between;gap:12px;margin-top:44px;
+  border-top:1px solid var(--line-soft);padding-top:16px;font-size:13px}
+.stub{background:var(--panel);border:1px dashed var(--line);border-radius:12px;padding:30px;text-align:center;color:var(--muted)}
+
+/* ---------- 성장 단계 배지 (DESIGN-SYSTEM §5.1, 4단계) ----------
+   신호등(빨강/초록) 대신 하나의 색 계열 안에서 진행만 표현한다.
+   seed는 색 자체가 없다 — evergreen이 다수(기본값)이므로 나무 아이콘이
+   가장 존재감이 약해야 한다(테두리·배경 없음, 아이콘+텍스트만). */
+.tag.stage{font-size:11.5px;display:inline-flex;align-items:center;gap:4px}
+.tag.stage-seed{color:var(--stage-seed);background:transparent;border-style:dashed}
+.tag.stage-sprout{color:var(--stage-sprout);background:transparent;border-color:var(--stage-sprout)}
+.tag.stage-growing{color:var(--stage-growing);background:color-mix(in srgb,var(--stage-growing) 8%,var(--surface));border-color:var(--stage-growing)}
+.tag.stage-evergreen{color:var(--stage-evergreen);background:transparent;border-color:transparent;padding-left:2px}
+
+/* 카드 · 검색 결과 — 아이콘만, 채도를 가장 낮춘 evergreen이 "설명 없는 기본값"처럼 보이게 */
+.stage-ic{font-size:12px;line-height:1;display:inline-block}
+.stage-ic.stage-evergreen{opacity:.55}
+.stage-ic.stage-seed{opacity:.9}
+.card-stage{position:absolute;top:10px;right:12px}
+
+/* ---------- 씨앗 페이지 작성 안내 ---------- */
+.guide{background:var(--panel2);border:1px dashed var(--line);border-radius:12px;padding:18px 20px;margin:18px 0;font-size:13.5px;color:var(--text-dim)}
+.guide h4{margin:0 0 8px;font-size:14px;color:var(--text)}
+.guide code{display:inline-block;background:var(--panel3);border-radius:5px;padding:1px 7px;margin:2px 0}
+.guide .links{margin-top:8px;display:flex;gap:14px;flex-wrap:wrap}
+
+/* ---------- 로컬 그래프 ---------- */
+.localgraph{margin-top:14px}
+.localgraph .lg-box{background:var(--panel2);border:1px solid var(--line-soft);border-radius:10px;padding:10px;overflow-x:auto}
+.localgraph svg .node-center rect{fill:color-mix(in srgb,var(--accent) 18%,var(--panel2));stroke:var(--accent)}
+.localgraph .note{font-size:11.5px;color:var(--muted);margin-top:6px}
+
+/* ---------- 백링크 · 함께 읽으면 좋은 ---------- */
+.backlinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.together{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:4px}
+.together a.tcard{display:block;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--text)}
+.together a.tcard:hover{border-color:var(--accent-dim);text-decoration:none}
+.together a.tcard .why{display:block;font-size:11.5px;color:var(--muted);margin-top:3px}
+
+/* ---------- 그래프 줌 컨트롤 ---------- */
+.graph-toolbar{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.zoom-ctl{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);border-radius:8px;background:var(--panel2);padding:2px}
+.zoom-ctl button{width:26px;height:26px;border:0;background:transparent;color:var(--text-dim);border-radius:6px;cursor:pointer;font-size:14px}
+.zoom-ctl button:hover{background:var(--panel3);color:var(--text)}
+.zoom-ctl span{font-size:11.5px;color:var(--muted);min-width:38px;text-align:center}
+.graph-viewport{overflow:auto;max-height:74vh}
+.graph-viewport>svg{transform-origin:0 0}
+details.graph-collapse{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:2px}
+details.graph-collapse>summary{cursor:pointer;list-style:none;padding:12px 16px;font-size:13.5px;color:var(--text-dim);display:flex;align-items:center;gap:8px;user-select:none}
+details.graph-collapse>summary::-webkit-details-marker{display:none}
+details.graph-collapse>summary::before{content:'▸';color:var(--muted);transition:.15s}
+details.graph-collapse[open]>summary::before{content:'▾'}
+details.graph-collapse>summary:hover{color:var(--text)}
+.field-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 12px}
+.field-chips .chip{display:inline-flex;align-items:center;gap:5px}
+.field-chips .chip .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.completion{margin-top:8px;height:4px;border-radius:2px;background:var(--panel3);overflow:hidden}
+.completion i{display:block;height:100%;background:var(--accent)}
+
+/* ---------- diagram ---------- */
+.dia{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin:6px 0 10px;overflow-x:auto}
+.dia .cap{font-size:12px;color:var(--muted);margin-top:8px;text-align:center}
+.dia svg{display:block;margin:0 auto}
+svg .dbox{fill:var(--dia-box-fill);stroke:var(--dia-box-border);rx:8}
+svg .dbox.acc{fill:var(--dia-box-acc-fill);stroke:var(--dia-box-acc-border)}
+svg .dt{fill:var(--dia-text);font-size:12.5px;font-weight:500}
+svg .ds{fill:var(--dia-subtext);font-size:10.5px;font-family:var(--font-mono)}
+svg .darrow{stroke:var(--dia-arrow);stroke-width:1.6;fill:none;marker-end:url(#ah)}
+svg .dlabel{fill:var(--dia-label);font-size:11px}
+
+/* 아이디어 카드의 한 문장 요약 (v2 규격) */
+.idea p.lead{
+  margin:0 0 7px; font-size:var(--fs-body); font-weight:600; line-height:1.6;
+  color:var(--text-primary);
+}
+.idea p.lead + p{ font-size:var(--fs-body-sm); }
+/* KaTeX 블록 수식 */
+.math .e.tex{ padding:4px 0; overflow-x:auto; font-size:var(--fs-code) }
+.math .e.tex .katex-display{ margin:0; }
+.tex-fallback{ color:var(--text-secondary); }
+
+/* 원문에서 발췌한 그림 · 인용 — DESIGN-SYSTEM §5 "인용/출처" 행을 따른다:
+   surface 배경, border-subtle 테두리만, 그림자 없음, 좌측 강조선 없음. */
+.paperfig{ margin:0 0 16px; padding:12px; border:1px solid var(--border-subtle);
+  border-radius:var(--radius-md); background:var(--surface); }
+.paperfig img{ display:block; width:100%; height:auto; border-radius:var(--radius-sm); background:#fff; }
+.paperfig figcaption{ margin-top:10px; font-size:var(--fs-body-sm); line-height:1.6;
+  color:var(--text-tertiary); }
+.paperfig figcaption .src{ display:inline-block; margin-left:6px; padding:1px 7px; border-radius:var(--radius-sm);
+  background:var(--surface-sunken); font-size:var(--fs-micro);
+  font-family:var(--font-mono); }
+blockquote.quote{ margin:0 0 12px; padding:12px 16px; border:1px solid var(--border-subtle);
+  border-radius:var(--radius-md); background:var(--surface);
+  font-size:var(--fs-body); line-height:1.7; color:var(--text-secondary); }
+blockquote.quote cite{ display:block; margin-top:7px; font-style:normal; font-size:var(--fs-micro);
+  color:var(--text-tertiary); font-family:var(--font-mono); }
+
+/* 홈 위젯 행 (최근 갱신 · 오늘의 씨앗) */
+.widget-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:12px; margin:20px 0 6px; }
+.widget{ padding:13px 15px; border-radius:var(--radius-md);
+  background:var(--surface); border:1px solid var(--border-subtle); }
+.widget h4{ margin:0 0 9px; font-size:var(--fs-micro); letter-spacing:var(--ls-label); text-transform:uppercase;
+  color:var(--text-tertiary); font-weight:600; }
+.widget-item{ display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+  padding:5px 0; font-size:var(--fs-body-sm); color:var(--text-secondary);
+  border-bottom:1px solid var(--border-subtle); }
+.widget-item:last-child{ border-bottom:0; }
+.widget-item:hover{ color:var(--accent); text-decoration:none; }
+.widget-item .wd{ flex:0 0 auto; font-family:var(--font-mono); font-size:var(--fs-micro);
+  color:var(--text-tertiary); }
+.widget-empty{ font-size:var(--fs-body-sm); color:var(--text-tertiary); }

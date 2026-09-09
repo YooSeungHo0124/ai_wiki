@@ -1,0 +1,178 @@
+# 논문 노트 작성 규격 (content/papers/<slug>.js)
+
+이 위키의 모든 논문 페이지는 **하나의 JS 객체**로 표현된다. HTML/SVG를 직접 쓰지 않는다.
+`content/papers/transformer.js` 가 표준 예시다. **작성 전에 반드시 그 파일을 먼저 읽을 것.**
+
+## 톤과 밀도
+- 한국어, **평서체(“…이다”, “…였다”)**. 존댓말·구어체 금지. 번역투 금지.
+- 독자는 "딥러닝은 대충 알지만 이 논문은 안 읽어본 개발자". 비유로 뭉개지 말고
+  **실제 메커니즘·숫자·수식**으로 설명한다.
+- 각 논문 파일은 대략 **150~250줄, 5~9KB**. 너무 짧으면 위키의 의미가 없다.
+- 절대 금지: 내용 없는 미사여구("혁신적인", "게임 체인저"), 근거 없는 수치 창작.
+
+## 스키마
+```js
+WIKI.paper({
+slug:'<파일명과 동일>',
+venue:'NeurIPS 2017',                 // 학회/저널/arXiv-only. 모르면 생략
+authors:'Vaswani et al. (Google Brain)', // 대표저자 + 소속
+arxiv:'1706.03762',                   // arXiv ID만. 없으면 생략
+
+tldr:'한두 문장. 이 논문이 무엇을 바꿨는지.',        // 필수
+context:'이 논문 직전의 기술 상황과 병목. 3~6문장.',  // 필수
+ideas:[ {h:'아이디어 제목', d:'2~5문장 설명'}, ... ],  // 3~5개 필수
+diagram:{ ... },                                     // 1개 필수 (아래 참조)
+math:[ {expr:'수식(플레인 텍스트)', d:'해설'}, ... ],  // 0~3개
+numbers:[ {k:'항목', v:'값', d:'맥락'}, ... ],        // 3~6개 권장
+impact:'무엇이 바뀌었나. 3~5문장.',                   // 필수
+legacy:[ '이후 흐름 한 줄', ... ],                    // 3~4개 필수
+pitfalls:[ '흔한 오해 / 실무 함정', ... ],            // 2~3개 필수
+links:[ {t:'제목', u:'https://…'}, ... ]              // 2~3개 (arXiv 포함)
+});
+```
+
+## 인라인 마크업 (tldr/context/ideas.d/impact/legacy/pitfalls/math.d/numbers.d 에서 사용)
+- `**굵게**`, `` `코드` ``, `$수식조각$`(모노스페이스로 표시)
+- **내부 링크: `[표시할 말](#/p/<slug>)`** — slug 는 반드시 `content/fields.js` 의 `WIKI.INDEX`
+  에 존재하는 것만 사용한다. 없는 slug 를 지어내면 죽은 링크가 된다.
+- 외부 링크: `[제목](https://…)`
+- 계보(부모/자식) 목록은 **자동 생성**되므로 본문에서 다시 나열하지 않는다.
+
+## diagram 타입 (하나만 고른다. SVG 직접 작성 금지)
+```js
+// 1) flow — 가로 파이프라인 (입력→처리→출력). 노드 3~6개
+{type:'flow', cap:'설명 한 줄', nodes:[{t:'이미지 패치',s:'16×16',acc:true},{t:'선형 투영',s:'→ 768d'}]}
+// 2) stack — 세로로 쌓인 층 (아래가 입력). layers 4~7개, note는 오른쪽 주석
+{type:'stack', cap:'…', layers:[{t:'입력',s:'n×d'},{t:'Self-Attention',s:'…',acc:true,note:'← 토큰 간 교환'}]}
+// 3) compare — 이전 방식 vs 이 논문 (가장 자주 쓰게 됨). items 3~5개씩
+{type:'compare', cap:'…', left:{t:'기존: 2-stage detector', items:['영역 제안 → 분류','NMS 후처리 필요']},
+                          right:{t:'YOLO: 단일 회귀', items:['한 번의 forward','45 FPS']}}
+// 4) loop — 순환 구조 (RL, diffusion, GAN, self-play). nodes 3~5개
+{type:'loop', cap:'…', center:'매 스텝 반복', nodes:[{t:'노이즈 추가',s:'q(xt|xt-1)'}]}
+// 5) split — 하나에서 여러 갈래 (multi-head, MoE, 멀티태스크). branches 2~5개
+{type:'split', cap:'…', from:{t:'토큰',s:'d=4096'}, branches:[{t:'Expert 1'},{t:'Expert 2'}], join:'top-2만 활성'}
+// 6) matrix — 히트맵 (attention 패턴, 성능 표). v는 0~1
+{type:'matrix', cap:'…', cols:['a','b','c'], rows:[{t:'행이름', v:[0.1,0.8,0.1]}]}
+```
+`acc:true` 는 그 상자를 강조색으로 칠한다 — **논문의 핵심 기여 한 곳에만** 쓴다.
+
+## 정확성 규칙 (가장 중요)
+- `numbers` 의 값은 **논문에 실제로 나오는 수치**여야 한다. 기억이 흐리면
+  WebSearch/WebFetch 로 확인하고, 끝내 불확실하면 **그 항목을 빼라**. 지어내지 않는다.
+- 연도·저자·소속·학회명이 헷갈리면 확인한다. arXiv ID 는 확실할 때만 넣는다.
+- 논문이 실제로 주장하지 않은 것을 "이 논문이 처음"이라고 쓰지 않는다.
+
+## 마무리 검증 (필수)
+```bash
+node --check content/papers/<slug>.js
+```
+문법 오류가 있으면 그 페이지는 통째로 안 뜬다. 반드시 통과시킬 것.
+따옴표는 작은따옴표를 쓰되 본문에 `'`가 들어가면 `\'` 로 이스케이프하거나 큰따옴표를 쓴다.
+백슬래시(예: `\sqrt`)는 JS 문자열에서 `\\sqrt` 로 써야 한다.
+
+
+---
+
+# v2 규격 (2026-09 품질 라운드부터 적용)
+
+기존 필드는 그대로 두고 **아래를 추가·수정**한다. 옛 필드만 있어도 사이트는 동작하지만,
+품질 라운드를 거친 논문은 아래를 모두 갖춘 상태여야 한다.
+
+## A. 수식은 LaTeX로 (`tex` 필드 추가)
+
+```js
+math:[{
+  tex:'\\text{Attention}(Q,K,V)=\\text{softmax}\\!\\left(\\frac{QK^{\\top}}{\\sqrt{d_k}}\\right)V',
+  expr:'softmax(Q Kᵀ / √d_k) V',   // 폴백 + 검색용. 기존 값 유지
+  d:'해설'
+}]
+```
+- **JS 문자열이므로 백슬래시를 두 번** 쓴다: `\\frac`, `\\sqrt`, `\\top`.
+- KaTeX로 렌더된다. 지원하지 않는 명령(`\\begin{align}` 등)은 쓰지 말 것 —
+  여러 줄이 필요하면 `\\begin{aligned}...\\end{aligned}` 를 쓴다.
+- 본문(`context`/`ideas.d`/`impact` 등)의 `$...$` 도 이제 KaTeX로 조판된다.
+  따라서 본문 인라인 수식도 LaTeX 문법으로 쓴다: `$O(n^2)$`, `$\\sqrt{d_k}$`.
+  단, 코드·변수명은 여전히 백틱을 쓴다(`` `d_model` ``).
+
+## B. 다이어그램은 짧게 (라벨 길이 상한)
+
+다이어그램 렌더러가 SVG에서 HTML로 바뀌어 줄바꿈은 자동으로 되지만,
+**상자에 문장을 넣으면 여전히 도식이 아니라 목록이 된다.** 다음을 지킨다.
+
+| 위치 | 상한 | 비고 |
+|---|---|---|
+| `nodes[].t` / `layers[].t` / `branches[].t` / `from.t` | **14자** | 명사구. 문장 금지 |
+| `nodes[].s` / `layers[].s` (부제) | **22자** | 텐서 모양·수치·짧은 식 |
+| `compare.left/right.items[]` | **30자** | 한 항목 = 한 사실 |
+| `compare.left/right.t` | **20자** | |
+| `layers[].note` | **28자** | |
+| `cap` (캡션) | 120자 | 여기서만 문장을 쓴다 |
+
+- **수식을 다이어그램 상자에 넣지 말 것.** 수식은 `math` 블록으로 옮긴다.
+  (상자 안에는 `c_t = c_{t-1} + i_t ⊙ g_t` 대신 `상태 갱신`처럼 이름만.)
+- `tools/check.js` 가 상한 초과를 **오류로** 잡는다.
+
+## C. 아이디어마다 한 문장 요약 (`lead` 필드 추가)
+
+```js
+ideas:[{
+  h:'CEC: 오차가 감쇠하지 않는 항등 경로',
+  lead:'셀 내부에 가중치 1.0인 항등 순환을 둬서 오차의 야코비안을 1로 고정한다.',  // 신규
+  d:'...(기존 설명, 2~5문장)'
+}]
+```
+- `lead` 는 **한 문장**, 60자 내외. 그 아이디어를 한 줄로 요약한다.
+- 훑어보는 독자는 `h` + `lead` 만 읽고, 파고드는 독자가 `d` 를 읽는다.
+
+## D. 문단 규칙
+
+- `context` / `impact` / `ideas.d` 는 **한 문단 4문장 이하**. 넘으면 쪼개거나 목록으로.
+- 한 문장이 120자를 넘으면 나눈다.
+
+## E. 원문 그림·인용 (개인 학습용 발췌)
+
+이 위키는 **원문 PDF 대신 읽는 개인 공부 자료**다. 논문의 그림과 핵심 문장을
+직접 가져와 싣는다. 출처(몇 쪽 Figure 몇)를 반드시 함께 적어, 나중에 원문을
+다시 펼 때 바로 찾을 수 있게 한다.
+
+### 준비 — 원문 받기
+```bash
+python3 tools/fetch_paper.py <slug>     # /data/papers/<slug>/ 에 캐시
+```
+생기는 것:
+- `text.txt` — `pdftotext -layout` 결과. **인용문을 찾을 때 grep 한다**
+- `pages/p-01.png …` — 150dpi 페이지 렌더. **Read 도구로 눈으로 보고 그림 위치를 찾는다**
+- `images/` — PDF에 삽입된 원본 이미지(래스터 그림일 때 유용)
+
+`/data/papers` 는 저장소 밖 로컬 캐시라 커밋되지 않는다.
+
+### 그림 넣기
+```bash
+# 1) 페이지를 눈으로 본다 (Read 도구로 /data/papers/<slug>/pages/p-03.png)
+# 2) 비율 좌표로 자른다 (x0 y0 x1 y1 는 0~1)
+python3 tools/crop_figure.py <slug> 3 0.10 0.32 0.92 0.58 fig1-architecture
+# 3) 잘린 결과를 다시 Read 로 확인하고, 여백이 크면 좌표를 조여 다시 자른다
+```
+저장 위치는 `content/figures/<slug>/<name>.png` 이고, 노트에는 이렇게 쓴다:
+```js
+figures:[
+  {f:'fig1-architecture.png', cap:'encoder(왼쪽)와 decoder(오른쪽). 각 블록이 attention + FFN.',
+   src:'원문 Figure 1, p.3'}
+]
+```
+- **1~3장이면 충분하다.** 논문을 통째로 옮기는 게 아니라, 글로 설명하기 어려운
+  구조도·결과 그래프만 가져온다.
+- `cap` 은 그림을 **읽는 법**을 적는다("무엇이 x축인지, 어디를 봐야 하는지").
+  그림 제목을 그대로 옮겨 적지 않는다.
+- 우리가 그린 `diagram` 과 역할이 다르다 — `diagram` 은 개념 요약, `figures` 는 원문 증거.
+
+### 인용 넣기
+```js
+quotes:[
+  {t:'We propose a new simple network architecture, the Transformer, based solely on attention mechanisms.',
+   src:'Abstract, p.1'}
+]
+```
+- **1~2문장짜리 짧은 인용**만. 저자의 표현 자체가 중요한 대목에 쓴다.
+- 원문 그대로 옮긴다(오타·대소문자 포함). 번역이 필요하면 `cap`/본문에서 따로 설명한다.
+- 한 논문에 **최대 2개**. 인용으로 노트를 채우지 않는다.

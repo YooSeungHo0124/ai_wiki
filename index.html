@@ -3,61 +3,42 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Attention 시각화 — LLM은 어떻게 다음 단어를 고르는가</title>
-<meta name="description" content="실제로 학습시킨 초소형 GPT의 forward pass를 단계별 애니메이션으로 따라가며 attention, MLP, softmax, sampling, KV cache를 이해하는 한국어 시각화 사이트">
+<title>AI Wiki — 인공지능 논문 계보</title>
+<meta name="description" content="컴퓨터 비전 · LLM · 생성모델 · 멀티모달 · 강화학습까지, 인공지능의 흐름을 바꾼 논문들을 계보로 잇고 한 편씩 정리한 한국어 개인 위키">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=4">
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<link rel="stylesheet" href="css/tokens.css?v=5">
+<link rel="stylesheet" href="css/wiki.css?v=5">
+<link rel="stylesheet" href="css/diagram.css?v=5">
 </head>
 <body>
 
 <header class="topbar">
-  <div class="brand">
+  <div class="brand" tabindex="0" role="link" aria-label="AI Wiki 홈으로">
     <span class="logo">▤</span>
     <div>
-      <h1>Attention 시각화</h1>
-      <p>LLM은 어떻게 다음 단어를 고르는가 — 실제로 학습된 초소형 GPT로 따라가기</p>
+      <h1>AI Wiki</h1>
+      <p>인공지능 논문 계보 — 흐름을 바꾼 논문만 한 편씩</p>
     </div>
   </div>
-  <div class="topbar-right">
-    <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
-    <span class="progress-text" id="progressText">1 / 18</span>
-    <button class="ghost-btn" id="themeBtn" title="밝은/어두운 테마">◐</button>
+  <div class="spacer"></div>
+  <div class="searchbox">
+    <input id="q" placeholder="논문 검색  ( / )" autocomplete="off" aria-label="논문 검색" role="combobox" aria-expanded="false" aria-controls="res" aria-autocomplete="list">
+    <div class="results" id="res" role="listbox" aria-label="검색 결과"></div>
   </div>
+  <button class="ghost-btn" id="themeBtn" title="밝은/어두운 테마" aria-label="밝은/어두운 테마 전환">◐</button>
 </header>
 
-<main>
-  <aside class="panel" id="panel">
-    <div class="toc-head">
-      <button class="toc-toggle" id="tocToggle">
-        <span class="chev">▾</span> 목차
-      </button>
-    </div>
-    <nav class="toc" id="toc"></nav>
+<main id="app"></main>
 
-    <article class="narration" id="narration"></article>
-
-    <div class="navbtns">
-      <button id="prevBtn">‹ 이전</button>
-      <button id="nextBtn" class="primary">다음 ›</button>
-    </div>
-  </aside>
-
-  <section class="stage-wrap">
-    <div class="controls" id="controls"></div>
-    <div class="canvas" id="canvas"></div>
-    <footer class="stage-foot">
-      <span>모든 수치는 <b>TinyGPT</b>(2 layer · 3 head · d_model 24 · 파라미터 15,168개)의 실제 forward pass 결과입니다.</span>
-    </footer>
-  </section>
-</main>
-
-<script src="data/weights.js?v=4"></script>
-<script src="js/model.js?v=4"></script>
-<script src="js/viz.js?v=4"></script>
-<script src="js/chapters1.js?v=4"></script>
-<script src="js/chapters2.js?v=4"></script>
-<script src="js/app.js?v=4"></script>
+<script src="vendor/katex/katex.min.js"></script>
+<script>window.WIKI={V:5};</script>
+<script src="content/fields.js?v=5"></script>
+<script src="js/wiki/core.js?v=5"></script>
+<script src="js/wiki/diagram.js?v=5"></script>
+<script src="js/wiki/graph.js?v=5"></script>
+<script src="js/wiki/app.js?v=5"></script>
 </body>
 </html>

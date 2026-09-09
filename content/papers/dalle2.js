@@ -29,13 +29,13 @@ diagram:{type:'flow', cap:'unCLIP 파이프라인. CLIP은 학습 중 고정되�
   {t:'CLIP 텍스트 임베딩', s:'zt'},
   {t:'Prior', s:'AR 또는 diffusion', acc:true},
   {t:'CLIP 이미지 임베딩', s:'zi (예측)'},
-  {t:'Diffusion Decoder', s:'GLIDE 3.5B 기반'},
+  {t:'Decoder', s:'diffusion · GLIDE 3.5B'},
   {t:'이미지', s:'64→256→1024'}
  ]},
 
 math:[
  {expr:'P(x|y) = P(x, zi|y) = P(x|zi, y) · P(zi|y)',
-  tex:'P(x|y) = P(x,z_i|y) = P(x|z_i,y)\\,P(z_i|y)',
+  tex:'P(x|y) = P(x,z_i|y) = P(x|z_i,y)\\cdot P(z_i|y)',
   d:'$z_i$ 가 이미지 $x$ 의 결정론적 함수(=CLIP 인코더 출력)라는 사실과 연쇄법칙만으로 유도된다. 오른쪽 두 항이 각각 decoder와 prior이며, 이 분해가 unCLIP 전체 설계의 근거다.'},
  {expr:'L_prior = E[ || fθ(zi^(t), t, y) − zi ||² ]',
   tex:'L_{prior} = \\mathbb{E}_{t\\sim[1,T],\\,z_i^{(t)}\\sim q_t}\\big[\\lVert f_\\theta(z_i^{(t)}, t, y) - z_i \\rVert^2\\big]',

@@ -1988,7 +1988,8 @@
     "bert4rec",
     "lr-scaling",
     "bart",
-    "gelu"
+    "gelu",
+    "foundation-models"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -2063,7 +2064,8 @@
     "adamw",
     "gelu",
     "hellaswag",
-    "math-dataset"
+    "math-dataset",
+    "foundation-models"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -2279,7 +2281,8 @@
     "general-assistant",
     "arc-bench",
     "math-dataset",
-    "mbpp"
+    "mbpp",
+    "foundation-models"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -2442,7 +2445,8 @@
     "gsm8k",
     "bigbench",
     "extracting-training-data",
-    "bbh"
+    "bbh",
+    "foundation-models"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -4553,7 +4557,8 @@
     "open-x",
     "glide",
     "dalle2",
-    "cpc"
+    "cpc",
+    "foundation-models"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -10930,18 +10935,31 @@
    "mtime": "2026-09-09"
   },
   "foundation-models": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "growing",
+   "bytes": 9846,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "bert",
+    "gpt3",
+    "clip",
+    "emergent",
+    "gpt1"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 3,
    "tags": [
     "interp",
     "eval",
     "2021"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "diffusion-original": {
    "stage": "seed",
@@ -11310,11 +11328,11 @@
  },
  "stats": {
   "total": 340,
-  "written": 313,
+  "written": 314,
   "byStage": {
    "evergreen": 288,
-   "growing": 25,
-   "seed": 27
+   "growing": 26,
+   "seed": 26
   },
   "byField": {
    "foundations": {
@@ -11363,7 +11381,7 @@
    },
    "interp": {
     "total": 27,
-    "written": 18
+    "written": 19
    },
    "privacy": {
     "total": 11,

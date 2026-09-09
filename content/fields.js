@@ -619,6 +619,7 @@ WIKI.INDEX = [
 ['lm-limits',2016,'Exploring the Limits of Language Modeling','언어모델의 한계 탐색','nlp','seq',['lstm','nnlm']],
 ['decoder-only-wiki',2018,'Generating Wikipedia by Summarizing Long Sequences','decoder-only Transformer','llm','core',['transformer']],
 ['glue',2018,'GLUE: A Multi-Task Benchmark for Natural Language Understanding','GLUE','interp','eval',['elmo']],
+['superglue',2019,'SuperGLUE: A Stickier Benchmark for General-Purpose Language Understanding','SuperGLUE','interp','eval',['glue','bert']],
 ['decanlp',2018,'The Natural Language Decathlon: Multitask Learning as Question Answering','decaNLP','interp','eval',['seq2seq','elmo']],
 ['xlnet',2019,'XLNet: Generalized Autoregressive Pretraining for Language Understanding','XLNet','llm','pretrain',['bert','transformer']],
 ['glu-variants',2020,'GLU Variants Improve Transformer (SwiGLU)','SwiGLU','llm','core',['transformer','t5']],

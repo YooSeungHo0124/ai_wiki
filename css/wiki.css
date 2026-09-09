@@ -291,3 +291,13 @@ blockquote.quote cite{ display:block; margin-top:7px; font-style:normal; font-si
 .widget-item .wd{ flex:0 0 auto; font-family:var(--font-mono); font-size:var(--fs-micro);
   color:var(--text-tertiary); }
 .widget-empty{ font-size:var(--fs-body-sm); color:var(--text-tertiary); }
+
+/* 분야 묶음 머리말 (기반 / 모달리티·응용 / 가로지르는 관심사) */
+.group-head{ margin:30px 0 12px; padding-bottom:9px;
+  border-bottom:1px solid var(--border-soft, var(--line-soft,#212a39)); }
+.group-head h3{ margin:0 0 4px; font-size:15px; letter-spacing:-.01em;
+  color:var(--text,#e3e9f3); }
+.group-head p{ margin:0; font-size:13px; line-height:1.6;
+  color:var(--text-muted, var(--muted,#7f8da3)); max-width:760px; }
+.group-head .group-n{ display:inline-block; margin-top:6px; font-size:11.5px;
+  font-family:"JetBrains Mono",monospace; color:var(--text-faint, var(--muted,#7f8da3)); }

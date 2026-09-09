@@ -252,7 +252,7 @@
   function viewHome(){
     var byField={}; W.META.forEach(function(m){ (byField[m.field]=byField[m.field]||[]).push(m); });
     var stats=W.GRAPH&&W.GRAPH.stats;
-    var cards=W.FIELDS.map(function(f){
+    function cardFor(f){
       var n=(byField[f.id]||[]).length;
       var yrs=(byField[f.id]||[]).map(function(m){return m.year});
       var fs=stats&&stats.byField&&stats.byField[f.id];
@@ -263,6 +263,19 @@
         +'<p>'+W.esc(f.blurb)+'</p>'
         +'<div class="n">논문 '+n+'편 · '+Math.min.apply(null,yrs)+'–'+Math.max.apply(null,yrs)+' · 트랙 '+f.tracks.length+'개</div>'
         +completion+'</div>';
+    }
+    /* 21개 분야는 서로 다른 기준으로 나뉘어 있다(모달리티 · 응용 · 횡단).
+       배타적 분류가 아니라 탐색용 서랍이므로, 묶음으로 위계를 보여 준다. */
+    var groups = (W.GROUPS||[]).length ? W.GROUPS
+      : [{id:'all',name:'',desc:'',fields:W.FIELDS.map(function(f){return f.id})}];
+    var cards = groups.map(function(g){
+      var fs = g.fields.map(function(id){ return W.field(id); }).filter(Boolean);
+      if(!fs.length) return '';
+      var n = fs.reduce(function(a,f){ return a+(byField[f.id]||[]).length; },0);
+      return (g.name? '<div class="group-head"><h3>'+W.esc(g.name)+'</h3>'
+              +'<p>'+W.esc(g.desc)+'</p>'
+              +'<span class="group-n">분야 '+fs.length+' · 논문 '+n+'편</span></div>' : '')
+        + '<div class="grid">'+fs.map(cardFor).join('')+'</div>';
     }).join('');
 
     var activeFields=homeFieldFilter||W.FIELDS.map(function(f){return f.id});
@@ -281,9 +294,9 @@
       +'전체 '+W.META.length+'편 중 지금까지 '+(stats?stats.written:'?')+'편이 정리됐습니다. '
       +'<span class="kbd">/</span> 키로 검색.</p></div>'
       +widgetRow()
-      +'<div class="grid">'+cards+'</div>'
+      +cards
       +'<details class="graph-collapse" style="margin-top:26px" id="homeGraph"'+(homeGraphOpen?' open':'')+'>'
-      +'<summary>전체 계보도 — 150편을 연도축 위에 한 장으로 (보조 뷰, 펼쳐서 보기)</summary>'
+      +'<summary>전체 계보도 — '+W.META.length+'편을 연도축 위에 한 장으로 (보조 뷰, 펼쳐서 보기)</summary>'
       +'<div class="field-chips">'+chips+'</div>'
       +zoomToolbar()
       +'<div class="graph-viewport" id="gbox">'+(items.length? W.graph(items,lanes,function(m){return m.field},{}) : '<div class="stub">최소 한 분야는 선택해야 합니다.</div>')+'</div>'

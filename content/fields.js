@@ -88,20 +88,18 @@ WIKI.FIELDS = [
 
   { id:'agent', name:'추론 · 도구 · 검색', en:'Reasoning & Agents',
     color:'#4bb3d4',
-    blurb:'모델을 "쓰는 법"이 곧 능력이 된 영역. 사고 사슬, 도구 호출, 검색 증강, 그리고 추론 자체를 학습하는 모델.',
+    blurb:'모델을 "쓰는 법"이 곧 능력이 된 영역. 사고 사슬로 추론을 끌어내고, 도구를 쥐여 주고, 결국 추론 자체를 학습시키기까지.',
     tracks:[
       {id:'reason',    name:'추론 유도'},
-      {id:'tool',      name:'도구 · 에이전트'},
-      {id:'retrieval', name:'검색 증강(RAG)'}
+      {id:'tool',      name:'도구 · 에이전트'}
     ]},
 
-  { id:'interp', name:'해석 · 평가 · 안전', en:'Interpretability & Eval',
+  { id:'interp', name:'해석 · 평가', en:'Interpretability & Eval',
     color:'#9aa04b',
-    blurb:'모델 안에서 무슨 일이 일어나는지, 그리고 잘하는지 어떻게 재는지. 성능 경쟁 뒤편의 인프라.',
+    blurb:'모델 안에서 무슨 일이 일어나는지, 그리고 잘하는지 어떻게 재는지. 성능 경쟁 뒤편의 인프라. 안전은 별도 분야로 다룬다.',
     tracks:[
       {id:'interp', name:'내부 해석'},
       {id:'eval',   name:'벤치마크'},
-      {id:'safety', name:'안전 · 정렬 연구'},
       {id:'xai',    name:'설명가능성(XAI)'}
     ]},
 
@@ -134,8 +132,9 @@ WIKI.FIELDS = [
 
   { id:'ir', name:'정보검색 · 임베딩', en:'Retrieval & Embeddings',
     color:'#7a8fd8',
-    blurb:'"의미가 비슷한 것을 빨리 찾기". 문장을 벡터로 만드는 쪽과 수십억 벡터에서 근사 최근접을 찾는 쪽이 함께 발전해 오늘날 RAG의 바닥을 이룬다.',
+    blurb:'"의미가 비슷한 것을 빨리 찾기". 문장을 벡터로 만드는 쪽과 수십억 벡터에서 근사 최근접을 찾는 쪽이 함께 발전해, 검색 증강(RAG)이라는 오늘날의 표준 구성으로 모였다.',
     tracks:[
+      {id:'dense', name:'밀집 검색 · RAG'},
       {id:'embed', name:'문장 임베딩'},
       {id:'late',  name:'후기 상호작용 · 희소'},
       {id:'index', name:'벡터 인덱스'}
@@ -201,6 +200,25 @@ WIKI.FIELDS = [
       {id:'attack', name:'공격 · 감사'},
       {id:'safety', name:'모델 안전'}
     ]}
+];
+
+/* ------------------------------------------------------------
+   분야 묶음 — 21개 분야는 서로 다른 기준으로 나뉜다.
+   모달리티(무엇을 다루는가) · 응용(어디에 쓰는가) · 횡단(모든 분야를 가로지름).
+   한 논문이 여러 곳에 정당하게 속할 수 있으므로, 분야는 배타적 분류가 아니라
+   탐색용 서랍으로 본다. 지식의 실제 구조는 WIKI.INDEX 의 계보 그래프에 있다.
+   ------------------------------------------------------------ */
+WIKI.GROUPS = [
+  { id:'base',  name:'기반',
+    desc:'모든 분야가 딛고 서는 학습 알고리즘과, 그것이 왜 되는지를 묻는 이론.',
+    fields:['foundations','theory'] },
+  { id:'modal', name:'모달리티 · 응용',
+    desc:'무엇을 다루는가(이미지·언어·음성·영상·그래프)와 어디에 쓰는가(추천·코드·로봇·과학).',
+    fields:['vision','nlp','llm','generative','multimodal','speech','video',
+            'graph','rl','robotics','recsys','ir','code','science'] },
+  { id:'cross', name:'가로지르는 관심사',
+    desc:'특정 모달리티에 속하지 않고 전 분야를 관통하는 문제 — 효율, 데이터, 추론 방식, 해석, 안전.',
+    fields:['efficiency','data','agent','interp','privacy'] }
 ];
 
 /* ------------------------------------------------------------
@@ -363,9 +381,9 @@ WIKI.INDEX = [
 ['deepseek-r1',2025,'DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via RL','DeepSeek-R1','agent','reason',['cot','grpo','deepseek-v3']],
 ['react',2022,'ReAct: Synergizing Reasoning and Acting in Language Models','ReAct','agent','tool',['cot']],
 ['toolformer',2023,'Toolformer: Language Models Can Teach Themselves to Use Tools','Toolformer','agent','tool',['gpt3','react']],
-['dpr',2020,'Dense Passage Retrieval for Open-Domain QA','DPR','agent','retrieval',['bert']],
-['realm',2020,'REALM: Retrieval-Augmented Language Model Pre-Training','REALM','agent','retrieval',['bert','dpr']],
-['rag',2020,'Retrieval-Augmented Generation for Knowledge-Intensive NLP','RAG','agent','retrieval',['dpr','bert']],
+['dpr',2020,'Dense Passage Retrieval for Open-Domain QA','DPR','ir','dense',['bert']],
+['realm',2020,'REALM: Retrieval-Augmented Language Model Pre-Training','REALM','ir','dense',['bert','dpr']],
+['rag',2020,'Retrieval-Augmented Generation for Knowledge-Intensive NLP','RAG','ir','dense',['dpr','bert']],
 
 // ── interp ─────────────────────────────────────────────────
 ['lottery',2019,'The Lottery Ticket Hypothesis','로또 티켓 가설','interp','interp',['dropout']],
@@ -376,7 +394,7 @@ WIKI.INDEX = [
 ['gsm8k',2021,'Training Verifiers to Solve Math Word Problems (GSM8K)','GSM8K','interp','eval',['gpt3']],
 ['humaneval',2021,'Evaluating Large Language Models Trained on Code (Codex/HumanEval)','HumanEval','interp','eval',['gpt3']],
 ['bigbench',2022,'Beyond the Imitation Game (BIG-bench)','BIG-bench','interp','eval',['gpt3','mmlu']],
-['constitutional',2022,'Constitutional AI: Harmlessness from AI Feedback','Constitutional AI','interp','safety',['instructgpt']],
+['constitutional',2022,'Constitutional AI: Harmlessness from AI Feedback','Constitutional AI','privacy','safety',['instructgpt']],
 ['chatbot-arena',2024,'Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference','Chatbot Arena','interp','eval',['mmlu','instructgpt']],
 // ── speech ─────────────────────────────────────────────────
 ['wavenet',2016,'WaveNet: A Generative Model for Raw Audio','WaveNet','speech','tts',['backprop']],

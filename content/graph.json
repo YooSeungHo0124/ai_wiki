@@ -1821,7 +1821,8 @@
     "transformer",
     "tacotron2",
     "gat",
-    "din"
+    "din",
+    "attention-not-explanation"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -1920,6 +1921,7 @@
     "senet",
     "bart",
     "mamba2",
+    "attention-not-explanation",
     "conformer"
    ],
    "diagram": "stack",
@@ -5537,8 +5539,8 @@
    "diagram": "compare",
    "extLinks": 3,
    "tags": [
-    "agent",
-    "retrieval",
+    "ir",
+    "dense",
     "2020"
    ],
    "mtime": "2026-09-09"
@@ -5569,8 +5571,8 @@
    "diagram": "stack",
    "extLinks": 2,
    "tags": [
-    "agent",
-    "retrieval",
+    "ir",
+    "dense",
     "2020"
    ],
    "mtime": "2026-09-09"
@@ -5613,8 +5615,8 @@
    "diagram": "flow",
    "extLinks": 3,
    "tags": [
-    "agent",
-    "retrieval",
+    "ir",
+    "dense",
     "2020"
    ],
    "mtime": "2026-09-09"
@@ -5675,7 +5677,8 @@
     "bahdanau",
     "gpt3",
     "grokking",
-    "sae"
+    "sae",
+    "attention-not-explanation"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -5906,7 +5909,7 @@
    "diagram": "loop",
    "extLinks": 3,
    "tags": [
-    "interp",
+    "privacy",
     "safety",
     "2022"
    ],
@@ -9808,7 +9811,8 @@
    ],
    "in": [
     "grad-cam",
-    "shap"
+    "shap",
+    "attention-not-explanation"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -9839,7 +9843,8 @@
    ],
    "in": [
     "lime",
-    "shap"
+    "shap",
+    "attention-not-explanation"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -9868,7 +9873,8 @@
    ],
    "in": [
     "lime",
-    "grad-cam"
+    "grad-cam",
+    "attention-not-explanation"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -9880,21 +9886,36 @@
    "mtime": "2026-09-09"
   },
   "attention-not-explanation": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 10595,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "transformer",
+    "bahdanau",
+    "induction-heads",
+    "lime",
+    "shap",
+    "grad-cam"
+   ],
    "in": [
     "lime",
     "shap"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "compare",
+   "extLinks": 3,
    "tags": [
     "interp",
     "xai",
     "2019"
-   ]
+   ],
+   "mtime": "2026-09-09"
   },
   "helm": {
    "stage": "growing",
@@ -10547,11 +10568,11 @@
  },
  "stats": {
   "total": 314,
-  "written": 292,
+  "written": 293,
   "byStage": {
-   "evergreen": 270,
+   "evergreen": 271,
    "growing": 22,
-   "seed": 22
+   "seed": 21
   },
   "byField": {
    "foundations": {
@@ -10591,12 +10612,20 @@
     "written": 16
    },
    "agent": {
-    "total": 15,
-    "written": 15
+    "total": 12,
+    "written": 12
+   },
+   "ir": {
+    "total": 13,
+    "written": 13
    },
    "interp": {
-    "total": 20,
+    "total": 19,
     "written": 14
+   },
+   "privacy": {
+    "total": 10,
+    "written": 10
    },
    "graph": {
     "total": 9,
@@ -10605,10 +10634,6 @@
    "recsys": {
     "total": 9,
     "written": 9
-   },
-   "ir": {
-    "total": 10,
-    "written": 10
    },
    "code": {
     "total": 9,
@@ -10633,10 +10658,6 @@
    "theory": {
     "total": 8,
     "written": 8
-   },
-   "privacy": {
-    "total": 9,
-    "written": 9
    }
   }
  }

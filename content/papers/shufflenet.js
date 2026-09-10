@@ -17,7 +17,7 @@ ideas:[
   d:'기본 유닛은 `1x1 GConv → 채널 셔플 → 3x3 DWConv → 1x1 GConv`를 잔차로 더한다. 두 번째 GConv 뒤에는 셔플을 추가로 넣지 않는데, 실험상 성능 차이가 없었기 때문이다. Stride=2 다운샘플링 유닛에서는 shortcut 경로에 $3\\times3$ average pooling을 넣고, 덧셈 대신 **concat**으로 바꿔 채널 수를 늘리는 데 드는 추가 연산을 거의 없앤다.'},
  {h:'FLOPs 예산을 채널 수로 바꾼다',
   lead:'같은 연산 예산에서 그룹 수를 늘릴수록 남는 여유를 채널 폭 확장에 쓴다.',
-  d:'ShuffleNet 유닛의 연산량은 $hw(2cm/g + 9m)$로, 그룹 수 $g$가 커질수록 pointwise 비용이 줄어든다. 같은 FLOPs 예산 안에서 그 여유를 **채널 수를 늘리는 데** 재투자하면 표현력이 커진다는 것이 논문의 핵심 관찰이다. 실제로 38 MFLOPs 예산에서 Stage 4의 출력 채널 수는 VGG류 50, ResNet 192, Xception류 288인 데 비해 ShuffleNet은 576까지 늘릴 수 있었고, 이것이 정확도 우위로 이어진다는 상관관계를 논문이 직접 보고한다.'}
+  d:'ShuffleNet 유닛의 연산량은 $hw(2cm/g + 9m)$로, 그룹 수 $g$가 커질수록 pointwise 비용이 줄어든다. 같은 FLOPs 예산 안에서 그 여유를 **채널 수를 늘리는 데** 재투자하면 표현력이 커진다는 것이 논문의 핵심 관찰이다. 실제로 38 MFLOPs 예산에서 Stage 4의 출력 채널 수는 VGG류 50, [ResNet](#/p/resnet) 192, Xception류 288인 데 비해 ShuffleNet은 576까지 늘릴 수 있었고, 이것이 정확도 우위로 이어진다는 상관관계를 논문이 직접 보고한다.'}
 ],
 
 diagram:{type:'flow', cap:'ShuffleNet 유닛의 잔차 분기: 1x1 그룹 합성곱 뒤 채널을 재배열(셔플)하고서 depthwise 3x3, 다시 1x1 그룹 합성곱.',

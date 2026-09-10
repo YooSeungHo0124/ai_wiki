@@ -455,6 +455,22 @@
 "published": "2019-06-03",
 "title": "Learning Representations by Maximizing Mutual Information Across Views"
 },
+"animatediff": {
+"arxiv": "2307.04725",
+"authors": [
+"Yuwei Guo",
+"Ceyuan Yang",
+"Anyi Rao",
+"Zhengyang Liang",
+"Yaohui Wang",
+"Yu Qiao",
+"Maneesh Agrawala",
+"Dahua Lin",
+"Bo Dai"
+],
+"published": "2023-07-10",
+"title": "AnimateDiff: Animate Your Personalized Text-to-Image Diffusion Models without Specific Tuning"
+},
 "anli": {
 "arxiv": "1910.14599",
 "authors": [
@@ -2069,6 +2085,17 @@
 "published": "2019-06-13",
 "title": "Contrastive Multiview Coding"
 },
+"coatnet": {
+"arxiv": "2106.04803",
+"authors": [
+"Zihang Dai",
+"Hanxiao Liu",
+"Quoc V. Le",
+"Mingxing Tan"
+],
+"published": "2021-06-09",
+"title": "CoAtNet: Marrying Convolution and Attention for All Data Sizes"
+},
 "coca": {
 "arxiv": "2205.01917",
 "authors": [
@@ -2422,6 +2449,18 @@
 "published": "2019-05-22",
 "title": "Data-Efficient Image Recognition with Contrastive Predictive Coding"
 },
+"craft": {
+"arxiv": "1904.01941",
+"authors": [
+"Youngmin Baek",
+"Bado Lee",
+"Dongyoon Han",
+"Sangdoo Yun",
+"Hwalsuk Lee"
+],
+"published": "2019-04-03",
+"title": "Character Region Awareness for Text Detection"
+},
 "ctrl": {
 "arxiv": "1909.05858",
 "authors": [
@@ -2540,6 +2579,19 @@
 "published": "2023-05-25",
 "title": "Scaling Data-Constrained Language Models"
 },
+"data2vec": {
+"arxiv": "2202.03555",
+"authors": [
+"Alexei Baevski",
+"Wei-Ning Hsu",
+"Qiantong Xu",
+"Arun Babu",
+"Jiatao Gu",
+"Michael Auli"
+],
+"published": "2022-02-07",
+"title": "data2vec: A General Framework for Self-supervised Learning in Speech, Vision and Language"
+},
 "datacomp": {
 "arxiv": "2304.14108",
 "authors": [
@@ -2594,6 +2646,18 @@
 ],
 "published": "2018-03-23",
 "title": "Datasheets for Datasets"
+},
+"dbnet": {
+"arxiv": "1911.08947",
+"authors": [
+"Minghui Liao",
+"Zhaoyi Wan",
+"Cong Yao",
+"Kai Chen",
+"Xiang Bai"
+],
+"published": "2019-11-20",
+"title": "Real-time Scene Text Detection with Differentiable Binarization"
 },
 "dcgan": {
 "arxiv": "1511.06434",
@@ -3497,6 +3561,20 @@
 "published": "2024-01-19",
 "title": "Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data"
 },
+"depth-anything-v2": {
+"arxiv": "2406.09414",
+"authors": [
+"Lihe Yang",
+"Bingyi Kang",
+"Zilong Huang",
+"Zhen Zhao",
+"Xiaogang Xu",
+"Jiashi Feng",
+"Hengshuang Zhao"
+],
+"published": "2024-06-13",
+"title": "Depth Anything V2"
+},
 "detr": {
 "arxiv": "2005.12872",
 "authors": [
@@ -4142,6 +4220,22 @@
 "published": "2021-12-08",
 "title": "Ethical and social risks of harm from Language Models"
 },
+"eva": {
+"arxiv": "2211.07636",
+"authors": [
+"Yuxin Fang",
+"Wen Wang",
+"Binhui Xie",
+"Quan Sun",
+"Ledell Wu",
+"Xinggang Wang",
+"Tiejun Huang",
+"Xinlong Wang",
+"Yue Cao"
+],
+"published": "2022-11-14",
+"title": "EVA: Exploring the Limits of Masked Visual Representation Learning at Scale"
+},
 "eval-generative-note": {
 "arxiv": "1511.01844",
 "authors": [
@@ -4201,6 +4295,21 @@
 ],
 "published": "2015-06-04",
 "title": "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks"
+},
+"fastsam": {
+"arxiv": "2306.12156",
+"authors": [
+"Xu Zhao",
+"Wenchao Ding",
+"Yongqi An",
+"Yinglong Du",
+"Tao Yu",
+"Min Li",
+"Ming Tang",
+"Jinqiao Wang"
+],
+"published": "2023-06-21",
+"title": "Fast Segment Anything"
 },
 "fastspeech": {
 "arxiv": "1905.09263",
@@ -7213,6 +7322,17 @@
 "published": "2016-03-30",
 "title": "Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs"
 },
+"hrnet": {
+"arxiv": "1902.09212",
+"authors": [
+"Ke Sun",
+"Bin Xiao",
+"Dong Liu",
+"Jingdong Wang"
+],
+"published": "2019-02-25",
+"title": "Deep High-Resolution Representation Learning for Human Pose Estimation"
+},
 "hubert": {
 "arxiv": "2106.07447",
 "authors": [
@@ -7339,6 +7459,20 @@
 ],
 "published": "2017-05-22",
 "title": "Quo Vadis, Action Recognition? A New Model and the Kinetics Dataset"
+},
+"ibot": {
+"arxiv": "2111.07832",
+"authors": [
+"Jinghao Zhou",
+"Chen Wei",
+"Huiyu Wang",
+"Wei Shen",
+"Cihang Xie",
+"Alan Yuille",
+"Tao Kong"
+],
+"published": "2021-11-15",
+"title": "iBOT: Image BERT Pre-Training with Online Tokenizer"
 },
 "iddpm": {
 "arxiv": "2102.09672",
@@ -7561,6 +7695,17 @@
 "published": "2016-07-27",
 "title": "Instance Normalization: The Missing Ingredient for Fast Stylization"
 },
+"instant-ngp": {
+"arxiv": "2201.05989",
+"authors": [
+"Thomas Müller",
+"Alex Evans",
+"Christoph Schied",
+"Alexander Keller"
+],
+"published": "2022-01-16",
+"title": "Instant Neural Graphics Primitives with a Multiresolution Hash Encoding"
+},
 "instructblip": {
 "arxiv": "2305.06500",
 "authors": [
@@ -7604,6 +7749,25 @@
 "published": "2022-03-04",
 "title": "Training language models to follow instructions with human feedback"
 },
+"internimage": {
+"arxiv": "2211.05778",
+"authors": [
+"Wenhai Wang",
+"Jifeng Dai",
+"Zhe Chen",
+"Zhenhang Huang",
+"Zhiqi Li",
+"Xizhou Zhu",
+"Xiaowei Hu",
+"Tong Lu",
+"Lewei Lu",
+"Hongsheng Li",
+"Xiaogang Wang",
+"Yu Qiao"
+],
+"published": "2022-11-10",
+"title": "InternImage: Exploring Large-Scale Vision Foundation Models with Deformable Convolutions"
+},
 "internvl": {
 "arxiv": "2312.14238",
 "authors": [
@@ -7639,6 +7803,18 @@
 ],
 "published": "2013-12-21",
 "title": "Intriguing properties of neural networks"
+},
+"ip-adapter": {
+"arxiv": "2308.06721",
+"authors": [
+"Hu Ye",
+"Jun Zhang",
+"Sibo Liu",
+"Xiao Han",
+"Wei Yang"
+],
+"published": "2023-08-13",
+"title": "IP-Adapter: Text Compatible Image Prompt Adapter for Text-to-Image Diffusion Models"
 },
 "item2vec": {
 "arxiv": "1603.04259",
@@ -7868,6 +8044,18 @@
 ],
 "published": "2019-12-31",
 "title": "LayoutLM: Pre-training of Text and Layout for Document Image Understanding"
+},
+"lcm": {
+"arxiv": "2310.04378",
+"authors": [
+"Simian Luo",
+"Yiqin Tan",
+"Longbo Huang",
+"Jian Li",
+"Hang Zhao"
+],
+"published": "2023-10-06",
+"title": "Latent Consistency Models: Synthesizing High-Resolution Images with Few-Step Inference"
 },
 "ldm": {
 "arxiv": "2112.10752",
@@ -8464,6 +8652,19 @@
 "published": "2022-06-29",
 "title": "Solving Quantitative Reasoning Problems with Language Models"
 },
+"mip-nerf": {
+"arxiv": "2103.13415",
+"authors": [
+"Jonathan T. Barron",
+"Ben Mildenhall",
+"Matthew Tancik",
+"Peter Hedman",
+"Ricardo Martin-Brualla",
+"Pratul P. Srinivasan"
+],
+"published": "2021-03-24",
+"title": "Mip-NeRF: A Multiscale Representation for Anti-Aliasing Neural Radiance Fields"
+},
 "mistral": {
 "arxiv": "2310.06825",
 "authors": [
@@ -8551,6 +8752,38 @@
 "published": "2017-10-25",
 "title": "mixup: Beyond Empirical Risk Minimization"
 },
+"mmdetection": {
+"arxiv": "1906.07155",
+"authors": [
+"Kai Chen",
+"Jiaqi Wang",
+"Jiangmiao Pang",
+"Yuhang Cao",
+"Yu Xiong",
+"Xiaoxiao Li",
+"Shuyang Sun",
+"Wansen Feng",
+"Ziwei Liu",
+"Jiarui Xu",
+"Zheng Zhang",
+"Dazhi Cheng",
+"Chenchen Zhu",
+"Tianheng Cheng",
+"Qijie Zhao",
+"Buyu Li",
+"Xin Lu",
+"Rui Zhu",
+"Yue Wu",
+"Jifeng Dai",
+"Jingdong Wang",
+"Jianping Shi",
+"Wanli Ouyang",
+"Chen Change Loy",
+"Dahua Lin"
+],
+"published": "2019-06-17",
+"title": "MMDetection: Open MMLab Detection Toolbox and Benchmark"
+},
 "mmlu": {
 "arxiv": "2009.03300",
 "authors": [
@@ -8574,6 +8807,20 @@
 ],
 "published": "2024-01-04",
 "title": "Mobile ALOHA: Learning Bimanual Mobile Manipulation with Low-Cost Whole-Body Teleoperation"
+},
+"mobile-sam": {
+"arxiv": "2306.14289",
+"authors": [
+"Chaoning Zhang",
+"Dongshen Han",
+"Yu Qiao",
+"Jung Uk Kim",
+"Sung-Ho Bae",
+"Seungkyu Lee",
+"Choong Seon Hong"
+],
+"published": "2023-06-25",
+"title": "Faster Segment Anything: Towards Lightweight SAM for Mobile Applications"
 },
 "mobilenet": {
 "arxiv": "1704.04861",
@@ -10871,6 +11118,21 @@
 "published": "2023-07-28",
 "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control"
 },
+"rtmpose": {
+"arxiv": "2303.07399",
+"authors": [
+"Tao Jiang",
+"Peng Lu",
+"Li Zhang",
+"Ningsheng Ma",
+"Rui Han",
+"Chengqi Lyu",
+"Yining Li",
+"Kai Chen"
+],
+"published": "2023-03-13",
+"title": "RTMPose: Real-Time Multi-Person Pose Estimation based on MMPose"
+},
 "rwkv": {
 "arxiv": "2305.13048",
 "authors": [
@@ -11473,6 +11735,15 @@
 ],
 "published": "2021-04-18",
 "title": "SimCSE: Simple Contrastive Learning of Sentence Embeddings"
+},
+"simsiam": {
+"arxiv": "2011.10566",
+"authors": [
+"Xinlei Chen",
+"Kaiming He"
+],
+"published": "2020-11-20",
+"title": "Exploring Simple Siamese Representation Learning"
 },
 "simvlm": {
 "arxiv": "2108.10904",
@@ -12079,6 +12350,25 @@
 "published": "2021-08-23",
 "title": "SwinIR: Image Restoration Using Swin Transformer"
 },
+"swinv2": {
+"arxiv": "2111.09883",
+"authors": [
+"Ze Liu",
+"Han Hu",
+"Yutong Lin",
+"Zhuliang Yao",
+"Zhenda Xie",
+"Yixuan Wei",
+"Jia Ning",
+"Yue Cao",
+"Zheng Zhang",
+"Li Dong",
+"Furu Wei",
+"Baining Guo"
+],
+"published": "2021-11-18",
+"title": "Swin Transformer V2: Scaling Up Capacity and Resolution"
+},
 "swish": {
 "arxiv": "1710.05941",
 "authors": [
@@ -12146,6 +12436,21 @@
 ],
 "published": "2021-10-15",
 "title": "Multitask Prompted Training Enables Zero-Shot Task Generalization"
+},
+"t2i-adapter": {
+"arxiv": "2302.08453",
+"authors": [
+"Chong Mou",
+"Xintao Wang",
+"Liangbin Xie",
+"Yanze Wu",
+"Jian Zhang",
+"Zhongang Qi",
+"Ying Shan",
+"Xiaohu Qie"
+],
+"published": "2023-02-16",
+"title": "T2I-Adapter: Learning Adapters to Dig out More Controllable Ability for Text-to-Image Diffusion Models"
 },
 "t5": {
 "arxiv": "1910.10683",
@@ -12811,6 +13116,17 @@
 ],
 "published": "2021-06-08",
 "title": "Scaling Vision Transformers"
+},
+"vitpose": {
+"arxiv": "2204.12484",
+"authors": [
+"Yufei Xu",
+"Jing Zhang",
+"Qiming Zhang",
+"Dacheng Tao"
+],
+"published": "2022-04-26",
+"title": "ViTPose: Simple Vision Transformer Baselines for Human Pose Estimation"
 },
 "vits": {
 "arxiv": "2106.06103",

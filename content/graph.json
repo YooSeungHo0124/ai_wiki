@@ -61,7 +61,8 @@
     "lenet",
     "spatial-transformer",
     "lime",
-    "grad-cam"
+    "grad-cam",
+    "iterated-amplification"
    ],
    "diagram": "loop",
    "extLinks": 3,
@@ -112,7 +113,9 @@
     "gru",
     "sentiment-neuron",
     "cola",
-    "universal-transformer"
+    "universal-transformer",
+    "memory-networks",
+    "bias-in-generation"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -161,6 +164,8 @@
     "i3d",
     "lsun",
     "kinetics",
+    "datasheets",
+    "vtab",
     "coco-captions",
     "ucf101"
    ],
@@ -593,7 +598,8 @@
     "scaling-predictable",
     "sgdr",
     "wide-resnet",
-    "gpipe"
+    "gpipe",
+    "vtab"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -1262,7 +1268,8 @@
     "grad-cam",
     "palm-e",
     "beit",
-    "simvlm"
+    "simvlm",
+    "vit-scaling"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -1420,7 +1427,8 @@
     "dinov2",
     "simclr",
     "moco",
-    "byol"
+    "byol",
+    "moco-v2"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -1504,7 +1512,9 @@
     "dcgan",
     "clip",
     "simcse",
-    "cpc"
+    "cpc",
+    "vtab",
+    "moco-v2"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -1545,7 +1555,8 @@
     "byol",
     "dcgan",
     "clip",
-    "cpc"
+    "cpc",
+    "moco-v2"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -1580,7 +1591,8 @@
     "mae",
     "dino",
     "simclr",
-    "moco"
+    "moco",
+    "moco-v2"
    ],
    "diagram": "loop",
    "extLinks": 3,
@@ -1660,7 +1672,9 @@
     "graphsage",
     "cpc",
     "ulmfit",
-    "sentiment-neuron"
+    "sentiment-neuron",
+    "bias-in-generation",
+    "stereoset"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -1768,7 +1782,8 @@
     "sentencepiece",
     "bart",
     "gnmt",
-    "lm-limits"
+    "lm-limits",
+    "xlm"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -1856,7 +1871,8 @@
     "graves-rnn",
     "gnmt",
     "meena",
-    "gru"
+    "gru",
+    "memory-networks"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -1898,7 +1914,8 @@
     "attention-not-explanation",
     "graves-rnn",
     "gnmt",
-    "gru"
+    "gru",
+    "memory-networks"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -2017,6 +2034,11 @@
     "generative-scaling",
     "universal-transformer",
     "energy-policy",
+    "memory-networks",
+    "xlm",
+    "linformer",
+    "safety-recipes",
+    "pangu-alpha",
     "glu-variants",
     "scratchpad"
    ],
@@ -2070,7 +2092,8 @@
     "foundation-models",
     "decoder-only-wiki",
     "ulmfit",
-    "commonsense-lm"
+    "commonsense-lm",
+    "pangu-alpha"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -2161,6 +2184,11 @@
     "socialiqa",
     "energy-policy",
     "beit",
+    "race",
+    "squad2",
+    "xlm",
+    "bias-in-generation",
+    "stereoset",
     "xlnet",
     "boolq",
     "ul2"
@@ -2211,7 +2239,10 @@
     "extracting-training-data",
     "sparse-transformers",
     "commonsense-lm",
-    "realtoxicity"
+    "realtoxicity",
+    "lambada",
+    "bias-in-generation",
+    "stochastic-parrots-risk"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -2251,6 +2282,7 @@
     "albert",
     "spanbert",
     "distilbert",
+    "stereoset",
     "xlnet"
    ],
    "diagram": "compare",
@@ -2408,6 +2440,10 @@
     "mt-nlg",
     "rethinking-demos",
     "webgpt",
+    "lambada",
+    "pangu-alpha",
+    "stochastic-parrots-risk",
+    "zero-shot-planner",
     "scratchpad",
     "retro",
     "truthfulqa",
@@ -2467,6 +2503,8 @@
     "universal-transformer",
     "energy-policy",
     "quantify-memorization",
+    "vit-scaling",
+    "stochastic-parrots-risk",
     "truthfulqa"
    ],
    "diagram": "compare",
@@ -2550,7 +2588,9 @@
     "saycan",
     "rt2",
     "opt",
-    "palm-e"
+    "palm-e",
+    "pangu-alpha",
+    "minerva"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -2591,6 +2631,7 @@
     "bbh",
     "foundation-models",
     "zero-shot-cot",
+    "sparks-agi",
     "truthfulqa"
    ],
    "diagram": "compare",
@@ -2869,7 +2910,9 @@
     "swe-bench",
     "universal-jailbreak",
     "voyager",
-    "agieval"
+    "agieval",
+    "stochastic-parrots-risk",
+    "sparks-agi"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -2936,6 +2979,7 @@
     "opt",
     "bloom",
     "hellaswag",
+    "pangu-alpha",
     "glu-variants",
     "gpt-neox"
    ],
@@ -3202,7 +3246,8 @@
     "s4",
     "sasrec",
     "sparse-transformers",
-    "decoder-only-wiki"
+    "decoder-only-wiki",
+    "linformer"
    ],
    "diagram": "matrix",
    "extLinks": 3,
@@ -3342,7 +3387,8 @@
     "mamba2",
     "cogvideox",
     "sparse-transformers",
-    "decoder-only-wiki"
+    "decoder-only-wiki",
+    "linformer"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -3733,7 +3779,8 @@
     "zero",
     "gpipe",
     "gshard",
-    "mt-nlg"
+    "mt-nlg",
+    "pangu-alpha"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -3957,7 +4004,8 @@
     "ldm",
     "vits",
     "world-models",
-    "rezende-vae"
+    "rezende-vae",
+    "real-nvp"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -4005,7 +4053,8 @@
     "spatial-transformer",
     "mixup",
     "electra",
-    "diffusion-original"
+    "diffusion-original",
+    "real-nvp"
    ],
    "diagram": "loop",
    "extLinks": 3,
@@ -4636,7 +4685,8 @@
     "consistency",
     "diffusion-policy",
     "rt2",
-    "pi0"
+    "pi0",
+    "real-nvp"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -5181,7 +5231,8 @@
     "world-models",
     "rainbow",
     "dreamer",
-    "dqn-2013"
+    "dqn-2013",
+    "concrete-safety"
    ],
    "diagram": "loop",
    "extLinks": 3,
@@ -5382,7 +5433,9 @@
     "alphazero",
     "muzero",
     "tot",
-    "alphastar"
+    "alphastar",
+    "debate",
+    "iterated-amplification"
    ],
    "diagram": "loop",
    "extLinks": 3,
@@ -5496,7 +5549,11 @@
     "grpo",
     "self-refine",
     "reward-modeling",
-    "webgpt"
+    "webgpt",
+    "concrete-safety",
+    "debate",
+    "iterated-amplification",
+    "stochastic-parrots-risk"
    ],
    "diagram": "loop",
    "extLinks": 3,
@@ -5634,6 +5691,7 @@
     "zero-shot-cot",
     "rethinking-demos",
     "agieval",
+    "minerva",
     "scratchpad"
    ],
    "diagram": "compare",
@@ -5674,6 +5732,7 @@
     "alphacode",
     "pal",
     "zero-shot-cot",
+    "minerva",
     "scratchpad"
    ],
    "diagram": "split",
@@ -5962,6 +6021,7 @@
     "bge",
     "lost-in-the-middle",
     "webgpt",
+    "memory-networks",
     "retro"
    ],
    "diagram": "flow",
@@ -8068,7 +8128,8 @@
     "rt1",
     "rt2",
     "pi0",
-    "palm-e"
+    "palm-e",
+    "zero-shot-planner"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -8590,7 +8651,8 @@
    ],
    "in": [
     "datacomp",
-    "laion400m"
+    "laion400m",
+    "datasheets"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -9670,6 +9732,7 @@
    ],
    "in": [
     "mt5",
+    "pangu-alpha",
     "glu-variants"
    ],
    "diagram": "split",
@@ -10193,6 +10256,7 @@
    "in": [
     "least-to-most",
     "zero-shot-cot",
+    "minerva",
     "scratchpad"
    ],
    "diagram": "compare",
@@ -10632,7 +10696,8 @@
    ],
    "in": [
     "olmo",
-    "fineweb"
+    "fineweb",
+    "datasheets"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -10947,7 +11012,8 @@
     "toolformer"
    ],
    "in": [
-    "meena"
+    "meena",
+    "safety-recipes"
    ],
    "diagram": "loop",
    "extLinks": 2,
@@ -11017,6 +11083,7 @@
     "mt5",
     "t0",
     "carbon-quantify",
+    "xlm",
     "carbon",
     "gpt-neox"
    ],
@@ -11291,7 +11358,8 @@
     "gsm8k"
    ],
    "in": [
-    "gsm8k"
+    "gsm8k",
+    "minerva"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -11653,6 +11721,9 @@
     "glue",
     "superglue",
     "record",
+    "babi",
+    "race",
+    "squad2",
     "boolq",
     "triviaqa"
    ],
@@ -12015,7 +12086,9 @@
     "lamda",
     "instructgpt"
    ],
-   "in": [],
+   "in": [
+    "safety-recipes"
+   ],
    "diagram": "compare",
    "extLinks": 2,
    "tags": [
@@ -12108,7 +12181,8 @@
    ],
    "in": [
     "t5",
-    "sentencepiece"
+    "sentencepiece",
+    "xlm"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -12168,7 +12242,9 @@
     "transformer",
     "chinchilla"
    ],
-   "in": [],
+   "in": [
+    "vit-scaling"
+   ],
    "diagram": "compare",
    "extLinks": 1,
    "tags": [
@@ -12464,7 +12540,9 @@
     "rt1",
     "rt2"
    ],
-   "in": [],
+   "in": [
+    "zero-shot-planner"
+   ],
    "diagram": "flow",
    "extLinks": 2,
    "tags": [
@@ -12655,7 +12733,8 @@
     "elmo"
    ],
    "in": [
-    "glue"
+    "glue",
+    "babi"
    ],
    "diagram": "stack",
    "extLinks": 3,
@@ -12740,7 +12819,10 @@
     "summarize-hf",
     "instructgpt"
    ],
-   "in": [],
+   "in": [
+    "concrete-safety",
+    "iterated-amplification"
+   ],
    "diagram": "loop",
    "extLinks": 2,
    "tags": [
@@ -13178,6 +13260,679 @@
    ],
    "mtime": "2026-09-10"
   },
+  "memory-networks": {
+   "stage": "evergreen",
+   "bytes": 8514,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "lstm",
+    "seq2seq",
+    "bahdanau",
+    "transformer",
+    "rag",
+    "babi"
+   ],
+   "in": [
+    "babi"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "llm",
+    "core",
+    "2014"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "babi": {
+   "stage": "growing",
+   "bytes": 7644,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "memory-networks",
+    "lambada",
+    "squad",
+    "cola",
+    "race"
+   ],
+   "in": [
+    "memory-networks",
+    "lambada"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "interp",
+    "eval",
+    "2015"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "concrete-safety": {
+   "stage": "growing",
+   "bytes": 8030,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "dqn",
+    "rlhf-prefs",
+    "reward-modeling",
+    "debate",
+    "iterated-amplification"
+   ],
+   "in": [
+    "debate",
+    "iterated-amplification"
+   ],
+   "diagram": "split",
+   "extLinks": 2,
+   "tags": [
+    "privacy",
+    "safety",
+    "2016"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "real-nvp": {
+   "stage": "evergreen",
+   "bytes": 8364,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "vae",
+    "gan",
+    "flow-matching"
+   ],
+   "in": [],
+   "diagram": "compare",
+   "extLinks": 1,
+   "tags": [
+    "generative",
+    "vae",
+    "2016"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "lambada": {
+   "stage": "growing",
+   "bytes": 7302,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "babi",
+    "gpt2",
+    "gpt3",
+    "race",
+    "squad2"
+   ],
+   "in": [
+    "babi"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "interp",
+    "eval",
+    "2016"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "race": {
+   "stage": "growing",
+   "bytes": 6753,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "squad",
+    "bert",
+    "squad2"
+   ],
+   "in": [
+    "babi",
+    "lambada"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "interp",
+    "eval",
+    "2017"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "datasheets": {
+   "stage": "growing",
+   "bytes": 7282,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "imagenet",
+    "laion5b",
+    "dolma"
+   ],
+   "in": [],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "data",
+    "curate",
+    "2018"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "debate": {
+   "stage": "evergreen",
+   "bytes": 8655,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "concrete-safety",
+    "rlhf-prefs",
+    "alphago",
+    "iterated-amplification"
+   ],
+   "in": [
+    "concrete-safety",
+    "iterated-amplification"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "privacy",
+    "safety",
+    "2018"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "iterated-amplification": {
+   "stage": "evergreen",
+   "bytes": 9391,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "concrete-safety",
+    "backprop",
+    "rlhf-prefs",
+    "debate",
+    "reward-modeling",
+    "alphago"
+   ],
+   "in": [
+    "concrete-safety",
+    "debate"
+   ],
+   "diagram": "loop",
+   "extLinks": 2,
+   "tags": [
+    "privacy",
+    "safety",
+    "2018"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "squad2": {
+   "stage": "growing",
+   "bytes": 7576,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "squad",
+    "bert"
+   ],
+   "in": [
+    "lambada",
+    "race"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "interp",
+    "eval",
+    "2018"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "xlm": {
+   "stage": "evergreen",
+   "bytes": 8773,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "bert",
+    "transformer",
+    "bpe",
+    "mt5",
+    "bloom"
+   ],
+   "in": [],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "llm",
+    "pretrain",
+    "2019"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "bias-in-generation": {
+   "stage": "evergreen",
+   "bytes": 7954,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "word2vec",
+    "gpt2",
+    "lstm",
+    "bert",
+    "stereoset",
+    "safety-recipes"
+   ],
+   "in": [
+    "safety-recipes"
+   ],
+   "diagram": "compare",
+   "extLinks": 3,
+   "tags": [
+    "privacy",
+    "safety",
+    "2019"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "huggingface": {
+   "stage": "seed",
+   "bytes": 0,
+   "sections": [],
+   "out": [],
+   "in": [],
+   "diagram": null,
+   "extLinks": 0,
+   "tags": [
+    "efficiency",
+    "serve",
+    "2019"
+   ]
+  },
+  "vtab": {
+   "stage": "growing",
+   "bytes": 7516,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "imagenet",
+    "resnet",
+    "vit-scaling",
+    "simclr"
+   ],
+   "in": [],
+   "diagram": "flow",
+   "extLinks": 1,
+   "tags": [
+    "interp",
+    "eval",
+    "2019"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "moco-v2": {
+   "stage": "growing",
+   "bytes": 6198,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "simclr",
+    "moco",
+    "byol",
+    "dino"
+   ],
+   "in": [],
+   "diagram": "compare",
+   "extLinks": 1,
+   "tags": [
+    "vision",
+    "selfsup",
+    "2020"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "linformer": {
+   "stage": "evergreen",
+   "bytes": 7400,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "transformer",
+    "sparse-attn",
+    "flashattention"
+   ],
+   "in": [],
+   "diagram": "compare",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "attn",
+    "2020"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "stereoset": {
+   "stage": "evergreen",
+   "bytes": 7938,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "word2vec",
+    "bert",
+    "roberta",
+    "xlnet"
+   ],
+   "in": [
+    "bias-in-generation"
+   ],
+   "diagram": "compare",
+   "extLinks": 3,
+   "tags": [
+    "privacy",
+    "safety",
+    "2020"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "safety-recipes": {
+   "stage": "growing",
+   "bytes": 8877,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "meena",
+    "lamda",
+    "bias-in-generation",
+    "transformer"
+   ],
+   "in": [
+    "bias-in-generation"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "privacy",
+    "safety",
+    "2020"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "pangu-alpha": {
+   "stage": "evergreen",
+   "bytes": 9087,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "gpt3",
+    "megatron",
+    "gpt1",
+    "transformer",
+    "qwen2",
+    "palm",
+    "llama"
+   ],
+   "in": [],
+   "diagram": "stack",
+   "extLinks": 2,
+   "tags": [
+    "llm",
+    "open",
+    "2021"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "vit-scaling": {
+   "stage": "evergreen",
+   "bytes": 8296,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "vit",
+    "scaling-laws",
+    "generative-scaling"
+   ],
+   "in": [
+    "vtab"
+   ],
+   "diagram": "flow",
+   "extLinks": 1,
+   "tags": [
+    "vision",
+    "vit",
+    "2021"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "stochastic-parrots-risk": {
+   "stage": "growing",
+   "bytes": 7446,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "gpt3",
+    "gpt2",
+    "scaling-laws",
+    "rlhf-prefs",
+    "gpt4"
+   ],
+   "in": [],
+   "diagram": "split",
+   "extLinks": 1,
+   "tags": [
+    "privacy",
+    "safety",
+    "2021"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "zero-shot-planner": {
+   "stage": "evergreen",
+   "bytes": 8922,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "gpt3",
+    "saycan",
+    "palm-e"
+   ],
+   "in": [],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "robotics",
+    "vla",
+    "2022"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "minerva": {
+   "stage": "evergreen",
+   "bytes": 9394,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "palm",
+    "math-dataset",
+    "cot",
+    "self-consistency",
+    "pal"
+   ],
+   "in": [],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "agent",
+    "reason",
+    "2022"
+   ],
+   "mtime": "2026-09-10"
+  },
+  "t5x": {
+   "stage": "seed",
+   "bytes": 0,
+   "sections": [],
+   "out": [],
+   "in": [],
+   "diagram": null,
+   "extLinks": 0,
+   "tags": [
+    "efficiency",
+    "serve",
+    "2022"
+   ]
+  },
+  "sparks-agi": {
+   "stage": "growing",
+   "bytes": 8487,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "gpt4",
+    "emergent"
+   ],
+   "in": [],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "interp",
+    "eval",
+    "2023"
+   ],
+   "mtime": "2026-09-10"
+  },
   "decanlp": {
    "stage": "evergreen",
    "bytes": 8182,
@@ -13223,7 +13978,8 @@
     "rope"
    ],
    "in": [
-    "transformer-xl"
+    "transformer-xl",
+    "stereoset"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -13660,11 +14416,12 @@
   }
  },
  "stats": {
-  "total": 393,
-  "written": 393,
+  "total": 418,
+  "written": 416,
   "byStage": {
-   "evergreen": 350,
-   "growing": 43
+   "evergreen": 362,
+   "growing": 54,
+   "seed": 2
   },
   "byField": {
    "foundations": {
@@ -13676,20 +14433,20 @@
     "written": 15
    },
    "vision": {
-    "total": 39,
-    "written": 39
+    "total": 41,
+    "written": 41
    },
    "llm": {
-    "total": 57,
-    "written": 57
+    "total": 60,
+    "written": 60
    },
    "efficiency": {
-    "total": 31,
-    "written": 31
+    "total": 34,
+    "written": 32
    },
    "generative": {
-    "total": 34,
-    "written": 34
+    "total": 35,
+    "written": 35
    },
    "multimodal": {
     "total": 14,
@@ -13704,20 +14461,20 @@
     "written": 18
    },
    "agent": {
-    "total": 15,
-    "written": 15
+    "total": 16,
+    "written": 16
    },
    "ir": {
     "total": 14,
     "written": 14
    },
    "interp": {
-    "total": 35,
-    "written": 35
+    "total": 41,
+    "written": 41
    },
    "privacy": {
-    "total": 14,
-    "written": 14
+    "total": 21,
+    "written": 21
    },
    "graph": {
     "total": 9,
@@ -13736,16 +14493,16 @@
     "written": 12
    },
    "robotics": {
-    "total": 11,
-    "written": 11
+    "total": 12,
+    "written": 12
    },
    "science": {
     "total": 8,
     "written": 8
    },
    "data": {
-    "total": 13,
-    "written": 13
+    "total": 14,
+    "written": 14
    },
    "theory": {
     "total": 9,

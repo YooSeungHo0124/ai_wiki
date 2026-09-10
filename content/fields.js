@@ -867,7 +867,7 @@ WIKI.INDEX = [
 ['vilbert',2019,'ViLBERT: Pretraining Task-Agnostic Visiolinguistic Representations','ViLBERT','multimodal','vlm',['bert','faster-rcnn']],
 ['lxmert',2019,'LXMERT: Learning Cross-Modality Encoder Representations from Transformers','LXMERT','multimodal','vlm',['bert','faster-rcnn']],
 ['vilt',2021,'ViLT: Vision-and-Language Transformer Without Convolution or Region Supervision','ViLT','multimodal','vlm',['vit','vilbert']],
-['frozen-vlm',2021,'Multimodal Few-Shot Learning with Frozen Language Models','Frozen','multimodal','vlm',['gpt3','clip']],
+['frozen-vlm',2021,'Multimodal Few-Shot Learning with Frozen Language Models','Frozen','multimodal','vlm',['gpt3','prefix-tuning']],
 ['instructblip',2023,'InstructBLIP: Towards General-purpose Vision-Language Models with Instruction Tuning','InstructBLIP','multimodal','vlm',['blip2','flan']],
 ['layoutlm',2019,'LayoutLM: Pre-training of Text and Layout for Document Image Understanding','LayoutLM','multimodal','vlm',['bert']],
 ['trocr',2021,'TrOCR: Transformer-based Optical Character Recognition with Pre-trained Models','TrOCR','multimodal','vlm',['vit','roberta']],

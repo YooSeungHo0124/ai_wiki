@@ -89,6 +89,17 @@
 "published": "2019-02-02",
 "title": "Parameter-Efficient Transfer Learning for NLP"
 },
+"adda": {
+"arxiv": "1702.05464",
+"authors": [
+"Eric Tzeng",
+"Judy Hoffman",
+"Kate Saenko",
+"Trevor Darrell"
+],
+"published": "2017-02-17",
+"title": "Adversarial Discriminative Domain Adaptation"
+},
 "adversarial-triggers": {
 "arxiv": "1908.07125",
 "authors": [
@@ -525,6 +536,19 @@
 ],
 "published": "2018-03-14",
 "title": "Think you have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge"
+},
+"arcface": {
+"arxiv": "1801.07698",
+"authors": [
+"Jiankang Deng",
+"Jia Guo",
+"Jing Yang",
+"Niannan Xue",
+"Irene Kotsia",
+"Stefanos Zafeiriou"
+],
+"published": "2018-01-23",
+"title": "ArcFace: Additive Angular Margin Loss for Deep Face Recognition"
 },
 "attention-not-explanation": {
 "arxiv": "1902.10186",
@@ -1753,6 +1777,22 @@
 "published": "2020-06-13",
 "title": "Bootstrap your own latent: A new approach to self-supervised Learning"
 },
+"bytetrack": {
+"arxiv": "2110.06864",
+"authors": [
+"Yifu Zhang",
+"Peize Sun",
+"Yi Jiang",
+"Dongdong Yu",
+"Fucheng Weng",
+"Zehuan Yuan",
+"Ping Luo",
+"Wenyu Liu",
+"Xinggang Wang"
+],
+"published": "2021-10-13",
+"title": "ByteTrack: Multi-Object Tracking by Associating Every Detection Box"
+},
 "caffe": {
 "arxiv": "1408.5093",
 "authors": [
@@ -1795,6 +1835,15 @@
 "published": "2019-10-21",
 "title": "Quantifying the Carbon Emissions of Machine Learning"
 },
+"cascade-rcnn": {
+"arxiv": "1712.00726",
+"authors": [
+"Zhaowei Cai",
+"Nuno Vasconcelos"
+],
+"published": "2017-12-03",
+"title": "Cascade R-CNN: Delving into High Quality Object Detection"
+},
 "cascaded-diffusion": {
 "arxiv": "2106.15282",
 "authors": [
@@ -1818,6 +1867,16 @@
 ],
 "published": "2015-11-07",
 "title": "The Goldilocks Principle: Reading Children's Books with Explicit Memory Representations"
+},
+"centernet": {
+"arxiv": "1904.07850",
+"authors": [
+"Xingyi Zhou",
+"Dequan Wang",
+"Philipp Krähenbühl"
+],
+"published": "2019-04-16",
+"title": "Objects as Points"
 },
 "cfg": {
 "arxiv": "2207.12598",
@@ -2291,6 +2350,21 @@
 "published": "2019-09-11",
 "title": "CTRL: A Conditional Transformer Language Model for Controllable Generation"
 },
+"cycada": {
+"arxiv": "1711.03213",
+"authors": [
+"Judy Hoffman",
+"Eric Tzeng",
+"Taesung Park",
+"Jun-Yan Zhu",
+"Phillip Isola",
+"Kate Saenko",
+"Alexei A. Efros",
+"Trevor Darrell"
+],
+"published": "2017-11-08",
+"title": "CyCADA: Cycle-Consistent Adversarial Domain Adaptation"
+},
 "cyclegan": {
 "arxiv": "1703.10593",
 "authors": [
@@ -2328,6 +2402,21 @@
 ],
 "published": "2022-04-13",
 "title": "Hierarchical Text-Conditional Image Generation with CLIP Latents"
+},
+"dann": {
+"arxiv": "1505.07818",
+"authors": [
+"Yaroslav Ganin",
+"Evgeniya Ustinova",
+"Hana Ajakan",
+"Pascal Germain",
+"Hugo Larochelle",
+"François Laviolette",
+"Mario Marchand",
+"Victor Lempitsky"
+],
+"published": "2015-05-28",
+"title": "Domain-Adversarial Training of Neural Networks"
 },
 "data-constrained": {
 "arxiv": "2305.16264",
@@ -2505,6 +2594,35 @@
 "published": "2021-07-14",
 "title": "Deduplicating Training Data Makes Language Models Better"
 },
+"deep-compression": {
+"arxiv": "1510.00149",
+"authors": [
+"Song Han",
+"Huizi Mao",
+"William J. Dally"
+],
+"published": "2015-10-01",
+"title": "Deep Compression: Compressing Deep Neural Networks with Pruning, Trained Quantization and Huffman Coding"
+},
+"deep-coral": {
+"arxiv": "1607.01719",
+"authors": [
+"Baochen Sun",
+"Kate Saenko"
+],
+"published": "2016-07-06",
+"title": "Deep CORAL: Correlation Alignment for Deep Domain Adaptation"
+},
+"deep-ensembles": {
+"arxiv": "1612.01474",
+"authors": [
+"Balaji Lakshminarayanan",
+"Alexander Pritzel",
+"Charles Blundell"
+],
+"published": "2016-12-05",
+"title": "Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles"
+},
 "deeper-self-attention": {
 "arxiv": "1808.04444",
 "authors": [
@@ -2540,6 +2658,18 @@
 ],
 "published": "2016-06-02",
 "title": "DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs"
+},
+"deeplabv3plus": {
+"arxiv": "1802.02611",
+"authors": [
+"Liang-Chieh Chen",
+"Yukun Zhu",
+"George Papandreou",
+"Florian Schroff",
+"Hartwig Adam"
+],
+"published": "2018-02-07",
+"title": "Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation"
 },
 "deepmind-lab": {
 "arxiv": "1612.03801",
@@ -2794,6 +2924,170 @@
 "published": "2025-01-22",
 "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning"
 },
+"deepseek-v2": {
+"arxiv": "2405.04434",
+"authors": [
+"DeepSeek-AI",
+"Aixin Liu",
+"Bei Feng",
+"Bin Wang",
+"Bingxuan Wang",
+"Bo Liu",
+"Chenggang Zhao",
+"Chengqi Dengr",
+"Chong Ruan",
+"Damai Dai",
+"Daya Guo",
+"Dejian Yang",
+"Deli Chen",
+"Dongjie Ji",
+"Erhang Li",
+"Fangyun Lin",
+"Fuli Luo",
+"Guangbo Hao",
+"Guanting Chen",
+"Guowei Li",
+"H. Zhang",
+"Hanwei Xu",
+"Hao Yang",
+"Haowei Zhang",
+"Honghui Ding",
+"Huajian Xin",
+"Huazuo Gao",
+"Hui Li",
+"Hui Qu",
+"J. L. Cai",
+"Jian Liang",
+"Jianzhong Guo",
+"Jiaqi Ni",
+"Jiashi Li",
+"Jin Chen",
+"Jingyang Yuan",
+"Junjie Qiu",
+"Junxiao Song",
+"Kai Dong",
+"Kaige Gao",
+"Kang Guan",
+"Lean Wang",
+"Lecong Zhang",
+"Lei Xu",
+"Leyi Xia",
+"Liang Zhao",
+"Liyue Zhang",
+"Meng Li",
+"Miaojun Wang",
+"Mingchuan Zhang",
+"Minghua Zhang",
+"Minghui Tang",
+"Mingming Li",
+"Ning Tian",
+"Panpan Huang",
+"Peiyi Wang",
+"Peng Zhang",
+"Qihao Zhu",
+"Qinyu Chen",
+"Qiushi Du",
+"R. J. Chen",
+"R. L. Jin",
+"Ruiqi Ge",
+"Ruizhe Pan",
+"Runxin Xu",
+"Ruyi Chen",
+"S. S. Li",
+"Shanghao Lu",
+"Shangyan Zhou",
+"Shanhuang Chen",
+"Shaoqing Wu",
+"Shengfeng Ye",
+"Shirong Ma",
+"Shiyu Wang",
+"Shuang Zhou",
+"Shuiping Yu",
+"Shunfeng Zhou",
+"Size Zheng",
+"T. Wang",
+"Tian Pei",
+"Tian Yuan",
+"Tianyu Sun",
+"W. L. Xiao",
+"Wangding Zeng",
+"Wei An",
+"Wen Liu",
+"Wenfeng Liang",
+"Wenjun Gao",
+"Wentao Zhang",
+"X. Q. Li",
+"Xiangyue Jin",
+"Xianzu Wang",
+"Xiao Bi",
+"Xiaodong Liu",
+"Xiaohan Wang",
+"Xiaojin Shen",
+"Xiaokang Chen",
+"Xiaosha Chen",
+"Xiaotao Nie",
+"Xiaowen Sun",
+"Xiaoxiang Wang",
+"Xin Liu",
+"Xin Xie",
+"Xingkai Yu",
+"Xinnan Song",
+"Xinyi Zhou",
+"Xinyu Yang",
+"Xuan Lu",
+"Xuecheng Su",
+"Y. Wu",
+"Y. K. Li",
+"Y. X. Wei",
+"Y. X. Zhu",
+"Yanhong Xu",
+"Yanping Huang",
+"Yao Li",
+"Yao Zhao",
+"Yaofeng Sun",
+"Yaohui Li",
+"Yaohui Wang",
+"Yi Zheng",
+"Yichao Zhang",
+"Yiliang Xiong",
+"Yilong Zhao",
+"Ying He",
+"Ying Tang",
+"Yishi Piao",
+"Yixin Dong",
+"Yixuan Tan",
+"Yiyuan Liu",
+"Yongji Wang",
+"Yongqiang Guo",
+"Yuchen Zhu",
+"Yuduan Wang",
+"Yuheng Zou",
+"Yukun Zha",
+"Yunxian Ma",
+"Yuting Yan",
+"Yuxiang You",
+"Yuxuan Liu",
+"Z. Z. Ren",
+"Zehui Ren",
+"Zhangli Sha",
+"Zhe Fu",
+"Zhen Huang",
+"Zhen Zhang",
+"Zhenda Xie",
+"Zhewen Hao",
+"Zhihong Shao",
+"Zhiniu Wen",
+"Zhipeng Xu",
+"Zhongyu Zhang",
+"Zhuoshu Li",
+"Zihan Wang",
+"Zihui Gu",
+"Zilin Li",
+"Ziwei Xie"
+],
+"published": "2024-05-07",
+"title": "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model"
+},
 "deepseek-v3": {
 "arxiv": "2412.19437",
 "authors": [
@@ -2999,6 +3293,16 @@
 "published": "2024-12-27",
 "title": "DeepSeek-V3 Technical Report"
 },
+"deepsort": {
+"arxiv": "1703.07402",
+"authors": [
+"Nicolai Wojke",
+"Alex Bewley",
+"Dietrich Paulus"
+],
+"published": "2017-03-21",
+"title": "Simple Online and Realtime Tracking with a Deep Association Metric"
+},
 "deepwalk": {
 "arxiv": "1403.6652",
 "authors": [
@@ -3008,6 +3312,19 @@
 ],
 "published": "2014-03-26",
 "title": "DeepWalk: Online Learning of Social Representations"
+},
+"deformable-detr": {
+"arxiv": "2010.04159",
+"authors": [
+"Xizhou Zhu",
+"Weijie Su",
+"Lewei Lu",
+"Bin Li",
+"Xiaogang Wang",
+"Jifeng Dai"
+],
+"published": "2020-10-08",
+"title": "Deformable DETR: Deformable Transformers for End-to-End Object Detection"
 },
 "deit": {
 "arxiv": "2012.12877",
@@ -3138,6 +3455,21 @@
 "published": "2021-04-29",
 "title": "Emerging Properties in Self-Supervised Vision Transformers"
 },
+"dino-detr": {
+"arxiv": "2203.03605",
+"authors": [
+"Hao Zhang",
+"Feng Li",
+"Shilong Liu",
+"Lei Zhang",
+"Hang Su",
+"Jun Zhu",
+"Lionel M. Ni",
+"Heung-Yeung Shum"
+],
+"published": "2022-03-07",
+"title": "DINO: DETR with Improved DeNoising Anchor Boxes for End-to-End Object Detection"
+},
 "dinov2": {
 "arxiv": "2304.07193",
 "authors": [
@@ -3255,6 +3587,23 @@
 ],
 "published": "2020-06-12",
 "title": "Are we done with ImageNet?"
+},
+"donut": {
+"arxiv": "2111.15664",
+"authors": [
+"Geewook Kim",
+"Teakgyu Hong",
+"Moonbin Yim",
+"Jeongyeon Nam",
+"Jinyoung Park",
+"Jinyeong Yim",
+"Wonseok Hwang",
+"Sangdoo Yun",
+"Dongyoon Han",
+"Seunghyun Park"
+],
+"published": "2021-11-30",
+"title": "OCR-free Document Understanding Transformer"
 },
 "double-descent": {
 "arxiv": "1912.02292",
@@ -3415,6 +3764,16 @@
 ],
 "published": "2022-12-07",
 "title": "Text Embeddings by Weakly-Supervised Contrastive Pre-training"
+},
+"efficientdet": {
+"arxiv": "1911.09070",
+"authors": [
+"Mingxing Tan",
+"Ruoming Pang",
+"Quoc V. Le"
+],
+"published": "2019-11-20",
+"title": "EfficientDet: Scalable and Efficient Object Detection"
 },
 "efficientnet": {
 "arxiv": "1905.11946",
@@ -3614,6 +3973,16 @@
 "published": "2020-12-14",
 "title": "Extracting Training Data from Large Language Models"
 },
+"facenet": {
+"arxiv": "1503.03832",
+"authors": [
+"Florian Schroff",
+"Dmitry Kalenichenko",
+"James Philbin"
+],
+"published": "2015-03-12",
+"title": "FaceNet: A Unified Embedding for Face Recognition and Clustering"
+},
 "faiss": {
 "arxiv": "1702.08734",
 "authors": [
@@ -3669,6 +4038,17 @@
 ],
 "published": "2014-11-14",
 "title": "Fully Convolutional Networks for Semantic Segmentation"
+},
+"fcos": {
+"arxiv": "1904.01355",
+"authors": [
+"Zhi Tian",
+"Chunhua Shen",
+"Hao Chen",
+"Tong He"
+],
+"published": "2019-04-02",
+"title": "FCOS: Fully Convolutional One-Stage Object Detection"
 },
 "fedavg": {
 "arxiv": "1602.05629",
@@ -4064,6 +4444,19 @@
 ],
 "published": "2016-12-09",
 "title": "Feature Pyramid Networks for Object Detection"
+},
+"frozen-vlm": {
+"arxiv": "2106.13884",
+"authors": [
+"Maria Tsimpoukelli",
+"Jacob Menick",
+"Serkan Cabi",
+"S. M. Ali Eslami",
+"Oriol Vinyals",
+"Felix Hill"
+],
+"published": "2021-06-25",
+"title": "Multimodal Few-Shot Learning with Frozen Language Models"
 },
 "gae": {
 "arxiv": "1506.02438",
@@ -6377,6 +6770,25 @@
 "published": "2022-01-06",
 "title": "Grokking: Generalization Beyond Overfitting on Small Algorithmic Datasets"
 },
+"grounding-dino": {
+"arxiv": "2303.05499",
+"authors": [
+"Shilong Liu",
+"Zhaoyang Zeng",
+"Tianhe Ren",
+"Feng Li",
+"Hao Zhang",
+"Jie Yang",
+"Qing Jiang",
+"Chunyuan Li",
+"Jianwei Yang",
+"Hang Su",
+"Jun Zhu",
+"Lei Zhang"
+],
+"published": "2023-03-09",
+"title": "Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set Object Detection"
+},
 "grover": {
 "arxiv": "1905.12616",
 "authors": [
@@ -6883,6 +7295,22 @@
 "published": "2016-07-27",
 "title": "Instance Normalization: The Missing Ingredient for Fast Stylization"
 },
+"instructblip": {
+"arxiv": "2305.06500",
+"authors": [
+"Wenliang Dai",
+"Junnan Li",
+"Dongxu Li",
+"Anthony Meng Huat Tiong",
+"Junqi Zhao",
+"Weisheng Wang",
+"Boyang Li",
+"Pascale Fung",
+"Steven Hoi"
+],
+"published": "2023-05-11",
+"title": "InstructBLIP: Towards General-purpose Vision-Language Models with Instruction Tuning"
+},
 "instructgpt": {
 "arxiv": "2203.02155",
 "authors": [
@@ -7142,6 +7570,19 @@
 "published": "2016-07-21",
 "title": "Layer Normalization"
 },
+"layoutlm": {
+"arxiv": "1912.13318",
+"authors": [
+"Yiheng Xu",
+"Minghao Li",
+"Lei Cui",
+"Shaohan Huang",
+"Furu Wei",
+"Ming Zhou"
+],
+"published": "2019-12-31",
+"title": "LayoutLM: Pre-training of Text and Layout for Document Image Understanding"
+},
 "ldm": {
 "arxiv": "2112.10752",
 "authors": [
@@ -7374,6 +7815,15 @@
 "published": "2018-03-09",
 "title": "The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks"
 },
+"lottery-ticket": {
+"arxiv": "1803.03635",
+"authors": [
+"Jonathan Frankle",
+"Michael Carbin"
+],
+"published": "2018-03-09",
+"title": "The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks"
+},
 "lr-scaling": {
 "arxiv": "1706.02677",
 "authors": [
@@ -7412,6 +7862,15 @@
 ],
 "published": "2015-06-10",
 "title": "LSUN: Construction of a Large-scale Image Dataset using Deep Learning with Humans in the Loop"
+},
+"lxmert": {
+"arxiv": "1908.07490",
+"authors": [
+"Hao Tan",
+"Mohit Bansal"
+],
+"published": "2019-08-20",
+"title": "LXMERT: Learning Cross-Modality Encoder Representations from Transformers"
 },
 "machine-unlearning": {
 "arxiv": "1912.03817",
@@ -7536,6 +7995,28 @@
 "published": "2017-03-20",
 "title": "Mask R-CNN"
 },
+"mask2former": {
+"arxiv": "2112.01527",
+"authors": [
+"Bowen Cheng",
+"Ishan Misra",
+"Alexander G. Schwing",
+"Alexander Kirillov",
+"Rohit Girdhar"
+],
+"published": "2021-12-02",
+"title": "Masked-attention Mask Transformer for Universal Image Segmentation"
+},
+"maskformer": {
+"arxiv": "2107.06278",
+"authors": [
+"Bowen Cheng",
+"Alexander G. Schwing",
+"Alexander Kirillov"
+],
+"published": "2021-07-13",
+"title": "Per-Pixel Classification is Not All You Need for Semantic Segmentation"
+},
 "math-dataset": {
 "arxiv": "2103.03874",
 "authors": [
@@ -7568,6 +8049,15 @@
 ],
 "published": "2021-08-16",
 "title": "Program Synthesis with Large Language Models"
+},
+"mc-dropout": {
+"arxiv": "1506.02142",
+"authors": [
+"Yarin Gal",
+"Zoubin Ghahramani"
+],
+"published": "2015-06-06",
+"title": "Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning"
 },
 "medusa": {
 "arxiv": "2401.10774",
@@ -7654,6 +8144,18 @@
 "published": "2009-08",
 "title": "Matrix Factorization Techniques for Recommender Systems",
 "venue": "Computer"
+},
+"midas": {
+"arxiv": "1907.01341",
+"authors": [
+"René Ranftl",
+"Katrin Lasinger",
+"David Hafner",
+"Konrad Schindler",
+"Vladlen Koltun"
+],
+"published": "2019-07-02",
+"title": "Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer"
 },
 "minerva": {
 "arxiv": "2206.14858",
@@ -7879,6 +8381,16 @@
 "published": "2019-01-13",
 "title": "Passage Re-ranking with BERT"
 },
+"movement-pruning": {
+"arxiv": "2005.07683",
+"authors": [
+"Victor Sanh",
+"Thomas Wolf",
+"Alexander M. Rush"
+],
+"published": "2020-05-15",
+"title": "Movement Pruning: Adaptive Sparsity by Fine-Tuning"
+},
 "mpnn": {
 "arxiv": "1704.01212",
 "authors": [
@@ -7920,6 +8432,15 @@
 ],
 "published": "2016-11-28",
 "title": "MS MARCO: A Human Generated MAchine Reading COmprehension Dataset"
+},
+"msp-baseline": {
+"arxiv": "1610.02136",
+"authors": [
+"Dan Hendrycks",
+"Kevin Gimpel"
+],
+"published": "2016-10-07",
+"title": "A Baseline for Detecting Misclassified and Out-of-Distribution Examples in Neural Networks"
 },
 "mt-dnn": {
 "arxiv": "1901.11504",
@@ -8106,6 +8627,17 @@
 "published": "2019-11-11",
 "title": "Self-training with Noisy Student improves ImageNet classification"
 },
+"nougat": {
+"arxiv": "2308.13418",
+"authors": [
+"Lukas Blecher",
+"Guillem Cucurull",
+"Thomas Scialom",
+"Robert Stojnic"
+],
+"published": "2023-08-25",
+"title": "Nougat: Neural Optical Understanding for Academic Documents"
+},
 "ntk": {
 "arxiv": "1806.07572",
 "authors": [
@@ -8137,6 +8669,16 @@
 ],
 "published": "2019-04-22",
 "title": "The Curious Case of Neural Text Degeneration"
+},
+"odin": {
+"arxiv": "1706.02690",
+"authors": [
+"Shiyu Liang",
+"Yixuan Li",
+"R. Srikant"
+],
+"published": "2017-06-08",
+"title": "Enhancing The Reliability of Out-of-distribution Image Detection in Neural Networks"
 },
 "olmo": {
 "arxiv": "2402.00838",
@@ -8603,6 +9145,27 @@
 "published": "2022-12-22",
 "title": "OPT-IML: Scaling Language Model Instruction Meta Learning through the Lens of Generalization"
 },
+"owl-vit": {
+"arxiv": "2205.06230",
+"authors": [
+"Matthias Minderer",
+"Alexey Gritsenko",
+"Austin Stone",
+"Maxim Neumann",
+"Dirk Weissenborn",
+"Alexey Dosovitskiy",
+"Aravindh Mahendran",
+"Anurag Arnab",
+"Mostafa Dehghani",
+"Zhuoran Shen",
+"Xiao Wang",
+"Xiaohua Zhai",
+"Thomas Kipf",
+"Neil Houlsby"
+],
+"published": "2022-05-12",
+"title": "Simple Open-Vocabulary Object Detection with Vision Transformers"
+},
 "pal": {
 "arxiv": "2211.10435",
 "authors": [
@@ -8959,6 +9522,18 @@
 "published": "2022-11-03",
 "title": "Pangu-Weather: A 3D High-Resolution Model for Fast and Accurate Global Weather Forecast"
 },
+"panoptic": {
+"arxiv": "1801.00868",
+"authors": [
+"Alexander Kirillov",
+"Kaiming He",
+"Ross Girshick",
+"Carsten Rother",
+"Piotr Dollár"
+],
+"published": "2018-01-03",
+"title": "Panoptic Segmentation"
+},
 "parti": {
 "arxiv": "2206.10789",
 "authors": [
@@ -9192,6 +9767,18 @@
 ],
 "published": "2021-04-18",
 "title": "The Power of Scale for Parameter-Efficient Prompt Tuning"
+},
+"pspnet": {
+"arxiv": "1612.01105",
+"authors": [
+"Hengshuang Zhao",
+"Jianping Shi",
+"Xiaojuan Qi",
+"Xiaogang Wang",
+"Jiaya Jia"
+],
+"published": "2016-12-04",
+"title": "Pyramid Scene Parsing Network"
 },
 "pythia": {
 "arxiv": "2304.01373",
@@ -9968,6 +10555,31 @@
 "published": "2020-10-03",
 "title": "Sharpness-Aware Minimization for Efficiently Improving Generalization"
 },
+"sam2": {
+"arxiv": "2408.00714",
+"authors": [
+"Nikhila Ravi",
+"Valentin Gabeur",
+"Yuan-Ting Hu",
+"Ronghang Hu",
+"Chaitanya Ryali",
+"Tengyu Ma",
+"Haitham Khedr",
+"Roman Rädle",
+"Chloe Rolland",
+"Laura Gustafson",
+"Eric Mintun",
+"Junting Pan",
+"Kalyan Vasudev Alwala",
+"Nicolas Carion",
+"Chao-Yuan Wu",
+"Ross Girshick",
+"Piotr Dollár",
+"Christoph Feichtenhofer"
+],
+"published": "2024-08-01",
+"title": "SAM 2: Segment Anything in Images and Videos"
+},
 "santacoder": {
 "arxiv": "2301.03988",
 "authors": [
@@ -10196,6 +10808,19 @@
 ],
 "published": "2023-07-04",
 "title": "SDXL: Improving Latent Diffusion Models for High-Resolution Image Synthesis"
+},
+"segformer": {
+"arxiv": "2105.15203",
+"authors": [
+"Enze Xie",
+"Wenhai Wang",
+"Zhiding Yu",
+"Anima Anandkumar",
+"Jose M. Alvarez",
+"Ping Luo"
+],
+"published": "2021-05-31",
+"title": "SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers"
 },
 "self-consistency": {
 "arxiv": "2203.11171",
@@ -10486,6 +11111,18 @@
 ],
 "published": "2019-04-22",
 "title": "SocialIQA: Commonsense Reasoning about Social Interactions"
+},
+"sort": {
+"arxiv": "1602.00763",
+"authors": [
+"Alex Bewley",
+"Zongyuan Ge",
+"Lionel Ott",
+"Fabio Ramos",
+"Ben Upcroft"
+],
+"published": "2016-02-02",
+"title": "Simple Online and Realtime Tracking"
 },
 "soundstream": {
 "arxiv": "2107.03312",
@@ -11121,6 +11758,17 @@
 "published": "2017-12-16",
 "title": "Natural TTS Synthesis by Conditioning WaveNet on Mel Spectrogram Predictions"
 },
+"temperature-scaling": {
+"arxiv": "1706.04599",
+"authors": [
+"Chuan Guo",
+"Geoff Pleiss",
+"Yu Sun",
+"Kilian Q. Weinberger"
+],
+"published": "2017-06-14",
+"title": "On Calibration of Modern Neural Networks"
+},
 "tensorflow": {
 "arxiv": "1603.04467",
 "authors": [
@@ -11167,6 +11815,18 @@
 ],
 "published": "2016-03-14",
 "title": "TensorFlow: Large-Scale Machine Learning on Heterogeneous Distributed Systems"
+},
+"tent": {
+"arxiv": "2006.10726",
+"authors": [
+"Dequan Wang",
+"Evan Shelhamer",
+"Shaoteng Liu",
+"Bruno Olshausen",
+"Trevor Darrell"
+],
+"published": "2020-06-18",
+"title": "Tent: Fully Test-time Adaptation by Entropy Minimization"
 },
 "term-freq-reasoning": {
 "arxiv": "2202.07206",
@@ -11298,6 +11958,22 @@
 ],
 "published": "2017-05-09",
 "title": "TriviaQA: A Large Scale Distantly Supervised Challenge Dataset for Reading Comprehension"
+},
+"trocr": {
+"arxiv": "2109.10282",
+"authors": [
+"Minghao Li",
+"Tengchao Lv",
+"Jingye Chen",
+"Lei Cui",
+"Yijuan Lu",
+"Dinei Florencio",
+"Cha Zhang",
+"Zhoujun Li",
+"Furu Wei"
+],
+"published": "2021-09-21",
+"title": "TrOCR: Transformer-based Optical Character Recognition with Pre-trained Models"
 },
 "trpo": {
 "arxiv": "1502.05477",
@@ -11570,6 +12246,27 @@
 ],
 "published": "2022-03-23",
 "title": "VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training"
+},
+"vilbert": {
+"arxiv": "1908.02265",
+"authors": [
+"Jiasen Lu",
+"Dhruv Batra",
+"Devi Parikh",
+"Stefan Lee"
+],
+"published": "2019-08-06",
+"title": "ViLBERT: Pretraining Task-Agnostic Visiolinguistic Representations for Vision-and-Language Tasks"
+},
+"vilt": {
+"arxiv": "2102.03334",
+"authors": [
+"Wonjae Kim",
+"Bokyung Son",
+"Ildoo Kim"
+],
+"published": "2021-02-05",
+"title": "ViLT: Vision-and-Language Transformer Without Convolution or Region Supervision"
 },
 "visual-semantic-embed": {
 "arxiv": "1411.2539",
@@ -11900,6 +12597,15 @@
 ],
 "published": "2015-06-08",
 "title": "You Only Look Once: Unified, Real-Time Object Detection"
+},
+"yolov3": {
+"arxiv": "1804.02767",
+"authors": [
+"Joseph Redmon",
+"Ali Farhadi"
+],
+"published": "2018-04-08",
+"title": "YOLOv3: An Incremental Improvement"
 },
 "youtube-dnn": {
 "arxiv": null,

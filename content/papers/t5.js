@@ -68,7 +68,7 @@ impact:'두 종류의 유산이 있다. **방법론으로는** — 하나의 통
 legacy:[
  '**instruction tuning의 전제** — text-to-text 형식이 있었기에 [FLAN](#/p/flan)이 "태스크 접두사"를 "자연어 지시"로 바꿔 끼우는 실험을 할 수 있었음',
  '**MoE의 실험대** — [Switch Transformer](#/p/switch)가 T5의 FFN을 전문가로 교체해 1조 파라미터까지 확장',
- '**데이터 자산으로서의 C4** — [LLaMA](#/p/llama) 등 이후 오픈 모델의 코퍼스에 포함되고, mT5·ByT5 같은 다국어·바이트 단위 변형을 파생',
+ '**데이터 자산으로서의 C4** — [LLaMA](#/p/llama) 등 이후 오픈 모델의 코퍼스에 포함되고, [mT5](#/p/mt5)·ByT5 같은 다국어·바이트 단위 변형을 파생',
  '**encoder–decoder 계열의 존속** — 순수 decoder-only가 주류가 된 뒤에도 번역·요약·[Whisper](#/p/whisper) 같은 조건부 생성에서는 이 구조가 계속 쓰임'
 ],
 

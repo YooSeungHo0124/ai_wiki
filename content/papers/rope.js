@@ -62,7 +62,7 @@ numbers:[
 impact:'원 논문의 벤치마크 이득(BLEU +0.2)은 소박했지만, **[LLaMA](#/p/llama)가 채택하면서 사실상 업계 표준**이 되었다. Llama·Mistral·Qwen·[DeepSeek-V3](#/p/deepseek-v3) 등 오늘날 대부분의 오픈 LLM이 RoPE를 쓴다. 실무에서 결정적이었던 것은 벤치마크가 아니라 **문맥 확장 가능성**이다. 위치가 각도이므로 각도의 스케일만 바꾸면 4K로 학습한 모델을 32K·128K로 늘릴 수 있고, 이 조정은 파인튜닝 몇 백 스텝 혹은 추론 시 설정 변경만으로도 어느 정도 작동한다. "긴 문맥 지원"이 새 모델 학습이 아니라 **하이퍼파라미터 조정 문제**가 된 것이 RoPE의 실질적 기여다.',
 
 legacy:[
- '**Position Interpolation / NTK-aware scaling / YaRN** — RoPE 각도를 압축하거나 주파수 대역별로 다르게 늘려 문맥을 8배~32배 확장하는 기법군. `rope_scaling` 설정으로 추론 프레임워크에 그대로 노출되어 있다',
+ '**Position Interpolation / NTK-aware scaling / [YaRN](#/p/yarn)** — RoPE 각도를 압축하거나 주파수 대역별로 다르게 늘려 문맥을 8배~32배 확장하는 기법군. `rope_scaling` 설정으로 추론 프레임워크에 그대로 노출되어 있다',
  '**[LLaMA](#/p/llama) 계열 전반** — [Llama 2](#/p/llama2), [Mistral](#/p/mistral), [DeepSeek-V3](#/p/deepseek-v3)까지 RoPE + [GQA](#/p/gqa) + pre-LN 조합이 오픈 LLM의 기본 골격이 됨',
  '**멀티모달로의 확장** — 2D/3D 좌표를 회전각으로 인코딩하는 축별 RoPE가 이미지·비디오 트랜스포머에 이식됨',
  '**[ALiBi](#/p/alibi)와의 노선 경쟁** — 같은 시기 "위치 임베딩을 아예 없애고 거리 페널티만 주자"는 대안이 나왔고, 외삽 능력과 품질 사이 트레이드오프를 두고 두 계열이 갈렸다'

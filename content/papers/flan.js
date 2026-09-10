@@ -62,7 +62,7 @@ impact:'지시 미세조정(instruction tuning)이 하나의 독립된 학습 �
 legacy:[
  '**선호 데이터 축과의 분리와 결합** — 지시 데이터로 형식을 가르치는 이 축과, [InstructGPT](#/p/instructgpt)의 선호 데이터로 취향·안전성을 가르치는 축은 서로 다른 신호다. 현대 레시피는 둘을 순서대로 쌓는다: 지시 SFT → 선호 최적화([DPO](#/p/dpo)/[PPO](#/p/ppo))',
  '**데이터 규모 경쟁** — 후속 Flan Collection·T0·Super-NaturalInstructions로 태스크 수가 수백~1800개까지 늘었고, 태스크 다양성이 데이터 양보다 중요하다는 것이 재확인됐다',
- '**합성 지시 데이터** — 사람이 템플릿을 쓰는 대신 강한 모델로 지시-응답 쌍을 생성하는 Self-Instruct·Alpaca 계열로 이어지며, [LLaMA](#/p/llama) 이후 오픈 채팅 모델의 표준 부트스트랩이 됐다',
+ '**합성 지시 데이터** — 사람이 템플릿을 쓰는 대신 강한 모델로 지시-응답 쌍을 생성하는 [Self-Instruct](#/p/self-instruct)·Alpaca 계열로 이어지며, [LLaMA](#/p/llama) 이후 오픈 채팅 모델의 표준 부트스트랩이 됐다',
  '**사고 사슬과의 결합** — 후속 Flan-PaLM이 지시 데이터에 [CoT](#/p/cot) 예제를 섞으면 추론 태스크 zero-shot이 함께 오른다는 것을 보였다'
 ],
 

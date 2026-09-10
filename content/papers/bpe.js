@@ -56,7 +56,7 @@ numbers:[
 impact:'**토크나이저가 모델 설계의 일부가 되었다.** 이 논문 이후 NMT는 몇 달 만에 전부 서브워드로 넘어갔고, [Transformer](#/p/transformer) 원논문도 WMT14 실험에서 BPE 기반 어휘(EN-DE 37k)를 썼다. 이후 [BERT](#/p/bert)의 WordPiece, [GPT-2](#/p/gpt2)의 **byte-level BPE**(어떤 유니코드 문자열도 인코딩 가능, 어휘 50,257), SentencePiece, [LLaMA](#/p/llama)·[Mistral](#/p/mistral)의 32k BPE까지 계보가 끊기지 않는다. 오늘날 "컨텍스트 길이 128k"라고 할 때의 그 토큰이 이 알고리즘이 만든 단위이며, API 과금 단위이자 위치 인코딩의 단위이기도 하다. 2016년의 번역 논문 하나가 정한 전처리 규약이 현재 LLM 경제의 계량 단위가 된 셈이다.',
 
 legacy:[
- '**모든 LLM 토크나이저의 조상** — WordPiece([BERT](#/p/bert)), byte-level BPE([GPT-2](#/p/gpt2) 이후 GPT 계열 전부), SentencePiece unigram이 모두 이 논문의 변형이거나 그 경쟁안이다',
+ '**모든 LLM 토크나이저의 조상** — WordPiece([BERT](#/p/bert)), byte-level BPE([GPT-2](#/p/gpt2) 이후 GPT 계열 전부), [SentencePiece](#/p/sentencepiece) unigram이 모두 이 논문의 변형이거나 그 경쟁안이다',
  '**UNK의 소멸** — "어휘 밖 단어"라는 개념 자체가 현대 LLM에서 사라졌고, [fastText](#/p/fasttext)가 임베딩 쪽에서 같은 문제를 서브워드 합으로 푼 것과 짝을 이룬다',
  '**토큰이 계량 단위가 됨** — 컨텍스트 길이, 과금, [스케일링 법칙](#/p/scaling-laws)의 데이터량이 모두 BPE 토큰 수로 세어진다',
  '**언어 간 불평등의 원천** — 영어 중심 코퍼스로 학습된 병합 규칙 때문에 비영어권 텍스트가 더 많은 토큰으로 쪼개지는 문제가 이후 다국어 모델의 상시 과제가 됐다'

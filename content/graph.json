@@ -97,7 +97,9 @@
    "in": [
     "backprop",
     "nnlm",
+    "elmo",
     "seq2seq",
+    "moe-shazeer",
     "s4",
     "mamba",
     "rwkv",
@@ -249,7 +251,7 @@
   },
   "adam": {
    "stage": "evergreen",
-   "bytes": 10641,
+   "bytes": 10654,
    "sections": [
     "venue",
     "authors",
@@ -264,6 +266,7 @@
     "bert",
     "gpt3",
     "llama",
+    "adamw",
     "scaling-laws",
     "chinchilla",
     "qlora"
@@ -282,7 +285,7 @@
     "learning",
     "2015"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "layernorm": {
    "stage": "evergreen",
@@ -321,7 +324,7 @@
   },
   "distillation": {
    "stage": "evergreen",
-   "bytes": 9842,
+   "bytes": 9860,
    "sections": [
     "venue",
     "authors",
@@ -331,6 +334,7 @@
     "links"
    ],
    "out": [
+    "distilbert",
     "deit",
     "vit",
     "byol",
@@ -347,7 +351,8 @@
     "deepseek-r1",
     "lottery",
     "distilbert",
-    "energy-policy"
+    "energy-policy",
+    "carbon-quantify"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -356,7 +361,7 @@
     "learning",
     "2015"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "lenet": {
    "stage": "evergreen",
@@ -471,6 +476,7 @@
     "resnet",
     "mobilenet",
     "convnext",
+    "faster-rcnn",
     "fcn",
     "deeplab",
     "openpose",
@@ -571,6 +577,7 @@
     "deit",
     "swin",
     "simclr",
+    "moco",
     "cyclegan",
     "lr-scaling",
     "senet",
@@ -771,7 +778,7 @@
   },
   "faster-rcnn": {
    "stage": "evergreen",
-   "bytes": 10755,
+   "bytes": 10766,
    "sections": [
     "venue",
     "authors",
@@ -782,6 +789,7 @@
    ],
    "out": [
     "rcnn",
+    "vgg",
     "focal-loss",
     "resnet",
     "yolo",
@@ -808,7 +816,7 @@
     "detect",
     "2015"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "yolo": {
    "stage": "evergreen",
@@ -1330,7 +1338,7 @@
   },
   "mae": {
    "stage": "evergreen",
-   "bytes": 11015,
+   "bytes": 11031,
    "sections": [
     "venue",
     "authors",
@@ -1346,6 +1354,7 @@
     "moco",
     "byol",
     "deit",
+    "videomae",
     "dinov2",
     "dino",
     "clip"
@@ -1371,7 +1380,7 @@
     "vit",
     "2021"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "dino": {
    "stage": "evergreen",
@@ -1415,7 +1424,7 @@
   },
   "dinov2": {
    "stage": "evergreen",
-   "bytes": 11447,
+   "bytes": 11469,
    "sections": [
     "venue",
     "authors",
@@ -1431,7 +1440,8 @@
     "bert",
     "distillation",
     "siglip",
-    "llava"
+    "llava",
+    "depth-anything"
    ],
    "in": [
     "sam",
@@ -1450,7 +1460,7 @@
     "selfsup",
     "2023"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "simclr": {
    "stage": "evergreen",
@@ -1498,7 +1508,7 @@
   },
   "moco": {
    "stage": "evergreen",
-   "bytes": 11249,
+   "bytes": 11263,
    "sections": [
     "venue",
     "authors",
@@ -1512,6 +1522,7 @@
     "byol",
     "dino",
     "batchnorm",
+    "resnet",
     "imagenet",
     "vit",
     "dinov2"
@@ -1534,7 +1545,7 @@
     "selfsup",
     "2020"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "byol": {
    "stage": "evergreen",
@@ -1719,7 +1730,7 @@
   },
   "bpe": {
    "stage": "evergreen",
-   "bytes": 10665,
+   "bytes": 10686,
    "sections": [
     "venue",
     "authors",
@@ -1736,6 +1747,7 @@
     "gpt2",
     "llama",
     "mistral",
+    "sentencepiece",
     "fasttext",
     "scaling-laws"
    ],
@@ -1756,11 +1768,11 @@
     "repr",
     "2016"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "elmo": {
    "stage": "evergreen",
-   "bytes": 10775,
+   "bytes": 10787,
    "sections": [
     "venue",
     "authors",
@@ -1770,6 +1782,7 @@
     "links"
    ],
    "out": [
+    "lstm",
     "word2vec",
     "glove",
     "fasttext",
@@ -1799,7 +1812,7 @@
     "repr",
     "2018"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "seq2seq": {
    "stage": "evergreen",
@@ -2230,7 +2243,7 @@
   },
   "t5": {
    "stage": "evergreen",
-   "bytes": 10772,
+   "bytes": 10783,
    "sections": [
     "venue",
     "authors",
@@ -2249,6 +2262,7 @@
     "flan",
     "switch",
     "instructgpt",
+    "mt5",
     "whisper",
     "gpt3"
    ],
@@ -2258,6 +2272,7 @@
     "gpt1",
     "bert",
     "roberta",
+    "switch",
     "flan",
     "mixtral",
     "rope",
@@ -2286,7 +2301,7 @@
     "pretrain",
     "2019"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "gpt3": {
    "stage": "evergreen",
@@ -2329,6 +2344,7 @@
     "gpt2",
     "t5",
     "scaling-laws",
+    "chinchilla",
     "emergent",
     "instructgpt",
     "flan",
@@ -2369,6 +2385,7 @@
     "agent-alignment",
     "mt-nlg",
     "rethinking-demos",
+    "webgpt",
     "scratchpad",
     "retro",
     "truthfulqa",
@@ -2439,7 +2456,7 @@
   },
   "chinchilla": {
    "stage": "evergreen",
-   "bytes": 11003,
+   "bytes": 11015,
    "sections": [
     "venue",
     "authors",
@@ -2450,6 +2467,7 @@
    ],
    "out": [
     "scaling-laws",
+    "gpt3",
     "llama"
    ],
    "in": [
@@ -2478,7 +2496,7 @@
     "scale",
     "2022"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "palm": {
    "stage": "growing",
@@ -2562,7 +2580,7 @@
   },
   "moe-shazeer": {
    "stage": "evergreen",
-   "bytes": 11083,
+   "bytes": 11095,
    "sections": [
     "venue",
     "authors",
@@ -2572,6 +2590,7 @@
     "links"
    ],
    "out": [
+    "lstm",
     "transformer",
     "switch",
     "mixtral",
@@ -2597,11 +2616,11 @@
     "scale",
     "2017"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "switch": {
    "stage": "evergreen",
-   "bytes": 10919,
+   "bytes": 10929,
    "sections": [
     "venue",
     "authors",
@@ -2611,6 +2630,7 @@
     "links"
    ],
    "out": [
+    "t5",
     "moe-shazeer",
     "chinchilla",
     "mixtral",
@@ -2634,7 +2654,7 @@
     "scale",
     "2021"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "instructgpt": {
    "stage": "evergreen",
@@ -2689,6 +2709,7 @@
     "zero-shot-cot",
     "reward-modeling",
     "realtoxicity",
+    "webgpt",
     "truthfulqa"
    ],
    "diagram": "flow",
@@ -2702,7 +2723,7 @@
   },
   "flan": {
    "stage": "growing",
-   "bytes": 10413,
+   "bytes": 10434,
    "sections": [
     "venue",
     "authors",
@@ -2717,6 +2738,7 @@
     "instructgpt",
     "dpo",
     "ppo",
+    "self-instruct",
     "llama",
     "cot"
    ],
@@ -2740,7 +2762,7 @@
     "align",
     "2022"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "dpo": {
    "stage": "evergreen",
@@ -2939,7 +2961,8 @@
     "starcoder",
     "codellama",
     "qwen2",
-    "chameleon"
+    "chameleon",
+    "carbon-quantify"
    ],
    "diagram": "loop",
    "extLinks": 3,
@@ -3167,7 +3190,7 @@
   },
   "rope": {
    "stage": "evergreen",
-   "bytes": 10460,
+   "bytes": 10472,
    "sections": [
     "venue",
     "authors",
@@ -3182,6 +3205,7 @@
     "flashattention",
     "llama",
     "deepseek-v3",
+    "yarn",
     "llama2",
     "mistral",
     "gqa",
@@ -3216,7 +3240,7 @@
     "attn",
     "2021"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "alibi": {
    "stage": "evergreen",
@@ -5430,7 +5454,8 @@
     "summarize-hf",
     "grpo",
     "self-refine",
-    "reward-modeling"
+    "reward-modeling",
+    "webgpt"
    ],
    "diagram": "loop",
    "extLinks": 3,
@@ -5466,7 +5491,8 @@
     "ppo",
     "rlhf-prefs",
     "grpo",
-    "reward-modeling"
+    "reward-modeling",
+    "webgpt"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -5739,6 +5765,7 @@
     "pal",
     "lamda",
     "zero-shot-cot",
+    "webgpt",
     "scratchpad"
    ],
    "diagram": "loop",
@@ -5771,7 +5798,8 @@
     "cot",
     "react",
     "pal",
-    "lamda"
+    "lamda",
+    "webgpt"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -5890,6 +5918,7 @@
     "e5",
     "bge",
     "lost-in-the-middle",
+    "webgpt",
     "retro"
    ],
    "diagram": "flow",
@@ -7819,6 +7848,7 @@
     "video-diffusion"
    ],
    "in": [
+    "mae",
     "i3d",
     "timesformer",
     "kinetics",
@@ -8531,6 +8561,7 @@
     "phi-textbooks"
    ],
    "in": [
+    "flan",
     "phi-textbooks",
     "flan-t5"
    ],
@@ -9163,6 +9194,7 @@
     "lost-in-the-middle"
    ],
    "in": [
+    "rope",
     "position-interpolation",
     "lost-in-the-middle",
     "ring-attention",
@@ -9457,6 +9489,7 @@
     "sam"
    ],
    "in": [
+    "dinov2",
     "openpose",
     "raft"
    ],
@@ -9485,6 +9518,7 @@
     "bert"
    ],
    "in": [
+    "bpe",
     "mt5"
    ],
    "diagram": "compare",
@@ -10658,6 +10692,7 @@
     "llama"
    ],
    "in": [
+    "adam",
     "sgdr"
    ],
    "diagram": "compare",
@@ -10869,6 +10904,7 @@
    ],
    "in": [
     "bloom",
+    "carbon-quantify",
     "carbon",
     "gpt-neox"
    ],
@@ -10903,6 +10939,7 @@
     "opt",
     "mt5",
     "t0",
+    "carbon-quantify",
     "carbon",
     "gpt-neox"
    ],
@@ -11318,7 +11355,8 @@
     "qlora"
    ],
    "in": [
-    "gpipe"
+    "gpipe",
+    "carbon-quantify"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -11343,7 +11381,9 @@
    "out": [
     "zero"
    ],
-   "in": [],
+   "in": [
+    "carbon-quantify"
+   ],
    "diagram": "flow",
    "extLinks": 2,
    "tags": [
@@ -11856,6 +11896,7 @@
     "albert"
    ],
    "in": [
+    "distillation",
     "albert"
    ],
    "diagram": "compare",
@@ -11973,7 +12014,9 @@
     "qwen2",
     "sentencepiece"
    ],
-   "in": [],
+   "in": [
+    "t5"
+   ],
    "diagram": "flow",
    "extLinks": 2,
    "tags": [
@@ -12701,7 +12744,9 @@
     "carbon-quantify",
     "distillation"
    ],
-   "in": [],
+   "in": [
+    "carbon-quantify"
+   ],
    "diagram": "compare",
    "extLinks": 2,
    "tags": [
@@ -12712,20 +12757,38 @@
    "mtime": "2026-09-10"
   },
   "carbon-quantify": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 7455,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "energy-policy",
+    "bloom",
+    "opt",
+    "llama2",
+    "carbon",
+    "mixed-precision",
+    "grad-checkpointing",
+    "distillation",
+    "ethical-risks"
+   ],
    "in": [
     "energy-policy"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "llm",
     "scale",
     "2019"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "vqvae2": {
    "stage": "evergreen",
@@ -12927,20 +12990,34 @@
    "mtime": "2026-09-10"
   },
   "webgpt": {
-   "stage": "seed",
-   "bytes": 9967,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 9965,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "gpt3",
+    "summarize-hf",
+    "rlhf-prefs",
+    "react",
+    "toolformer",
+    "rag",
+    "instructgpt"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "loop",
+   "extLinks": 2,
    "tags": [
     "agent",
     "tool",
     "2021"
    ],
-   "mtime": "2026-09-10",
-   "error": "Unexpected identifier 'm'"
+   "mtime": "2026-09-10"
   },
   "quantify-memorization": {
    "stage": "evergreen",
@@ -13256,7 +13333,8 @@
     "switch"
    ],
    "in": [
-    "energy-policy"
+    "energy-policy",
+    "carbon-quantify"
    ],
    "diagram": "flow",
    "extLinks": 1,
@@ -13283,7 +13361,8 @@
     "constitutional"
    ],
    "in": [
-    "agent-alignment"
+    "agent-alignment",
+    "carbon-quantify"
    ],
    "diagram": "split",
    "extLinks": 1,
@@ -13473,11 +13552,10 @@
  },
  "stats": {
   "total": 393,
-  "written": 391,
+  "written": 393,
   "byStage": {
-   "evergreen": 348,
-   "growing": 43,
-   "seed": 2
+   "evergreen": 350,
+   "growing": 43
   },
   "byField": {
    "foundations": {
@@ -13494,7 +13572,7 @@
    },
    "llm": {
     "total": 57,
-    "written": 56
+    "written": 57
    },
    "efficiency": {
     "total": 31,
@@ -13518,7 +13596,7 @@
    },
    "agent": {
     "total": 15,
-    "written": 14
+    "written": 15
    },
    "ir": {
     "total": 14,

@@ -63,7 +63,7 @@ quotes:[
   src:'Abstract, p.1'}
 ],
 
-impact:'"파라미터를 늘리는 것"과 "연산을 늘리는 것"이 같은 말이 아님을 실증한 논문이다. 이후 스케일링 논의는 dense 축(모든 파라미터를 다 쓴다)과 sparse 축(파라미터는 많이, 연산은 조금) 두 갈래로 갈라진다. 다만 2017년 시점에는 LSTM 위에 얹은 구조였고 인프라 요구가 커서 즉시 주류가 되지는 못했다. 실제 폭발은 이 아이디어가 [Transformer](#/p/transformer)의 FFN 자리로 옮겨간 뒤 — 즉 [Switch Transformer](#/p/switch) 이후 — 에 일어난다. 부하 분산 보조 손실, 전문가 병렬화, top-k 라우팅이라는 세 가지 설계는 오늘날 MoE 구현에 거의 그대로 남아 있다.',
+impact:'"파라미터를 늘리는 것"과 "연산을 늘리는 것"이 같은 말이 아님을 실증한 논문이다. 이후 스케일링 논의는 dense 축(모든 파라미터를 다 쓴다)과 sparse 축(파라미터는 많이, 연산은 조금) 두 갈래로 갈라진다. 다만 2017년 시점에는 [LSTM](#/p/lstm) 위에 얹은 구조였고 인프라 요구가 커서 즉시 주류가 되지는 못했다. 실제 폭발은 이 아이디어가 [Transformer](#/p/transformer)의 FFN 자리로 옮겨간 뒤 — 즉 [Switch Transformer](#/p/switch) 이후 — 에 일어난다. 부하 분산 보조 손실, 전문가 병렬화, top-k 라우팅이라는 세 가지 설계는 오늘날 MoE 구현에 거의 그대로 남아 있다.',
 
 legacy:[
  '**FFN을 MoE로 교체** — [Switch Transformer](#/p/switch)가 라우팅을 top-1로 단순화하고 Transformer FFN 자리에 넣으면서 조 단위 파라미터 시대를 엶',

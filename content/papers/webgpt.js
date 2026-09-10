@@ -20,7 +20,7 @@ ideas:[
   d:'(1) 사람의 브라우징 시연으로 지도학습(behavior cloning), (2) 두 모델 답변 중 어느 쪽이 더 나은지 비교한 데이터로 보상 모델(RM) 학습, (3) BC 모델에서 $n$개(4/16/64) 답변을 뽑아 RM 점수가 가장 높은 것을 고르는 **거부 샘플링(best-of-n)**, (4) RM을 보상으로 [PPO](#/p/rlhf-prefs)를 돌리는 RL. 최종 최고 모델은 BC + 거부 샘플링 조합이었고, RL은 추론 시 계산 예산이 제한적일 때만 추가 이득이 있었다.'},
  {h:'ELI5로 학습하고 사람·Reddit·TruthfulQA 세 갈래로 검증한다',
   lead:'사람 시연 대비 56%, Reddit 최다득표 답변 대비 69% 선호를 얻고 TruthfulQA에서도 GPT-3를 앞선다.',
-  d:"Reddit의 \"Explain Like I'm Five\" 질문 데이터셋 ELI5로 학습한 뒤, (1) 사람 시연자의 답변, (2) Reddit에서 최다 추천을 받은 답변과 사람 평가로 비교하고, (3) 사실성 위주로 설계된 적대적 벤치마크 TruthfulQA에서도 평가한다. 세 평가 모두에서 사람 피드백을 쓰지 않은 기본 GPT-3보다 유의하게 개선됐다.'},
+  d:"Reddit의 \"Explain Like I'm Five\" 질문 데이터셋 ELI5로 학습한 뒤, (1) 사람 시연자의 답변, (2) Reddit에서 최다 추천을 받은 답변과 사람 평가로 비교하고, (3) 사실성 위주로 설계된 적대적 벤치마크 TruthfulQA에서도 평가한다. 세 평가 모두에서 사람 피드백을 쓰지 않은 기본 GPT-3보다 유의하게 개선됐다."},
  {h:'스케일링과 계산량 트레이드오프를 명시적으로 측정한다',
   lead:'760M·13B·175B 세 크기에서 best-of-n의 n을 다르게 잡아 성능-비용 곡선을 직접 보고한다.',
   d:'모델 크기(760M/13B/175B)와 거부 샘플링 개수($n$=4/16/64)를 함께 바꿔가며 추론 시 계산량 대비 성능을 측정했다. 큰 모델일수록, 그리고 더 많은 후보 중에서 고를수록 사람 선호율이 늘지만 계산 비용도 그만큼 든다는 트레이드오프를 그대로 드러낸 것이 이 논문의 실증적 기여 중 하나다.'}
@@ -75,7 +75,7 @@ figures:[
 ],
 
 quotes:[
- {t:'This model\\'s answers are preferred by humans 56% of the time to those of our human demonstrators, and 69% of the time to the highest-voted answer from Reddit.',
+ {t:"This model's answers are preferred by humans 56% of the time to those of our human demonstrators, and 69% of the time to the highest-voted answer from Reddit.",
   src:'Abstract, p.1'},
  {t:'We generate answers with references: passages extracted by the model from web pages while browsing.',
   src:'§1, p.2'}

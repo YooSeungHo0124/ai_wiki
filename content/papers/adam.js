@@ -53,7 +53,7 @@ numbers:[
  {k:'수렴 보장', v:'평균 regret O(1/√T)', d:'온라인 볼록 최적화 가정 하의 결과 — 이 증명은 이후 반례가 제시된다'}
 ],
 
-impact:'Adam은 새로운 능력을 만든 것이 아니라 **학습을 지루하게 만들었다**. 논문 이전에는 새 아키텍처를 시도할 때 optimizer와 learning rate 스케줄을 함께 탐색해야 했지만, 이후로는 "일단 Adam 기본값"이 출발점이 되면서 연구의 병목이 최적화에서 **아키텍처와 데이터**로 옮겨갔다. [Transformer](#/p/transformer)·[BERT](#/p/bert)·[GPT-3](#/p/gpt3)·[LLaMA](#/p/llama)까지 현대 대형 모델의 학습 레시피는 사실상 예외 없이 Adam 계열(AdamW) + warmup + cosine decay이며, [스케일링 법칙](#/p/scaling-laws)이나 [Chinchilla](#/p/chinchilla)처럼 "연산량만 정하면 성능이 예측된다"는 논의도 옵티마이저가 변수가 아니게 된 뒤에야 가능해졌다.',
+impact:'Adam은 새로운 능력을 만든 것이 아니라 **학습을 지루하게 만들었다**. 논문 이전에는 새 아키텍처를 시도할 때 optimizer와 learning rate 스케줄을 함께 탐색해야 했지만, 이후로는 "일단 Adam 기본값"이 출발점이 되면서 연구의 병목이 최적화에서 **아키텍처와 데이터**로 옮겨갔다. [Transformer](#/p/transformer)·[BERT](#/p/bert)·[GPT-3](#/p/gpt3)·[LLaMA](#/p/llama)까지 현대 대형 모델의 학습 레시피는 사실상 예외 없이 Adam 계열([AdamW](#/p/adamw)) + warmup + cosine decay이며, [스케일링 법칙](#/p/scaling-laws)이나 [Chinchilla](#/p/chinchilla)처럼 "연산량만 정하면 성능이 예측된다"는 논의도 옵티마이저가 변수가 아니게 된 뒤에야 가능해졌다.',
 
 legacy:[
  '**AdamW (Loshchilov & Hutter, 2017)** — Adam의 L2 정규화가 적응적 분모에 나눠져 weight decay로 제대로 작동하지 않는다는 결함을 지적하고 decay를 갱신에서 분리. 오늘날 LLM 학습의 실질 표준은 Adam이 아니라 AdamW다',

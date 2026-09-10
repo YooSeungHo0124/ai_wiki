@@ -24,7 +24,7 @@ ideas:[
 ],
 
 diagram:{type:'compare', cap:'세그먼트를 독립적으로 처리하는 vanilla 방식과, 이전 세그먼트를 캐시해 재사용하는 Transformer-XL의 차이.',
- left:{t:'Vanilla Transformer LM', items:['세그먼트마다 처음부터 계산','문맥 길이 = 세그먼트 길이','평가마다 전체 재계산 → 느림']},
+ left:{t:'Vanilla Transformer', items:['세그먼트마다 처음부터 계산','문맥 길이 = 세그먼트 길이','평가마다 전체 재계산 → 느림']},
  right:{t:'Transformer-XL', items:['직전 은닉 상태를 캐시·재사용','문맥 길이 = O(N×L)로 증가','상대 위치 인코딩으로 재귀 가능']}
 },
 

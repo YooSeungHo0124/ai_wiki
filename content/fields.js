@@ -11,7 +11,8 @@ WIKI.FIELDS = [
     tracks:[
       {id:'learning', name:'학습의 발명'},
       {id:'stabilize', name:'깊게 쌓기 위한 장치'},
-      {id:'data',      name:'데이터와 벤치마크'}
+      {id:'data',      name:'데이터와 벤치마크'},
+      {id:'transfer',  name:'전이 · 도메인 적응'}
     ]},
 
   { id:'vision', name:'컴퓨터 비전', en:'Vision',
@@ -100,7 +101,8 @@ WIKI.FIELDS = [
     tracks:[
       {id:'interp', name:'내부 해석'},
       {id:'eval',   name:'벤치마크'},
-      {id:'xai',    name:'설명가능성(XAI)'}
+      {id:'xai',    name:'설명가능성(XAI)'},
+      {id:'trust',  name:'불확실성 · 분포 밖 탐지'}
     ]},
 
   { id:'speech', name:'음성 · 오디오', en:'Speech & Audio',
@@ -835,7 +837,54 @@ WIKI.INDEX = [
 ['palms',2021,'Process for Adapting Language Models to Society (PALMS) with Values-Targeted Datasets','PALMS','privacy','safety',['gpt3']],
 ['malicious-use',2018,'The Malicious Use of Artificial Intelligence: Forecasting, Prevention, and Mitigation','AI 의 악용','privacy','safety',['gan','fgsm']],
 ['gender-bias-amplification',2017,'Men Also Like Shopping: Reducing Gender Bias Amplification using Corpus-level Constraints','성별 편향 증폭','privacy','safety',['word2vec']],
-['adadelta',2012,'ADADELTA: An Adaptive Learning Rate Method','ADADELTA','foundations','learning',['backprop']]
+['adadelta',2012,'ADADELTA: An Adaptive Learning Rate Method','ADADELTA','foundations','learning',['backprop']],
+
+// ════════ 11차 확장 — 실무 분야별 랜드마크 ════════
+['dann',2015,'Domain-Adversarial Training of Neural Networks','DANN 도메인 적대 학습','foundations','transfer',['backprop','gan']],
+['adda',2017,'Adversarial Discriminative Domain Adaptation','ADDA','foundations','transfer',['dann','gan']],
+['cycada',2017,'CyCADA: Cycle-Consistent Adversarial Domain Adaptation','CyCADA','foundations','transfer',['dann','cyclegan']],
+['deep-coral',2016,'Deep CORAL: Correlation Alignment for Deep Domain Adaptation','Deep CORAL','foundations','transfer',['alexnet']],
+['tent',2021,'Tent: Fully Test-Time Adaptation by Entropy Minimization','TENT 시험시 적응','foundations','transfer',['batchnorm','dann']],
+['yolov3',2018,'YOLOv3: An Incremental Improvement','YOLOv3','vision','detect',['yolo','fpn','resnet']],
+['fcos',2019,'FCOS: Fully Convolutional One-Stage Object Detection','FCOS 앵커 없는 검출','vision','detect',['focal-loss','fpn']],
+['centernet',2019,'Objects as Points (CenterNet)','CenterNet','vision','detect',['fcos','unet']],
+['cascade-rcnn',2018,'Cascade R-CNN: Delving into High Quality Object Detection','Cascade R-CNN','vision','detect',['faster-rcnn']],
+['efficientdet',2020,'EfficientDet: Scalable and Efficient Object Detection','EfficientDet','vision','detect',['efficientnet','fpn']],
+['deformable-detr',2020,'Deformable DETR: Deformable Transformers for End-to-End Object Detection','Deformable DETR','vision','detect',['detr']],
+['dino-detr',2022,'DINO: DETR with Improved DeNoising Anchor Boxes for End-to-End Object Detection','DINO-DETR','vision','detect',['deformable-detr','detr']],
+['owl-vit',2022,'Simple Open-Vocabulary Object Detection with Vision Transformers','OWL-ViT 개방어휘 검출','vision','detect',['vit','clip']],
+['grounding-dino',2023,'Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set Object Detection','Grounding DINO','vision','detect',['dino-detr','clip']],
+['sort',2016,'Simple Online and Realtime Tracking (SORT)','SORT 추적','vision','detect',['faster-rcnn']],
+['deepsort',2017,'Simple Online and Realtime Tracking with a Deep Association Metric','DeepSORT','vision','detect',['sort','resnet']],
+['bytetrack',2021,'ByteTrack: Multi-Object Tracking by Associating Every Detection Box','ByteTrack','vision','detect',['deepsort','yolo']],
+['pspnet',2017,'Pyramid Scene Parsing Network (PSPNet)','PSPNet','vision','seg',['fcn','resnet']],
+['deeplabv3plus',2018,'Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation','DeepLabv3+','vision','seg',['deeplab','unet']],
+['panoptic',2019,'Panoptic Segmentation','파놉틱 분할','vision','seg',['mask-rcnn','fcn']],
+['maskformer',2021,'Per-Pixel Classification is Not All You Need for Semantic Segmentation','MaskFormer','vision','seg',['detr','panoptic']],
+['mask2former',2022,'Masked-attention Mask Transformer for Universal Image Segmentation','Mask2Former','vision','seg',['maskformer','deformable-detr']],
+['segformer',2021,'SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers','SegFormer','vision','seg',['vit','deeplabv3plus']],
+['sam2',2024,'SAM 2: Segment Anything in Images and Videos','SAM 2','vision','seg',['sam']],
+['vilbert',2019,'ViLBERT: Pretraining Task-Agnostic Visiolinguistic Representations','ViLBERT','multimodal','vlm',['bert','faster-rcnn']],
+['lxmert',2019,'LXMERT: Learning Cross-Modality Encoder Representations from Transformers','LXMERT','multimodal','vlm',['bert','faster-rcnn']],
+['vilt',2021,'ViLT: Vision-and-Language Transformer Without Convolution or Region Supervision','ViLT','multimodal','vlm',['vit','vilbert']],
+['frozen-vlm',2021,'Multimodal Few-Shot Learning with Frozen Language Models','Frozen','multimodal','vlm',['gpt3','clip']],
+['instructblip',2023,'InstructBLIP: Towards General-purpose Vision-Language Models with Instruction Tuning','InstructBLIP','multimodal','vlm',['blip2','flan']],
+['layoutlm',2019,'LayoutLM: Pre-training of Text and Layout for Document Image Understanding','LayoutLM','multimodal','vlm',['bert']],
+['trocr',2021,'TrOCR: Transformer-based Optical Character Recognition with Pre-trained Models','TrOCR','multimodal','vlm',['vit','roberta']],
+['donut',2021,'OCR-free Document Understanding Transformer (Donut)','Donut','multimodal','vlm',['swin','bart']],
+['nougat',2023,'Nougat: Neural Optical Understanding for Academic Documents','Nougat','multimodal','vlm',['donut','swin']],
+['facenet',2015,'FaceNet: A Unified Embedding for Face Recognition and Clustering','FaceNet 삼중항 손실','vision','cnn',['googlenet']],
+['arcface',2018,'ArcFace: Additive Angular Margin Loss for Deep Face Recognition','ArcFace','vision','cnn',['facenet','resnet']],
+['msp-baseline',2016,'A Baseline for Detecting Misclassified and Out-of-Distribution Examples in Neural Networks','MSP 기준선','interp','trust',['resnet']],
+['odin',2017,'Enhancing the Reliability of Out-of-distribution Image Detection in Neural Networks','ODIN','interp','trust',['msp-baseline','fgsm']],
+['temperature-scaling',2017,'On Calibration of Modern Neural Networks','현대 신경망의 보정','interp','trust',['resnet','msp-baseline']],
+['deep-ensembles',2016,'Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles','딥 앙상블','interp','trust',['dropout']],
+['mc-dropout',2015,'Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning','MC 드롭아웃','interp','trust',['dropout']],
+['deep-compression',2015,'Deep Compression: Compressing Deep Neural Networks with Pruning, Trained Quantization and Huffman Coding','Deep Compression','efficiency','quant',['alexnet']],
+['lottery-ticket',2018,'The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks','복권 가설','efficiency','quant',['deep-compression']],
+['movement-pruning',2020,'Movement Pruning: Adaptive Sparsity by Fine-Tuning','Movement Pruning','efficiency','quant',['lottery-ticket','bert']],
+['midas',2019,'Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer','MiDaS','vision','dense',['resnet']],
+['deepseek-v2',2024,'DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model','DeepSeek-V2 · MLA','efficiency','attn',['switch','llama']]
 ];
 
 WIKI.META = WIKI.INDEX.map(function(r){

@@ -4,7 +4,7 @@ venue:'NeurIPS 2022',
 authors:'Ho, Salimans, Gritsenko, Chan, Norouzi, Fleet (Google Brain)',
 arxiv:'2204.03458',
 
-tldr:'이미지 [DDPM](#/p/ddpm)을 비디오로 확장한 최초의 diffusion 비디오 생성 모델. 2D U-Net을 **공간-시간으로 분해된(factorized) 3D U-Net**으로 바꾸고, 이미지와 비디오를 함께 학습시켜 데이터 부족과 계산량 폭증을 동시에 완화했다.',
+tldr:'이미지 [DDPM](#/p/ddpm)을 비디오로 확장한 최초의 diffusion 비디오 생성 모델. 2D [U-Net](#/p/unet)을 **공간-시간으로 분해된(factorized) 3D U-Net**으로 바꾸고, 이미지와 비디오를 함께 학습시켜 데이터 부족과 계산량 폭증을 동시에 완화했다.',
 
 context:'2022년 초 diffusion 모델은 이미지 생성에서 이미 GAN을 앞서고 있었지만, 비디오로 확장하는 것은 별개의 문제였다. 프레임 하나가 늘 때마다 필요한 연산·메모리가 함께 늘고, 텍스트-비디오 쌍 데이터는 텍스트-이미지 쌍보다 훨씬 적다. 단순히 2D U-Net을 3D conv로 바꾸면 이미지 diffusion에서 검증된 구조·가중치를 재사용할 수 없고 메모리도 감당하기 어렵다. 이 논문은 "표준 Gaussian diffusion 공식을 거의 그대로 두고, 비디오라는 새 축을 최소한의 구조 변경으로 얹을 수 있는가"를 묻는다.',
 

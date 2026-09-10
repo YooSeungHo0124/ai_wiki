@@ -4,7 +4,7 @@ venue:'SIGIR 2021 (short paper)',
 authors:'Formal, Lassance, Piwowarski & Clinchant (Naver Labs Europe)',
 arxiv:'2109.10086',
 
-tldr:'BERT의 MLM(마스크 언어모델) 헤드를 그대로 재활용해, dense 벡터가 아니라 **어휘(vocabulary) 크기의 sparse 벡터**로 질의·문서를 표현하는 검색 모델. 기존 BM25 역색인 인프라를 그대로 쓰면서 신경망 수준의 term expansion을 얻는다.',
+tldr:'[BERT](#/p/bert)의 MLM(마스크 언어모델) 헤드를 그대로 재활용해, dense 벡터가 아니라 **어휘(vocabulary) 크기의 sparse 벡터**로 질의·문서를 표현하는 검색 모델. 기존 BM25 역색인 인프라를 그대로 쓰면서 신경망 수준의 term expansion을 얻는다.',
 
 context:'2020년 전후 first-stage retrieval의 주류는 [DPR](#/p/dpr)·[ColBERT](#/p/colbert) 같은 **dense** 표현이었다. 이들은 강력하지만 근사 최근접 이웃(ANN) 인덱스라는 새 인프라가 필요하고, BM25가 가진 정확 매칭(exact term match)·해석 가능성을 잃는다. 반대로 BM25 자체는 역색인만으로 빠르지만 어휘 불일치(vocabulary mismatch, 질의와 문서가 같은 개념을 다른 단어로 쓰는 문제)에 취약하다. SPLADE(원 논문, arXiv 2107.05720)는 이 둘을 절충해 **역색인은 그대로 쓰되 신경망이 sparse 가중치를 학습**하는 방향을 제시했고, 이 SPLADE v2 논문은 그 pooling 방식과 학습 절차를 개선해 효율-정확도 모두를 끌어올린 후속작이다.',
 

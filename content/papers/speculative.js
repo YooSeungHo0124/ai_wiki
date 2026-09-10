@@ -68,7 +68,7 @@ quotes:[
   src:'Abstract, p.1'}
 ],
 
-impact:'speculative decoding은 **품질 트레이드오프가 없는** 몇 안 되는 추론 최적화다. 양자화([GPTQ](#/p/gptq)·[AWQ](#/p/awq))나 [MQA](#/p/mqa)/[GQA](#/p/gqa)는 어느 정도의 품질·표현력을 내주고 속도를 얻지만, 여기서는 출력 분포가 증명 가능하게 보존된다. 그래서 "켤지 말지"가 품질 검증 문제가 아니라 순수한 시스템 튜닝 문제가 되고, 상용 API와 오픈 추론 엔진 양쪽에서 빠르게 기본 옵션이 됐다. 동시에 이 논문은 **디코딩의 직렬성 자체가 공격 대상**이라는 인식을 열었다 — 이후 등장한 Medusa(다중 헤드), EAGLE(피처 수준 draft), lookahead decoding 등이 모두 같은 검증 골격 위에 서 있다.',
+impact:'speculative decoding은 **품질 트레이드오프가 없는** 몇 안 되는 추론 최적화다. 양자화([GPTQ](#/p/gptq)·[AWQ](#/p/awq))나 [MQA](#/p/mqa)/[GQA](#/p/gqa)는 어느 정도의 품질·표현력을 내주고 속도를 얻지만, 여기서는 출력 분포가 증명 가능하게 보존된다. 그래서 "켤지 말지"가 품질 검증 문제가 아니라 순수한 시스템 튜닝 문제가 되고, 상용 API와 오픈 추론 엔진 양쪽에서 빠르게 기본 옵션이 됐다. 동시에 이 논문은 **디코딩의 직렬성 자체가 공격 대상**이라는 인식을 열었다 — 이후 등장한 [Medusa](#/p/medusa)(다중 헤드), EAGLE(피처 수준 draft), lookahead decoding 등이 모두 같은 검증 골격 위에 서 있다.',
 
 legacy:[
  '**self-speculative 계열** — 별도 draft 모델 없이 타깃 모델의 일부 층만 돌리거나(layer skipping), 추가 헤드를 붙여 draft를 만드는 Medusa·EAGLE 등으로 확장',

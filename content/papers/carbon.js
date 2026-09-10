@@ -4,7 +4,7 @@ venue:'arXiv 2021 (Google · UC Berkeley)',
 authors:'Patterson, Gonzalez, Le, Liang, Munguia, Rothchild, So, Texier, Dean (Google · UC Berkeley)',
 arxiv:'2104.10350',
 
-tldr:'대형 NLP 모델(T5·Meena·GShard·Switch Transformer·GPT-3) 학습의 에너지와 탄소 배출을 실측하고, **모델·데이터센터·프로세서 선택만으로 배출량이 최대 100~1000배 차이 난다**는 것을 계산 방법론과 함께 제시한 논문.',
+tldr:'대형 NLP 모델(T5·Meena·GShard·Switch Transformer·[GPT-3](#/p/gpt3)) 학습의 에너지와 탄소 배출을 실측하고, **모델·데이터센터·프로세서 선택만으로 배출량이 최대 100~1000배 차이 난다**는 것을 계산 방법론과 함께 제시한 논문.',
 
 context:'2019년 [Strubell et al.]의 추정치는 NAS(신경망 구조 탐색) 학습 비용을 실제보다 과대평가해 "AI가 자동차 5대 평생 배출량을 학습 한 번에 낸다"는 식의 보도로 퍼졌다. 문제는 데이터센터 위치·전력원·하드웨어 세대 같은 세부 정보가 논문에 보고되지 않아 **사후에 정확히 추정하기 어렵다**는 점이었다. 저자들은 Google 내부에서 실제로 측정 가능한 데이터를 갖고, 같은 모델이라도 어떤 조건에서 학습했는지에 따라 탄소 배출이 얼마나 달라지는지 직접 재현해 보였다.',
 

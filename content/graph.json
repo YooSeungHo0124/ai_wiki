@@ -106,9 +106,13 @@
     "world-models",
     "alphastar",
     "graves-rnn",
+    "scaling-predictable",
     "lm-limits",
+    "ulmfit",
     "gru",
-    "sentiment-neuron"
+    "sentiment-neuron",
+    "cola",
+    "universal-transformer"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -579,12 +583,14 @@
     "simclr",
     "moco",
     "cyclegan",
+    "slowfast",
     "lr-scaling",
     "senet",
     "conformer",
     "gnmt",
     "sparse-transformers",
     "grad-checkpointing",
+    "scaling-predictable",
     "sgdr",
     "wide-resnet",
     "gpipe"
@@ -689,6 +695,7 @@
     "densenet",
     "mobilenet",
     "ssd",
+    "rt1",
     "senet",
     "wide-resnet",
     "swish"
@@ -1071,6 +1078,7 @@
     "pix2pix",
     "ddpm",
     "dit",
+    "video-diffusion",
     "diffusion-original"
    ],
    "diagram": "stack",
@@ -1244,6 +1252,7 @@
     "ddpm",
     "ldm",
     "dit",
+    "clip",
     "sasrec",
     "slowfast",
     "timesformer",
@@ -1802,6 +1811,7 @@
     "fasttext",
     "gpt1",
     "bert",
+    "glue",
     "ulmfit",
     "cola"
    ],
@@ -1845,6 +1855,7 @@
     "fastspeech",
     "graves-rnn",
     "gnmt",
+    "meena",
     "gru"
    ],
    "diagram": "flow",
@@ -1958,6 +1969,7 @@
     "sparse-attn",
     "rope",
     "alibi",
+    "flashattention",
     "megatron",
     "vllm",
     "s4",
@@ -1968,6 +1980,7 @@
     "ldm",
     "dit",
     "nerf",
+    "wav2vec2",
     "whisper",
     "induction-heads",
     "grokking",
@@ -1979,9 +1992,11 @@
     "alphacode",
     "starcoder",
     "gato",
+    "act",
     "alphafold",
     "alphageometry",
     "ntk",
+    "ring-attention",
     "spatial-transformer",
     "senet",
     "bart",
@@ -1998,10 +2013,12 @@
     "transformer-xl",
     "meena",
     "gpipe",
+    "gshard",
     "generative-scaling",
     "universal-transformer",
     "energy-policy",
-    "glu-variants"
+    "glu-variants",
+    "scratchpad"
    ],
    "diagram": "stack",
    "extLinks": 3,
@@ -2119,6 +2136,7 @@
     "bert4rec",
     "sentence-bert",
     "colbert",
+    "splade",
     "codebert",
     "esmfold",
     "sentencepiece",
@@ -2131,6 +2149,7 @@
     "math-dataset",
     "foundation-models",
     "glue",
+    "superglue",
     "squad",
     "sgdr",
     "ulmfit",
@@ -2138,6 +2157,7 @@
     "spanbert",
     "distilbert",
     "cola",
+    "record",
     "socialiqa",
     "energy-policy",
     "beit",
@@ -2188,6 +2208,7 @@
     "prefix-tuning",
     "whisper",
     "audiolm",
+    "extracting-training-data",
     "sparse-transformers",
     "commonsense-lm",
     "realtoxicity"
@@ -2282,6 +2303,7 @@
     "rag",
     "codet5",
     "bart",
+    "imagen",
     "pali",
     "flan-t5",
     "decoder-only-wiki",
@@ -2389,6 +2411,7 @@
     "scratchpad",
     "retro",
     "truthfulqa",
+    "carbon",
     "gpt-neox",
     "ul2"
    ],
@@ -2436,6 +2459,7 @@
     "double-descent",
     "extracting-training-data",
     "least-to-most",
+    "gopher",
     "mbpp",
     "scaling-predictable",
     "lm-limits",
@@ -2843,6 +2867,7 @@
     "mmlu",
     "alphacode",
     "swe-bench",
+    "universal-jailbreak",
     "voyager",
     "agieval"
    ],
@@ -3278,7 +3303,7 @@
   },
   "flashattention": {
    "stage": "evergreen",
-   "bytes": 10400,
+   "bytes": 10442,
    "sections": [
     "venue",
     "authors",
@@ -3289,8 +3314,10 @@
    ],
    "out": [
     "sparse-attn",
+    "transformer",
     "rope",
     "vllm",
+    "flashattention2",
     "mamba",
     "gqa"
    ],
@@ -3324,7 +3351,7 @@
     "attn",
     "2022"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "gqa": {
    "stage": "evergreen",
@@ -3412,7 +3439,7 @@
   },
   "prefix-tuning": {
    "stage": "evergreen",
-   "bytes": 8488,
+   "bytes": 8509,
    "sections": [
     "venue",
     "authors",
@@ -3425,6 +3452,7 @@
     "gpt3",
     "adapter",
     "gpt2",
+    "prompt-tuning",
     "lora",
     "cot"
    ],
@@ -3441,7 +3469,7 @@
     "peft",
     "2021"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "lora": {
    "stage": "evergreen",
@@ -3765,7 +3793,7 @@
   },
   "speculative": {
    "stage": "evergreen",
-   "bytes": 11312,
+   "bytes": 11326,
    "sections": [
     "venue",
     "authors",
@@ -3779,7 +3807,8 @@
     "gptq",
     "awq",
     "mqa",
-    "gqa"
+    "gqa",
+    "medusa"
    ],
    "in": [
     "deepseek-v3",
@@ -3793,7 +3822,7 @@
     "serve",
     "2023"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "s4": {
    "stage": "evergreen",
@@ -3830,7 +3859,7 @@
   },
   "mamba": {
    "stage": "evergreen",
-   "bytes": 11795,
+   "bytes": 11809,
    "sections": [
     "venue",
     "authors",
@@ -3844,7 +3873,8 @@
     "transformer",
     "lstm",
     "flashattention",
-    "vllm"
+    "vllm",
+    "mamba2"
    ],
    "in": [
     "lstm",
@@ -3864,7 +3894,7 @@
     "ssm",
     "2023"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "rwkv": {
    "stage": "evergreen",
@@ -3965,6 +3995,7 @@
     "pix2pix",
     "wgan",
     "vqvae",
+    "vqgan",
     "ddpm",
     "ddim",
     "cfg",
@@ -4159,7 +4190,7 @@
   },
   "vqvae": {
    "stage": "evergreen",
-   "bytes": 10887,
+   "bytes": 10901,
    "sections": [
     "venue",
     "authors",
@@ -4173,6 +4204,7 @@
     "vqgan",
     "dalle",
     "ldm",
+    "vqvae2",
     "gan",
     "transformer"
    ],
@@ -4195,11 +4227,11 @@
     "vae",
     "2017"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "vqgan": {
    "stage": "evergreen",
-   "bytes": 10803,
+   "bytes": 10814,
    "sections": [
     "venue",
     "authors",
@@ -4213,7 +4245,8 @@
     "transformer",
     "ldm",
     "dit",
-    "dalle"
+    "dalle",
+    "gan"
    ],
    "in": [
     "vae",
@@ -4233,7 +4266,7 @@
     "vae",
     "2021"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "dalle": {
    "stage": "evergreen",
@@ -4413,7 +4446,7 @@
   },
   "cfg": {
    "stage": "evergreen",
-   "bytes": 10875,
+   "bytes": 10920,
    "sections": [
     "venue",
     "authors",
@@ -4428,7 +4461,10 @@
     "gan",
     "ddim",
     "clip",
+    "glide",
+    "imagen",
     "ldm",
+    "controlnet",
     "consistency"
    ],
    "in": [
@@ -4455,11 +4491,11 @@
     "diffusion",
     "2022"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "ldm": {
    "stage": "evergreen",
-   "bytes": 10896,
+   "bytes": 10914,
    "sections": [
     "venue",
     "authors",
@@ -4480,6 +4516,7 @@
     "dit",
     "clip",
     "lora",
+    "controlnet",
     "vit",
     "flow-matching",
     "nerf",
@@ -4524,7 +4561,7 @@
     "diffusion",
     "2022"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "dit": {
    "stage": "evergreen",
@@ -4706,7 +4743,7 @@
   },
   "clip": {
    "stage": "evergreen",
-   "bytes": 12785,
+   "bytes": 12796,
    "sections": [
     "venue",
     "authors",
@@ -4719,6 +4756,7 @@
     "simclr",
     "moco",
     "siglip",
+    "vit",
     "ldm",
     "llava",
     "sam",
@@ -4775,7 +4813,7 @@
     "contrastive",
     "2021"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "align": {
    "stage": "evergreen",
@@ -5045,7 +5083,7 @@
   },
   "wav2vec2": {
    "stage": "evergreen",
-   "bytes": 11961,
+   "bytes": 11994,
    "sections": [
     "venue",
     "authors",
@@ -5056,7 +5094,9 @@
    ],
    "out": [
     "bert",
+    "transformer",
     "vqvae",
+    "hubert",
     "gpt3",
     "whisper"
    ],
@@ -5076,7 +5116,7 @@
     "asr",
     "2020"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "whisper": {
    "stage": "evergreen",
@@ -5114,7 +5154,7 @@
   },
   "dqn": {
    "stage": "evergreen",
-   "bytes": 11375,
+   "bytes": 11390,
    "sections": [
     "venue",
     "authors",
@@ -5126,6 +5166,7 @@
     "ddpg",
     "sac",
     "alphago",
+    "rainbow",
     "a3c",
     "muzero"
    ],
@@ -5149,7 +5190,7 @@
     "value",
     "2015"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "ddpg": {
    "stage": "evergreen",
@@ -5602,7 +5643,7 @@
     "reason",
     "2022"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "self-consistency": {
    "stage": "evergreen",
@@ -5853,7 +5894,7 @@
   },
   "realm": {
    "stage": "evergreen",
-   "bytes": 9738,
+   "bytes": 9751,
    "sections": [
     "venue",
     "authors",
@@ -5866,7 +5907,8 @@
     "bert",
     "t5",
     "dpr",
-    "rag"
+    "rag",
+    "retro"
    ],
    "in": [
     "bert",
@@ -5882,11 +5924,11 @@
     "dense",
     "2020"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "rag": {
    "stage": "evergreen",
-   "bytes": 10990,
+   "bytes": 11003,
    "sections": [
     "venue",
     "authors",
@@ -5900,7 +5942,8 @@
     "t5",
     "gpt3",
     "realm",
-    "react"
+    "react",
+    "retro"
    ],
    "in": [
     "bahdanau",
@@ -5928,7 +5971,7 @@
     "dense",
     "2020"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "lottery": {
    "stage": "evergreen",
@@ -6060,7 +6103,7 @@
   },
   "mmlu": {
    "stage": "growing",
-   "bytes": 9219,
+   "bytes": 9231,
    "sections": [
     "venue",
     "authors",
@@ -6075,6 +6118,7 @@
     "gpt4",
     "llama2",
     "bigbench",
+    "helm",
     "chatbot-arena"
    ],
    "in": [
@@ -6096,11 +6140,11 @@
     "eval",
     "2021"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "gsm8k": {
    "stage": "evergreen",
-   "bytes": 9972,
+   "bytes": 9992,
    "sections": [
     "venue",
     "authors",
@@ -6110,6 +6154,7 @@
     "links"
    ],
    "out": [
+    "math-dataset",
     "self-consistency",
     "deepseek-r1",
     "cot",
@@ -6131,11 +6176,11 @@
     "eval",
     "2021"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "humaneval": {
    "stage": "evergreen",
-   "bytes": 9218,
+   "bytes": 9247,
    "sections": [
     "venue",
     "authors",
@@ -6148,6 +6193,8 @@
     "gsm8k",
     "gpt3",
     "deepseek-r1",
+    "mbpp",
+    "swe-bench",
     "grpo"
    ],
    "in": [
@@ -6166,11 +6213,11 @@
     "eval",
     "2021"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "bigbench": {
    "stage": "growing",
-   "bytes": 9144,
+   "bytes": 9167,
    "sections": [
     "venue",
     "authors",
@@ -6182,7 +6229,9 @@
     "emergent",
     "mmlu",
     "gpt3",
+    "bbh",
     "cot",
+    "helm",
     "constitutional"
    ],
    "in": [
@@ -6202,7 +6251,7 @@
     "eval",
     "2022"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "constitutional": {
    "stage": "growing",
@@ -6439,6 +6488,7 @@
     "whisper"
    ],
    "in": [
+    "wav2vec2",
     "audiolm",
     "vall-e"
    ],
@@ -7328,7 +7378,7 @@
   },
   "splade": {
    "stage": "evergreen",
-   "bytes": 10011,
+   "bytes": 10023,
    "sections": [
     "venue",
     "authors",
@@ -7338,6 +7388,7 @@
     "links"
    ],
    "out": [
+    "bert",
     "dpr",
     "colbert",
     "sentence-bert",
@@ -7354,7 +7405,7 @@
     "late",
     "2021"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "e5": {
    "stage": "evergreen",
@@ -7592,6 +7643,7 @@
     "swe-agent"
    ],
    "in": [
+    "humaneval",
     "alphacode",
     "swe-agent"
    ],
@@ -7731,7 +7783,7 @@
   },
   "slowfast": {
    "stage": "evergreen",
-   "bytes": 9946,
+   "bytes": 9960,
    "sections": [
     "venue",
     "authors",
@@ -7743,6 +7795,7 @@
    "out": [
     "two-stream",
     "i3d",
+    "resnet",
     "timesformer",
     "vit"
    ],
@@ -7760,7 +7813,7 @@
     "understand",
     "2019"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "timesformer": {
    "stage": "evergreen",
@@ -7798,7 +7851,7 @@
   },
   "video-diffusion": {
    "stage": "evergreen",
-   "bytes": 9441,
+   "bytes": 9453,
    "sections": [
     "venue",
     "authors",
@@ -7809,6 +7862,7 @@
    ],
    "out": [
     "ddpm",
+    "unet",
     "timesformer",
     "make-a-video",
     "videoldm",
@@ -7829,7 +7883,7 @@
     "generate",
     "2022"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "videomae": {
    "stage": "evergreen",
@@ -8027,7 +8081,7 @@
   },
   "rt1": {
    "stage": "evergreen",
-   "bytes": 8648,
+   "bytes": 8682,
    "sections": [
     "venue",
     "authors",
@@ -8038,9 +8092,11 @@
    ],
    "out": [
     "gato",
+    "efficientnet",
     "openvla",
     "saycan",
-    "rt2"
+    "rt2",
+    "open-x"
    ],
    "in": [
     "gato",
@@ -8055,11 +8111,11 @@
     "vla",
     "2022"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "act": {
    "stage": "evergreen",
-   "bytes": 9825,
+   "bytes": 9864,
    "sections": [
     "venue",
     "authors",
@@ -8069,7 +8125,9 @@
     "links"
    ],
    "out": [
+    "transformer",
     "diffusion-policy",
+    "mobile-aloha",
     "ddpm"
    ],
    "in": [
@@ -8084,7 +8142,7 @@
     "imitation",
     "2023"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "diffusion-policy": {
    "stage": "evergreen",
@@ -8963,7 +9021,7 @@
   },
   "extracting-training-data": {
    "stage": "evergreen",
-   "bytes": 8147,
+   "bytes": 8159,
    "sections": [
     "venue",
     "authors",
@@ -8973,6 +9031,7 @@
     "links"
    ],
    "out": [
+    "gpt2",
     "scaling-laws",
     "dp-sgd",
     "dedup",
@@ -8995,7 +9054,7 @@
     "attack",
     "2021"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "red-teaming": {
    "stage": "evergreen",
@@ -9055,7 +9114,7 @@
   },
   "universal-jailbreak": {
    "stage": "evergreen",
-   "bytes": 9821,
+   "bytes": 9833,
    "sections": [
     "venue",
     "authors",
@@ -9067,6 +9126,7 @@
    "out": [
     "constitutional",
     "red-teaming",
+    "gpt4",
     "sleeper-agents"
    ],
    "in": [
@@ -9080,7 +9140,7 @@
     "attack",
     "2023"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "sleeper-agents": {
    "stage": "growing",
@@ -9211,7 +9271,7 @@
   },
   "ring-attention": {
    "stage": "evergreen",
-   "bytes": 7985,
+   "bytes": 8004,
    "sections": [
     "venue",
     "authors",
@@ -9222,6 +9282,7 @@
    ],
    "out": [
     "flashattention",
+    "transformer",
     "yarn",
     "position-interpolation",
     "lost-in-the-middle"
@@ -9237,7 +9298,7 @@
     "context",
     "2023"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "reflexion": {
    "stage": "growing",
@@ -9504,7 +9565,7 @@
   },
   "sentencepiece": {
    "stage": "evergreen",
-   "bytes": 10197,
+   "bytes": 10208,
    "sections": [
     "venue",
     "authors",
@@ -9515,7 +9576,8 @@
    ],
    "out": [
     "bpe",
-    "bert"
+    "bert",
+    "mt5"
    ],
    "in": [
     "bpe",
@@ -9528,7 +9590,7 @@
     "repr",
     "2018"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "bart": {
    "stage": "evergreen",
@@ -9667,7 +9729,9 @@
     "vllm",
     "mamba2"
    ],
-   "in": [],
+   "in": [
+    "flashattention"
+   ],
    "diagram": "compare",
    "extLinks": 2,
    "tags": [
@@ -9694,6 +9758,7 @@
     "sglang"
    ],
    "in": [
+    "speculative",
     "sglang"
    ],
    "diagram": "flow",
@@ -9751,6 +9816,7 @@
     "gqa"
    ],
    "in": [
+    "mamba",
     "flashattention2"
    ],
    "diagram": "compare",
@@ -9764,7 +9830,7 @@
   },
   "imagen": {
    "stage": "evergreen",
-   "bytes": 9688,
+   "bytes": 9698,
    "sections": [
     "venue",
     "authors",
@@ -9774,12 +9840,14 @@
     "links"
    ],
    "out": [
+    "t5",
     "dalle2",
     "ldm",
     "cfg",
     "sdxl"
    ],
    "in": [
+    "cfg",
     "dreambooth",
     "glide",
     "dalle2",
@@ -9794,7 +9862,7 @@
     "diffusion",
     "2022"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "dreambooth": {
    "stage": "evergreen",
@@ -9843,6 +9911,8 @@
     "sdxl"
    ],
    "in": [
+    "cfg",
+    "ldm",
     "dreambooth",
     "sdxl",
     "glide",
@@ -10035,6 +10105,7 @@
     "muzero"
    ],
    "in": [
+    "dqn",
     "dqn-2013"
    ],
    "diagram": "compare",
@@ -10333,6 +10404,8 @@
     "chatbot-arena"
    ],
    "in": [
+    "mmlu",
+    "bigbench",
     "glue",
     "agieval"
    ],
@@ -10500,6 +10573,7 @@
     "pi0"
    ],
    "in": [
+    "rt1",
     "mobile-aloha"
    ],
    "diagram": "flow",
@@ -10527,7 +10601,9 @@
     "diffusion-policy",
     "open-x"
    ],
-   "in": [],
+   "in": [
+    "act"
+   ],
    "diagram": "flow",
    "extLinks": 2,
    "tags": [
@@ -10821,7 +10897,7 @@
   },
   "gopher": {
    "stage": "evergreen",
-   "bytes": 9449,
+   "bytes": 9469,
    "sections": [
     "venue",
     "authors",
@@ -10835,7 +10911,8 @@
     "cot",
     "instructgpt",
     "refinedweb",
-    "chinchilla"
+    "chinchilla",
+    "scaling-laws"
    ],
    "in": [
     "opt",
@@ -10849,7 +10926,7 @@
     "scale",
     "2021"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "lamda": {
    "stage": "evergreen",
@@ -11065,6 +11142,7 @@
     "controlnet"
    ],
    "in": [
+    "cfg",
     "dalle2",
     "sr3"
    ],
@@ -11212,7 +11290,9 @@
     "cot",
     "gsm8k"
    ],
-   "in": [],
+   "in": [
+    "gsm8k"
+   ],
    "diagram": "compare",
    "extLinks": 2,
    "tags": [
@@ -11239,7 +11319,9 @@
     "emergent",
     "humaneval"
    ],
-   "in": [],
+   "in": [
+    "bigbench"
+   ],
    "diagram": "compare",
    "extLinks": 2,
    "tags": [
@@ -11266,7 +11348,9 @@
     "alphacode",
     "scaling-laws"
    ],
-   "in": [],
+   "in": [
+    "humaneval"
+   ],
    "diagram": "flow",
    "extLinks": 2,
    "tags": [
@@ -11395,7 +11479,7 @@
   },
   "scaling-predictable": {
    "stage": "evergreen",
-   "bytes": 10469,
+   "bytes": 10495,
    "sections": [
     "venue",
     "authors",
@@ -11405,7 +11489,9 @@
     "links"
    ],
    "out": [
-    "scaling-laws"
+    "scaling-laws",
+    "resnet",
+    "lstm"
    ],
    "in": [],
    "diagram": "stack",
@@ -11480,7 +11566,7 @@
   },
   "glue": {
    "stage": "growing",
-   "bytes": 6953,
+   "bytes": 6977,
    "sections": [
     "venue",
     "authors",
@@ -11490,6 +11576,8 @@
    ],
    "out": [
     "bert",
+    "cola",
+    "elmo",
     "superglue",
     "hellaswag",
     "mmlu",
@@ -11514,7 +11602,7 @@
   },
   "superglue": {
    "stage": "growing",
-   "bytes": 7263,
+   "bytes": 7275,
    "sections": [
     "venue",
     "authors",
@@ -11524,6 +11612,7 @@
    ],
    "out": [
     "glue",
+    "bert",
     "bigbench",
     "roberta",
     "t5",
@@ -11767,7 +11856,7 @@
   },
   "ulmfit": {
    "stage": "evergreen",
-   "bytes": 9915,
+   "bytes": 9927,
    "sections": [
     "venue",
     "authors",
@@ -11778,6 +11867,7 @@
    ],
    "out": [
     "word2vec",
+    "lstm",
     "elmo",
     "gpt1",
     "bert",
@@ -11910,7 +12000,7 @@
   },
   "meena": {
    "stage": "evergreen",
-   "bytes": 9429,
+   "bytes": 9444,
    "sections": [
     "venue",
     "authors",
@@ -11921,6 +12011,7 @@
    ],
    "out": [
     "transformer",
+    "seq2seq",
     "lamda",
     "instructgpt"
    ],
@@ -11967,7 +12058,7 @@
   },
   "gshard": {
    "stage": "evergreen",
-   "bytes": 9536,
+   "bytes": 9555,
    "sections": [
     "venue",
     "authors",
@@ -11980,6 +12071,7 @@
     "moe-shazeer",
     "megatron",
     "gpipe",
+    "transformer",
     "switch",
     "mixtral"
    ],
@@ -12015,7 +12107,8 @@
     "sentencepiece"
    ],
    "in": [
-    "t5"
+    "t5",
+    "sentencepiece"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -12105,6 +12198,7 @@
     "t0"
    ],
    "in": [
+    "prefix-tuning",
     "t0"
    ],
    "diagram": "compare",
@@ -12531,7 +12625,9 @@
     "timesformer",
     "videomae"
    ],
-   "in": [],
+   "in": [
+    "ucf101"
+   ],
    "diagram": "flow",
    "extLinks": 2,
    "tags": [
@@ -12543,7 +12639,7 @@
   },
   "cola": {
    "stage": "evergreen",
-   "bytes": 10354,
+   "bytes": 10366,
    "sections": [
     "venue",
     "authors",
@@ -12554,10 +12650,13 @@
    ],
    "out": [
     "glue",
+    "lstm",
     "bert",
     "elmo"
    ],
-   "in": [],
+   "in": [
+    "glue"
+   ],
    "diagram": "stack",
    "extLinks": 3,
    "tags": [
@@ -12653,7 +12752,7 @@
   },
   "universal-transformer": {
    "stage": "evergreen",
-   "bytes": 8455,
+   "bytes": 8467,
    "sections": [
     "venue",
     "authors",
@@ -12664,6 +12763,7 @@
    ],
    "out": [
     "transformer",
+    "lstm",
     "moe-shazeer",
     "scaling-laws"
    ],
@@ -12679,7 +12779,7 @@
   },
   "record": {
    "stage": "evergreen",
-   "bytes": 9247,
+   "bytes": 9259,
    "sections": [
     "venue",
     "authors",
@@ -12690,6 +12790,7 @@
    ],
    "out": [
     "squad",
+    "bert",
     "hellaswag"
    ],
    "in": [],
@@ -12809,7 +12910,9 @@
     "dalle",
     "jukebox"
    ],
-   "in": [],
+   "in": [
+    "vqvae"
+   ],
    "diagram": "stack",
    "extLinks": 2,
    "tags": [
@@ -13164,7 +13267,7 @@
   },
   "scratchpad": {
    "stage": "growing",
-   "bytes": 9927,
+   "bytes": 9946,
    "sections": [
     "authors",
     "arxiv",
@@ -13174,6 +13277,7 @@
    "out": [
     "cot",
     "gpt3",
+    "transformer",
     "pal",
     "self-consistency",
     "react",
@@ -13208,7 +13312,10 @@
     "realm",
     "rag"
    ],
-   "in": [],
+   "in": [
+    "realm",
+    "rag"
+   ],
    "diagram": "flow",
    "extLinks": 1,
    "tags": [
@@ -13318,7 +13425,7 @@
   },
   "carbon": {
    "stage": "evergreen",
-   "bytes": 8946,
+   "bytes": 8958,
    "sections": [
     "venue",
     "authors",
@@ -13328,6 +13435,7 @@
     "links"
    ],
    "out": [
+    "gpt3",
     "opt",
     "bloom",
     "switch"
@@ -13521,7 +13629,7 @@
   },
   "ucf101": {
    "stage": "growing",
-   "bytes": 7892,
+   "bytes": 7908,
    "sections": [
     "venue",
     "authors",
@@ -13534,6 +13642,7 @@
     "two-stream",
     "i3d",
     "slowfast",
+    "kinetics",
     "videomae",
     "svd"
    ],

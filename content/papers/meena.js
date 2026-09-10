@@ -4,7 +4,7 @@ venue:'arXiv 2020 (Google Research)',
 authors:'Adiwardana et al. (Google Research, Brain Team)',
 arxiv:'2001.09977',
 
-tldr:'26억 파라미터 [Transformer](#/p/transformer) seq2seq를 그냥 **다음 토큰 perplexity만 낮추도록** 학습시켰더니, 사람이 평가한 대화 품질이 손으로 짠 규칙·의도 기반 챗봇들을 앞질렀다는 것을 보인 논문. 사람 평가 지표 **SSA**(Sensibleness and Specificity Average)를 제안하고, 그것이 perplexity와 강하게 상관한다는 것이 핵심 발견이다.',
+tldr:'26억 파라미터 [Transformer](#/p/transformer) [seq2seq](#/p/seq2seq)를 그냥 **다음 토큰 perplexity만 낮추도록** 학습시켰더니, 사람이 평가한 대화 품질이 손으로 짠 규칙·의도 기반 챗봇들을 앞질렀다는 것을 보인 논문. 사람 평가 지표 **SSA**(Sensibleness and Specificity Average)를 제안하고, 그것이 perplexity와 강하게 상관한다는 것이 핵심 발견이다.',
 
 context:'2020년 이전의 open-domain 챗봇은 두 갈래였다. XiaoIce·Mitsuku·Cleverbot처럼 대화 관리자·규칙·검색을 얹은 복잡한 시스템이거나, DialoGPT처럼 end-to-end로 학습하지만 규모가 제한적인 모델이었다. 대화 품질을 재는 방법도 문제였다. BLEU 같은 자동 지표는 사람 평가와 상관이 약하다는 연구가 여럿 있었고, 그래서 대화 연구는 값비싼 사람 평가에 의존하면서도 **무엇을 물어야 품질을 재는지**조차 합의가 없었다. 이 논문의 질문은 두 가지다 — 대화 품질을 어떻게 하나의 숫자로 잴 것인가, 그리고 그 숫자가 흔히 쓰는 자동 지표(perplexity)와 관계가 있는가.',
 

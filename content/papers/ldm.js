@@ -70,7 +70,7 @@ numbers:[
 impact:'확산 모델을 **연구실 밖으로 내보낸** 논문이다. 잠재공간으로 옮기면서 추론이 소비자용 GPU 한 장에서 몇 초 안에 끝나게 됐고, 2022년 8월 Stable Diffusion이라는 이름으로 가중치가 공개되면서 이미지 생성은 소수 기업의 API에서 누구나 로컬에서 돌리고 파인튜닝하는 것으로 성격이 바뀌었다. 기술적으로 굳어진 것은 **2단계 분업 구조**다 — 압축(오토인코더)·생성(확산)·조건화(cross-attention)가 각각 독립적으로 교체 가능한 부품이 되면서, 이후 연구는 백본을 [DiT](#/p/dit)로 바꾸거나, 조건 인코더를 [CLIP](#/p/clip)에서 T5로 바꾸거나, [LoRA](#/p/lora)로 cross-attention만 미세조정하는 식으로 진행됐다. 영상 생성 모델 대부분도 시간 축을 추가한 같은 골격을 쓴다.',
 
 legacy:[
- '**Stable Diffusion 생태계** — 공개 가중치 위에 [LoRA](#/p/lora) 미세조정, ControlNet, 인페인팅 파이프라인이 쌓이며 오픈 이미지 생성의 사실상 표준이 됨',
+ '**Stable Diffusion 생태계** — 공개 가중치 위에 [LoRA](#/p/lora) 미세조정, [ControlNet](#/p/controlnet), 인페인팅 파이프라인이 쌓이며 오픈 이미지 생성의 사실상 표준이 됨',
  '**백본 교체** — [DiT](#/p/dit)가 잠재공간 U-Net을 [ViT](#/p/vit)로 바꾸고, 이 조합(잠재 + 트랜스포머 + [flow matching](#/p/flow-matching))이 이후 대형 생성 모델의 기본형이 됨',
  '**영상·3D로의 확장** — 잠재공간 확산에 시간 축을 더한 비디오 확산 모델, [NeRF](#/p/nerf)/[3DGS](#/p/3dgs)의 최적화를 확산 사전확률로 유도하는 text-to-3D 계열이 파생',
  '**편집 도구의 기반** — cross-attention 맵을 직접 조작하는 프롬프트 편집, [DDIM](#/p/ddim) inversion 기반 실사진 편집이 모두 이 구조의 attention 지점을 이용'

@@ -53,13 +53,13 @@ numbers:[
  {k:'GPT-2 small', v:'3.5× vs HuggingFace · 2.0× vs Megatron-LM', d:'end-to-end 학습 속도'},
  {k:'GPT-2 medium', v:'3.0× vs HuggingFace · 1.8× vs Megatron-LM', d:''},
  {k:'Long-Range Arena', v:'2.4×', d:'표준 attention 대비'},
- {k:'Path-X (16K) / Path-256 (64K)', v:'61.4% / 63.1%', d:'Transformer로 우연(50%) 이상을 처음 달성. 후자는 block-sparse 버전'}
+ {k:'Path-X (16K) / Path-256 (64K)', v:'61.4% / 63.1%', d:'[Transformer](#/p/transformer)로 우연(50%) 이상을 처음 달성. 후자는 block-sparse 버전'}
 ],
 
 impact:'세 가지가 동시에 바뀌었다. **(1) 근사 노선의 퇴조** — 정확한 attention이 근사보다 빠르고 메모리도 적게 쓰자, 범용 LLM에서 희소·저랭크 근사를 쓸 이유가 대부분 사라졌다. **(2) 문맥 길이 인플레이션** — attention 메모리가 선형이 되면서 4K→32K→128K 문맥이 공학적으로 가능해졌고, [RoPE](#/p/rope) scaling 같은 확장 기법이 실제로 쓸모 있어졌다. **(3) 커널이 논문이 되는 시대** — 수학은 그대로 두고 하드웨어 메모리 계층에 맞춰 구현만 바꿔도 최상위 학회 논문이 된다는 선례를 남겼다. FlashAttention은 곧 PyTorch(`scaled_dot_product_attention`), HuggingFace, [vLLM](#/p/vllm) 등에 기본값으로 들어가, 오늘날 대부분의 사용자는 이 논문을 쓰고 있다는 사실조차 모른 채 쓴다.',
 
 legacy:[
- '**FlashAttention-2 / -3** — 작업 분할과 non-matmul 연산 최적화로 A100에서 이론 성능의 50~70%까지, Hopper에서는 비동기·FP8 기능까지 활용하도록 재작성됨',
+ '**[FlashAttention-2](#/p/flashattention2) / -3** — 작업 분할과 non-matmul 연산 최적화로 A100에서 이론 성능의 50~70%까지, Hopper에서는 비동기·FP8 기능까지 활용하도록 재작성됨',
  '**[PagedAttention](#/p/vllm)** — "메모리 레이아웃을 고치면 서빙이 빨라진다"는 같은 사고방식을 KV 캐시 관리로 확장',
  '**[Mamba](#/p/mamba)** — 저자 Tri Dao가 이어서 낸 SSM 계열. hardware-aware 스캔 구현이라는 방법론이 그대로 이어진다',
  '**[GQA](#/p/gqa)와의 결합** — attention 커널이 IO 최적화되자 남은 병목은 KV 캐시 크기가 되었고, 두 기법이 함께 쓰이는 것이 현재 표준 구성이다'

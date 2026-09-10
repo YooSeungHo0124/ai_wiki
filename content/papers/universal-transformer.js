@@ -39,7 +39,7 @@ math:[
 
 numbers:[
  {k:'WMT14 En-De BLEU', v:'28.9 (UT base)', d:'Transformer base 28.0 대비 **+0.9**'},
- {k:'LAMBADA perplexity', v:'새 SOTA (UT w/ ACT)', d:'LSTM·표준 Transformer를 모두 앞섬'},
+ {k:'LAMBADA perplexity', v:'새 SOTA (UT w/ ACT)', d:'[LSTM](#/p/lstm)·표준 Transformer를 모두 앞섬'},
  {k:'평균 ACT 반복 횟수', v:'8.2 ± 2.1', d:'LAMBADA 테스트셋 전체 위치·예시 평균, 고정 6스텝 모델보다 더 깊게 감'},
  {k:'bAbI 과제', v:'20개 과제 중 일부에서 0 오류', d:'20-task 학습·테스트 모두에서 UT+ACT가 LSTM·Transformer를 크게 앞섬'}
 ],

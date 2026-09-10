@@ -57,7 +57,7 @@ numbers:[
 impact:'딥러닝과 강화학습이 실제로 결합 가능하다는 존재 증명이 되면서 "deep RL"이라는 분야 자체가 열렸다. 특히 **경험 재생 + 타깃 네트워크**는 이후 off-policy 딥 RL의 사실상 기본 부품이 되어, 연속 제어([DDPG](#/p/ddpg), [SAC](#/p/sac))로 그대로 이식된다. 동시에 이 논문은 **벤치마크의 표준**도 만들었다 — Atari Learning Environment의 49/57 게임 프로토콜은 이후 10년간 RL 논문의 공통 자다. [AlphaGo](#/p/alphago)의 가치망 학습에도 같은 팀의 이 경험이 직접 이어진다.',
 
 legacy:[
- '**DQN 개선 계열** — Double DQN(max 연산의 과대추정 보정), Prioritized Replay(TD 오차 큰 샘플 우선), Dueling, Rainbow로 이어지며 각 부품이 하나씩 교체됨',
+ '**DQN 개선 계열** — Double DQN(max 연산의 과대추정 보정), Prioritized Replay(TD 오차 큰 샘플 우선), Dueling, [Rainbow](#/p/rainbow)로 이어지며 각 부품이 하나씩 교체됨',
  '**연속 행동으로의 이식** — [DDPG](#/p/ddpg)가 재생 버퍼와 타깃 네트워크를 그대로 가져가고 argmax만 결정론적 액터로 대체',
  '**재생 없는 대안** — [A3C](#/p/a3c)가 "병렬 액터로도 상관을 깰 수 있다"며 버퍼 자체를 없애는 반대 방향을 제시',
  '**모델 기반 계승** — [MuZero](#/p/muzero)가 같은 Atari 프로토콜 위에서 환경 모델까지 학습해 DQN 계열의 최종 상한을 갱신'

@@ -66,7 +66,7 @@ numbers:[
  {k:'샘플링 비용', v:'스텝당 forward 2회', d:'조건부 + 무조건부. 실무에서는 배치로 묶어 처리'}
 ],
 
-impact:'text-to-image가 실제로 프롬프트를 따르게 만든 부품이다. 조건이 클래스 레이블일 필요가 없어지면서 [CLIP](#/p/clip) 텍스트 임베딩, 세그멘테이션 맵, 레이아웃 등 **어떤 조건이든 널 값만 정의하면** 같은 방식으로 강화할 수 있게 됐고, GLIDE·Imagen·DALL·E 2·[Stable Diffusion](#/p/ldm)이 전부 이것을 기본으로 채택했다. 개념적으로 더 중요한 것은 **guidance가 학습이 아니라 추론 시점의 선택**이 됐다는 점이다. 모델을 하나만 학습해두고 사용자가 슬라이더로 원하는 지점을 고르는 구조가 여기서 굳었고, 이후 ControlNet·negative prompt·이미지 편집 기법이 모두 "무조건부 항을 무엇으로 대체할까"라는 같은 자리에 끼워 넣는 방식으로 만들어졌다.',
+impact:'text-to-image가 실제로 프롬프트를 따르게 만든 부품이다. 조건이 클래스 레이블일 필요가 없어지면서 [CLIP](#/p/clip) 텍스트 임베딩, 세그멘테이션 맵, 레이아웃 등 **어떤 조건이든 널 값만 정의하면** 같은 방식으로 강화할 수 있게 됐고, [GLIDE](#/p/glide)·[Imagen](#/p/imagen)·DALL·E 2·[Stable Diffusion](#/p/ldm)이 전부 이것을 기본으로 채택했다. 개념적으로 더 중요한 것은 **guidance가 학습이 아니라 추론 시점의 선택**이 됐다는 점이다. 모델을 하나만 학습해두고 사용자가 슬라이더로 원하는 지점을 고르는 구조가 여기서 굳었고, 이후 [ControlNet](#/p/controlnet)·negative prompt·이미지 편집 기법이 모두 "무조건부 항을 무엇으로 대체할까"라는 같은 자리에 끼워 넣는 방식으로 만들어졌다.',
 
 legacy:[
  '**text-to-image의 표준 부품** — GLIDE·Imagen·DALL·E 2·[Stable Diffusion](#/p/ldm)이 예외 없이 채택, guidance scale이 사용자 노출 파라미터가 됨',

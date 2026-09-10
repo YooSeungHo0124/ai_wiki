@@ -42,7 +42,7 @@ impact:'행동 인식 연구가 스튜디오 데이터에서 **웹 규모의 현
 
 legacy:[
  '**딥러닝 행동 인식의 표준 벤치마크** — [Two-Stream](#/p/two-stream)(2014), [I3D](#/p/i3d)(2017), [SlowFast](#/p/slowfast)(2019)가 모두 UCF101에서 성능을 보고하며 계보를 이었다',
- '**외형 편향 비판이 Kinetics를 낳음** — 한 프레임만 봐도 상당수 클래스를 맞힐 수 있다는 지적이 이어지며, 시간적 동작 자체를 요구하는 더 큰 규모의 Kinetics 데이터셋(2017)이 그 대안으로 제시됐다',
+ '**외형 편향 비판이 Kinetics를 낳음** — 한 프레임만 봐도 상당수 클래스를 맞힐 수 있다는 지적이 이어지며, 시간적 동작 자체를 요구하는 더 큰 규모의 [Kinetics](#/p/kinetics) 데이터셋(2017)이 그 대안으로 제시됐다',
  '**사전학습 전이의 표준 타깃** — [I3D](#/p/i3d)의 ImageNet-Kinetics 사전학습이나 [VideoMAE](#/p/videomae)의 self-supervised 사전학습 모두 UCF101 fine-tuning 정확도로 성능을 검증한다',
  '**생성 모델 평가에도 재사용** — [Stable Video Diffusion](#/p/svd)류의 비디오 생성 모델은 UCF101 클래스 분포·FVD 계산에 이 데이터셋을 그대로 활용한다'
 ],

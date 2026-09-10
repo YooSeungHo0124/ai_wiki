@@ -192,6 +192,17 @@
 "published": "2021-02-11",
 "title": "Scaling Up Visual and Vision-Language Representation Learning With Noisy Text Supervision"
 },
+"alpaca-eval": {
+"arxiv": "2404.04475",
+"authors": [
+"Yann Dubois",
+"Balázs Galambosi",
+"Percy Liang",
+"Tatsunori B. Hashimoto"
+],
+"published": "2024-04-06",
+"title": "Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators"
+},
 "alphacode": {
 "arxiv": "2203.07814",
 "authors": [
@@ -505,6 +516,20 @@
 "published": "2021-01-14",
 "title": "Persistent Anti-Muslim Bias in Large Language Models"
 },
+"apex": {
+"arxiv": "1803.00933",
+"authors": [
+"Dan Horgan",
+"John Quan",
+"David Budden",
+"Gabriel Barth-Maron",
+"Matteo Hessel",
+"Hado van Hasselt",
+"David Silver"
+],
+"published": "2018-03-02",
+"title": "Distributed Prioritized Experience Replay"
+},
 "apps": {
 "arxiv": "2105.09938",
 "authors": [
@@ -588,6 +613,17 @@
 ],
 "published": "2018-05-24",
 "title": "AutoAugment: Learning Augmentation Policies from Data"
+},
+"autoformer": {
+"arxiv": "2106.13008",
+"authors": [
+"Haixu Wu",
+"Jiehui Xu",
+"Jianmin Wang",
+"Mingsheng Long"
+],
+"published": "2021-06-24",
+"title": "Autoformer: Decomposition Transformers with Auto-Correlation for Long-Term Series Forecasting"
 },
 "awq": {
 "arxiv": "2306.00978",
@@ -1756,6 +1792,17 @@
 "published": "2015-08-31",
 "title": "Neural Machine Translation of Rare Words with Subword Units"
 },
+"bpr": {
+"arxiv": "1205.2618",
+"authors": [
+"Steffen Rendle",
+"Christoph Freudenthaler",
+"Zeno Gantner",
+"Lars Schmidt-Thieme"
+],
+"published": "2012-05-09",
+"title": "BPR: Bayesian Personalized Ranking from Implicit Feedback"
+},
 "byol": {
 "arxiv": "2006.07733",
 "authors": [
@@ -1856,6 +1903,18 @@
 ],
 "published": "2021-05-30",
 "title": "Cascaded Diffusion Models for High Fidelity Image Generation"
+},
+"catboost": {
+"arxiv": "1706.09516",
+"authors": [
+"Liudmila Prokhorenkova",
+"Gleb Gusev",
+"Aleksandr Vorobev",
+"Anna Veronika Dorogush",
+"Andrey Gulin"
+],
+"published": "2017-06-28",
+"title": "CatBoost: unbiased boosting with categorical features"
 },
 "cbt": {
 "arxiv": "1511.02301",
@@ -2054,6 +2113,17 @@
 ],
 "published": "2020-02-19",
 "title": "CodeBERT: A Pre-Trained Model for Programming and Natural Languages"
+},
+"codeformer": {
+"arxiv": "2206.11253",
+"authors": [
+"Shangchen Zhou",
+"Kelvin C. K. Chan",
+"Chongyi Li",
+"Chen Change Loy"
+],
+"published": "2022-06-22",
+"title": "Towards Robust Blind Face Restoration with Codebook Lookup Transformer"
 },
 "codellama": {
 "arxiv": "2308.12950",
@@ -2263,6 +2333,20 @@
 "published": "2022-12-15",
 "title": "Constitutional AI: Harmlessness from AI Feedback"
 },
+"contriever": {
+"arxiv": "2112.09118",
+"authors": [
+"Gautier Izacard",
+"Mathilde Caron",
+"Lucas Hosseini",
+"Sebastian Riedel",
+"Piotr Bojanowski",
+"Armand Joulin",
+"Edouard Grave"
+],
+"published": "2021-12-16",
+"title": "Unsupervised Dense Information Retrieval with Contrastive Learning"
+},
 "controlnet": {
 "arxiv": "2302.05543",
 "authors": [
@@ -2349,6 +2433,28 @@
 ],
 "published": "2019-09-11",
 "title": "CTRL: A Conditional Transformer Language Model for Controllable Generation"
+},
+"cutmix": {
+"arxiv": "1905.04899",
+"authors": [
+"Sangdoo Yun",
+"Dongyoon Han",
+"Seong Joon Oh",
+"Sanghyuk Chun",
+"Junsuk Choe",
+"Youngjoon Yoo"
+],
+"published": "2019-05-13",
+"title": "CutMix: Regularization Strategy to Train Strong Classifiers with Localizable Features"
+},
+"cutout": {
+"arxiv": "1708.04552",
+"authors": [
+"Terrance DeVries",
+"Graham W. Taylor"
+],
+"published": "2017-08-15",
+"title": "Improved Regularization of Convolutional Neural Networks with Cutout"
 },
 "cycada": {
 "arxiv": "1711.03213",
@@ -2622,6 +2728,34 @@
 ],
 "published": "2016-12-05",
 "title": "Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles"
+},
+"deep-speech": {
+"arxiv": "1412.5567",
+"authors": [
+"Awni Hannun",
+"Carl Case",
+"Jared Casper",
+"Bryan Catanzaro",
+"Greg Diamos",
+"Erich Elsen",
+"Ryan Prenger",
+"Sanjeev Satheesh",
+"Shubho Sengupta",
+"Adam Coates",
+"Andrew Y. Ng"
+],
+"published": "2014-12-17",
+"title": "Deep Speech: Scaling up end-to-end speech recognition"
+},
+"deepar": {
+"arxiv": "1704.04110",
+"authors": [
+"David Salinas",
+"Valentin Flunkert",
+"Jan Gasthaus"
+],
+"published": "2017-04-13",
+"title": "DeepAR: Probabilistic Forecasting with Autoregressive Recurrent Networks"
 },
 "deeper-self-attention": {
 "arxiv": "1808.04444",
@@ -3389,6 +3523,21 @@
 "published": "2020-08-13",
 "title": "DF-GAN: A Simple and Effective Baseline for Text-to-Image Synthesis"
 },
+"dien": {
+"arxiv": "1809.03672",
+"authors": [
+"Guorui Zhou",
+"Na Mou",
+"Ying Fan",
+"Qi Pi",
+"Weijie Bian",
+"Chang Zhou",
+"Xiaoqiang Zhu",
+"Kun Gai"
+],
+"published": "2018-09-11",
+"title": "Deep Interest Evolution Network for Click-Through Rate Prediction"
+},
 "diffusion-beats-gan": {
 "arxiv": "2105.05233",
 "authors": [
@@ -3503,6 +3652,19 @@
 "published": "2023-04-14",
 "title": "DINOv2: Learning Robust Visual Features without Supervision"
 },
+"diou": {
+"arxiv": "1911.08287",
+"authors": [
+"Zhaohui Zheng",
+"Ping Wang",
+"Wei Liu",
+"Jinze Li",
+"Rongguang Ye",
+"Dongwei Ren"
+],
+"published": "2019-11-19",
+"title": "Distance-IoU Loss: Faster and Better Learning for Bounding Box Regression"
+},
 "distilbert": {
 "arxiv": "1910.01108",
 "authors": [
@@ -3532,6 +3694,17 @@
 ],
 "published": "2022-12-19",
 "title": "Scalable Diffusion Models with Transformers"
+},
+"dlinear": {
+"arxiv": "2205.13504",
+"authors": [
+"Ailing Zeng",
+"Muxi Chen",
+"Lei Zhang",
+"Qiang Xu"
+],
+"published": "2022-05-26",
+"title": "Are Transformers Effective for Time Series Forecasting?"
 },
 "dolma": {
 "arxiv": "2402.00159",
@@ -3784,6 +3957,15 @@
 "published": "2019-05-28",
 "title": "EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks"
 },
+"efficientnetv2": {
+"arxiv": "2104.00298",
+"authors": [
+"Mingxing Tan",
+"Quoc V. Le"
+],
+"published": "2021-04-01",
+"title": "EfficientNetV2: Smaller Models and Faster Training"
+},
 "electra": {
 "arxiv": "2003.10555",
 "authors": [
@@ -3913,6 +4095,22 @@
 "published": "2022-12-21",
 "title": "Evolutionary-scale prediction of atomic level protein structure with a language model",
 "venue": "Science / bioRxiv"
+},
+"esrgan": {
+"arxiv": "1809.00219",
+"authors": [
+"Xintao Wang",
+"Ke Yu",
+"Shixiang Wu",
+"Jinjin Gu",
+"Yihao Liu",
+"Chao Dong",
+"Chen Change Loy",
+"Yu Qiao",
+"Xiaoou Tang"
+],
+"published": "2018-09-01",
+"title": "ESRGAN: Enhanced Super-Resolution Generative Adversarial Networks"
 },
 "ethical-risks": {
 "arxiv": "2112.04359",
@@ -4457,6 +4655,17 @@
 ],
 "published": "2021-06-25",
 "title": "Multimodal Few-Shot Learning with Frozen Language Models"
+},
+"ft-transformer": {
+"arxiv": "2106.11959",
+"authors": [
+"Yury Gorishniy",
+"Ivan Rubachev",
+"Valentin Khrulkov",
+"Artem Babenko"
+],
+"published": "2021-06-22",
+"title": "Revisiting Deep Learning Models for Tabular Data"
 },
 "gae": {
 "arxiv": "1506.02438",
@@ -5984,6 +6193,19 @@
 "published": "2018-10-01",
 "title": "How Powerful are Graph Neural Networks?"
 },
+"giou": {
+"arxiv": "1902.09630",
+"authors": [
+"Hamid Rezatofighi",
+"Nathan Tsoi",
+"JunYoung Gwak",
+"Amir Sadeghian",
+"Ian Reid",
+"Silvio Savarese"
+],
+"published": "2019-02-25",
+"title": "Generalized Intersection over Union: A Metric and A Loss for Bounding Box Regression"
+},
 "glam": {
 "arxiv": "2112.06905",
 "authors": [
@@ -7098,6 +7320,17 @@
 "published": "2021-07-07",
 "title": "Evaluating Large Language Models Trained on Code"
 },
+"hyde": {
+"arxiv": "2212.10496",
+"authors": [
+"Luyu Gao",
+"Xueguang Ma",
+"Jimmy Lin",
+"Jamie Callan"
+],
+"published": "2022-12-20",
+"title": "Precise Zero-Shot Dense Retrieval without Relevance Labels"
+},
 "i3d": {
 "arxiv": "1705.07750",
 "authors": [
@@ -7180,6 +7413,25 @@
 "published": "2019-02-13",
 "title": "Do ImageNet Classifiers Generalize to ImageNet?"
 },
+"impala": {
+"arxiv": "1802.01561",
+"authors": [
+"Lasse Espeholt",
+"Hubert Soyer",
+"Remi Munos",
+"Karen Simonyan",
+"Volodymir Mnih",
+"Tom Ward",
+"Yotam Doron",
+"Vlad Firoiu",
+"Tim Harley",
+"Iain Dunning",
+"Shane Legg",
+"Koray Kavukcuoglu"
+],
+"published": "2018-02-05",
+"title": "IMPALA: Scalable Distributed Deep-RL with Importance Weighted Actor-Learner Architectures"
+},
 "improved-gan": {
 "arxiv": "1606.03498",
 "authors": [
@@ -7260,6 +7512,20 @@
 ],
 "published": "2017-03-02",
 "title": "Opening the Black Box of Deep Neural Networks via Information"
+},
+"informer": {
+"arxiv": "2012.07436",
+"authors": [
+"Haoyi Zhou",
+"Shanghang Zhang",
+"Jieqi Peng",
+"Shuai Zhang",
+"Jianxin Li",
+"Hui Xiong",
+"Wancai Zhang"
+],
+"published": "2020-12-14",
+"title": "Informer: Beyond Efficient Transformer for Long Sequence Time-Series Forecasting"
 },
 "inner-monologue": {
 "arxiv": "2207.05608",
@@ -7373,6 +7639,15 @@
 ],
 "published": "2013-12-21",
 "title": "Intriguing properties of neural networks"
+},
+"item2vec": {
+"arxiv": "1603.04259",
+"authors": [
+"Oren Barkan",
+"Noam Koenigstein"
+],
+"published": "2016-03-14",
+"title": "Item2Vec: Neural Item Embedding for Collaborative Filtering"
 },
 "iterated-amplification": {
 "arxiv": "1810.08575",
@@ -7559,6 +7834,17 @@
 ],
 "published": "2017-08-13",
 "title": "Large Batch Training of Convolutional Networks"
+},
+"las": {
+"arxiv": "1508.01211",
+"authors": [
+"William Chan",
+"Navdeep Jaitly",
+"Quoc V. Le",
+"Oriol Vinyals"
+],
+"published": "2015-08-05",
+"title": "Listen, Attend and Spell"
 },
 "layernorm": {
 "arxiv": "1607.06450",
@@ -8304,6 +8590,27 @@
 "published": "2017-04-17",
 "title": "MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications"
 },
+"mobilenetv2": {
+"arxiv": "1801.04381",
+"authors": [
+"Mark Sandler",
+"Andrew Howard",
+"Menglong Zhu",
+"Andrey Zhmoginov",
+"Liang-Chieh Chen"
+],
+"published": "2018-01-13",
+"title": "MobileNetV2: Inverted Residuals and Linear Bottlenecks"
+},
+"mobilevit": {
+"arxiv": "2110.02178",
+"authors": [
+"Sachin Mehta",
+"Mohammad Rastegari"
+],
+"published": "2021-10-05",
+"title": "MobileViT: Light-weight, General-purpose, and Mobile-friendly Vision Transformer"
+},
 "moco": {
 "arxiv": "1911.05722",
 "authors": [
@@ -8380,6 +8687,16 @@
 ],
 "published": "2019-01-13",
 "title": "Passage Re-ranking with BERT"
+},
+"monot5": {
+"arxiv": "2003.06713",
+"authors": [
+"Rodrigo Nogueira",
+"Zhiying Jiang",
+"Jimmy Lin"
+],
+"published": "2020-03-14",
+"title": "Document Ranking with a Pretrained Sequence-to-Sequence Model"
 },
 "movement-pruning": {
 "arxiv": "2005.07683",
@@ -8534,6 +8851,17 @@
 ],
 "published": "2021-04-18",
 "title": "Cross-Task Generalization via Natural Language Crowdsourcing Instructions"
+},
+"nbeats": {
+"arxiv": "1905.10437",
+"authors": [
+"Boris N. Oreshkin",
+"Dmitri Carpov",
+"Nicolas Chapados",
+"Yoshua Bengio"
+],
+"published": "2019-05-24",
+"title": "N-BEATS: Neural basis expansion analysis for interpretable time series forecasting"
 },
 "ncf": {
 "arxiv": "1708.05031",
@@ -9166,6 +9494,17 @@
 "published": "2022-05-12",
 "title": "Simple Open-Vocabulary Object Detection with Vision Transformers"
 },
+"padim": {
+"arxiv": "2011.08785",
+"authors": [
+"Thomas Defard",
+"Aleksandr Setkov",
+"Angelique Loesch",
+"Romaric Audigier"
+],
+"published": "2020-11-17",
+"title": "PaDiM: a Patch Distribution Modeling Framework for Anomaly Detection and Localization"
+},
 "pal": {
 "arxiv": "2211.10435",
 "authors": [
@@ -9557,6 +9896,30 @@
 ],
 "published": "2022-06-22",
 "title": "Scaling Autoregressive Models for Content-Rich Text-to-Image Generation"
+},
+"patchcore": {
+"arxiv": "2106.08265",
+"authors": [
+"Karsten Roth",
+"Latha Pemula",
+"Joaquin Zepeda",
+"Bernhard Schölkopf",
+"Thomas Brox",
+"Peter Gehler"
+],
+"published": "2021-06-15",
+"title": "Towards Total Recall in Industrial Anomaly Detection"
+},
+"patchtst": {
+"arxiv": "2211.14730",
+"authors": [
+"Yuqi Nie",
+"Nam H. Nguyen",
+"Phanwadee Sinthong",
+"Jayant Kalagnanam"
+],
+"published": "2022-11-27",
+"title": "A Time Series is Worth 64 Words: Long-term Forecasting with Transformers"
 },
 "perceptron": {
 "arxiv": null,
@@ -9993,6 +10356,17 @@
 "published": "2017-10-06",
 "title": "Rainbow: Combining Improvements in Deep Reinforcement Learning"
 },
+"randaugment": {
+"arxiv": "1909.13719",
+"authors": [
+"Ekin D. Cubuk",
+"Barret Zoph",
+"Jonathon Shlens",
+"Quoc V. Le"
+],
+"published": "2019-09-30",
+"title": "RandAugment: Practical automated data augmentation with a reduced search space"
+},
 "rcnn": {
 "arxiv": "1311.2524",
 "authors": [
@@ -10017,6 +10391,17 @@
 ],
 "published": "2022-10-06",
 "title": "ReAct: Synergizing Reasoning and Acting in Language Models"
+},
+"real-esrgan": {
+"arxiv": "2107.10833",
+"authors": [
+"Xintao Wang",
+"Liangbin Xie",
+"Chao Dong",
+"Ying Shan"
+],
+"published": "2021-07-22",
+"title": "Real-ESRGAN: Training Real-World Blind Super-Resolution with Pure Synthetic Data"
 },
 "real-nvp": {
 "arxiv": "1605.08803",
@@ -10163,6 +10548,19 @@
 "published": "2020-01-13",
 "title": "Reformer: The Efficient Transformer"
 },
+"repvgg": {
+"arxiv": "2101.03697",
+"authors": [
+"Xiaohan Ding",
+"Xiangyu Zhang",
+"Ningning Ma",
+"Jungong Han",
+"Guiguang Ding",
+"Jian Sun"
+],
+"published": "2021-01-11",
+"title": "RepVGG: Making VGG-style ConvNets Great Again"
+},
 "resnet": {
 "arxiv": "1512.03385",
 "authors": [
@@ -10291,6 +10689,14 @@
 "published": "2017-06-12",
 "title": "Deep reinforcement learning from human preferences"
 },
+"rnn-t": {
+"arxiv": "1211.3711",
+"authors": [
+"Alex Graves"
+],
+"published": "2012-11-14",
+"title": "Sequence Transduction with Recurrent Neural Networks"
+},
 "roberta": {
 "arxiv": "1907.11692",
 "authors": [
@@ -10330,6 +10736,21 @@
 ],
 "published": "2018-03-21",
 "title": "Unsupervised Representation Learning by Predicting Image Rotations"
+},
+"rt-detr": {
+"arxiv": "2304.08069",
+"authors": [
+"Yian Zhao",
+"Wenyu Lv",
+"Shangliang Xu",
+"Jinman Wei",
+"Guanzhong Wang",
+"Qingqing Dang",
+"Yi Liu",
+"Jie Chen"
+],
+"published": "2023-04-17",
+"title": "DETRs Beat YOLOs on Real-time Object Detection"
 },
 "rt1": {
 "arxiv": "2212.06817",
@@ -10851,6 +11272,18 @@
 "published": "2022-12-20",
 "title": "Self-Instruct: Aligning Language Models with Self-Generated Instructions"
 },
+"self-rag": {
+"arxiv": "2310.11511",
+"authors": [
+"Akari Asai",
+"Zeqiu Wu",
+"Yizhong Wang",
+"Avirup Sil",
+"Hannaneh Hajishirzi"
+],
+"published": "2023-10-17",
+"title": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection"
+},
 "self-refine": {
 "arxiv": "2303.17651",
 "authors": [
@@ -10985,6 +11418,17 @@
 ],
 "published": "2017-05-22",
 "title": "A Unified Approach to Interpreting Model Predictions"
+},
+"shufflenet": {
+"arxiv": "1707.01083",
+"authors": [
+"Xiangyu Zhang",
+"Xinyu Zhou",
+"Mengxiao Lin",
+"Jian Sun"
+],
+"published": "2017-07-04",
+"title": "ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices"
 },
 "siglip": {
 "arxiv": "2303.15343",
@@ -11298,6 +11742,24 @@
 "published": "2021-04-15",
 "title": "Image Super-Resolution via Iterative Refinement"
 },
+"srgan": {
+"arxiv": "1609.04802",
+"authors": [
+"Christian Ledig",
+"Lucas Theis",
+"Ferenc Huszar",
+"Jose Caballero",
+"Andrew Cunningham",
+"Alejandro Acosta",
+"Andrew Aitken",
+"Alykhan Tejani",
+"Johannes Totz",
+"Zehan Wang",
+"Wenzhe Shi"
+],
+"published": "2016-09-15",
+"title": "Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network"
+},
 "ssd": {
 "arxiv": "1512.02325",
 "authors": [
@@ -11604,6 +12066,19 @@
 "published": "2021-03-25",
 "title": "Swin Transformer: Hierarchical Vision Transformer using Shifted Windows"
 },
+"swinir": {
+"arxiv": "2108.10257",
+"authors": [
+"Jingyun Liang",
+"Jiezhang Cao",
+"Guolei Sun",
+"Kai Zhang",
+"Luc Van Gool",
+"Radu Timofte"
+],
+"published": "2021-08-23",
+"title": "SwinIR: Image Restoration Using Swin Transformer"
+},
 "swish": {
 "arxiv": "1710.05941",
 "authors": [
@@ -11738,6 +12213,15 @@
 "published": "2022-03-31",
 "title": "Scaling Up Models and Data with $\\texttt{t5x}$ and $\\texttt{seqio}$"
 },
+"tabnet": {
+"arxiv": "1908.07442",
+"authors": [
+"Sercan O. Arik",
+"Tomas Pfister"
+],
+"published": "2019-08-20",
+"title": "TabNet: Attentive Interpretable Tabular Learning"
+},
 "tacotron2": {
 "arxiv": "1712.05884",
 "authors": [
@@ -11757,6 +12241,16 @@
 ],
 "published": "2017-12-16",
 "title": "Natural TTS Synthesis by Conditioning WaveNet on Mel Spectrogram Predictions"
+},
+"td3": {
+"arxiv": "1802.09477",
+"authors": [
+"Scott Fujimoto",
+"Herke van Hoof",
+"David Meger"
+],
+"published": "2018-02-26",
+"title": "Addressing Function Approximation Error in Actor-Critic Methods"
 },
 "temperature-scaling": {
 "arxiv": "1706.04599",
@@ -11947,6 +12441,16 @@
 ],
 "published": "2019-01-09",
 "title": "Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context"
+},
+"trees-still-win": {
+"arxiv": "2207.08815",
+"authors": [
+"Léo Grinsztajn",
+"Edouard Oyallon",
+"Gaël Varoquaux"
+],
+"published": "2022-07-18",
+"title": "Why do tree-based models still outperform deep learning on tabular data?"
 },
 "triviaqa": {
 "arxiv": "1705.03551",
@@ -12416,6 +12920,17 @@
 "published": "2023-01-24",
 "title": "A Watermark for Large Language Models"
 },
+"wav2vec": {
+"arxiv": "1904.05862",
+"authors": [
+"Steffen Schneider",
+"Alexei Baevski",
+"Ronan Collobert",
+"Michael Auli"
+],
+"published": "2019-04-11",
+"title": "wav2vec: Unsupervised Pre-training for Speech Recognition"
+},
 "wav2vec2": {
 "arxiv": "2006.11477",
 "authors": [
@@ -12554,6 +13069,15 @@
 "published": "2018-03-27",
 "title": "World Models"
 },
+"xgboost": {
+"arxiv": "1603.02754",
+"authors": [
+"Tianqi Chen",
+"Carlos Guestrin"
+],
+"published": "2016-03-09",
+"title": "XGBoost: A Scalable Tree Boosting System"
+},
 "xlm": {
 "arxiv": "1901.07291",
 "authors": [
@@ -12598,6 +13122,20 @@
 "published": "2015-06-08",
 "title": "You Only Look Once: Unified, Real-Time Object Detection"
 },
+"yolov10": {
+"arxiv": "2405.14458",
+"authors": [
+"Ao Wang",
+"Hui Chen",
+"Lihao Liu",
+"Kai Chen",
+"Zijia Lin",
+"Jungong Han",
+"Guiguang Ding"
+],
+"published": "2024-05-23",
+"title": "YOLOv10: Real-Time End-to-End Object Detection"
+},
 "yolov3": {
 "arxiv": "1804.02767",
 "authors": [
@@ -12606,6 +13144,48 @@
 ],
 "published": "2018-04-08",
 "title": "YOLOv3: An Incremental Improvement"
+},
+"yolov4": {
+"arxiv": "2004.10934",
+"authors": [
+"Alexey Bochkovskiy",
+"Chien-Yao Wang",
+"Hong-Yuan Mark Liao"
+],
+"published": "2020-04-23",
+"title": "YOLOv4: Optimal Speed and Accuracy of Object Detection"
+},
+"yolov7": {
+"arxiv": "2207.02696",
+"authors": [
+"Chien-Yao Wang",
+"Alexey Bochkovskiy",
+"Hong-Yuan Mark Liao"
+],
+"published": "2022-07-06",
+"title": "YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors"
+},
+"yolov9": {
+"arxiv": "2402.13616",
+"authors": [
+"Chien-Yao Wang",
+"I-Hau Yeh",
+"Hong-Yuan Mark Liao"
+],
+"published": "2024-02-21",
+"title": "YOLOv9: Learning What You Want to Learn Using Programmable Gradient Information"
+},
+"yolox": {
+"arxiv": "2107.08430",
+"authors": [
+"Zheng Ge",
+"Songtao Liu",
+"Feng Wang",
+"Zeming Li",
+"Jian Sun"
+],
+"published": "2021-07-18",
+"title": "YOLOX: Exceeding YOLO Series in 2021"
 },
 "youtube-dnn": {
 "arxiv": null,

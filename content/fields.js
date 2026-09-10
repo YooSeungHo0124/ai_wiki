@@ -24,7 +24,8 @@ WIKI.FIELDS = [
       {id:'seg',     name:'분할(Segmentation)'},
       {id:'vit',     name:'Vision Transformer'},
       {id:'selfsup', name:'자기지도 학습'},
-      {id:'dense',   name:'포즈 · 깊이 · 흐름'}
+      {id:'dense',   name:'포즈 · 깊이 · 흐름'},
+      {id:'pointcloud', name:'3D 인지 · 자율주행'}
     ]},
 
   { id:'nlp', name:'언어 표현 (Transformer 이전)', en:'Classic NLP',
@@ -182,7 +183,8 @@ WIKI.FIELDS = [
     tracks:[
       {id:'bio',  name:'생명 · 단백질'},
       {id:'phys', name:'물리 · 기상'},
-      {id:'math', name:'수학 · 재료'}
+      {id:'math', name:'수학 · 재료'},
+      {id:'med',  name:'의료 영상'}
     ]},
 
   { id:'data', name:'데이터 중심 AI', en:'Data-Centric AI',
@@ -970,7 +972,50 @@ WIKI.INDEX = [
 ['animatediff',2023,'AnimateDiff: Animate Your Personalized Text-to-Image Diffusion Models without Specific Tuning','AnimateDiff','video','generate',['ldm','lora']],
 ['fastsam',2023,'Fast Segment Anything','FastSAM','vision','seg',['sam','yolov7']],
 ['mobile-sam',2023,'Faster Segment Anything: Towards Lightweight SAM for Mobile Applications','MobileSAM','vision','seg',['sam','distillation']],
-['depth-anything-v2',2024,'Depth Anything V2','Depth Anything V2','vision','dense',['depth-anything','midas']]
+['depth-anything-v2',2024,'Depth Anything V2','Depth Anything V2','vision','dense',['depth-anything','midas']],
+
+// ════════ 14차 확장 — 자율주행 3D 인지 · 의료 영상 · 서빙 · 에이전트 ════════
+['pointnet',2016,'PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation','PointNet','vision','pointcloud',['imagenet','resnet']],
+['pointnet2',2017,'PointNet++: Deep Hierarchical Feature Learning on Point Sets in a Metric Space','PointNet++','vision','pointcloud',['pointnet']],
+['voxelnet',2017,'VoxelNet: End-to-End Learning for Point Cloud Based 3D Object Detection','VoxelNet','vision','pointcloud',['pointnet','faster-rcnn']],
+['pointpillars',2018,'PointPillars: Fast Encoders for Object Detection from Point Clouds','PointPillars','vision','pointcloud',['voxelnet','ssd']],
+['nuscenes',2019,'nuScenes: A multimodal dataset for autonomous driving','nuScenes','vision','pointcloud',['imagenet','coco-captions']],
+['centerpoint',2020,'Center-based 3D Object Detection and Tracking','CenterPoint','vision','pointcloud',['centernet','pointpillars']],
+['lss',2020,'Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D','Lift-Splat-Shoot','vision','pointcloud',['efficientnet','nuscenes']],
+['bevdet',2021,'BEVDet: High-Performance Multi-Camera 3D Object Detection in Bird-Eye-View','BEVDet','vision','pointcloud',['lss','centerpoint']],
+['bevformer',2022,'BEVFormer: Learning Bird\'s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers','BEVFormer','vision','pointcloud',['deformable-detr','lss']],
+['uniad',2022,'Planning-oriented Autonomous Driving (UniAD)','UniAD','vision','pointcloud',['bevformer']],
+['vnet',2016,'V-Net: Fully Convolutional Neural Networks for Volumetric Medical Image Segmentation','V-Net','science','med',['unet']],
+['unetpp',2018,'UNet++: A Nested U-Net Architecture for Medical Image Segmentation','UNet++','science','med',['unet','densenet']],
+['chexnet',2017,'CheXNet: Radiologist-Level Pneumonia Detection on Chest X-Rays with Deep Learning','CheXNet','science','med',['densenet']],
+['nnunet',2018,'nnU-Net: Self-adapting Framework for U-Net-Based Medical Image Segmentation','nnU-Net','science','med',['unet','vnet']],
+['medsam',2023,'Segment Anything in Medical Images (MedSAM)','MedSAM','science','med',['sam','nnunet']],
+['h2o',2023,'H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models','H2O KV 캐시 축출','efficiency','serve',['flashattention','gpt3']],
+['streaming-llm',2023,'Efficient Streaming Language Models with Attention Sinks','StreamingLLM · 어텐션 싱크','efficiency','serve',['h2o','transformer']],
+['eagle',2024,'EAGLE: Speculative Sampling Requires Rethinking Feature Uncertainty','EAGLE 추측 디코딩','efficiency','serve',['speculative']],
+['longrope',2024,'LongRoPE: Extending LLM Context Window Beyond 2 Million Tokens','LongRoPE','efficiency','serve',['rope','yarn']],
+['infini-attention',2024,'Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention','Infini-attention','efficiency','serve',['transformer-xl','streaming-llm']],
+['camel',2023,'CAMEL: Communicative Agents for Mind Exploration of Large Language Model Society','CAMEL','agent','tool',['react','instructgpt']],
+['autogen',2023,'AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation','AutoGen','agent','tool',['react','camel']],
+['metagpt',2023,'MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework','MetaGPT','agent','tool',['autogen','react']],
+['got',2023,'Graph of Thoughts: Solving Elaborate Problems with Large Language Models','Graph of Thoughts','agent','reason',['tot','cot']],
+['lats',2023,'Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models','LATS','agent','reason',['tot','react']],
+['pot',2022,'Program of Thoughts Prompting: Disentangling Computation from Reasoning','Program of Thoughts','agent','reason',['cot','pal']],
+['star',2022,'STaR: Bootstrapping Reasoning With Reasoning','STaR','agent','reason',['cot','self-consistency']],
+['quiet-star',2024,'Quiet-STaR: Language Models Can Teach Themselves to Think Before Speaking','Quiet-STaR','agent','reason',['star','cot']],
+['rlaif',2023,'RLAIF vs. RLHF: Scaling Reinforcement Learning from Human Feedback with AI Feedback','RLAIF','llm','align',['instructgpt','constitutional']],
+['gcg',2023,'Universal and Transferable Adversarial Attacks on Aligned Language Models (GCG)','GCG 탈옥 공격','privacy','attack',['adversarial-triggers','instructgpt']],
+['weak-to-strong',2023,'Weak-to-Strong Generalization: Eliciting Strong Capabilities With Weak Supervision','약한 감독에서 강한 일반화','llm','align',['instructgpt']],
+['kto',2024,'KTO: Model Alignment as Prospect Theoretic Optimization','KTO','llm','align',['dpo']],
+['orpo',2024,'ORPO: Monolithic Preference Optimization without Reference Model','ORPO','llm','align',['dpo']],
+['gpqa',2023,'GPQA: A Graduate-Level Google-Proof Q&A Benchmark','GPQA','interp','eval',['mmlu']],
+['ifeval',2023,'Instruction-Following Evaluation for Large Language Models','IFEval','interp','eval',['flan','instructgpt']],
+['mmlu-pro',2024,'MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark','MMLU-Pro','interp','eval',['mmlu','gpqa']],
+['livecodebench',2024,'LiveCodeBench: Holistic and Contamination Free Evaluation of Large Language Models for Code','LiveCodeBench','code','bench',['humaneval','apps']],
+['emu-video',2023,'Emu Video: Factorizing Text-to-Video Generation by Explicit Image Conditioning','Emu Video','video','generate',['ldm','imagen-video']],
+['voicebox',2023,'Voicebox: Text-Guided Multilingual Universal Speech Generation at Scale','Voicebox','speech','tts',['vall-e','flow-matching']],
+['dreamerv3',2023,'Mastering Diverse Domains through World Models (DreamerV3)','DreamerV3','rl','world',['dreamer']],
+['efficientzero',2021,'Mastering Atari Games with Limited Data (EfficientZero)','EfficientZero','rl','search',['muzero']]
 ];
 
 WIKI.META = WIKI.INDEX.map(function(r){

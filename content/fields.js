@@ -6,7 +6,7 @@ window.WIKI = window.WIKI || {};
 
 WIKI.FIELDS = [
   { id:'foundations', name:'기초 · 학습 알고리즘', en:'Foundations',
-    color:'#8b8f9a',
+    color:'var(--field-foundations)',
     blurb:'신경망을 "학습 가능한 것"으로 만든 알고리즘들. 역전파, 정규화, 옵티마이저처럼 모든 분야가 공유하는 바닥돌.',
     tracks:[
       {id:'learning', name:'학습의 발명'},
@@ -15,7 +15,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'vision', name:'컴퓨터 비전', en:'Vision',
-    color:'#3fb27f',
+    color:'var(--field-vision)',
     blurb:'"픽셀에서 의미로". CNN이 특징 설계를 대체하고, detection·segmentation으로 확장되고, 결국 Transformer에 흡수되기까지.',
     tracks:[
       {id:'cnn',     name:'CNN 백본 계보'},
@@ -27,7 +27,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'nlp', name:'언어 표현 (Transformer 이전)', en:'Classic NLP',
-    color:'#d99a2b',
+    color:'var(--field-nlp)',
     blurb:'단어를 벡터로, 문장을 시퀀스로. RNN·LSTM·seq2seq·attention이 Transformer로 가는 길을 깔았다.',
     tracks:[
       {id:'repr', name:'단어 표현'},
@@ -35,7 +35,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'llm', name:'Transformer · 대규모 언어모델', en:'LLM',
-    color:'#5b8def',
+    color:'var(--field-llm)',
     blurb:'attention 하나로 아키텍처를 통일한 뒤, 사전학습 → 스케일링 → 정렬(alignment)로 이어진 현대 LLM의 본류.',
     tracks:[
       {id:'core',     name:'아키텍처 원점'},
@@ -47,7 +47,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'efficiency', name:'효율 · 시스템', en:'Efficiency & Systems',
-    color:'#8b5cf6',
+    color:'var(--field-efficiency)',
     blurb:'같은 모델을 더 싸게, 더 길게, 더 빠르게. 커널·위치인코딩·PEFT·양자화·서빙·상태공간 모델.',
     tracks:[
       {id:'attn',  name:'attention 개조'},
@@ -58,7 +58,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'generative', name:'생성 모델', en:'Generative Models',
-    color:'#e0568c',
+    color:'var(--field-generative)',
     blurb:'분포를 배워 새로 만들어 내기. GAN → VAE → Diffusion으로 이어진 이미지 생성의 주류 교체, 그리고 3D.',
     tracks:[
       {id:'gan',       name:'GAN 계보'},
@@ -68,7 +68,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'multimodal', name:'멀티모달 · VLM', en:'Multimodal',
-    color:'#22b8cf',
+    color:'var(--field-multimodal)',
     blurb:'이미지·오디오를 언어와 같은 공간에 올리기. 대조학습으로 시작해 LLM에 눈을 붙이는 방향으로 수렴했다.',
     tracks:[
       {id:'contrastive', name:'대조학습 정렬'},
@@ -76,7 +76,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'rl', name:'강화학습', en:'Reinforcement Learning',
-    color:'#f0674a',
+    color:'var(--field-rl)',
     blurb:'보상으로 배우는 계보. Atari에서 바둑, 그리고 사람 선호(RLHF)를 거쳐 LLM 추론 학습까지 이어진다.',
     tracks:[
       {id:'value',  name:'가치 기반'},
@@ -87,7 +87,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'agent', name:'추론 · 도구 · 검색', en:'Reasoning & Agents',
-    color:'#4bb3d4',
+    color:'var(--field-agent)',
     blurb:'모델을 "쓰는 법"이 곧 능력이 된 영역. 사고 사슬로 추론을 끌어내고, 도구를 쥐여 주고, 결국 추론 자체를 학습시키기까지.',
     tracks:[
       {id:'reason',    name:'추론 유도'},
@@ -95,7 +95,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'interp', name:'해석 · 평가', en:'Interpretability & Eval',
-    color:'#9aa04b',
+    color:'var(--field-interp)',
     blurb:'모델 안에서 무슨 일이 일어나는지, 그리고 잘하는지 어떻게 재는지. 성능 경쟁 뒤편의 인프라. 안전은 별도 분야로 다룬다.',
     tracks:[
       {id:'interp', name:'내부 해석'},
@@ -104,7 +104,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'speech', name:'음성 · 오디오', en:'Speech & Audio',
-    color:'#d4885f',
+    color:'var(--field-speech)',
     blurb:'파형을 이해하고 만들어 내기. 음성 인식이 자기지도로 라벨 갈증을 푼 흐름과, 합성이 보코더 → 종단간 → 코덱 언어모델로 옮겨간 흐름이 나란히 간다.',
     tracks:[
       {id:'asr',   name:'음성 인식'},
@@ -113,7 +113,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'graph', name:'그래프 신경망', en:'Graph Neural Networks',
-    color:'#6fb3a0',
+    color:'var(--field-graph)',
     blurb:'격자도 시퀀스도 아닌 데이터. 이웃에게 메시지를 보내 자기를 갱신한다는 한 가지 원리가 분자·소셜·추천·지식그래프로 퍼졌다.',
     tracks:[
       {id:'embed',      name:'그래프 임베딩'},
@@ -122,7 +122,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'recsys', name:'추천 시스템', en:'Recommender Systems',
-    color:'#c96f9e',
+    color:'var(--field-recsys)',
     blurb:'가장 오래됐고 가장 돈이 되는 응용. 행렬 분해에서 딥러닝으로, 다시 사용자 행동을 시퀀스로 보는 방향으로 옮겨왔다.',
     tracks:[
       {id:'cf',   name:'협업 필터링'},
@@ -131,7 +131,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'ir', name:'정보검색 · 임베딩', en:'Retrieval & Embeddings',
-    color:'#7a8fd8',
+    color:'var(--field-ir)',
     blurb:'"의미가 비슷한 것을 빨리 찾기". 문장을 벡터로 만드는 쪽과 수십억 벡터에서 근사 최근접을 찾는 쪽이 함께 발전해, 검색 증강(RAG)이라는 오늘날의 표준 구성으로 모였다.',
     tracks:[
       {id:'dense', name:'밀집 검색 · RAG'},
@@ -141,7 +141,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'code', name:'코드 AI', en:'Code AI',
-    color:'#7fa650',
+    color:'var(--field-code)',
     blurb:'코드는 실행해서 정답을 판정할 수 있는 드문 영역이다. 그 성질이 평가 방식과 강화학습·에이전트 연구를 다른 분야보다 빠르게 밀어붙였다.',
     tracks:[
       {id:'pretrain', name:'코드 사전학습'},
@@ -150,7 +150,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'video', name:'비디오 · 시공간', en:'Video',
-    color:'#b07fd8',
+    color:'var(--field-video)',
     blurb:'시간 축이 하나 더 붙는 순간 연산량과 데이터 요구가 폭증한다. 이해 쪽과 생성 쪽 모두 "시간을 어떻게 다룰 것인가"의 답을 찾아왔다.',
     tracks:[
       {id:'understand', name:'비디오 이해'},
@@ -158,7 +158,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'robotics', name:'로보틱스 · 구현 AI', en:'Robotics & Embodied AI',
-    color:'#d9a441',
+    color:'var(--field-robotics)',
     blurb:'인터넷 데이터로 배운 능력을 몸을 가진 기계로 옮기기. 언어모델이 계획을 세우고 정책이 몸을 움직이는 구조로 수렴하고 있다.',
     tracks:[
       {id:'imitation', name:'모방학습 정책'},
@@ -166,7 +166,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'science', name:'과학을 위한 AI', en:'AI for Science',
-    color:'#4fa3b8',
+    color:'var(--field-science)',
     blurb:'벤치마크가 아니라 실제 자연을 맞히는 분야. 단백질 구조·기상·재료·수학에서 기존 수치해석을 대체하거나 앞지른 사례들.',
     tracks:[
       {id:'bio',  name:'생명 · 단백질'},
@@ -175,7 +175,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'data', name:'데이터 중심 AI', en:'Data-Centric AI',
-    color:'#a88b6a',
+    color:'var(--field-data)',
     blurb:'모델을 바꾸는 대신 데이터를 바꾼다. 무엇을 얼마나 넣느냐가 아키텍처보다 성능을 좌우한다는 것이 드러난 뒤 생긴 연구 계열.',
     tracks:[
       {id:'corpus', name:'대규모 코퍼스'},
@@ -184,7 +184,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'theory', name:'학습 이론 · 일반화', en:'Learning Theory',
-    color:'#8f8fa8',
+    color:'var(--field-theory)',
     blurb:'왜 되는지 모르는 채로 잘 되던 것들에 설명을 붙이려는 시도. 고전 통계학습 이론이 딥러닝 앞에서 깨진 자리에서 시작한다.',
     tracks:[
       {id:'general', name:'일반화의 수수께끼'},
@@ -192,7 +192,7 @@ WIKI.FIELDS = [
     ]},
 
   { id:'privacy', name:'프라이버시 · 공격 · 안전', en:'Privacy & Security',
-    color:'#c9605f',
+    color:'var(--field-privacy)',
     blurb:'모델은 학습 데이터를 기억하고, 사람은 모델을 속인다. 데이터를 지키는 쪽과 모델을 뚫는 쪽이 서로를 밀어 온 계보.',
     tracks:[
       {id:'dp',     name:'차등 프라이버시'},

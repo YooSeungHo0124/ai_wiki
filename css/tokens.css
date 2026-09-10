@@ -63,16 +63,41 @@
   --graph-sel-parent-L:#8a6a3f;  --graph-sel-parent-D:#d8b989;  /* 부모(과거) — 모래/세피아 */
   --graph-sel-child-L:#3f6a8a;   --graph-sel-child-D:#89b4d8;   /* 자식(미래) — 슬레이트 블루 */
 
-  --field-foundations-L:#6b6f7a;  --field-foundations-D:#a7abb6;
-  --field-vision-L:#177a4e;       --field-vision-D:#5fd6a0;
-  --field-nlp-L:#96690a;          --field-nlp-D:#e3b356;
-  --field-llm-L:#2f5fce;          --field-llm-D:#8fb2ff;
-  --field-efficiency-L:#6d3fd6;   --field-efficiency-D:#b799ff;
-  --field-generative-L:#c22f6d;   --field-generative-D:#ff8fbb;
-  --field-multimodal-L:#0a7f93;   --field-multimodal-D:#5fd3e8;
-  --field-rl-L:#c8461f;           --field-rl-D:#ff9d7a;
-  --field-agent-L:#1c7f9c;        --field-agent-D:#7dd3ec;
-  --field-interp-L:#6e7530;       --field-interp-D:#c7cf6f;
+  /* ---------- 1) Primitives : 21개 분야 식별색 (2026-09 21분야 확장 재설계) ----------
+     21개 분야는 3개 그룹(WIKI.GROUPS)에 속한다 — 기반(base) / 모달리티·응용(modal) /
+     가로지르는 관심사(cross). 그룹을 색으로 구분하기 위해 채도 대역을 분리했다:
+       - base(foundations, theory): 채도 8~17%의 거의 무채색 — "이건 색이 아니라 바탕"
+       - cross(efficiency, data, agent, interp, privacy): 채도 30~40%의 탁한(dusty) 중간
+         채도 — "콘텐츠 색이 아니라 렌즈/관심사"라는 느낌을 준다
+       - modal(나머지 14개): 채도 42~82%의 선명한 색 — 실제 "콘텐츠"이므로 서로 다른
+         모달리티가 한눈에 구분되도록 색상환 대부분을 쓴다
+     vision/llm/generative/rl 4개는 사용자에게 이미 익숙한 대표 분야라 색상(hue)을
+     그대로 두고 명도만 미세조정했다(대비 실측 결과에 맞춰 ±5% 이내). 나머지는
+     그룹 내 인접 분야와의 구분성(§ DESIGN-SYSTEM.md 2.6, 색맹 시뮬레이션 포함)을
+     확보하기 위해 색상을 새로 배치했다. 각 값은 자기 테마의 --surface
+     (라이트 #fff / 다크 #12161f) 기준 텍스트 대비 4.5:1 이상을 만족하도록
+     tools/palette 스크립트로 이진탐색해 정했다(실측표는 DESIGN-SYSTEM.md 참고). */
+  --field-foundations-L:#5c616d;  --field-foundations-D:#9499a4;
+  --field-theory-L:#76709a;       --field-theory-D:#bfbdd0;
+  --field-vision-L:#2c8458;       --field-vision-D:#3fbd7e;
+  --field-nlp-L:#956f18;          --field-nlp-D:#e1b346;
+  --field-llm-L:#3e6cec;          --field-llm-D:#88a5f3;
+  --field-efficiency-L:#6b4db2;   --field-efficiency-D:#a08dce;
+  --field-generative-L:#d92e6d;   --field-generative-D:#e98aad;
+  --field-multimodal-L:#147589;   --field-multimodal-D:#55cde6;
+  --field-rl-L:#db3616;           --field-rl-D:#f28b77;
+  --field-agent-L:#4d799b;        --field-agent-D:#8aacc5;
+  --field-interp-L:#5b6434;       --field-interp-D:#8f9f52;
+  --field-speech-L:#89522e;       --field-speech-D:#c88659;
+  --field-graph-L:#326962;        --field-graph-D:#4da397;
+  --field-recsys-L:#9a398a;       --field-recsys-D:#ce7bc0;
+  --field-ir-L:#4732ad;           --field-ir-D:#9385dc;
+  --field-code-L:#4e8135;         --field-code-D:#73b851;
+  --field-video-L:#a84ec4;        --field-video-D:#d1a1e0;
+  --field-robotics-L:#5b621d;     --field-robotics-D:#949f2e;
+  --field-science-L:#436fad;      --field-science-D:#7296c8;
+  --field-data-L:#8d704c;         --field-data-D:#b49874;
+  --field-privacy-L:#9a4551;      --field-privacy-D:#d6a4aa;
 
   /* ---------- 2) Semantic tokens (LIGHT, 기본값) ---------- */
 
@@ -112,8 +137,9 @@
   --stage-growing:var(--stage-growing-L); /* 🪴 자라는 중 — 핵심 섹션 충실 */
   --stage-evergreen:var(--stage-evergreen-L); /* 🌳 여문 글 — 수식·수치까지 */
 
-  /* 분야 식별색 (현재 테마용 별칭) */
+  /* 분야 식별색 (현재 테마용 별칭, 21개) */
   --field-foundations:var(--field-foundations-L);
+  --field-theory:var(--field-theory-L);
   --field-vision:var(--field-vision-L);
   --field-nlp:var(--field-nlp-L);
   --field-llm:var(--field-llm-L);
@@ -123,6 +149,16 @@
   --field-rl:var(--field-rl-L);
   --field-agent:var(--field-agent-L);
   --field-interp:var(--field-interp-L);
+  --field-speech:var(--field-speech-L);
+  --field-graph:var(--field-graph-L);
+  --field-recsys:var(--field-recsys-L);
+  --field-ir:var(--field-ir-L);
+  --field-code:var(--field-code-L);
+  --field-video:var(--field-video-L);
+  --field-robotics:var(--field-robotics-L);
+  --field-science:var(--field-science-L);
+  --field-data:var(--field-data-L);
+  --field-privacy:var(--field-privacy-L);
 
   /* 다이어그램 전용 (§6 참고) */
   --dia-box-fill:var(--surface-sunken);
@@ -296,6 +332,7 @@
     --stage-evergreen:var(--stage-evergreen-D);
 
     --field-foundations:var(--field-foundations-D);
+    --field-theory:var(--field-theory-D);
     --field-vision:var(--field-vision-D);
     --field-nlp:var(--field-nlp-D);
     --field-llm:var(--field-llm-D);
@@ -305,6 +342,16 @@
     --field-rl:var(--field-rl-D);
     --field-agent:var(--field-agent-D);
     --field-interp:var(--field-interp-D);
+    --field-speech:var(--field-speech-D);
+    --field-graph:var(--field-graph-D);
+    --field-recsys:var(--field-recsys-D);
+    --field-ir:var(--field-ir-D);
+    --field-code:var(--field-code-D);
+    --field-video:var(--field-video-D);
+    --field-robotics:var(--field-robotics-D);
+    --field-science:var(--field-science-D);
+    --field-data:var(--field-data-D);
+    --field-privacy:var(--field-privacy-D);
 
     --graph-lane-bg:#161c28;
     --graph-sel-parent:var(--graph-sel-parent-D);
@@ -354,6 +401,7 @@ html[data-theme="dark"]{
   --stage-evergreen:var(--field-vision-D);
 
   --field-foundations:var(--field-foundations-D);
+  --field-theory:var(--field-theory-D);
   --field-vision:var(--field-vision-D);
   --field-nlp:var(--field-nlp-D);
   --field-llm:var(--field-llm-D);
@@ -363,6 +411,16 @@ html[data-theme="dark"]{
   --field-rl:var(--field-rl-D);
   --field-agent:var(--field-agent-D);
   --field-interp:var(--field-interp-D);
+  --field-speech:var(--field-speech-D);
+  --field-graph:var(--field-graph-D);
+  --field-recsys:var(--field-recsys-D);
+  --field-ir:var(--field-ir-D);
+  --field-code:var(--field-code-D);
+  --field-video:var(--field-video-D);
+  --field-robotics:var(--field-robotics-D);
+  --field-science:var(--field-science-D);
+  --field-data:var(--field-data-D);
+  --field-privacy:var(--field-privacy-D);
 
   --graph-lane-bg:#161c28;
   --graph-sel-parent:var(--graph-sel-parent-D);

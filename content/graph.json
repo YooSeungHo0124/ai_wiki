@@ -1235,7 +1235,8 @@
     "pangu-weather",
     "openpose",
     "pali",
-    "grad-cam"
+    "grad-cam",
+    "palm-e"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -1306,7 +1307,8 @@
     "deeplab",
     "vit",
     "deit",
-    "pangu-weather"
+    "pangu-weather",
+    "florence"
    ],
    "diagram": "stack",
    "extLinks": 2,
@@ -1968,6 +1970,7 @@
     "decoder-only-wiki",
     "transformer-xl",
     "meena",
+    "generative-scaling",
     "glu-variants"
    ],
    "diagram": "stack",
@@ -2337,6 +2340,7 @@
     "math-dataset",
     "mbpp",
     "foundation-models",
+    "generative-scaling",
     "t0",
     "agent-alignment",
     "mt-nlg",
@@ -2394,6 +2398,7 @@
     "mbpp",
     "scaling-predictable",
     "lm-limits",
+    "generative-scaling",
     "truthfulqa"
    ],
    "diagram": "compare",
@@ -2436,6 +2441,7 @@
     "data-constrained",
     "fineweb",
     "gopher",
+    "generative-scaling",
     "mt-nlg"
    ],
    "diagram": "compare",
@@ -2474,7 +2480,8 @@
     "gsm8k",
     "saycan",
     "rt2",
-    "opt"
+    "opt",
+    "palm-e"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -4680,6 +4687,8 @@
     "foundation-models",
     "laion400m",
     "coca",
+    "florence",
+    "palm-e",
     "coco-captions"
    ],
    "diagram": "compare",
@@ -7901,7 +7910,8 @@
     "gato",
     "rt1",
     "rt2",
-    "pi0"
+    "pi0",
+    "palm-e"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -7932,7 +7942,8 @@
    "in": [
     "gato",
     "rt2",
-    "open-x"
+    "open-x",
+    "palm-e"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -8030,7 +8041,8 @@
     "rt1",
     "openvla",
     "pi0",
-    "open-x"
+    "open-x",
+    "palm-e"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -11790,7 +11802,9 @@
    "bytes": 0,
    "sections": [],
    "out": [],
-   "in": [],
+   "in": [
+    "gshard"
+   ],
    "diagram": null,
    "extLinks": 0,
    "tags": [
@@ -11801,7 +11815,7 @@
   },
   "gshard": {
    "stage": "evergreen",
-   "bytes": 9523,
+   "bytes": 9536,
    "sections": [
     "venue",
     "authors",
@@ -11813,6 +11827,7 @@
    "out": [
     "moe-shazeer",
     "megatron",
+    "gpipe",
     "switch",
     "mixtral"
    ],
@@ -11887,18 +11902,31 @@
    "mtime": "2026-09-10"
   },
   "generative-scaling": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 9872,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "scaling-laws",
+    "gpt3",
+    "transformer",
+    "chinchilla"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "compare",
+   "extLinks": 1,
    "tags": [
     "llm",
     "scale",
     "2020"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "prompt-tuning": {
    "stage": "evergreen",
@@ -12124,7 +12152,9 @@
     "clip",
     "blip"
    ],
-   "in": [],
+   "in": [
+    "florence"
+   ],
    "diagram": "compare",
    "extLinks": 2,
    "tags": [
@@ -12135,32 +12165,58 @@
    "mtime": "2026-09-10"
   },
   "florence": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 9293,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "clip",
+    "swin",
+    "coca"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 1,
    "tags": [
     "multimodal",
     "contrastive",
     "2021"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "palm-e": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "growing",
+   "bytes": 8689,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "saycan",
+    "palm",
+    "clip",
+    "vit",
+    "rt1",
+    "rt2"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "robotics",
     "vla",
     "2023"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "gru": {
    "stage": "seed",
@@ -12983,11 +13039,11 @@
  },
  "stats": {
   "total": 393,
-  "written": 364,
+  "written": 367,
   "byStage": {
-   "evergreen": 327,
-   "growing": 37,
-   "seed": 29
+   "evergreen": 329,
+   "growing": 38,
+   "seed": 26
   },
   "byField": {
    "foundations": {
@@ -13004,7 +13060,7 @@
    },
    "llm": {
     "total": 57,
-    "written": 52
+    "written": 53
    },
    "efficiency": {
     "total": 31,
@@ -13016,7 +13072,7 @@
    },
    "multimodal": {
     "total": 14,
-    "written": 12
+    "written": 13
    },
    "speech": {
     "total": 14,
@@ -13060,7 +13116,7 @@
    },
    "robotics": {
     "total": 11,
-    "written": 10
+    "written": 11
    },
    "science": {
     "total": 8,

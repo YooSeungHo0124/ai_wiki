@@ -99,6 +99,21 @@
   --field-data-L:#8d704c;         --field-data-D:#b49874;
   --field-privacy-L:#9a4551;      --field-privacy-D:#d6a4aa;
 
+  /* ---------- 1) Primitives : 분야색 위 텍스트 잉크 (SHELF-SPEC.md §9-1 결정) ----------
+     책등 상단 밴드(§1.4)처럼 분야색을 100% 채도로 "칠한 면" 위에 직접 텍스트를
+     얹어야 할 때 쓴다. 21개 분야 L/D 값 전부를 파이썬으로 실측한 결과(대비
+     공식은 WCAG 상대휘도), L(라이트) 값 21개 전부는 흰색 텍스트가 검정보다
+     항상 더 높은 대비를 내고(최저 4.60:1, ir이 최고 9.02:1) — 이는 애초에
+     L 값 자체가 "흰 배경 위 텍스트"로 어둡게 튜닝됐기 때문에 그 위에 다시
+     흰 글자를 얹어도 넉넉히 통과한다. D(다크) 값 21개는 반대로 밝은 파스텔
+     톤이라 짙은 잉크가 항상 이긴다(최저 5.12:1) — 다크 텍스트로는 라이트
+     테마의 --text-primary 원값(#1b2030)을 그대로 재사용했다(다크 테마
+     --n-900로 쓰면 밝은 색이라 대비가 거꾸로 됨, 그래서 테마와 무관한
+     고정 프리미티브로 따로 둔다). 21개 전부 같은 규칙이 통해 분야별로
+     따로 정할 필요가 없었다. */
+  --field-ink-on-L:#ffffff;  /* L(라이트) 분야색 위 텍스트 — 21개 전부 4.60:1 이상 */
+  --field-ink-on-D:#1b2030;  /* D(다크) 분야색 위 텍스트 — 21개 전부 5.12:1 이상 */
+
   /* ---------- 2) Semantic tokens (LIGHT, 기본값) ---------- */
 
   /* 배경 층위 : page < surface < raised(그림자) / sunken(파인 곳) */
@@ -108,11 +123,15 @@
   --surface-sunken:var(--n-100);
   --surface-overlay:color-mix(in srgb, var(--n-0) 92%, transparent);
 
-  /* 텍스트 4단계 */
+  /* 텍스트 4단계 — 2026-09 접근성 감사(design/A11Y-PERF.md §4.6) 수정:
+     tertiary/faint를 --n-600/--n-500 별칭에서 떼어내 전용 값으로 바꿨다.
+     n-600/n-500 자체는 --dia-arrow, --edge-backlink 등 텍스트가 아닌
+     장식 요소가 그대로 쓰고 있어 원시값을 바꾸면 그쪽까지 흔들리기
+     때문 — 텍스트 대비 문제는 텍스트 토큰만 고쳐서 해결한다. */
   --text-primary:var(--n-900);
   --text-secondary:var(--n-700);
-  --text-tertiary:var(--n-600);
-  --text-faint:var(--n-500);
+  --text-tertiary:#656d81;  /* 기존 n-600(#6a7387)에서 소폭 어둡게. .crumb가 실제로 놓이는 --bg-page(#f4f5f8) 기준 4.36:1→4.75:1(surface 기준 5.18:1) */
+  --text-faint:#686f85;     /* 기존 n-500(#8990a3)에서 어둡게. --bg-page 기준 2.93:1→4.59:1(surface 기준 5.00:1). AA 통과로 "본문 금지" 예외 조항은 더 이상 필요 없어졌지만 여전히 4단계 중 가장 낮은 강조로 유지(§ACCESSIBILITY FIX 주석 참고) */
   --text-on-accent:#062420;
 
   /* 테두리 2단계 */
@@ -131,7 +150,13 @@
   --state-info:var(--state-info-L);
   --state-ok:var(--state-ok-L);
 
-  /* 성장 단계 뱃지 (4종, §5.1) */
+  /* 성장 단계 뱃지 (4종, §5.1) — SHELF-SPEC.md §9-4 "씨앗 책등 하단 바 색"
+     결정: 새 토큰을 만들지 않는다. LIBRARY-CONCEPT.md §4(확정 비주얼 컨셉,
+     SHELF-SPEC보다 나중에 나온 "결정문")는 책등의 seed/sprout/growing 구분을
+     이미 아웃라인 스타일+틴트만으로 전부 규정했고 "하단 바"라는 요소 자체가
+     없다 — 장식 3단계 상한(원칙 5)에도 걸린다. 즉 이 항목은 새 값이 아니라
+     기존 --stage-* 4종을 그대로 재사용하는 것으로 해소한다(seed=무채색
+     아웃라인, sprout=분야색 아웃라인, growing=분야색 8% 틴트, evergreen=장식 없음). */
   --stage-seed:var(--text-tertiary);      /* 🌱 씨앗 — 색 없음, 점선으로만 표시 */
   --stage-sprout:var(--stage-sprout-L);   /* 🌿 새싹 — 골격만 */
   --stage-growing:var(--stage-growing-L); /* 🪴 자라는 중 — 핵심 섹션 충실 */
@@ -159,6 +184,7 @@
   --field-science:var(--field-science-L);
   --field-data:var(--field-data-L);
   --field-privacy:var(--field-privacy-L);
+  --spine-ink:var(--field-ink-on-L);  /* 책등 상단 밴드(분야색 100%) 위 텍스트 — 현재 테마용 */
 
   /* 다이어그램 전용 (§6 참고) */
   --dia-box-fill:var(--surface-sunken);
@@ -260,9 +286,16 @@
   --fs-h3:1.0625rem;        /* 17px 논문 내 섹션 */
   --fs-h4:0.90625rem;       /* 14.5px 아이디어 카드 제목 */
 
+  /* 책등 전용 (design/TYPOGRAPHY.md §3 실측) — 기존 스케일에 12~14px 구간이
+     --fs-h4(14.5px)뿐인데 그대로 쓰면 34px 폭 책등 안에서 여백이 안 남는다 */
+  --fs-spine:0.8125rem;       /* 13px 책등 제목 */
+  --fs-spine-meta:0.65625rem; /* 10.5px 책등 저자·연도 — 이 서체 조합의 가독 하한(실측, 10px 미만은 0/8·6/5 혼동) */
+
   --lh-body:1.75;
   --lh-tight:1.35;
   --lh-code:1.6;
+  --lh-spine:1.35;      /* 책등 제목 줄간격 */
+  --lh-spine-meta:1.4;  /* 책등 저자·연도 줄간격 */
 
   --ls-heading:-0.02em;
   --ls-label:0.05em;   /* 대문자 라벨(FOUNDATIONS 등)에 사용 */
@@ -274,6 +307,24 @@
   --sp-1:4px;  --sp-2:8px;  --sp-3:12px; --sp-4:16px;
   --sp-5:20px; --sp-6:24px; --sp-8:32px; --sp-10:40px;
   --sp-12:48px; --sp-16:64px; --sp-20:80px;
+
+  /* ---------- 도서관 랜딩 — 책등(spine) 치수 (design/LIBRARY-CONCEPT.md §1) ---------- */
+  --spine-radius:2px;      /* 상단만 둥글림. 기존 3단계(6/10/14px)는 13~29px짜리 책등엔 너무 커서 "칩"처럼 보임 */
+  --spine-gap:2px;         /* 책 사이 간격 — 4px(--sp-1) 이상이면 카드 목록처럼 헐거워 보임 */
+  --spine-band-h:22px;     /* 책 전체 높이와 무관하게 고정인 상단 분야색 밴드 높이(Penguin/Pelican 방식) */
+  --spine-w-min:13px;      /* bytes 분위수 매핑 하한 */
+  --spine-w-max:29px;      /* bytes 분위수 매핑 상한 */
+  --spine-h-min:108px;     /* in(피인용) 로그 매핑 하한 */
+  --spine-h-max:176px;     /* in(피인용) 로그 매핑 상한 */
+  --spine-h-log-step:15px; /* height_px = clamp(min, min + step × ln(1+in), max) 의 step */
+
+  /* ---------- 도서관 랜딩 — 서가(shelf) 배치 (design/LIBRARY-CONCEPT.md §2, design/SHELF-SPEC.md §9) ---------- */
+  --shelf-group-gap:var(--sp-16);   /* 64px, 3그룹(기반/모달리티·응용/가로지르는 관심사) 사이 간격 */
+  --shelf-dim-opacity:0.28;         /* 필터에 안 걸리는 책등 — 그래프의 --graph-dim-opacity(0.32)와 같은 어휘, 책등은 면적이 좁고 세로로 길어 지각 밝기가 달라 실측 근사치로 살짝 낮춤(SHELF-SPEC §1) */
+  --shelf-hover-lift:3px;           /* 책등 호버 시 translateY, --dur-state로 트랜지션 */
+  --shelf-hover-duration:var(--dur-micro);  /* SHELF-SPEC §1 호버 상태 트랜지션(120ms) */
+  --shelf-dim-duration:var(--dur-micro);    /* SHELF-SPEC §1 필터 dim 트랜지션(120ms) — LIBRARY-CONCEPT §랜딩 책장 필터는 --dur-layout(260ms)을 쓰지만(다수 요소 동시 opacity), 개별 책 hover-dim류 미세 전환은 micro로 충분 */
+  --spine-return-highlight-dur:200ms; /* SHELF-SPEC §9-3 — 그래프에서 책장으로 복귀 시 outline 0→2px 등장. --ease-standard 사용, 반복 없는 1회성이라 별도 keyframe 불필요(outline 트랜지션만으로 충분) */
 
   /* ---------- 반지름 · 그림자 (딱 3단계) ---------- */
   --radius-sm:6px;
@@ -289,6 +340,15 @@
   --duration-fast:120ms;
   --duration-base:180ms;
   --ease-standard:cubic-bezier(.2,.7,.3,1);
+
+  /* ---------- 모션 스케일 (design/MOTION.md §2 — 흩어져 있던 6종 duration/
+     3계통 easing을 4단계로 정리) ---------- */
+  --dur-micro:var(--duration-fast);    /* 120ms — 링크/버튼/칩 등 색·보더만 바뀌는 상시 호버·포커스 */
+  --dur-state:var(--duration-base);    /* 180ms — 죽어있던 --duration-base를 실사용으로 되살림. transform+box-shadow가 함께 바뀌는 카드/책등 호버 */
+  --dur-layout:260ms;                  /* 신규 — 필터 등으로 다수 요소가 동시에 opacity만 바뀌는 경우 전용(레이아웃 트랜지션 아님) */
+  --dur-loading:1400ms;                /* 신규 — 기존 .tldr.skeleton pulse 1.4s 리터럴을 토큰화 */
+  --ease-decel:cubic-bezier(0,0,.2,1); /* 신규 — --dur-layout 전용, 여러 요소가 동시에 "가라앉아 정착"하는 느낌 */
+  --ease-loop:ease-in-out;             /* 신규 — 로딩 펄스처럼 왕복하는 무한 반복 애니메이션 전용 */
 }
 
 /* ---------- 3) DARK : prefers-color-scheme 폴백 ----------
@@ -309,8 +369,8 @@
 
     --text-primary:var(--n-900);
     --text-secondary:var(--n-700);
-    --text-tertiary:var(--n-600);
-    --text-faint:var(--n-500);
+    --text-tertiary:var(--n-600);   /* 다크 n-600(#7e889d)은 --bg-page 기준 5.46:1로 이미 AA 통과 — 그대로 둠 */
+    --text-faint:#717b95;           /* 접근성 감사 수정: 기존 n-500(#6b7590)에서 밝게. --bg-page 기준 4.23:1→4.60:1 */
     --text-on-accent:#062420;
 
     --border-subtle:var(--n-200);
@@ -352,6 +412,7 @@
     --field-science:var(--field-science-D);
     --field-data:var(--field-data-D);
     --field-privacy:var(--field-privacy-D);
+    --spine-ink:var(--field-ink-on-D);
 
     --graph-lane-bg:#161c28;
     --graph-sel-parent:var(--graph-sel-parent-D);
@@ -379,8 +440,8 @@ html[data-theme="dark"]{
 
   --text-primary:var(--n-900);
   --text-secondary:var(--n-700);
-  --text-tertiary:var(--n-600);
-  --text-faint:var(--n-500);
+  --text-tertiary:var(--n-600);   /* 다크 n-600(#7e889d)은 --bg-page 기준 5.46:1로 이미 AA 통과 — 그대로 둠 */
+  --text-faint:#717b95;           /* 접근성 감사 수정: 기존 n-500(#6b7590)에서 밝게. --bg-page 기준 4.23:1→4.60:1 */
   --text-on-accent:#062420;
 
   --border-subtle:var(--n-200);
@@ -421,6 +482,7 @@ html[data-theme="dark"]{
   --field-science:var(--field-science-D);
   --field-data:var(--field-data-D);
   --field-privacy:var(--field-privacy-D);
+  --spine-ink:var(--field-ink-on-D);
 
   --graph-lane-bg:#161c28;
   --graph-sel-parent:var(--graph-sel-parent-D);
@@ -455,11 +517,22 @@ html[data-theme="dark"]{
 }
 
 /* =============================================================
- * 5) Reduced motion — 계보 그래프 선택 강조 트랜지션만 끈다.
- * 사이트 전역 트랜지션(카드 호버 등)은 원래도 120~180ms로 짧아 그대로
- * 둬도 무방하지만, 그래프 선택은 수십 개 노드·엣지의 색/굵기/불투명도가
- * 동시에 바뀌는 상대적으로 큰 화면 변화라 민감할 수 있어 명시적으로 끈다.
+ * 5) Reduced motion — design/MOTION.md §6, design/SHELF-SPEC.md §9-2 반영.
+ * 상태 변화가 전달하던 정보(호버 최종 상태, dim된 최종 상태 등)는 그대로
+ * 남기고 "그 상태로 가는 움직임"만 제거한다 — duration을 0으로. 무한 반복
+ * 펄스(--dur-loading)는 예외: 값을 0으로 만드는 게 정의상 불가능하므로
+ * 애니메이션 자체를 끄는 처리는 그 펄스를 쓰는 곳(css/wiki.css의
+ * .tldr.skeleton 등)에서 `animation:none`으로 해야 한다 — 토큰만으로는
+ * 처리할 수 없어 여기 남겨 둔다.
  * ============================================================= */
 @media (prefers-reduced-motion: reduce){
-  :root{ --graph-sel-duration:0ms; }
+  :root{
+    --graph-sel-duration:0ms;
+    --dur-micro:0ms;
+    --dur-state:0ms;
+    --dur-layout:0ms;
+    --shelf-hover-duration:0ms;
+    --shelf-dim-duration:0ms;
+    --spine-return-highlight-dur:0ms;
+  }
 }

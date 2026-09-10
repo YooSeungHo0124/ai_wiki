@@ -1,0 +1,280 @@
+/* ===== 책장(bookshelf) — 도서관 랜딩 =====
+ * design/LIBRARY-CONCEPT.md(치수·색·간격 확정안), design/SHELF-SPEC.md(상태),
+ * design/TYPOGRAPHY.md(세로 조판), design/MOTION.md(모션) 그대로 구현.
+ * 색·크기·모션 값은 전부 css/tokens.css 토큰을 참조한다(하드코딩 금지).
+ * 스큐어모피즘 없음 — 그림자·질감·그라디언트 없이 정렬과 색만으로 서가를 표현한다.
+ */
+
+.shelf{ display:block; }
+.shelf-group{ margin-top:var(--shelf-group-gap, var(--sp-16)); }
+.shelf-group:first-child{ margin-top:0; }
+
+.shelf-group-title{
+  font-family:var(--font-kr);
+  font-size:var(--fs-h3);
+  font-weight:600;
+  color:var(--text-primary);
+  margin:0 0 var(--sp-4);
+}
+
+/* 분야/연대 서가 블록 */
+.field-shelf,.decade-shelf{
+  margin-top:var(--sp-10);
+}
+.field-shelf:first-child,.decade-shelf:first-child{ margin-top:0; }
+
+.shelf-header{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:var(--sp-3);
+  margin-bottom:var(--sp-2);
+}
+.shelf-block-title{
+  font-family:var(--font-kr);
+  font-size:var(--fs-h3);
+  font-weight:600;
+  color:var(--text-primary);
+  margin:0;
+}
+.shelf-block-count{
+  font-family:var(--font-mono);
+  font-size:var(--fs-micro);
+  color:var(--text-faint);
+  flex:0 0 auto;
+}
+
+/* 서가 자체 — LIBRARY-CONCEPT §2.1: 베이스라인 정렬 + 가는 선 하나뿐.
+   그림자·질감·그라디언트 전혀 없음. */
+.shelf-row{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:flex-end;
+  gap:0 var(--spine-gap, 2px);
+  row-gap:var(--sp-8);
+  padding-bottom:0;
+  border-bottom:2px solid var(--border-strong);
+}
+
+/* ---------------- 책등(spine) ---------------- */
+.spine{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  box-sizing:border-box;
+  background:var(--surface);
+  border:1px solid var(--border-strong);
+  border-top-left-radius:var(--spine-radius, 2px);
+  border-top-right-radius:var(--spine-radius, 2px);
+  border-bottom-left-radius:0;
+  border-bottom-right-radius:0;
+  text-decoration:none;
+  color:inherit;
+  cursor:pointer;
+  overflow:hidden;
+  transition:transform var(--dur-state, 180ms) var(--ease-standard),
+             box-shadow var(--dur-state, 180ms) var(--ease-standard);
+}
+html[data-theme="dark"] .spine{ background:var(--surface-raised); }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .spine{ background:var(--surface-raised); }
+}
+
+.spine:hover{
+  transform:translateY(calc(-1 * var(--shelf-hover-lift, 3px)));
+  box-shadow:var(--shadow-1);
+}
+
+.spine:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+  /* 포커스만으로는 들리지 않는다(SHELF-SPEC §1) — 방향키로 446권을
+     훑을 때마다 레이아웃이 흔들리면 어지럽다 */
+  transform:none;
+}
+
+.spine.is-selected{
+  outline:2px solid var(--accent);
+  outline-offset:1px;
+}
+.spine.is-selected::after{
+  content:"";
+  position:absolute;
+  top:0; right:0; bottom:0;
+  width:3px;
+  background:var(--accent);
+}
+
+/* 방문함 — 우상단 미세한 점 하나뿐, 강조색 아님(SHELF-SPEC §1) */
+.spine.is-visited::before{
+  content:"";
+  position:absolute;
+  top:3px; right:3px;
+  width:4px; height:4px;
+  border-radius:50%;
+  background:var(--text-tertiary);
+  opacity:.7;
+}
+
+/* 상단 분야색 밴드 — 고정 22px, 책 전체 높이와 무관 */
+.spine-band{
+  display:block;
+  width:100%;
+  height:var(--spine-band-h, 22px);
+  flex:0 0 auto;
+}
+
+/* 세로 조판 제목 — writing-mode: vertical-rl; text-orientation: mixed
+   (TYPOGRAPHY.md §1.1 실측 결론) */
+.spine-title{
+  writing-mode:vertical-rl;
+  text-orientation:mixed;
+  font-family:var(--font-kr);
+  font-size:var(--fs-spine, 13px);
+  font-weight:600;
+  line-height:1.35;
+  letter-spacing:0.02em;
+  color:var(--text-primary);
+  word-break:keep-all;
+  overflow-wrap:break-word;
+  flex:1 1 auto;
+  min-height:0;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:6px 0;
+  pointer-events:none;
+}
+
+.spine-year{
+  writing-mode:horizontal-tb;
+  font-family:var(--font-mono);
+  font-size:var(--fs-spine-meta, 10.5px);
+  color:var(--text-faint);
+  flex:0 0 auto;
+  padding-bottom:4px;
+  pointer-events:none;
+}
+
+/* ---------------- 성장 단계 (DESIGN-SYSTEM §5.1 → 책등 이식, SHELF-SPEC §1) ----------------
+   evergreen: 장식 없음(기본 스타일 자체가 evergreen).
+   growing:   밴드 정상 + 몸통 8% 틴트.
+   sprout:    밴드 채우지 않음(투명) + 1.5px 분야색 실선 아웃라인.
+   seed:      밴드 채우지 않음(투명) + 1.5px 분야색 실선 아웃라인 + 흐린 텍스트.
+   (SHELF-SPEC §1 이 LIBRARY-CONCEPT §4.1의 "점선"을 "실선 아웃라인"으로
+   명시적으로 대체했다 — 촘촘히 붙은 책등에서 점선은 노이즈가 된다는 근거.
+   이 파일은 더 구체적인 상호작용 스펙인 SHELF-SPEC을 따른다.) */
+.spine.stage-growing{
+  /* 몸통 전체에 분야색 8% 틴트 — 밴드색은 js가 인라인 --field-color로 넘긴다 */
+  background:color-mix(in srgb, var(--field-color, var(--border-strong)) 8%, var(--surface));
+}
+
+/* seed·sprout: 밴드를 채우지 않고 1.5px 분야색 실선 아웃라인만(js가 인라인
+   border-color로 필드색을 지정한다). 몸통 배경은 evergreen과 동일. */
+.spine.stage-seed,
+.spine.stage-sprout{
+  border-width:1.5px;
+}
+.spine.stage-seed .spine-title{
+  color:var(--text-tertiary);
+  letter-spacing:0.03em;
+}
+
+/* 빈 트랙 슬롯 (§4.5) — 34px 고정폭, 점선, 클릭 불가 */
+.track-slot{
+  width:34px;
+  height:108px;
+  flex:0 0 auto;
+  box-sizing:border-box;
+  border:1.5px dashed var(--border-strong);
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding-bottom:4px;
+}
+.track-slot-label{
+  writing-mode:vertical-rl;
+  text-orientation:mixed;
+  font-family:var(--font-kr);
+  font-size:var(--fs-spine-meta, 10.5px);
+  color:var(--text-tertiary);
+}
+
+/* dim(필터 제외) — 통합 담당이 향후 필터 기능에서 이 클래스를 토글한다.
+   opacity만 트랜지션(레이아웃 트랜지션 없음, MOTION.md §4.3) */
+.spine.is-dim{
+  opacity:var(--shelf-dim-opacity, 0.28);
+  transition:opacity var(--dur-layout, 260ms) var(--ease-decel);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .spine{ transition-duration:0ms; }
+  .spine.is-dim{ transition-duration:0ms; }
+}
+
+/* ---------------- 좁은 화면(<768px) — 책장 대신 드릴다운 리스트
+   (SHELF-SPEC §6·§7) ---------------- */
+.shelf-mobile{ display:none; }
+
+@media (max-width:767px){
+  .shelf{ display:none; }
+  .shelf-mobile{ display:block; }
+}
+
+.mobile-field{
+  border-bottom:1px solid var(--border-subtle);
+}
+.mobile-field summary{
+  list-style:none;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:var(--sp-3);
+  padding:var(--sp-3) var(--sp-2);
+  border-left:4px solid var(--border-strong);
+  font-family:var(--font-kr);
+}
+.mobile-field summary::-webkit-details-marker{ display:none; }
+.mf-name{ font-size:var(--fs-body); color:var(--text-primary); font-weight:600; }
+.mf-count{ font-family:var(--font-mono); font-size:var(--fs-micro); color:var(--text-faint); }
+
+.mobile-list{
+  list-style:none;
+  margin:0;
+  padding:0 0 var(--sp-2);
+}
+.mobile-item{
+  display:flex;
+  align-items:baseline;
+  gap:var(--sp-2);
+  padding:10px var(--sp-2);
+  min-height:44px;
+  box-sizing:border-box;
+  text-decoration:none;
+  color:inherit;
+  border-top:1px solid var(--border-subtle);
+}
+.mi-title{
+  font-family:var(--font-kr);
+  font-size:var(--fs-body-sm);
+  color:var(--text-primary);
+  flex:1 1 auto;
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.mi-authors{
+  font-family:var(--font-mono);
+  font-size:var(--fs-micro);
+  color:var(--text-tertiary);
+  flex:0 0 auto;
+}
+.mi-year{
+  font-family:var(--font-mono);
+  font-size:var(--fs-micro);
+  color:var(--text-faint);
+  flex:0 0 auto;
+}

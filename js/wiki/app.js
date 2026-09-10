@@ -72,36 +72,46 @@
     /* 필터만 있고 자유어가 없으면(작업 큐) 캡 없이 전부 */
     return (q.filters.length && !q.free) ? matched : matched.slice(0,12);
   }
+  function closeRes(){
+    sr.classList.remove('on');
+    si.setAttribute('aria-expanded','false');
+    si.removeAttribute('aria-activedescendant');
+  }
   function drawRes(){
-    if(!lastQuery.filters.length && !lastQuery.free){ sr.classList.remove('on'); return; }
+    if(!lastQuery.filters.length && !lastQuery.free){ closeRes(); return; }
     var queryOnly = lastQuery.filters.length && !lastQuery.free;
     if(!cur.length){
       var hints=lastQuery.filters.map(unknownFieldHint).filter(Boolean).join('');
       sr.innerHTML='<div class="r-empty">일치하는 논문이 없습니다.'+hints+'</div>';
       sr.classList.add('on');
+      si.setAttribute('aria-expanded','true');
+      si.removeAttribute('aria-activedescendant');
       return;
     }
     var head = queryOnly ? '<div class="r-count">'+lastFull.length+'편 · 스크롤해서 전부 보기</div>' : '';
     sr.innerHTML=head+cur.map(function(m,i){
       var f=W.field(m.field), stage=W.stageIcon(m.slug);
-      return '<div class="r'+(i===sel?' sel':'')+'" data-slug="'+m.slug+'"><b>'+W.esc(m.ko)+'</b> '+stage
+      return '<div class="r'+(i===sel?' sel':'')+'" id="res-opt-'+i+'" role="option" aria-selected="'+(i===sel?'true':'false')+'" data-slug="'+m.slug+'"><b>'+W.esc(m.ko)+'</b> '+stage
         +'<span>· '+m.year+' · '+W.esc(f?f.name:'')+'</span><br><span>'+W.esc(m.title)+'</span></div>';
     }).join('');
     sr.classList.toggle('query-open', !!queryOnly);
     sr.classList.add('on');
+    si.setAttribute('aria-expanded','true');
+    if(sel>=0) si.setAttribute('aria-activedescendant','res-opt-'+sel);
+    else si.removeAttribute('aria-activedescendant');
   }
   si.addEventListener('input',function(){ cur=search(si.value); sel=-1; drawRes(); });
   si.addEventListener('keydown',function(e){
     if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);drawRes();e.preventDefault();}
     else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);drawRes();e.preventDefault();}
-    else if(e.key==='Enter'&&cur.length){ W.go('#/p/'+cur[Math.max(sel,0)].slug); si.blur(); sr.classList.remove('on'); si.value=''; }
-    else if(e.key==='Escape'){ si.blur(); sr.classList.remove('on'); }
+    else if(e.key==='Enter'&&cur.length){ W.go('#/p/'+cur[Math.max(sel,0)].slug); si.blur(); closeRes(); si.value=''; }
+    else if(e.key==='Escape'){ si.blur(); closeRes(); }
   });
   sr.addEventListener('click',function(e){
     var r=e.target.closest('.r'); if(!r) return;
-    W.go('#/p/'+r.dataset.slug); sr.classList.remove('on'); si.value='';
+    W.go('#/p/'+r.dataset.slug); closeRes(); si.value='';
   });
-  document.addEventListener('click',function(e){ if(!e.target.closest('.searchbox')) sr.classList.remove('on'); });
+  document.addEventListener('click',function(e){ if(!e.target.closest('.searchbox')) closeRes(); });
   document.addEventListener('keydown',function(e){
     if(e.key==='/'&&document.activeElement!==si){ e.preventDefault(); si.focus(); }
   });
@@ -217,7 +227,7 @@
      내려보내되(<details> 네이티브 토글로 수동 펼침이 가능해야 하므로),
      펼침 상태(open)만 "현재 보고 있는 논문의 분야·트랙"에 맞춰 계산한다.
      넓은 화면에서만 보이고(css 미디어쿼리), 좁은 화면은 ☰ 토글로 연다. */
-  function navTreeHTML(activeSlug, activeFieldId){
+  function navTreeHTML(activeSlug, activeFieldId, lite){
     var cur = activeSlug ? W.byId(activeSlug) : null;
     var activeField = cur ? cur.field : (activeFieldId||null);
     var activeTrack = cur ? cur.track : null;
@@ -225,6 +235,24 @@
       : [{id:'all', name:'', fields:W.FIELDS.map(function(f){return f.id;})}];
     var byField={}; W.META.forEach(function(m){ (byField[m.field]=byField[m.field]||[]).push(m); });
     var stats = W.GRAPH && W.GRAPH.stats;
+
+    /* lite 모드 — 홈 전용. 홈은 이미 책장(shelf.js)이 446편 전체를 DOM에
+       한 번 그린다(A11Y-PERF 실측 4,226~4,306 노드). 여기서 같은 446편을
+       분야→트랙→논문 3단 트리로 또 그리면 예산(6,000)을 넘긴다 — 그래서
+       홈의 nav는 분야 21개 링크만 있는 가벼운 목록으로 그린다(그래도
+       진짜 <nav> 랜드마크는 유지된다, A11Y-PERF 감사 지적 대응). */
+    if(lite){
+      var liteBody = groups.map(function(g){
+        var fs = g.fields.map(function(id){ return W.field(id); }).filter(Boolean);
+        if(!fs.length) return '';
+        var itemsHtml = fs.map(function(f){
+          return '<li><a class="nav-field-link" href="#/f/'+f.id+'">'+W.esc(f.name)+'</a></li>';
+        }).join('');
+        return '<li class="nav-group">'+(g.name?'<div class="nav-group-name">'+W.esc(g.name)+'</div>':'')
+          +'<ul class="nav-fields">'+itemsHtml+'</ul></li>';
+      }).join('');
+      return '<nav class="nav-tree" aria-label="분야 내비게이션"><ul class="nav-groups">'+liteBody+'</ul></nav>';
+    }
 
     function paperLi(m){
       var g=W.graphOf(m.slug), seed = g && g.stage==='seed';
@@ -329,72 +357,168 @@
     }).join('');
   }
 
+  /* ---------- 방문 전체 기록 (입문 경로 pill의 체크마크용, HOME-IA §4.3) ----------
+     RECENT_KEY(최근 5편, 이어보기 위젯)와는 목적이 다르다 — 여기는 "이 논문을
+     한 번이라도 열었는가"만 무기한 기억한다. 시크릿 모드 등에서 실패해도
+     조용히 무시(체크마크가 안 뜰 뿐, 코스 렌더링 자체는 항상 된다). */
+  var VISITED_KEY='wiki-visited-all';
+  function markVisited(slug){
+    try{
+      var raw=localStorage.getItem(VISITED_KEY);
+      var obj=raw? JSON.parse(raw) : {};
+      if(!obj || typeof obj!=='object') obj={};
+      obj[slug]=1;
+      localStorage.setItem(VISITED_KEY, JSON.stringify(obj));
+    }catch(e){ /* 무시 */ }
+  }
+  function isVisited(slug){
+    try{
+      var raw=localStorage.getItem(VISITED_KEY);
+      var obj=raw? JSON.parse(raw) : null;
+      return !!(obj && obj[slug]);
+    }catch(e){ return false; }
+  }
+
+  /* ---------- 문서 제목 (A11Y-PERF 감사 지적: 라우트 전환 시 갱신 안 됨) ---------- */
+  function setTitle(sub){
+    document.title = sub ? (sub+' — AI Wiki') : 'AI Wiki — 인공지능 논문 계보';
+  }
+
+  /* ---------- KaTeX 지연 로드 (A11Y-PERF 감사 지적: 홈에서도 275KB 동기 로드됨) ----------
+     홈에는 수식이 없다. index.html은 katex.min.js를 더 이상 <script>로 즉시
+     내려받지 않고, 논문 페이지 진입 시에만 이 함수로 요청한다. core.js의
+     W.tex()는 window.katex가 없으면 원문을 모노스페이스로 폴백하므로 로드
+     전에 렌더가 일어나도 깨지지 않지만, 가능한 한 렌더 전에 로드를 끝내
+     실제 수식 조판이 보이게 한다(viewPaper에서 W.load()와 병행 대기). */
+  var katexPromise=null;
+  function ensureKatex(){
+    if(window.katex) return Promise.resolve();
+    if(katexPromise) return katexPromise;
+    katexPromise=new Promise(function(res){
+      var s=document.createElement('script');
+      s.src='vendor/katex/katex.min.js?v='+(W.V||1);
+      s.onload=function(){ res(); };
+      s.onerror=function(){ res(); /* 실패해도 W.tex 폴백이 있으므로 렌더는 계속 */ };
+      document.head.appendChild(s);
+    });
+    return katexPromise;
+  }
+
+  /* ---------- 표지(cover) 지연 로드 ----------
+     cover.js는 로드되자마자 content/meta.json(178KB)을 즉시 fetch한다(그 파일
+     자체 설계). 홈 초기 전송 예산(500KB, A11Y-PERF.md §2.1)을 지키려면 이
+     비용은 실제로 표지를 열 때(첫 shelf:select)까지 미루는 게 낫다 —
+     index.html도 cover.css/cover.js를 정적으로 싣지 않는다. 로드가 끝나면
+     W.loadCoverMeta()가 이미 캐시한 프라미스까지 한 번 더 기다려, 아주 이른
+     타이밍에 카드를 열어도 저자 정보가 빠지지 않게 한다. */
+  var coverPromise=null;
+  function ensureCover(){
+    if(typeof W.cover==='function' && typeof W.wireCover==='function') return W.loadCoverMeta();
+    if(coverPromise) return coverPromise;
+    coverPromise=new Promise(function(res){
+      if(!document.querySelector('link[data-cover-css]')){
+        var l=document.createElement('link');
+        l.rel='stylesheet'; l.href='css/cover.css?v='+(W.V||1); l.setAttribute('data-cover-css','1');
+        document.head.appendChild(l);
+      }
+      var s=document.createElement('script');
+      s.src='js/wiki/cover.js?v='+(W.V||1);
+      s.onload=function(){ res(); };
+      s.onerror=function(){ res(); /* 실패해도 shelf:select 리스너가 조용히 스킵 */ };
+      document.head.appendChild(s);
+    }).then(function(){
+      return (typeof W.loadCoverMeta==='function') ? W.loadCoverMeta() : null;
+    });
+    return coverPromise;
+  }
+
+  /* 방문 전체 집합(VISITED_KEY)을 한 번에 map으로 — shelf.js의 visited 옵션에 그대로 넘긴다 */
+  function visitedMapAll(){
+    try{
+      var raw=localStorage.getItem(VISITED_KEY);
+      var obj=raw? JSON.parse(raw) : null;
+      return (obj && typeof obj==='object') ? obj : {};
+    }catch(e){ return {}; }
+  }
+
+  /* 표지 패널(뷰포트 하단 고정) — 싱글턴. 홈을 벗어나면(hashchange) 닫는다. */
+  var homeCoverPanel=null, homeCoverCtl=null;
+  function ensureHomeCoverPanel(){
+    if(homeCoverPanel) return homeCoverPanel;
+    homeCoverPanel=document.createElement('div');
+    homeCoverPanel.className='cover-panel';
+    homeCoverPanel.id='homeCoverPanel';
+    homeCoverPanel.hidden=true;
+    homeCoverPanel.setAttribute('aria-live','polite');
+    document.body.appendChild(homeCoverPanel);
+    return homeCoverPanel;
+  }
+  window.addEventListener('hashchange', function(){ if(homeCoverCtl) homeCoverCtl.close(); });
+
   /* ---------- 뷰: 홈 ---------- */
   var homeFieldFilter=null;   /* null = 전체, 배열이면 그 field id만 그래프에 표시 */
-  var homeGraphOpen=false;    /* 전체 계보도는 보조 뷰 — 기본 접힘, 한 번 펼치면 재렌더링에도 유지 */
+  var homeGraphOpen=null;     /* null = 아직 결정 안 됨(첫 렌더에서 화면 폭 기준 결정) — 계보 그래프는 이제
+                                  홈의 핵심 섹션이라 데스크톱 기본 펼침, 모바일만 기본 접힘(HOME-IA §7.2) */
+  var homeGroupState=null;    /* 책장 그룹(3개) 접기 상태 — 첫 렌더에서 화면 폭 기준 결정, 이후 사용자 토글 유지 */
 
-  function widgetRow(){
-    var g=W.GRAPH; if(!g) return '';
-    var papers=g.papers;
-    /* 최근 갱신 — graph.json의 mtime(파일 최종 수정일) 기준 상위 3편.
-       mtime이 없는(미작성) 논문은 대상에서 제외한다. */
-    var withMtime=Object.keys(papers).filter(function(s){return papers[s].mtime;})
-      .map(function(s){ return {slug:s, mtime:papers[s].mtime}; })
-      .sort(function(a,b){ return b.mtime.localeCompare(a.mtime); }).slice(0,3);
-    var recentHtml = withMtime.length ? withMtime.map(function(r){
-      var m=W.byId(r.slug); if(!m) return '';
-      return '<a class="widget-item" href="#/p/'+m.slug+'">'+W.esc(m.ko)+'<span class="wd">'+r.mtime+'</span></a>';
-    }).join('') : '<div class="widget-empty">아직 갱신 기록 없음</div>';
+  /* ---------- 입문 경로 — HOME-IA §4.2, 실측 백링크·자식 수 상위권에서만 고른 7편 ---------- */
+  var START_COURSE=['resnet','transformer','bert','gpt3','vit','clip','instructgpt'];
+  function courseInner(){
+    return START_COURSE.map(function(slug,i){
+      var m=W.byId(slug); if(!m) return '';
+      var done=isVisited(slug);
+      return (i? '<span class="course-arrow" aria-hidden="true">→</span>' : '')
+        +'<a class="course-pill'+(done?' done':'')+'" href="#/p/'+slug+'">'
+        +(done? '<span class="course-check" aria-hidden="true">✓</span>' : '')
+        +W.esc(m.ko)+'</a>';
+    }).join('');
+  }
+  function coursePills(){ return '<div class="course-pills">'+courseInner()+'</div>'; }
 
-    /* 오늘의 씨앗 — 아직 노트가 없는 논문 중 하나를 날짜 기준으로 고정 선택
-       (매번 렌덤이면 새로고침마다 바뀌어 "오늘의"라는 말이 무색해진다) */
-    var seeds=Object.keys(papers).filter(function(s){ return papers[s].stage==='seed'; });
-    var seedHtml;
-    if(seeds.length){
-      var day=new Date().toISOString().slice(0,10);
-      var h=0; for(var i=0;i<day.length;i++) h=(h*31+day.charCodeAt(i))>>>0;
-      var pick=seeds[h%seeds.length];
-      var sm=W.byId(pick);
-      seedHtml = sm ? '<a class="widget-item seed" href="#/p/'+sm.slug+'">🌱 '+W.esc(sm.ko)+'<span class="wd">정리하러 가기 ›</span></a>' : '';
-    } else {
-      seedHtml = '<div class="widget-empty">씨앗 없음 — 전부 정리됨 🎉</div>';
-    }
-
-    return '<div class="widget-grid">'
-      +'<div class="widget"><h4>이어보기</h4>'+continueHtml()+'</div>'
-      +'<div class="widget"><h4>최근 갱신</h4>'+recentHtml+'</div>'
-      +'<div class="widget"><h4>오늘의 씨앗</h4>'+seedHtml+'</div>'
+  /* ---------- 개인화 스트립 — HOME-IA §2·§4.3·§5.2 ----------
+     이어보기(재방문자)와 입문 코스(첫 방문자)는 상호 배타적. "성장 중인 노트"
+     링크는 seed/sprout가 0인 지금 홈에 남은 유일한 정직한 진행 신호(브리프 §6). */
+  function personalStrip(){
+    var recents=recentSlugs();
+    var stats=W.GRAPH&&W.GRAPH.stats;
+    var growingN = stats&&stats.byStage ? (stats.byStage.growing||0) : null;
+    var left = recents.length
+      ? '<div class="pstrip-block"><h4>이어보기</h4>'+continueHtml()+'</div>'
+      : '<div class="pstrip-block pstrip-course"><h4>여기서 시작하세요 — 입문 7편</h4>'+coursePills()+'</div>';
+    var growing = growingN==null ? ''
+      : (growingN>0
+          ? '<a class="widget-item" href="#/growing">성장 중인 노트 '+growingN+'편 →</a>'
+          : '<div class="widget-empty">성장 중인 노트 없음</div>');
+    return '<div class="pstrip">'+left
+      +'<div class="pstrip-block pstrip-growing"><h4>더 자라는 중</h4>'+growing+'</div>'
       +'</div>';
   }
 
   function viewHome(){
-    var byField={}; W.META.forEach(function(m){ (byField[m.field]=byField[m.field]||[]).push(m); });
+    setTitle(null);
     var stats=W.GRAPH&&W.GRAPH.stats;
-    function cardFor(f){
-      var n=(byField[f.id]||[]).length;
-      var yrs=(byField[f.id]||[]).map(function(m){return m.year});
-      var fs=stats&&stats.byField&&stats.byField[f.id];
-      var completion=fs? '<div class="n">노트 '+fs.written+'/'+fs.total+'편 정리됨</div>'
-          +'<div class="completion"><i style="width:'+(fs.total? Math.round(100*fs.written/fs.total):0)+'%;background:'+f.color+'"></i></div>' : '';
-      return '<div class="card" tabindex="0" role="link" data-go="#/f/'+f.id+'"><div class="bar" style="background:'+f.color+'"></div>'
-        +'<div class="en">'+W.esc(f.en)+'</div><h3>'+W.esc(f.name)+'</h3>'
-        +'<p>'+W.esc(f.blurb)+'</p>'
-        +'<div class="n">논문 '+n+'편 · '+Math.min.apply(null,yrs)+'–'+Math.max.apply(null,yrs)+' · 트랙 '+f.tracks.length+'개</div>'
-        +completion+'</div>';
+
+    /* 책장 — 전체 렌더는 shelf.js(W.shelf)가 담당한다(분야별 서가 헤더 +
+       책등 446개 + 숨겨진 모바일 드릴다운을 한 번에 돌려준다). 감사 실측상
+       이것만으로 DOM 4,226~4,306개를 쓰므로(예산 6,000), 예전처럼 21개
+       분야를 별도 텍스트 카드 그리드로 "또" 그리면 같은 정보가 중복되고
+       예산을 넘는다 — LIBRARY-BRIEF §6 지시대로 중복 블록은 걷어냈다. */
+    var recentsForMini=recentSlugs();
+    var shelfHeader='<div class="shelf-head"><h2>책장</h2>'
+      +'<p>'+W.FIELDS.length+'개 분야, '+W.META.length+'편 — 분야마다 몇 권이 어떤 시기에 꽂혀 있는지 훑어보세요. 책등을 클릭하면 표지가 뜨고, 다시 누르면 그 논문으로 이동합니다.</p>'
+      +(recentsForMini.length? '<a class="course-mini" href="#/course">처음이신가요? 입문 7편 코스 보기 →</a>' : '')
+      +'</div>';
+    var shelfBody='<div class="stub">책장 데이터를 불러오는 중입니다…</div>';
+    if(typeof W.shelf==='function'){
+      try{
+        shelfBody = W.shelf({
+          index:W.META, fields:W.FIELDS, groups:(W.GROUPS&&W.GROUPS.length? W.GROUPS: undefined),
+          graph:W.GRAPH, meta:(W.META_INFO||{}), visited:visitedMapAll()
+        }) || shelfBody;
+      }catch(e){ /* 책장 렌더 실패해도 홈 전체는 정상 렌더돼야 한다 */ }
     }
-    /* 21개 분야는 서로 다른 기준으로 나뉘어 있다(모달리티 · 응용 · 횡단).
-       배타적 분류가 아니라 탐색용 서랍이므로, 묶음으로 위계를 보여 준다. */
-    var groups = (W.GROUPS||[]).length ? W.GROUPS
-      : [{id:'all',name:'',desc:'',fields:W.FIELDS.map(function(f){return f.id})}];
-    var cards = groups.map(function(g){
-      var fs = g.fields.map(function(id){ return W.field(id); }).filter(Boolean);
-      if(!fs.length) return '';
-      var n = fs.reduce(function(a,f){ return a+(byField[f.id]||[]).length; },0);
-      return (g.name? '<div class="group-head"><h3>'+W.esc(g.name)+'</h3>'
-              +'<p>'+W.esc(g.desc)+'</p>'
-              +'<span class="group-n">분야 '+fs.length+' · 논문 '+n+'편</span></div>' : '')
-        + '<div class="grid">'+fs.map(cardFor).join('')+'</div>';
-    }).join('');
+    var shelfHtml = shelfHeader+'<div class="shelf-wrap" id="shelfWrap">'+shelfBody+'</div>'
+      +'<p class="shelf-transition">'+W.FIELDS.length+'개 분야, '+W.META.length+'편 — 어디서 왔는지 궁금하면 아래 계보 그래프로, 한 책의 표지를 보고 싶으면 위 책등을 클릭하세요.</p>';
 
     var activeFields=homeFieldFilter||W.FIELDS.map(function(f){return f.id});
     var lanes=W.FIELDS.filter(function(f){return activeFields.indexOf(f.id)>=0;})
@@ -406,21 +530,36 @@
         +'<span class="dot" style="background:'+f.color+'"></span>'+W.esc(f.name)+'</span>';
     }).join('');
 
-    app.innerHTML='<div class="wrap wide">'
+    /* 계보 그래프 — LIBRARY-BRIEF §5 "가장 핵심", HOME-IA §2: 책장 바로
+       다음, 데스크톱은 기본 펼침. 모바일(<700px)에서만 기본 접힘 +
+       "계보 그래프 보기" 버튼으로 되돌린다(§7.2). 사용자가 한 번 토글하면
+       그 이후엔 재렌더링에도 그 상태를 유지한다(homeGraphOpen). */
+    if(homeGraphOpen===null) homeGraphOpen = (window.innerWidth>=700);
+    var growingN = stats&&stats.byStage ? (stats.byStage.growing||0) : null;
+    var heroP = stats
+      ? ('전체 '+W.META.length+'편, '+W.FIELDS.length+'개 분야 모두 정리돼 있습니다'
+         + (growingN? ', 그중 <a href="#/growing">'+growingN+'편은 아직 자라는 중</a>입니다.' : '.'))
+      : ('전체 '+W.META.length+'편, '+W.FIELDS.length+'개 분야.');
+
+    var inner='<div class="home-nav-row">'+navToggleBtn()+'</div>'
       +'<div class="hero"><h2>인공지능 논문 계보</h2>'
       +'<p>분야를 나누고, 각 분야에서 실제로 흐름을 바꾼 논문만 골라, 그 논문이 <b>무엇을 해결했고 무엇을 남겼는지</b>를 한 장씩 정리한 개인 위키입니다. '
-      +'전체 '+W.META.length+'편 중 지금까지 '+(stats?stats.written:'?')+'편이 정리됐습니다. '
-      +'<span class="kbd">/</span> 키로 검색.</p></div>'
-      +widgetRow()
-      +cards
-      +'<details class="graph-collapse" style="margin-top:26px" id="homeGraph"'+(homeGraphOpen?' open':'')+'>'
-      +'<summary>전체 계보도 — '+W.META.length+'편을 연도축 위에 한 장으로 (보조 뷰, 펼쳐서 보기)</summary>'
+      +heroP+' <span class="kbd">/</span> 키로 검색.</p></div>'
+      +personalStrip()
+      +shelfHtml
+      +'<section class="lineage-main" aria-labelledby="lineageHeading">'
+      +'<h2 id="lineageHeading">전체 계보도 — '+W.META.length+'편을 연도축 위에 한 장으로</h2>'
+      +'<details class="graph-collapse lineage-collapse" id="homeGraph"'+(homeGraphOpen?' open':'')+'>'
+      +'<summary>계보 그래프 보기</summary>'
       +'<div class="field-chips">'+chips+'</div>'
       +zoomToolbar()
       +'<div class="graph-viewport" id="gbox">'+(items.length? W.graph(items,lanes,function(m){return m.field},{}) : '<div class="stub">최소 한 분야는 선택해야 합니다.</div>')+'</div>'
       +'<div class="graph-card" id="homeGraphCard" hidden aria-live="polite"></div>'
       +'</details>'
-      +'</div>';
+      +'</section>';
+
+    app.innerHTML=shell(navTreeHTML(null,null,true), 'wrap wide', inner);
+    wireNavToggle(app);
 
     var det=document.getElementById('homeGraph');
     det.addEventListener('toggle',function(){ homeGraphOpen=det.open; });
@@ -441,11 +580,108 @@
       chip.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
     });
     if(items.length){ wireZoom(det); wireGraphSelection(document.getElementById('gbox'), document.getElementById('homeGraphCard')); }
+
+    /* 책장 — 그룹/분야 헤더에 소개 문장을 덧붙인다(shelf.js는 이름·권수만
+       그린다, LIBRARY-CONCEPT §7 "분야 한 줄 소개"는 여기서 주입). 로빙
+       tabindex·키보드·타입어헤드는 W.wireShelf가 담당, 표지 카드 연결은
+       shelf:select/shelf:deselect 이벤트를 받아 이 파일이 배선한다(§0
+       "이동은 카드 버튼으로"만 지키면 되고 그 카드는 cover.js가 만든다). */
+    var shelfWrap=document.getElementById('shelfWrap');
+    if(shelfWrap){
+      /* W.shelf()는 데스크톱 책장(.shelf, 446 책등)과 숨겨진 모바일 드릴다운
+         (.shelf-mobile, CSS로만 전환) 을 항상 같이 돌려준다 — 폭이 바뀌어도
+         JS 없이 리플로우되게 하려는 설계다. 다만 지금 화면 폭에서 절대
+         보이지 않을 쪽까지 DOM에 남겨두면 홈 하나에 446편이 사실상 두 번
+         존재하게 되어(A11Y-PERF 예산 6,000 초과의 가장 큰 원인) 진행 시간에
+         쓸모없는 노드만 쌓인다. 렌더 직후 딱 한 번, 지금 폭에서 안 쓰는
+         쪽을 제거한다(shelf.css의 767px 분기와 동일 기준). */
+      try{
+        var wide = window.matchMedia('(min-width:768px)').matches;
+        var dead = shelfWrap.querySelector(wide ? '.shelf-mobile' : '.shelf');
+        if(dead) dead.remove();
+      }catch(e){ /* matchMedia 실패해도 렌더는 계속 — 둘 다 남아도 기능은 정상 */ }
+
+      var groupById={}; (W.GROUPS||[]).forEach(function(g){ groupById[g.id]=g; });
+      shelfWrap.querySelectorAll('section.shelf-group[data-group]').forEach(function(sec){
+        var g=groupById[sec.dataset.group];
+        var h2=sec.querySelector('.shelf-group-title');
+        if(g && g.desc && h2 && !sec.querySelector('.shelf-group-desc')){
+          var p=document.createElement('p');
+          p.className='shelf-group-desc';
+          p.textContent=g.desc;
+          h2.insertAdjacentElement('afterend', p);
+        }
+      });
+      shelfWrap.querySelectorAll('.field-shelf[data-field]').forEach(function(block){
+        var f=W.field(block.dataset.field);
+        var header=block.querySelector('.shelf-header');
+        if(f && f.blurb && header && !header.querySelector('.shelf-block-blurb')){
+          var p=document.createElement('p');
+          p.className='shelf-block-blurb';
+          p.textContent=f.blurb;
+          header.appendChild(p);
+        }
+      });
+
+      if(typeof W.wireShelf==='function'){
+        try{ W.wireShelf(shelfWrap); }catch(e){}
+      }
+      shelfWrap.addEventListener('shelf:select', function(e){
+        var slug=e.detail && e.detail.slug; if(!slug) return;
+        ensureCover().then(function(){
+          if(typeof W.wireCover!=='function') return;
+          var panel=ensureHomeCoverPanel();
+          if(!homeCoverCtl) homeCoverCtl=W.wireCover(panel);
+          homeCoverCtl.open(slug, e.detail.el);
+        });
+      });
+      shelfWrap.addEventListener('shelf:deselect', function(){
+        if(homeCoverCtl) homeCoverCtl.close();
+      });
+    }
+  }
+
+  /* ---------- 뷰: 성장 중인 노트 (HOME-IA §5.2 — "성장 중인 노트 N편" 링크의 목적지) ----------
+     검색 팔레트에는 stage: 필터가 없어(core.js 소관, 이번 개편 범위 밖) 그
+     문법을 그대로 재사용할 수 없다. 대신 이 전용 뷰가 같은 결과를 낸다:
+     stage==='growing'인 논문만 분야 카드 그리드와 같은 모양으로 나열. */
+  function viewGrowing(){
+    setTitle('성장 중인 노트');
+    var g=W.GRAPH;
+    var items = g ? W.META.filter(function(m){ var gg=W.graphOf(m.slug); return gg&&gg.stage==='growing'; })
+      .sort(function(a,b){ return a.year-b.year; }) : [];
+    var list = items.length ? '<div class="grid">'+items.map(function(m){
+      var f=W.field(m.field), stage=W.stageIcon(m.slug);
+      return '<a class="card" href="#/p/'+m.slug+'"><div class="bar" style="background:'+f.color+'"></div>'
+        +(stage?'<div class="card-stage">'+stage+'</div>':'')
+        +'<div class="en">'+m.year+' · '+W.esc(f.name)+'</div><h3>'+W.esc(m.ko)+'</h3>'
+        +'<p style="font-size:12.5px">'+W.esc(m.title)+'</p></a>';
+    }).join('')+'</div>' : '<div class="stub">'+(g? '성장 중인 노트가 없습니다.' : '데이터를 불러오는 중입니다…')+'</div>';
+    var inner='<div class="crumb"><a href="#/">전체 지도</a> › 성장 중인 노트'+navToggleBtn()+'</div>'
+      +'<div class="hero"><h2>성장 중인 노트</h2>'
+      +'<p>노트는 있지만 수식·숫자로 보기·딥다이브 같은 rich 섹션까지는 아직 못 채운 '+items.length+'편입니다(LIBRARY-BRIEF §6). '
+      +'분야별 완성률이 아니라 이 목록이 지금 이 위키의 정직한 "자라는 중" 신호입니다.</p></div>'
+      +list;
+    app.innerHTML=shell(navTreeHTML(null,null,true), 'wrap wide', inner);
+    wireNavToggle(app);
+  }
+
+  /* ---------- 뷰: 입문 7편 코스 (personalStrip이 재방문자에게 축소해 두는 링크의 목적지) ---------- */
+  function viewCourse(){
+    setTitle('입문 7편 코스');
+    var inner='<div class="crumb"><a href="#/">전체 지도</a> › 입문 7편 코스'+navToggleBtn()+'</div>'
+      +'<div class="hero"><h2>AI 위키 첫 걸음 — 7편</h2>'
+      +'<p>이 위키 안에서 가장 많이 참조되는 논문들의 최단 이야기 경로입니다. resnet(비전의 정점) → transformer(전체 중심) → '
+      +'bert·gpt3(두 갈래 분기) → vit(비전으로 건너감) → clip(합류) → instructgpt(최신 정렬) 순으로, 분기와 합류를 손으로 한 번 걸어봅니다.</p></div>'
+      +'<div class="course-pills course-pills-lg">'+courseInner()+'</div>';
+    app.innerHTML=shell(navTreeHTML(null,null,true), 'wrap wide', inner);
+    wireNavToggle(app);
   }
 
   /* ---------- 뷰: 분야 ---------- */
   function viewField(id){
     var f=W.field(id); if(!f) return viewHome();
+    setTitle(f.name);
     var items=W.META.filter(function(m){return m.field===id});
     var lanes=f.tracks.map(function(t){return {id:t.id,name:t.name,color:f.color}});
     var list=f.tracks.map(function(tr){
@@ -454,10 +690,10 @@
       return '<h3 class="sec">'+W.esc(tr.name)+' <span style="color:var(--muted);font-size:12px">'+mine.length+'편</span></h3>'
         +'<div class="grid">'+mine.map(function(m){
           var stage=W.stageIcon(m.slug);
-          return '<div class="card" tabindex="0" role="link" data-go="#/p/'+m.slug+'"><div class="bar" style="background:'+f.color+'"></div>'
+          return '<a class="card" href="#/p/'+m.slug+'"><div class="bar" style="background:'+f.color+'"></div>'
             +(stage?'<div class="card-stage">'+stage+'</div>':'')
             +'<div class="en">'+m.year+'</div><h3>'+W.esc(m.ko)+'</h3>'
-            +'<p style="font-size:12.5px">'+W.esc(m.title)+'</p></div>';
+            +'<p style="font-size:12.5px">'+W.esc(m.title)+'</p></a>';
         }).join('')+'</div>';
     }).join('');
 
@@ -500,14 +736,16 @@
   function viewPaper(slug){
     var m=W.byId(slug); if(!m) return viewHome();
     var f=W.field(m.field), tr=W.track(m.field,m.track);
+    setTitle(m.ko);
     recordVisit(slug);
+    markVisited(slug);
     /* 헤더(브레드크럼·제목·메타)는 인덱스 데이터만으로 즉시 그릴 수 있다.
        본문(content/papers/<slug>.js)만 lazy 로드 대상이므로 그 부분만 스켈레톤. */
     app.innerHTML=shell(navTreeHTML(slug), 'wrap', '<div>'+buildHead(m,f,tr)
       +'<div class="tldr skeleton">불러오는 중…</div></div>');
     wireNavToggle(app);
     window.scrollTo(0,0);
-    W.load(slug).then(function(p){ renderPaper(m,f,tr,p); });
+    Promise.all([W.load(slug), ensureKatex()]).then(function(r){ renderPaper(m,f,tr,r[0]); });
   }
 
   function sec(n,t,body){ return body? '<h3 class="sec" id="s'+n+'"><span class="num">'+n+'</span>'+t+'</h3>'+body : ''; }
@@ -524,9 +762,9 @@
     var par=m.parents.map(W.byId).filter(Boolean), ch=W.childrenOf(m.slug);
     function pills(a){ return a.length? a.map(function(x){
       var xf=W.field(x.field), crossField=xf&&xf.id!==m.field;
-      return '<span class="pill" tabindex="0" role="link" data-go="#/p/'+x.slug+'">'
+      return '<a class="pill" href="#/p/'+x.slug+'">'
         +(crossField?'<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:'+xf.color+';margin-right:5px"></span>':'')
-        +W.esc(x.ko)+' <span style="color:var(--muted)">'+x.year+'</span></span>';
+        +W.esc(x.ko)+' <span style="color:var(--muted)">'+x.year+'</span></a>';
     }).join('') : '<span style="color:var(--muted);font-size:13px">—</span>'; }
 
     var lg=W.localGraph? W.localGraph(m.slug) : null;
@@ -550,7 +788,7 @@
     if(!items.length) return '';
     return '<p style="margin:0 0 8px;color:var(--muted);font-size:12.5px">이 논문의 본문에서 언급한(위키링크로 연결한) 다른 노트들 — 계보(부모/자식)와는 다른, 본문 참조 기준입니다.</p>'
       +'<div class="backlinks">'+items.map(function(x){
-        return '<span class="pill" tabindex="0" role="link" data-go="#/p/'+x.slug+'">'+W.esc(x.ko)+' <span style="color:var(--muted)">'+x.year+'</span></span>';
+        return '<a class="pill" href="#/p/'+x.slug+'">'+W.esc(x.ko)+' <span style="color:var(--muted)">'+x.year+'</span></a>';
       }).join('')+'</div>';
   }
 
@@ -799,6 +1037,8 @@
     var h=location.hash.replace(/^#/,'');
     if(h.indexOf('/p/')===0) return viewPaper(h.slice(3));
     if(h.indexOf('/f/')===0) return viewField(h.slice(3));
+    if(h==='/growing') return viewGrowing();
+    if(h==='/course') return viewCourse();
     if(h && h[0]!=='/'){ document.getElementById(h.replace(/^#/,''))?.scrollIntoView(); return; }
     viewHome();
   }

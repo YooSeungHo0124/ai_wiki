@@ -1,0 +1,211 @@
+/* ===== cover.css — 표지 카드 =====
+ * 참고: design/LIBRARY-CONCEPT.md §6(정보 위계·이미지 처리),
+ *      design/SHELF-SPEC.md §2(패널 폭 380~420px, 그림자·라운드는 기존 카드 어휘 재사용),
+ *      design/MOTION.md §4.2(표지 등장은 무모션, 즉시 교체 — 이 파일에 진입 애니메이션 없음),
+ *      design/A11Y-PERF.md §3(이미지 placeholder는 정적 배경색, 펄스 없음).
+ *
+ * 토큰은 전부 기존/확정 예정 토큰만 쓴다. 새 색·새 간격 단위를 만들지 않는다.
+ * --dur-micro/--dur-state/--ease-decel/--fs-spine* 등은 다른 에이전트가 tokens.css에
+ * 추가 중인 값 — 여기서는 값만 참조하고 정의하지 않는다(폴백 값은 즉시 사용 가능하도록
+ * var()의 두 번째 인자로만 넣어둔다, tokens.css가 아직 없을 때도 깨지지 않게).
+ */
+
+.cover-card{
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+}
+
+.cover-close{
+  z-index: 2;
+}
+/* graph-card-close는 절대 위치가 카드 모서리 바깥(-4px) 기준이라 이미지가 카드
+   맨 위까지 차 있는 표지 카드에서는 이미지 위로 겹치도록 살짝 안쪽으로 당긴다. */
+.cover-card .cover-close{
+  position: absolute;
+  top: 6px; right: 6px;
+  background: var(--surface-overlay);
+  border-radius: var(--radius-sm);
+}
+
+/* ---------- 이미지 영역 ---------- */
+.cover-media-frame{
+  position: relative;
+  width: 100%;
+  background: var(--surface-sunken); /* 로드 전 정적 placeholder, 펄스 없음(A11Y-PERF §7) */
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-strong); /* 하드 컷 — 그라디언트로 섞지 않는다 */
+}
+.cover-img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center; /* 원문 상단 크롭 인상을 유지 */
+  filter: grayscale(70%) contrast(0.92) brightness(1.04);
+}
+
+/* ---------- 대체 표지(원문 렌더 없음 / 로드 실패) ----------
+ * 분야색 밴드 + 제목 + 저자 + 연도로 채운 "조판된 표지". 깨진 이미지 아이콘 없음. */
+.cover-fallback{
+  position: absolute; inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+}
+.cover-fallback[hidden]{ display: none; }
+.cover-fallback-band{
+  height: 22px; /* --spine-band-h와 동일한 규모의 고정 밴드 — 책등과 같은 시각 언어 */
+  flex: 0 0 auto;
+  background: var(--cover-field-color, var(--text-tertiary));
+}
+.cover-fallback-body{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  min-height: 0;
+  overflow: hidden;
+}
+.cover-fallback-title{
+  margin: 0;
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+.cover-fallback-authors{
+  margin: 0;
+  font-size: var(--fs-body-sm);
+  color: var(--text-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cover-fallback-year{
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--text-secondary); /* --text-faint는 AA 대비 미달 실측(A11Y-PERF §4.6) — 대신 이 토큰 사용 */
+}
+
+/* ---------- 본문 ---------- */
+.cover-body{
+  padding: var(--sp-4);
+}
+.cover-toprow{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+.cover-title{
+  margin: var(--sp-2) 0 0;
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-primary);
+  letter-spacing: var(--ls-heading, -0.02em);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cover-subtitle{
+  margin: 4px 0 0;
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  letter-spacing: normal; /* 제목의 자간이 상속되어 새지 않도록 명시적으로 끊는다(TYPOGRAPHY §4.1) */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+.cover-authors{
+  margin: var(--sp-2) 0 0;
+  font-size: var(--fs-body-sm);
+  color: var(--text-tertiary);
+  line-height: 1.5;
+  letter-spacing: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cover-metaline{
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-2);
+  border-top: 1px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cover-year{
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--text-secondary); /* --chip-year-text(=--text-faint)는 AA 미달 실측값이라 쓰지 않는다 */
+  letter-spacing: 0.02em;
+}
+
+/* ---------- 액션 ---------- */
+.cover-actions{
+  margin-top: var(--sp-4);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+.cover-lineage{
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color var(--dur-micro, 120ms) var(--ease-standard),
+              border-color var(--dur-micro, 120ms) var(--ease-standard);
+}
+.cover-lineage:hover,
+.cover-lineage:focus-visible{
+  color: var(--accent);
+  border-color: var(--accent-soft-border);
+}
+/* graph-card-move(기존 "이 논문으로 이동" 버튼)를 재사용해 새 버튼 스타일을 만들지 않는다.
+   실제로는 <a href>라 A11Y-PERF §4.3이 요구한 "진짜 링크"를 그대로 만족한다. */
+.cover-expand{
+  flex: 1 1 auto;
+  min-width: 140px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ---------- 결측 안전망 ---------- */
+.cover-card.cover-missing{
+  padding: var(--sp-4);
+  color: var(--text-tertiary);
+  font-size: var(--fs-body-sm);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .cover-lineage{ transition-duration: 0ms; }
+}

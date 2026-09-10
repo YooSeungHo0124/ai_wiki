@@ -29,8 +29,9 @@ button{font-family:inherit}
 .spacer{flex:1}
 .searchbox{position:relative}
 .searchbox input{width:260px;padding:7px 11px;border-radius:8px;border:1px solid var(--line);
-  background:var(--panel2);color:var(--text);font-size:13px;outline:none}
-.searchbox input:focus{border-color:var(--accent-dim)}
+  background:var(--panel2);color:var(--text);font-size:13px}
+.searchbox input:focus{border-color:var(--accent-dim);outline:none}
+.searchbox input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .results{position:absolute;top:38px;right:0;width:420px;max-width:90vw;max-height:60vh;overflow:auto;
   background:var(--surface-raised);border:1px solid var(--border-strong);border-radius:var(--radius-lg);box-shadow:var(--shadow-3);padding:6px;display:none}
 .results.query-open{max-height:75vh}
@@ -58,9 +59,11 @@ button{font-family:inherit}
 
 /* ---------- field cards ---------- */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;margin-top:18px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-  padding:16px 18px;cursor:pointer;transition:.14s;position:relative;overflow:hidden}
-.card:hover{transform:translateY(-2px);border-color:var(--accent-dim);box-shadow:var(--shadow)}
+.card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 18px;cursor:pointer;color:inherit;text-decoration:none;
+  transition:transform var(--dur-state) var(--ease-standard),box-shadow var(--dur-state) var(--ease-standard),border-color var(--dur-micro) var(--ease-standard);
+  position:relative;overflow:hidden}
+.card:hover{transform:translateY(-2px);border-color:var(--accent-dim);box-shadow:var(--shadow);text-decoration:none}
 .card .bar{position:absolute;left:0;top:0;bottom:0;width:4px}
 .card h3{margin:0 0 2px;font-size:16px}
 .card .en{font-size:11px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
@@ -173,8 +176,9 @@ ul.plain li{margin-bottom:6px}
 .lineage{display:flex;gap:20px;flex-wrap:wrap;margin-top:6px}
 .lineage>div{flex:1;min-width:220px}
 .pill{display:inline-block;margin:3px 5px 3px 0;font-size:12.5px;border:1px solid transparent;
-  background:var(--surface-sunken);border-radius:999px;padding:3px 9px;cursor:pointer;color:var(--text-secondary)}
-.pill:hover{border-color:var(--accent-soft-border);color:var(--accent)}
+  background:var(--surface-sunken);border-radius:999px;padding:3px 9px;cursor:pointer;
+  color:var(--text-secondary);text-decoration:none}
+.pill:hover{border-color:var(--accent-soft-border);color:var(--accent);text-decoration:none}
 .deeplink{display:block;background:linear-gradient(135deg,var(--panel2),var(--panel));
   border:1px solid var(--accent-dim);border-radius:12px;padding:16px 18px;margin:24px 0;color:var(--text)}
 .deeplink:hover{text-decoration:none;border-color:var(--accent)}
@@ -301,6 +305,9 @@ blockquote.quote cite{ display:block; margin-top:7px; font-style:normal; font-si
   max-height:calc(100vh - 84px);overflow-y:auto;padding:18px 12px 30px 20px;font-size:12.5px}
 .nav-groups,.nav-fields,.nav-tracks,.nav-papers{list-style:none;margin:0;padding:0}
 .nav-group{margin-bottom:16px}
+/* 홈 전용 lite nav(navTreeHTML의 lite=true) — 분야 21개 링크뿐, 트랙/논문 없음 */
+.nav-field-link{display:block;padding:4px 6px;border-radius:6px;color:var(--text-secondary);font-size:12.5px}
+.nav-field-link:hover{background:var(--surface-sunken);color:var(--accent);text-decoration:none}
 .nav-group-name{font-size:var(--fs-micro);letter-spacing:var(--ls-label);text-transform:uppercase;
   color:var(--text-faint);margin:0 0 6px 2px}
 .nav-tree details{margin:1px 0}
@@ -356,12 +363,55 @@ blockquote.quote cite{ display:block; margin-top:7px; font-style:normal; font-si
 .link-preview .lp-meta{color:var(--text-tertiary);font-size:11px;margin-bottom:7px}
 .link-preview .lp-tldr{color:var(--text-secondary);line-height:1.55}
 
-/* 분야 묶음 머리말 (기반 / 모달리티·응용 / 가로지르는 관심사) */
-.group-head{ margin:30px 0 12px; padding-bottom:9px;
-  border-bottom:1px solid var(--border-soft, var(--line-soft,#212a39)); }
-.group-head h3{ margin:0 0 4px; font-size:15px; letter-spacing:-.01em;
-  color:var(--text,#e3e9f3); }
-.group-head p{ margin:0; font-size:13px; line-height:1.6;
-  color:var(--text-muted, var(--muted,#7f8da3)); max-width:760px; }
-.group-head .group-n{ display:inline-block; margin-top:6px; font-size:11.5px;
-  font-family:"JetBrains Mono",monospace; color:var(--text-faint, var(--muted,#7f8da3)); }
+/* ---------- 홈 개편 (HOME-IA.md · LIBRARY-CONCEPT.md §7 · SHELF-SPEC.md) ---------- */
+
+/* 모바일에서만 보이는 nav 토글 자리 — 넓은 화면에선 내용 없이 접힘(.nav-toggle
+   자체가 1100px 이상에서 display:none이므로 이 줄은 자동으로 0높이가 된다) */
+.home-nav-row{display:flex;justify-content:flex-end}
+.home-nav-row:empty{display:none}
+
+/* 개인화 스트립 — 이어보기(재방문자) 또는 입문 코스(첫 방문자), + 성장 중 링크 */
+.pstrip{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin:22px 0 6px}
+@media(max-width:900px){.pstrip{grid-template-columns:1fr}}
+.pstrip-block{padding:13px 15px;border-radius:var(--radius-md);
+  background:var(--surface);border:1px solid var(--border-subtle)}
+.pstrip-block h4{margin:0 0 9px;font-size:var(--fs-micro);letter-spacing:var(--ls-label);
+  text-transform:uppercase;color:var(--text-tertiary);font-weight:600}
+.course-pills{display:flex;flex-wrap:wrap;align-items:center;gap:4px 2px}
+@media(max-width:600px){.course-pills{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}}
+.course-pills-lg{margin-top:18px;font-size:14px}
+.course-arrow{color:var(--text-tertiary);padding:0 2px;flex:0 0 auto}
+.course-pill{display:inline-flex;align-items:center;gap:5px;flex:0 0 auto;
+  padding:5px 11px;border-radius:999px;border:1px solid var(--border-strong);
+  background:var(--surface-sunken);color:var(--text-secondary);font-size:12.5px;white-space:nowrap;
+  transition:border-color var(--dur-micro) var(--ease-standard),color var(--dur-micro) var(--ease-standard)}
+.course-pill:hover{border-color:var(--accent-soft-border);color:var(--accent);text-decoration:none}
+.course-pill.done{color:var(--accent);border-color:var(--accent-soft-border)}
+.course-check{font-size:11px}
+.course-mini{display:inline-block;margin-top:2px;font-size:12.5px;color:var(--text-tertiary)}
+
+/* 책장 섹션 헤더 + 그룹 접기 */
+.shelf-head{margin:34px 0 4px}
+.shelf-head h2{margin:0 0 6px;font-size:var(--fs-h2);letter-spacing:var(--ls-heading)}
+.shelf-head p{margin:0;font-size:13.5px;color:var(--text-secondary);max-width:760px}
+.shelf-transition{margin:26px 0;padding-top:16px;border-top:1px solid var(--border-subtle);
+  font-size:13.5px;color:var(--text-secondary)}
+
+/* shelf.js가 그리는 book-shelf(W.shelf())는 자기 그룹/분야 헤더에 이름·권수만
+   넣는다 — HOME-IA/LIBRARY-BRIEF가 원한 "분야 한 줄 소개"는 렌더 직후 이
+   문장을 주입해 덧붙인다(shelf.js 파일은 건드리지 않는다). */
+.shelf-group-desc{margin:2px 0 0;font-size:13px;line-height:1.6;
+  color:var(--text-secondary);max-width:760px}
+.shelf-block-blurb{margin:2px 0 0;font-size:12.5px;line-height:1.5;color:var(--text-secondary)}
+
+/* 표지 카드 패널 — SHELF-SPEC §2: 뷰포트 하단 고정, 데스크톱 380~420px,
+   좁은 화면 전체 폭. 카드 내용(.cover-card)은 cover.css가, 패널 위치는
+   통합 담당인 여기서 정한다. */
+.cover-panel{position:fixed;right:20px;bottom:20px;width:400px;max-width:92vw;z-index:60}
+.cover-panel[hidden]{display:none}
+@media(max-width:700px){.cover-panel{left:10px;right:10px;bottom:10px;width:auto}}
+
+/* 계보 그래프 — 이제 책장 바로 다음, 홈의 핵심 섹션(브리프 §5) */
+.lineage-main{margin-top:8px}
+.lineage-main h2{margin:0 0 12px;font-size:var(--fs-h2);letter-spacing:var(--ls-heading)}
+details.lineage-collapse{margin-top:0}

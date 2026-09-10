@@ -9,9 +9,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="vendor/katex/katex.min.css">
-<link rel="stylesheet" href="css/tokens.css?v=8">
-<link rel="stylesheet" href="css/wiki.css?v=8">
-<link rel="stylesheet" href="css/diagram.css?v=8">
+<link rel="stylesheet" href="css/tokens.css?v=9">
+<link rel="stylesheet" href="css/wiki.css?v=9">
+<link rel="stylesheet" href="css/diagram.css?v=9">
+<link rel="stylesheet" href="css/shelf.css?v=9">
+<!-- cover.css는 표지 카드를 처음 열 때 js/wiki/app.js의 ensureCover()가 동적으로
+     붙인다 — cover.js가 로드되자마자 content/meta.json(178KB)을 즉시 fetch하므로
+     홈 초기 전송 예산(500KB, A11Y-PERF.md §2.1)을 지키려면 상시 로드하지 않는다. -->
 </head>
 <body>
 
@@ -33,12 +37,18 @@
 
 <main id="app"></main>
 
-<script src="vendor/katex/katex.min.js"></script>
-<script>window.WIKI={V:8};</script>
-<script src="content/fields.js?v=8"></script>
-<script src="js/wiki/core.js?v=8"></script>
-<script src="js/wiki/diagram.js?v=8"></script>
-<script src="js/wiki/graph.js?v=8"></script>
-<script src="js/wiki/app.js?v=8"></script>
+<!-- KaTeX(275KB)는 홈에서 쓸 일이 없다 — 논문 페이지 진입 시 js/wiki/app.js의
+     ensureKatex()가 필요할 때만 동적으로 붙인다(A11Y-PERF.md 감사 지적 대응).
+     여기서 <script> 태그로 즉시 내려받지 않는다. -->
+<script>window.WIKI={V:9};</script>
+<script src="content/fields.js?v=9"></script>
+<script src="js/wiki/core.js?v=9"></script>
+<script src="js/wiki/diagram.js?v=9"></script>
+<script src="js/wiki/graph.js?v=9"></script>
+<!-- 책장은 홈 첫 렌더에 필요하므로 동기 로드. js/wiki/app.js는 그래도 W.shelf/
+     W.wireShelf가 없는 경우(로드 실패 등)에도 깨지지 않게 방어적으로 호출한다. -->
+<script src="js/wiki/shelf.js?v=9"></script>
+<!-- cover.js는 표지 카드를 처음 열 때만 동적으로 붙인다(ensureCover(), app.js). -->
+<script src="js/wiki/app.js?v=9"></script>
 </body>
 </html>

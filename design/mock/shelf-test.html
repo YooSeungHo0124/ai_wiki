@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>shelf.js 테스트 — 446편 전수 렌더</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/wiki.css">
+<link rel="stylesheet" href="../../css/shelf.css">
+<style>
+  /* 이 테스트 페이지 전용 — shelf.css/tokens.css 가 아직 안 가진 토큰에 대한
+     로컬 폴백만 정의한다(다른 에이전트가 tokens.css에 추가 중인 것과 이름을
+     맞춰뒀다: --dur-*, --ease-*, --fs-spine*, --spine-*, --shelf-*). 이미
+     tokens.css에 정의돼 있다면 이 :root 블록은 아무 효과가 없다(나중 선언이
+     이긴다 — 이 <style>이 shelf.css보다 뒤에 있어 폴백으로만 작동). */
+  :root{
+    --dur-micro: var(--duration-fast, 120ms);
+    --dur-state: var(--duration-base, 180ms);
+    --dur-layout: 260ms;
+    --ease-standard: var(--ease-standard, cubic-bezier(.2,.7,.3,1));
+    --ease-decel: cubic-bezier(0,0,.2,1);
+    --fs-spine: 13px;
+    --fs-spine-meta: 10.5px;
+    --spine-radius: 2px;
+    --spine-gap: 2px;
+    --spine-band-h: 22px;
+    --shelf-group-gap: var(--sp-16, 64px);
+    --shelf-dim-opacity: 0.28;
+    --shelf-hover-lift: 3px;
+  }
+  body{ background:var(--bg,var(--surface)); color:var(--text-dim,var(--text-primary)); margin:0; padding:24px; font-family:var(--font-kr); }
+  #perf{ position:sticky; top:0; z-index:50; background:var(--panel,var(--surface-raised)); border:1px solid var(--line,var(--border-strong)); padding:8px 12px; margin-bottom:16px; font-family:var(--font-mono); font-size:12px; white-space:pre-wrap; }
+  #toolbar{ display:flex; gap:8px; margin-bottom:16px; }
+  #toolbar button{ font-family:var(--font-kr); padding:6px 12px; cursor:pointer; }
+</style>
+</head>
+<body>
+
+<div id="perf">측정 중…</div>
+<div id="toolbar">
+  <button id="btnField">분야순(기본)</button>
+  <button id="btnDecade">연대순(전환)</button>
+  <button id="btnTheme">라이트/다크 전환</button>
+</div>
+<div id="root"></div>
+
+<script>window.WIKI={V:1};</script>
+<script src="../../content/fields.js"></script>
+<script src="../../js/wiki/core.js"></script>
+<script src="../../js/wiki/shelf.js"></script>
+<script>
+(function(){
+  var root=document.getElementById('root');
+  var perf=document.getElementById('perf');
+  var meta=null, axis='field';
+
+  function report(extra){
+    var nodes=root.querySelectorAll('*').length;
+    perf.textContent =
+      '논문 수: '+WIKI.INDEX.length+' / DOM 노드 수(root 이하): '+nodes+
+      (extra?('\n'+extra):'');
+  }
+
+  function renderOnce(){
+    var t0=performance.now();
+    var html = WIKI.shelf({ axis:axis, meta: meta||{} });
+    var t1=performance.now();
+    root.innerHTML = html;
+    var t2=performance.now();
+    WIKI.wireShelf(root.querySelector('.shelf'));
+    var t3=performance.now();
+    report(
+      'W.shelf() 문자열 생성: '+(t1-t0).toFixed(1)+'ms\n'+
+      'innerHTML 대입(파싱+레이아웃 트리거): '+(t2-t1).toFixed(1)+'ms\n'+
+      'wireShelf() 배선: '+(t3-t2).toFixed(1)+'ms\n'+
+      '총합: '+(t3-t0).toFixed(1)+'ms'
+    );
+    console.log('[shelf-test] render total', (t3-t0).toFixed(1), 'ms, nodes', root.querySelectorAll('*').length);
+  }
+
+  fetch('../../content/meta.json').then(function(r){return r.json();}).then(function(m){
+    meta=m;
+    renderOnce();
+  }).catch(function(){
+    console.warn('meta.json 로드 실패 — 저자 없이 렌더');
+    renderOnce();
+  });
+
+  document.getElementById('btnField').onclick=function(){ axis='field'; renderOnce(); };
+  document.getElementById('btnDecade').onclick=function(){ axis='decade'; renderOnce(); };
+  document.getElementById('btnTheme').onclick=function(){
+    var cur=document.documentElement.getAttribute('data-theme');
+    document.documentElement.setAttribute('data-theme', cur==='dark'?'light':'dark');
+  };
+
+  window.addEventListener('error', function(e){
+    console.error('[shelf-test] window error', e.message, e.filename, e.lineno);
+  });
+})();
+</script>
+</body>
+</html>

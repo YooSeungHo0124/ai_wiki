@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 사이트 루트에서 서빙된다는 가정(content/covers/<slug>.webp 등 core.js와 동일한
+     루트-상대 경로)을 이 목업에서도 그대로 재현하려고 <base>로 문서 기준 경로를 루트로 맞춘다.
+     실제 프로덕션에서는 index.html이 루트에 있으므로 <base> 없이도 똑같이 동작한다. -->
+<base href="/">
+<title>표지 카드 검증 목업 — cover.js</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/wiki.css">
+<link rel="stylesheet" href="../../css/cover.css">
+<style>
+  body{font-family:var(--font-kr);background:var(--surface-sunken);margin:0;padding:24px}
+  .toolbar{display:flex;gap:12px;align-items:center;margin-bottom:20px}
+  .toolbar button{padding:8px 14px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface);color:var(--text-primary);cursor:pointer;font:inherit}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:24px;align-items:start}
+  .case{background:var(--surface);border:1px dashed var(--border-strong);border-radius:12px;padding:14px}
+  .case h2{font-size:13px;margin:0 0 10px;color:var(--text-tertiary);font-family:var(--font-mono);text-transform:none}
+  .console-log{white-space:pre-wrap;background:var(--surface);border:1px solid var(--border-strong);border-radius:8px;padding:12px;font-family:var(--font-mono);font-size:12px;margin-top:24px;color:var(--text-primary)}
+  .console-log.ok{color:#1a7f4b}
+  .console-log.err{color:#c0392b}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button id="themeBtn" type="button">다크/라이트 전환</button>
+  <span id="themeLabel" style="font-family:var(--font-mono);font-size:12px;color:var(--text-tertiary)"></span>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="console-log" id="log">콘솔 에러 감시 중…</div>
+
+<script src="../../content/fields.js"></script>
+<script src="../../js/wiki/core.js"></script>
+<script src="../../js/wiki/cover.js"></script>
+<script>
+  var errCount = 0;
+  window.addEventListener('error', function(e){
+    errCount++;
+    document.getElementById('log').textContent = '콘솔 에러 ' + errCount + '건: ' + e.message;
+    document.getElementById('log').className = 'console-log err';
+  });
+
+  var themeBtn = document.getElementById('themeBtn');
+  var themeLabel = document.getElementById('themeLabel');
+  function syncLabel(){ themeLabel.textContent = '현재: ' + document.documentElement.getAttribute('data-theme'); }
+  themeBtn.addEventListener('click', function(){
+    var cur = document.documentElement.getAttribute('data-theme');
+    document.documentElement.setAttribute('data-theme', cur==='dark'?'light':'dark');
+    syncLabel();
+  });
+  syncLabel();
+
+  /* ---- 필수 검증 케이스 (작업 지시 원문 그대로) ----
+   * 1. 표지 있는 논문            -> transformer
+   * 2. 표지 없는 논문(perceptron) -> perceptron (저자 있음 — 대체 표지에 저자까지 나오는지 확인)
+   * 3. 저자 없는 논문             -> sae (meta.json에 항목 자체가 없음, 표지도 없음 — 이중 결측)
+   * 4. 저자가 조직명인 논문(gemini) -> gemini (1351명, 첫 저자가 "Gemini Team")
+   * 5. 저자가 아주 많은 논문(alphafold) -> alphafold (34명, 평범한 개인 이름들)
+   * 6. 한글 제목이 긴 논문         -> foundation-models ("파운데이션 모델 보고서" 계열, 실측 최장)
+   * 추가로 조직명+저자 특히 많은 사례(gpt4, open-x), 슬래시 섞인 제목(vllm),
+   * 한글/영문 혼합 제목(deeper-self-attention)도 같이 렌더링해 회귀를 넓힌다.
+   */
+  var CASES = [
+    ['transformer', '표지 있음 · 저자 8명 (기준 케이스)'],
+    ['perceptron', '표지 없음(_missing.json) · 저자 1명 있음 — 대체 표지에 저자/연도까지 나와야 함'],
+    ['sae', '표지 없음 + meta.json 항목 자체 없음 — 저자 줄이 DOM에서 통째로 빠져야 함'],
+    ['gemini', '저자 1351명, 1저자가 조직명("Gemini Team") — "Gemini Team (외 1350인 공동연구)"'],
+    ['gpt4', '저자 281명, 1저자 "OpenAI"(공백 없는 단일 토큰 조직명)'],
+    ['open-x', '저자 294명, 1저자가 "Open X-Embodiment Collaboration"(3토큰+Collaboration)'],
+    ['alphafold', '저자 34명, 평범한 개인 이름 — 성 3인 + "외 31인" 규칙 확인'],
+    ['foundation-models', '한글 제목이 긴 논문 — 2줄 말줄임 확인'],
+    ['deeper-self-attention', '한글+라틴 혼합 제목("깊은 self-attention 문자 LM")'],
+    ['vllm', '슬래시 포함 제목("vLLM / PagedAttention")']
+  ];
+
+  function renderAll(){
+    var grid = document.getElementById('grid');
+    grid.innerHTML = '';
+    CASES.forEach(function(pair){
+      var slug = pair[0], note = pair[1];
+      var wrap = document.createElement('div');
+      wrap.className = 'case';
+      wrap.innerHTML = '<h2>' + slug + ' — ' + note + '</h2>';
+      var host = document.createElement('div');
+      host.innerHTML = WIKI.cover(slug);
+      wrap.appendChild(host.firstElementChild);
+      grid.appendChild(wrap);
+    });
+  }
+
+  /* 처음엔 meta.json/covers 인덱스 로딩 전이라도 폴백으로 깨지지 않는지 보기 위해
+     즉시 1회 렌더 후, 데이터 로드가 끝나면 저자/치수까지 채워 다시 렌더한다. */
+  renderAll();
+  Promise.all([WIKI.loadCoverMeta(), WIKI.loadCoverIndex(), WIKI.loadCoverMissing()]).then(function(){
+    renderAll();
+    setTimeout(function(){
+      if(errCount===0){
+        document.getElementById('log').textContent = '콘솔 에러 0건 — 정상.';
+        document.getElementById('log').className = 'console-log ok';
+      }
+    }, 300);
+  });
+
+  /* wireCover 스모크 테스트: 패널 하나를 만들어 열고/×로 닫고/Esc로 닫는 동작을 확인 */
+  var panel = document.createElement('div');
+  panel.id = 'coverPanel';
+  panel.hidden = true;
+  panel.style.cssText = 'position:fixed;left:24px;bottom:24px;width:400px;z-index:50';
+  document.body.appendChild(panel);
+  var ctl = WIKI.wireCover(panel, {
+    onOpen: function(slug){ console.log('[wireCover] open', slug); },
+    onClose: function(slug){ console.log('[wireCover] close', slug); }
+  });
+  var openBtn = document.createElement('button');
+  openBtn.type = 'button';
+  openBtn.textContent = 'wireCover 스모크: transformer 패널 열기';
+  openBtn.style.marginLeft = '12px';
+  openBtn.addEventListener('click', function(){ ctl.open('transformer', openBtn); });
+  document.querySelector('.toolbar').appendChild(openBtn);
+</script>
+</body>
+</html>

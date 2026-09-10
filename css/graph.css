@@ -1,0 +1,63 @@
+/* ===== 계보 그래프 — 시맨틱 줌 · 레인 접기 · 연도 압축 밴드 · 허브 강조 =====
+   design/GRAPH-REFERENCES.md 권고 2·3·4. js/wiki/graph.js(W.graphFull)가 SVG 루트에
+   붙이는 z-far/z-mid/z-near 클래스와, 레인 접기/압축 밴드가 추가하는 클래스를 다룬다.
+   색·굵기·불투명도는 전부 css/tokens.css 기존 토큰 재사용 — 새 색 토큰을 만들지 않는다.
+   전체 화면 셸(css 로드)은 이 파일을 <link>로 추가해야 한다 — graph.js/CSS는 이 파일이
+   로드되지 않아도(레거시 W.graph 경로) 아무 클래스도 매치되지 않아 안전하다. */
+
+/* ---- 시맨틱 줌 3단계 ----------------------------------------------------
+   경계값(55% / 110%)은 실측 폰트 크기 기준: 노드 제목 11.5px, 부제(.yr) 10px
+   (css/wiki.css:105-106). 6px 아래는 판독 불가(§0.2 실측)이므로
+   far 상한 = 6/11.5 ≈ 0.55. mid/near 경계는 "부제까지 보일 만큼 여유가
+   있는가"를 기준으로 110%로 잡았다(부제 10px가 100%에서도 이미 촘촘해
+   50개 안팎이 겹치는 밀집 레인에서는 110% 이상에서만 다시 노출한다). */
+
+/* mid: 라벨은 제목만, 부제(연도·원제)는 숨긴다 — 정보량은 줄이되 간선은 유지 */
+.z-mid .node .yr{ display:none }
+
+/* far: 허브(차수>=8, 32편) 외에는 라벨 자체를 지우고 작은 상자로 줄인다.
+   위치는 그대로(원래 126x40 박스의 좌상단 기준) 두고 크기만 CSS로 줄인다 —
+   DOM을 다시 만들지 않아 선택 상태·포커스가 살아있다(권고 2 구현 주의). */
+.z-far .node .yr{ display:none }
+.z-far .node:not(.hub) text{ display:none }
+.z-far .node:not(.hub) rect{ width:9px; height:9px; rx:2 }
+.z-far .node.hub rect{ width:40px; height:18px }
+.z-far .node.hub text{ font-size:9.5px }
+/* far 단계에서는 엣지 797개 전부를 그대로 두되(계보를 지우지 않는다, §4.5) 아주 옅게 —
+   "무관 엣지" dim과 같은 어휘(--graph-dim-edge-opacity)를 재사용한다 */
+.z-far .edge{ opacity:var(--graph-dim-edge-opacity) }
+.z-far .edge.sel-parent,.z-far .edge.sel-child{ opacity:1 } /* 포커스가 있으면 그 경로는 예외적으로 살린다 */
+
+/* near: 기존과 동일(추가 규칙 없음) — 원래 W.graph의 전체 정보 밀도 그대로 */
+
+/* ---- 허브(차수 >= 8) — DESIGN-SYSTEM §5.3 "피인용 상위 굵은 테두리" 토큰 재사용 ---- */
+svg .node.hub rect{ stroke-width:var(--graph-node-border-w-hub) }
+
+/* ---- 연도축 압축 밴드(~2012) — "말 없는 비선형 축"이 되지 않도록 배경으로 명시 ---- */
+svg .year-band{
+  fill:var(--border-subtle); opacity:.4;
+  stroke:var(--graph-axis-label); stroke-width:1; stroke-dasharray:4 3;
+}
+
+/* ---- 레인 접기 ---- */
+svg .lanebg-collapsed{ fill:var(--graph-lane-bg) }
+svg .lane-sum{ fill:var(--muted); font-size:11px }
+svg .lane-spark{ fill:var(--muted); opacity:.55 }
+
+/* 접힌 레인으로 들어가는 엣지는 개별 곡선 대신 짧은 스텁만(권고 3 구현 주의) */
+svg .edge.edge-stub{ stroke-dasharray:2 3 }
+
+/* ---- 장거리 간선(10년 이상, GRAPH-DIAGNOSIS §1.4 — 70개 중 63개가 backprop·LSTM 둘에서 나옴) ----
+   기본값 자체를 옅게 해 "빗자루" 인상을 줄인다. 선택으로 그 경로가 강조되면(§sel-parent/child)
+   다시 또렷해진다 — dim은 "존재감을 지우는" 수준이 아니라 "덜 중요해 보이게"만 한다는
+   GRAPH-INTERACTION.md §1 원칙과 같은 어휘(--graph-dim-edge-opacity)를 재사용한다. */
+svg .edge.edge-long{ opacity:var(--graph-dim-edge-opacity) }
+svg .edge.edge-long.sel-parent,svg .edge.edge-long.sel-child{ opacity:1 }
+
+/* 로컬 그래프의 "+N개 더" 요약 상자 — 클릭 대상이 아니므로 강조색을 쓰지 않는다 */
+svg .node.node-more rect{ fill:none; stroke:var(--graph-axis-label); stroke-dasharray:3 3 }
+svg .node.node-more text{ fill:var(--muted); font-size:11px }
+
+/* ---- 레인 라벨을 버튼처럼 다룰 때(전체 화면 셸이 <g role="button"> 로 감싸는 경우) ---- */
+svg .lane-toggle{ cursor:pointer }
+svg .lane-toggle:focus-visible rect{ stroke:var(--accent); stroke-width:2 }

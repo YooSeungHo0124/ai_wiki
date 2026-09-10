@@ -25,6 +25,18 @@
 "published": "2016-02-04",
 "title": "Asynchronous Methods for Deep Reinforcement Learning"
 },
+"abstractive-rnn": {
+"arxiv": "1602.06023",
+"authors": [
+"Ramesh Nallapati",
+"Bowen Zhou",
+"Cicero Nogueira dos santos",
+"Caglar Gulcehre",
+"Bing Xiang"
+],
+"published": "2016-02-19",
+"title": "Abstractive Text Summarization Using Sequence-to-Sequence RNNs and Beyond"
+},
 "act": {
 "arxiv": "2304.13705",
 "authors": [
@@ -35,6 +47,14 @@
 ],
 "published": "2023-04-23",
 "title": "Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware"
+},
+"adadelta": {
+"arxiv": "1212.5701",
+"authors": [
+"Matthew D. Zeiler"
+],
+"published": "2012-12-22",
+"title": "ADADELTA: An Adaptive Learning Rate Method"
 },
 "adam": {
 "arxiv": "1412.6980",
@@ -68,6 +88,18 @@
 ],
 "published": "2019-02-02",
 "title": "Parameter-Efficient Transfer Learning for NLP"
+},
+"adversarial-triggers": {
+"arxiv": "1908.07125",
+"authors": [
+"Eric Wallace",
+"Shi Feng",
+"Nikhil Kandpal",
+"Matt Gardner",
+"Sameer Singh"
+],
+"published": "2019-08-20",
+"title": "Universal Adversarial Triggers for Attacking and Analyzing NLP"
 },
 "agent-alignment": {
 "arxiv": "2103.14659",
@@ -390,6 +422,16 @@
 ],
 "published": "2017-12-05",
 "title": "Mastering Chess and Shogi by Self-Play with a General Reinforcement Learning Algorithm"
+},
+"amdim": {
+"arxiv": "1906.00910",
+"authors": [
+"Philip Bachman",
+"R Devon Hjelm",
+"William Buchwalter"
+],
+"published": "2019-06-03",
+"title": "Learning Representations by Maximizing Mutual Information Across Views"
 },
 "anli": {
 "arxiv": "1910.14599",
@@ -1146,6 +1188,15 @@
 "published": "2022-06-09",
 "title": "Beyond the Imitation Game: Quantifying and extrapolating the capabilities of language models"
 },
+"bigbigan": {
+"arxiv": "1907.02544",
+"authors": [
+"Jeff Donahue",
+"Karen Simonyan"
+],
+"published": "2019-07-04",
+"title": "Large Scale Adversarial Representation Learning"
+},
 "biggan": {
 "arxiv": "1809.11096",
 "authors": [
@@ -1155,6 +1206,18 @@
 ],
 "published": "2018-09-28",
 "title": "Large Scale GAN Training for High Fidelity Natural Image Synthesis"
+},
+"billion-scale-ssl": {
+"arxiv": "1905.00546",
+"authors": [
+"I. Zeki Yalniz",
+"Hervé Jégou",
+"Kan Chen",
+"Manohar Paluri",
+"Dhruv Mahajan"
+],
+"published": "2019-05-02",
+"title": "Billion-scale semi-supervised learning for image classification"
 },
 "billion-word": {
 "arxiv": "1312.3005",
@@ -1745,6 +1808,17 @@
 "published": "2021-05-30",
 "title": "Cascaded Diffusion Models for High Fidelity Image Generation"
 },
+"cbt": {
+"arxiv": "1511.02301",
+"authors": [
+"Felix Hill",
+"Antoine Bordes",
+"Sumit Chopra",
+"Jason Weston"
+],
+"published": "2015-11-07",
+"title": "The Goldilocks Principle: Reading Children's Books with Explicit Memory Representations"
+},
 "cfg": {
 "arxiv": "2207.12598",
 "authors": [
@@ -1809,6 +1883,17 @@
 "published": "2022-03-29",
 "title": "Training Compute-Optimal Large Language Models"
 },
+"cifar-10-v2": {
+"arxiv": "1806.00451",
+"authors": [
+"Benjamin Recht",
+"Rebecca Roelofs",
+"Ludwig Schmidt",
+"Vaishaal Shankar"
+],
+"published": "2018-06-01",
+"title": "Do CIFAR-10 Classifiers Generalize to CIFAR-10?"
+},
 "clip": {
 "arxiv": "2103.00020",
 "authors": [
@@ -1827,6 +1912,34 @@
 ],
 "published": "2021-02-26",
 "title": "Learning Transferable Visual Models From Natural Language Supervision"
+},
+"closed-book-qa": {
+"arxiv": "2002.08910",
+"authors": [
+"Adam Roberts",
+"Colin Raffel",
+"Noam Shazeer"
+],
+"published": "2020-02-10",
+"title": "How Much Knowledge Can You Pack Into the Parameters of a Language Model?"
+},
+"cm3": {
+"arxiv": "2201.07520",
+"authors": [
+"Armen Aghajanyan",
+"Bernie Huang",
+"Candace Ross",
+"Vladimir Karpukhin",
+"Hu Xu",
+"Naman Goyal",
+"Dmytro Okhonko",
+"Mandar Joshi",
+"Gargi Ghosh",
+"Mike Lewis",
+"Luke Zettlemoyer"
+],
+"published": "2022-01-19",
+"title": "CM3: A Causal Masked Multimodal Model of the Internet"
 },
 "cmc": {
 "arxiv": "1906.05849",
@@ -2101,6 +2214,18 @@
 "published": "2023-02-10",
 "title": "Adding Conditional Control to Text-to-Image Diffusion Models"
 },
+"convirt": {
+"arxiv": "2010.00747",
+"authors": [
+"Yuhao Zhang",
+"Hang Jiang",
+"Yasuhide Miura",
+"Christopher D. Manning",
+"Curtis P. Langlotz"
+],
+"published": "2020-10-02",
+"title": "Contrastive Learning of Medical Visual Representations from Paired Images and Text"
+},
 "convnext": {
 "arxiv": "2201.03545",
 "authors": [
@@ -2330,6 +2455,17 @@
 "published": "2018-05-02",
 "title": "AI safety via debate"
 },
+"deberta": {
+"arxiv": "2006.03654",
+"authors": [
+"Pengcheng He",
+"Xiaodong Liu",
+"Jianfeng Gao",
+"Weizhu Chen"
+],
+"published": "2020-06-05",
+"title": "DeBERTa: Decoding-enhanced BERT with Disentangled Attention"
+},
 "decanlp": {
 "arxiv": "1806.08730",
 "authors": [
@@ -2404,6 +2540,34 @@
 ],
 "published": "2016-06-02",
 "title": "DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs"
+},
+"deepmind-lab": {
+"arxiv": "1612.03801",
+"authors": [
+"Charles Beattie",
+"Joel Z. Leibo",
+"Denis Teplyashin",
+"Tom Ward",
+"Marcus Wainwright",
+"Heinrich Küttler",
+"Andrew Lefrancq",
+"Simon Green",
+"Víctor Valdés",
+"Amir Sadik",
+"Julian Schrittwieser",
+"Keith Anderson",
+"Sarah York",
+"Max Cant",
+"Adam Cain",
+"Adrian Bolton",
+"Stephen Gaffney",
+"Helen King",
+"Demis Hassabis",
+"Shane Legg",
+"Stig Petersen"
+],
+"published": "2016-12-12",
+"title": "DeepMind Lab"
 },
 "deepseek-coder": {
 "arxiv": "2401.14196",
@@ -3350,6 +3514,23 @@
 ],
 "published": "2019-06-05",
 "title": "Energy and Policy Considerations for Deep Learning in NLP"
+},
+"ernie": {
+"arxiv": "1904.09223",
+"authors": [
+"Yu Sun",
+"Shuohuan Wang",
+"Yukun Li",
+"Shikun Feng",
+"Xuyi Chen",
+"Han Zhang",
+"Xin Tian",
+"Danxiang Zhu",
+"Hao Tian",
+"Hua Wu"
+],
+"published": "2019-04-19",
+"title": "ERNIE: Enhanced Representation through Knowledge Integration"
 },
 "esmfold": {
 "arxiv": null,
@@ -5319,6 +5500,18 @@
 "published": "2023-12-19",
 "title": "Gemini: A Family of Highly Capable Multimodal Models"
 },
+"gender-bias-amplification": {
+"arxiv": "1707.09457",
+"authors": [
+"Jieyu Zhao",
+"Tianlu Wang",
+"Mark Yatskar",
+"Vicente Ordonez",
+"Kai-Wei Chang"
+],
+"published": "2017-07-29",
+"title": "Men Also Like Shopping: Reducing Gender Bias Amplification using Corpus-level Constraints"
+},
 "general-assistant": {
 "arxiv": "2112.00861",
 "authors": [
@@ -5397,6 +5590,40 @@
 ],
 "published": "2018-10-01",
 "title": "How Powerful are Graph Neural Networks?"
+},
+"glam": {
+"arxiv": "2112.06905",
+"authors": [
+"Nan Du",
+"Yanping Huang",
+"Andrew M. Dai",
+"Simon Tong",
+"Dmitry Lepikhin",
+"Yuanzhong Xu",
+"Maxim Krikun",
+"Yanqi Zhou",
+"Adams Wei Yu",
+"Orhan Firat",
+"Barret Zoph",
+"Liam Fedus",
+"Maarten Bosma",
+"Zongwei Zhou",
+"Tao Wang",
+"Yu Emma Wang",
+"Kellie Webster",
+"Marie Pellat",
+"Kevin Robinson",
+"Kathleen Meier-Hellstern",
+"Toju Duke",
+"Lucas Dixon",
+"Kun Zhang",
+"Quoc V Le",
+"Yonghui Wu",
+"Zhifeng Chen",
+"Claire Cui"
+],
+"published": "2021-12-13",
+"title": "GLaM: Efficient Scaling of Language Models with Mixture-of-Experts"
 },
 "glide": {
 "arxiv": "2112.10741",
@@ -5521,6 +5748,19 @@
 "published": "2023-11-29",
 "title": "Scaling deep learning for materials discovery",
 "venue": "Nature"
+},
+"good-in-context": {
+"arxiv": "2101.06804",
+"authors": [
+"Jiachang Liu",
+"Dinghan Shen",
+"Yizhe Zhang",
+"Bill Dolan",
+"Lawrence Carin",
+"Weizhu Chen"
+],
+"published": "2021-01-17",
+"title": "What Makes Good In-Context Examples for GPT-$3$?"
 },
 "googlenet": {
 "arxiv": "1409.4842",
@@ -6241,6 +6481,16 @@
 "published": "2021-05-10",
 "title": "GSPMD: General and Scalable Parallelization for ML Computation Graphs"
 },
+"gumbel-softmax": {
+"arxiv": "1611.01144",
+"authors": [
+"Eric Jang",
+"Shixiang Gu",
+"Ben Poole"
+],
+"published": "2016-11-03",
+"title": "Categorical Reparameterization with Gumbel-Softmax"
+},
 "hellaswag": {
 "arxiv": "1905.07830",
 "authors": [
@@ -6598,6 +6848,30 @@
 ],
 "published": "2017-03-02",
 "title": "Opening the Black Box of Deep Neural Networks via Information"
+},
+"inner-monologue": {
+"arxiv": "2207.05608",
+"authors": [
+"Wenlong Huang",
+"Fei Xia",
+"Ted Xiao",
+"Harris Chan",
+"Jacky Liang",
+"Pete Florence",
+"Andy Zeng",
+"Jonathan Tompson",
+"Igor Mordatch",
+"Yevgen Chebotar",
+"Pierre Sermanet",
+"Noah Brown",
+"Tomas Jackson",
+"Linda Luu",
+"Sergey Levine",
+"Karol Hausman",
+"Brian Ichter"
+],
+"published": "2022-07-12",
+"title": "Inner Monologue: Embodied Reasoning through Planning with Language Models"
 },
 "instance-norm": {
 "arxiv": "1607.08022",
@@ -7200,6 +7474,39 @@
 "published": "2022-09-29",
 "title": "Make-A-Video: Text-to-Video Generation without Text-Video Data"
 },
+"malicious-use": {
+"arxiv": "1802.07228",
+"authors": [
+"Miles Brundage",
+"Shahar Avin",
+"Jack Clark",
+"Helen Toner",
+"Peter Eckersley",
+"Ben Garfinkel",
+"Allan Dafoe",
+"Paul Scharre",
+"Thomas Zeitzoff",
+"Bobby Filar",
+"Hyrum Anderson",
+"Heather Roff",
+"Gregory C. Allen",
+"Jacob Steinhardt",
+"Carrick Flynn",
+"Seán Ó hÉigeartaigh",
+"SJ Beard",
+"Haydn Belfield",
+"Sebastian Farquhar",
+"Clare Lyle",
+"Rebecca Crootof",
+"Owain Evans",
+"Michael Page",
+"Joanna Bryson",
+"Roman Yampolskiy",
+"Dario Amodei"
+],
+"published": "2018-02-20",
+"title": "The Malicious Use of Artificial Intelligence: Forecasting, Prevention, and Mitigation"
+},
 "mamba": {
 "arxiv": "2312.00752",
 "authors": [
@@ -7733,6 +8040,30 @@
 "published": "2020-03-19",
 "title": "NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis"
 },
+"neural-summarization": {
+"arxiv": "1509.00685",
+"authors": [
+"Alexander M. Rush",
+"Sumit Chopra",
+"Jason Weston"
+],
+"published": "2015-09-02",
+"title": "A Neural Attention Model for Abstractive Sentence Summarization"
+},
+"newsqa": {
+"arxiv": "1611.09830",
+"authors": [
+"Adam Trischler",
+"Tong Wang",
+"Xingdi Yuan",
+"Justin Harris",
+"Alessandro Sordoni",
+"Philip Bachman",
+"Kaheer Suleman"
+],
+"published": "2016-11-29",
+"title": "NewsQA: A Machine Comprehension Dataset"
+},
 "nice": {
 "arxiv": "1410.8516",
 "authors": [
@@ -7763,6 +8094,17 @@
 ],
 "published": "2016-07-03",
 "title": "node2vec: Scalable Feature Learning for Networks"
+},
+"noisy-student": {
+"arxiv": "1911.04252",
+"authors": [
+"Qizhe Xie",
+"Minh-Thang Luong",
+"Eduard Hovy",
+"Quoc V. Le"
+],
+"published": "2019-11-11",
+"title": "Self-training with Noisy Student improves ImageNet classification"
 },
 "ntk": {
 "arxiv": "1806.07572",
@@ -8236,6 +8578,31 @@
 "published": "2022-05-02",
 "title": "OPT: Open Pre-trained Transformer Language Models"
 },
+"opt-iml": {
+"arxiv": "2212.12017",
+"authors": [
+"Srinivasan Iyer",
+"Xi Victoria Lin",
+"Ramakanth Pasunuru",
+"Todor Mihaylov",
+"Daniel Simig",
+"Ping Yu",
+"Kurt Shuster",
+"Tianlu Wang",
+"Qing Liu",
+"Punit Singh Koura",
+"Xian Li",
+"Brian O'Horo",
+"Gabriel Pereyra",
+"Jeff Wang",
+"Christopher Dewan",
+"Asli Celikyilmaz",
+"Luke Zettlemoyer",
+"Ves Stoyanov"
+],
+"published": "2022-12-22",
+"title": "OPT-IML: Scaling Language Model Instruction Meta Learning through the Lens of Generalization"
+},
 "pal": {
 "arxiv": "2211.10435",
 "authors": [
@@ -8525,6 +8892,15 @@
 "published": "2023-05-17",
 "title": "PaLM 2 Technical Report"
 },
+"palms": {
+"arxiv": "2106.10328",
+"authors": [
+"Irene Solaiman",
+"Christy Dennison"
+],
+"published": "2021-06-18",
+"title": "Process for Adapting Language Models to Society (PALMS) with Values-Targeted Datasets"
+},
 "pangu-alpha": {
 "arxiv": "2104.12369",
 "authors": [
@@ -8782,6 +9158,17 @@
 ],
 "published": "2021-01-01",
 "title": "Prefix-Tuning: Optimizing Continuous Prompts for Generation"
+},
+"progressive-gan": {
+"arxiv": "1710.10196",
+"authors": [
+"Tero Karras",
+"Timo Aila",
+"Samuli Laine",
+"Jaakko Lehtinen"
+],
+"published": "2017-10-27",
+"title": "Progressive Growing of GANs for Improved Quality, Stability, and Variation"
 },
 "prompt-survey": {
 "arxiv": "2107.13586",
@@ -9179,6 +9566,16 @@
 "published": "2023-03-20",
 "title": "Reflexion: Language Agents with Verbal Reinforcement Learning"
 },
+"reformer": {
+"arxiv": "2001.04451",
+"authors": [
+"Nikita Kitaev",
+"Łukasz Kaiser",
+"Anselm Levskaya"
+],
+"published": "2020-01-13",
+"title": "Reformer: The Efficient Transformer"
+},
 "resnet": {
 "arxiv": "1512.03385",
 "authors": [
@@ -9336,6 +9733,16 @@
 ],
 "published": "2021-04-20",
 "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding"
+},
+"rotnet": {
+"arxiv": "1803.07728",
+"authors": [
+"Spyros Gidaris",
+"Praveer Singh",
+"Nikos Komodakis"
+],
+"published": "2018-03-21",
+"title": "Unsupervised Representation Learning by Predicting Image Rotations"
 },
 "rt1": {
 "arxiv": "2212.06817",
@@ -9670,6 +10077,23 @@
 "published": "2022-04-04",
 "title": "Do As I Can, Not As I Say: Grounding Language in Robotic Affordances"
 },
+"scale-efficiently": {
+"arxiv": "2109.10686",
+"authors": [
+"Yi Tay",
+"Mostafa Dehghani",
+"Jinfeng Rao",
+"William Fedus",
+"Samira Abnar",
+"Hyung Won Chung",
+"Sharan Narang",
+"Dani Yogatama",
+"Ashish Vaswani",
+"Donald Metzler"
+],
+"published": "2021-09-22",
+"title": "Scale Efficiently: Insights from Pre-training and Fine-tuning Transformers"
+},
 "scaling-laws": {
 "arxiv": "2001.08361",
 "authors": [
@@ -9854,6 +10278,31 @@
 ],
 "published": "2018-08-19",
 "title": "SentencePiece: A simple and language independent subword tokenizer and detokenizer for Neural Text Processing"
+},
+"senteval": {
+"arxiv": "1803.05449",
+"authors": [
+"Alexis Conneau",
+"Douwe Kiela"
+],
+"published": "2018-03-14",
+"title": "SentEval: An Evaluation Toolkit for Universal Sentence Representations"
+},
+"sentiment-bias": {
+"arxiv": "1911.03064",
+"authors": [
+"Po-Sen Huang",
+"Huan Zhang",
+"Ray Jiang",
+"Robert Stanforth",
+"Johannes Welbl",
+"Jack Rae",
+"Vishal Maini",
+"Dani Yogatama",
+"Pushmeet Kohli"
+],
+"published": "2019-11-08",
+"title": "Reducing Sentiment Bias in Language Models via Counterfactual Evaluation"
 },
 "sentiment-neuron": {
 "arxiv": "1704.01444",
@@ -10084,6 +10533,47 @@
 "published": "2023-03-22",
 "title": "Sparks of Artificial General Intelligence: Early experiments with GPT-4"
 },
+"sparrow": {
+"arxiv": "2209.14375",
+"authors": [
+"Amelia Glaese",
+"Nat McAleese",
+"Maja Trębacz",
+"John Aslanides",
+"Vlad Firoiu",
+"Timo Ewalds",
+"Maribeth Rauh",
+"Laura Weidinger",
+"Martin Chadwick",
+"Phoebe Thacker",
+"Lucy Campbell-Gillingham",
+"Jonathan Uesato",
+"Po-Sen Huang",
+"Ramona Comanescu",
+"Fan Yang",
+"Abigail See",
+"Sumanth Dathathri",
+"Rory Greig",
+"Charlie Chen",
+"Doug Fritz",
+"Jaume Sanchez Elias",
+"Richard Green",
+"Soňa Mokrá",
+"Nicholas Fernando",
+"Boxi Wu",
+"Rachel Foley",
+"Susannah Young",
+"Iason Gabriel",
+"William Isaac",
+"John Mellor",
+"Demis Hassabis",
+"Koray Kavukcuoglu",
+"Lisa Anne Hendricks",
+"Geoffrey Irving"
+],
+"published": "2022-09-28",
+"title": "Improving alignment of dialogue agents via targeted human judgements"
+},
 "sparse-attn": {
 "arxiv": "2004.05150",
 "authors": [
@@ -10284,6 +10774,16 @@
 "published": "2020-04-20",
 "title": "StereoSet: Measuring stereotypical bias in pretrained language models"
 },
+"stilts": {
+"arxiv": "1811.01088",
+"authors": [
+"Jason Phang",
+"Thibault Févry",
+"Samuel R. Bowman"
+],
+"published": "2018-11-02",
+"title": "Sentence Encoders on STILTs: Supplementary Training on Intermediate Labeled-data Tasks"
+},
 "stochastic-parrots-risk": {
 "arxiv": "2102.02503",
 "authors": [
@@ -10304,6 +10804,18 @@
 ],
 "published": "2013-08-15",
 "title": "Estimating or Propagating Gradients Through Stochastic Neurons for Conditional Computation"
+},
+"styleclip": {
+"arxiv": "2103.17249",
+"authors": [
+"Or Patashnik",
+"Zongze Wu",
+"Eli Shechtman",
+"Daniel Cohen-Or",
+"Dani Lischinski"
+],
+"published": "2021-03-31",
+"title": "StyleCLIP: Text-Driven Manipulation of StyleGAN Imagery"
 },
 "stylegan": {
 "arxiv": "1812.04948",
@@ -10656,6 +11168,17 @@
 "published": "2016-03-14",
 "title": "TensorFlow: Large-Scale Machine Learning on Heterogeneous Distributed Systems"
 },
+"term-freq-reasoning": {
+"arxiv": "2202.07206",
+"authors": [
+"Yasaman Razeghi",
+"Robert L. Logan",
+"Matt Gardner",
+"Sameer Singh"
+],
+"published": "2022-02-15",
+"title": "Impact of Pretraining Term Frequencies on Few-Shot Reasoning"
+},
 "textual-inversion": {
 "arxiv": "2208.01618",
 "authors": [
@@ -10688,6 +11211,15 @@
 ],
 "published": "2020-12-31",
 "title": "The Pile: An 800GB Dataset of Diverse Text for Language Modeling"
+},
+"tied-embeddings": {
+"arxiv": "1608.05859",
+"authors": [
+"Ofir Press",
+"Lior Wolf"
+],
+"published": "2016-08-20",
+"title": "Using the Output Embedding to Improve Language Models"
 },
 "timesformer": {
 "arxiv": "2102.05095",
@@ -10825,6 +11357,18 @@
 "published": "2012-12-03",
 "title": "UCF101: A Dataset of 101 Human Actions Classes From Videos in The Wild"
 },
+"uda": {
+"arxiv": "1904.12848",
+"authors": [
+"Qizhe Xie",
+"Zihang Dai",
+"Eduard Hovy",
+"Minh-Thang Luong",
+"Quoc V. Le"
+],
+"published": "2019-04-29",
+"title": "Unsupervised Data Augmentation for Consistency Training"
+},
 "ul2": {
 "arxiv": "2205.05131",
 "authors": [
@@ -10888,6 +11432,22 @@
 "published": "2015-05-18",
 "title": "U-Net: Convolutional Networks for Biomedical Image Segmentation"
 },
+"unilm": {
+"arxiv": "1905.03197",
+"authors": [
+"Li Dong",
+"Nan Yang",
+"Wenhui Wang",
+"Furu Wei",
+"Xiaodong Liu",
+"Yu Wang",
+"Jianfeng Gao",
+"Ming Zhou",
+"Hsiao-Wuen Hon"
+],
+"published": "2019-05-08",
+"title": "Unified Language Model Pre-training for Natural Language Understanding and Generation"
+},
 "universal-jailbreak": {
 "arxiv": "2307.15043",
 "authors": [
@@ -10912,6 +11472,17 @@
 ],
 "published": "2018-07-10",
 "title": "Universal Transformers"
+},
+"unnatural-instructions": {
+"arxiv": "2212.09689",
+"authors": [
+"Or Honovich",
+"Thomas Scialom",
+"Omer Levy",
+"Timo Schick"
+],
+"published": "2022-12-19",
+"title": "Unnatural Instructions: Tuning Language Models with (Almost) No Human Labor"
 },
 "vae": {
 "arxiv": "1312.6114",
@@ -10999,6 +11570,16 @@
 ],
 "published": "2022-03-23",
 "title": "VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training"
+},
+"visual-semantic-embed": {
+"arxiv": "1411.2539",
+"authors": [
+"Ryan Kiros",
+"Ruslan Salakhutdinov",
+"Richard S. Zemel"
+],
+"published": "2014-11-10",
+"title": "Unifying Visual-Semantic Embeddings with Multimodal Neural Language Models"
 },
 "vit": {
 "arxiv": "2010.11929",

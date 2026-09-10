@@ -574,7 +574,8 @@
     "sparse-transformers",
     "grad-checkpointing",
     "sgdr",
-    "wide-resnet"
+    "wide-resnet",
+    "gpipe"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -677,7 +678,8 @@
     "mobilenet",
     "ssd",
     "senet",
-    "wide-resnet"
+    "wide-resnet",
+    "swish"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -1970,6 +1972,7 @@
     "decoder-only-wiki",
     "transformer-xl",
     "meena",
+    "gpipe",
     "generative-scaling",
     "glu-variants"
    ],
@@ -2153,7 +2156,8 @@
     "prefix-tuning",
     "whisper",
     "audiolm",
-    "sparse-transformers"
+    "sparse-transformers",
+    "realtoxicity"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -2658,6 +2662,7 @@
     "t0",
     "agent-alignment",
     "zero-shot-cot",
+    "realtoxicity",
     "truthfulqa"
    ],
    "diagram": "flow",
@@ -3610,6 +3615,7 @@
     "megatron",
     "grad-checkpointing",
     "mixed-precision",
+    "gpipe",
     "mt-nlg"
    ],
    "diagram": "compare",
@@ -3645,6 +3651,7 @@
    ],
    "in": [
     "zero",
+    "gpipe",
     "gshard",
     "mt-nlg"
    ],
@@ -3795,7 +3802,8 @@
     "flashattention",
     "s4",
     "rwkv",
-    "mamba2"
+    "mamba2",
+    "swish"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -4253,6 +4261,7 @@
     "alphafold3",
     "glide",
     "diffusion-original",
+    "diffusion-beats-gan",
     "cascaded-diffusion",
     "sr3"
    ],
@@ -4326,7 +4335,8 @@
     "ldm",
     "flow-matching",
     "consistency",
-    "diffusion-original"
+    "diffusion-original",
+    "diffusion-beats-gan"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -4371,7 +4381,8 @@
     "controlnet",
     "glide",
     "dalle2",
-    "diffusion-original"
+    "diffusion-original",
+    "diffusion-beats-gan"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -4439,7 +4450,8 @@
     "sdxl",
     "glide",
     "diffusion-original",
-    "laion400m"
+    "laion400m",
+    "diffusion-beats-gan"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -5057,7 +5069,8 @@
     "gato",
     "world-models",
     "rainbow",
-    "dreamer"
+    "dreamer",
+    "dqn-2013"
    ],
    "diagram": "loop",
    "extLinks": 3,
@@ -5087,7 +5100,8 @@
    ],
    "in": [
     "dqn",
-    "sac"
+    "sac",
+    "dqn-2013"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -5119,7 +5133,8 @@
     "dqn",
     "ddpg",
     "ppo",
-    "rlhf-prefs"
+    "rlhf-prefs",
+    "dqn-2013"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -8364,6 +8379,7 @@
     "dolma",
     "fineweb",
     "opt",
+    "realtoxicity",
     "gpt-neox"
    ],
    "diagram": "split",
@@ -8396,7 +8412,8 @@
     "the-pile",
     "data-constrained",
     "dp-sgd",
-    "extracting-training-data"
+    "extracting-training-data",
+    "realtoxicity"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -8906,6 +8923,7 @@
    "in": [
     "watermark",
     "universal-jailbreak",
+    "realtoxicity",
     "ethical-risks"
    ],
    "diagram": "loop",
@@ -9670,6 +9688,7 @@
     "dreambooth",
     "glide",
     "dalle2",
+    "diffusion-beats-gan",
     "cascaded-diffusion",
     "sr3"
    ],
@@ -9920,7 +9939,9 @@
     "dqn",
     "muzero"
    ],
-   "in": [],
+   "in": [
+    "dqn-2013"
+   ],
    "diagram": "compare",
    "extLinks": 1,
    "tags": [
@@ -10602,7 +10623,9 @@
     "gpt1",
     "dropout"
    ],
-   "in": [],
+   "in": [
+    "swish"
+   ],
    "diagram": "compare",
    "extLinks": 2,
    "tags": [
@@ -10906,7 +10929,8 @@
    ],
    "in": [
     "flan-t5",
-    "general-assistant"
+    "general-assistant",
+    "realtoxicity"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -11225,7 +11249,9 @@
     "zero",
     "qlora"
    ],
-   "in": [],
+   "in": [
+    "gpipe"
+   ],
    "diagram": "compare",
    "extLinks": 2,
    "tags": [
@@ -11798,20 +11824,35 @@
    "mtime": "2026-09-10"
   },
   "gpipe": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 8762,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "resnet",
+    "transformer",
+    "grad-checkpointing",
+    "megatron",
+    "zero",
+    "mt-nlg"
+   ],
    "in": [
     "gshard"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "compare",
+   "extLinks": 2,
    "tags": [
     "efficiency",
     "serve",
     "2019"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "gshard": {
    "stage": "evergreen",
@@ -12066,7 +12107,9 @@
     "gshard",
     "switch"
    ],
-   "in": [],
+   "in": [
+    "gpipe"
+   ],
    "diagram": "stack",
    "extLinks": 2,
    "tags": [
@@ -12233,18 +12276,31 @@
    ]
   },
   "dqn-2013": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 8962,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "dqn",
+    "rainbow",
+    "ddpg",
+    "a3c"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "rl",
     "value",
     "2013"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "lsun": {
    "stage": "seed",
@@ -12275,18 +12331,30 @@
    ]
   },
   "swish": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 8637,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "efficientnet",
+    "mamba",
+    "gelu"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "foundations",
     "stabilize",
     "2017"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "kinetics": {
    "stage": "seed",
@@ -12335,7 +12403,9 @@
    "bytes": 0,
    "sections": [],
    "out": [],
-   "in": [],
+   "in": [
+    "diffusion-beats-gan"
+   ],
    "diagram": null,
    "extLinks": 0,
    "tags": [
@@ -12457,32 +12527,62 @@
    ]
   },
   "realtoxicity": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 9674,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "gpt2",
+    "dedup",
+    "instructgpt",
+    "anthropic-hh",
+    "the-pile",
+    "red-teaming"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "privacy",
     "safety",
     "2020"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "diffusion-beats-gan": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 10290,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "biggan",
+    "ddpm",
+    "cfg",
+    "ddim",
+    "imagen",
+    "ldm"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "loop",
+   "extLinks": 2,
    "tags": [
     "generative",
     "diffusion",
     "2021"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "beit": {
    "stage": "seed",
@@ -13039,16 +13139,16 @@
  },
  "stats": {
   "total": 393,
-  "written": 367,
+  "written": 372,
   "byStage": {
-   "evergreen": 329,
+   "evergreen": 334,
    "growing": 38,
-   "seed": 26
+   "seed": 21
   },
   "byField": {
    "foundations": {
     "total": 13,
-    "written": 12
+    "written": 13
    },
    "nlp": {
     "total": 15,
@@ -13064,11 +13164,11 @@
    },
    "efficiency": {
     "total": 31,
-    "written": 30
+    "written": 31
    },
    "generative": {
     "total": 34,
-    "written": 30
+    "written": 31
    },
    "multimodal": {
     "total": 14,
@@ -13080,7 +13180,7 @@
    },
    "rl": {
     "total": 18,
-    "written": 16
+    "written": 17
    },
    "agent": {
     "total": 15,
@@ -13096,7 +13196,7 @@
    },
    "privacy": {
     "total": 14,
-    "written": 12
+    "written": 13
    },
    "graph": {
     "total": 9,

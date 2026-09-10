@@ -1,72 +1,29 @@
 [
  {
-  "arxiv": "1905.09272",
+  "arxiv": "1905.00546",
   "year": "2019",
-  "title": "Data-Efficient Image Recognition with Contrastive Predictive Coding",
+  "title": "Billion-scale semi-supervised learning for image classification",
   "cited_by": [
-   "cmc",
-   "done-with-imagenet",
-   "moco",
-   "moco-v2",
-   "one-epoch",
+   "align",
+   "bit",
+   "depth-anything",
+   "dino",
+   "dinov2",
+   "simclr-v2"
+  ],
+  "n": 6
+ },
+ {
+  "arxiv": "1904.12848",
+  "year": "2019",
+  "title": "Unsupervised Data Augmentation for Consistency Training",
+  "cited_by": [
+   "cpc-v2",
+   "dino",
+   "pirl",
    "simclr",
-   "vtab"
-  ],
-  "n": 7
- },
- {
-  "arxiv": "2204.05999",
-  "year": "2022",
-  "title": "InCoder: A Generative Model for Code Infilling and Synthesis",
-  "cited_by": [
-   "bloom",
-   "bloomz",
-   "deepseek-coder",
-   "llama",
-   "pythia",
-   "starcoder"
-  ],
-  "n": 6
- },
- {
-  "arxiv": "2105.04663",
-  "year": "2021",
-  "title": "GSPMD: General and Scalable Parallelization for ML Computation Graphs",
-  "cited_by": [
-   "coca",
-   "gemini",
-   "lamda",
-   "palm",
-   "palm2",
-   "t5x"
-  ],
-  "n": 6
- },
- {
-  "arxiv": "2206.10789",
-  "year": "2022",
-  "title": "Scaling Autoregressive Models for Content-Rich Text-to-Image Generation",
-  "cited_by": [
-   "dit",
-   "dreambooth",
-   "gemini",
-   "imagen-video",
-   "laion5b",
-   "videoldm"
-  ],
-  "n": 6
- },
- {
-  "arxiv": "2101.05783",
-  "year": "2021",
-  "title": "Persistent Anti-Muslim Bias in Large Language Models",
-  "cited_by": [
-   "ethical-risks",
-   "foundation-models",
-   "helm",
-   "humaneval",
-   "lamda",
-   "palm2"
+   "simclr-v2",
+   "xlnet"
   ],
   "n": 6
  },
@@ -85,6 +42,20 @@
   "n": 6
  },
  {
+  "arxiv": "2207.05608",
+  "year": "2022",
+  "title": "Inner Monologue: Embodied Reasoning through Planning with Language Models",
+  "cited_by": [
+   "flan-collection",
+   "generative-agents",
+   "palm-e",
+   "react",
+   "saycan",
+   "tot"
+  ],
+  "n": 6
+ },
+ {
   "arxiv": "1911.03064",
   "year": "2019",
   "title": "Reducing Sentiment Bias in Language Models via Counterfactual Evaluation",
@@ -94,45 +65,6 @@
    "ethical-risks",
    "gpt3",
    "instructgpt"
-  ],
-  "n": 5
- },
- {
-  "arxiv": "1803.05449",
-  "year": "2018",
-  "title": "SentEval: An Evaluation Toolkit for Universal Sentence Representations",
-  "cited_by": [
-   "anli",
-   "bge",
-   "helm",
-   "sentence-bert",
-   "t5"
-  ],
-  "n": 5
- },
- {
-  "arxiv": "1704.05426",
-  "year": "2017",
-  "title": "A Broad-Coverage Challenge Corpus for Sentence Understanding through Inference",
-  "cited_by": [
-   "anli",
-   "bart",
-   "bge",
-   "simvlm",
-   "t5"
-  ],
-  "n": 5
- },
- {
-  "arxiv": "1901.11504",
-  "year": "2019",
-  "title": "Multi-Task Deep Neural Networks for Natural Language Understanding",
-  "cited_by": [
-   "anli",
-   "gpt3",
-   "roberta",
-   "t5",
-   "xlnet"
   ],
   "n": 5
  },
@@ -150,80 +82,145 @@
   "n": 5
  },
  {
-  "arxiv": "1511.01844",
-  "year": "2015",
-  "title": "A note on the evaluation of generative models",
+  "arxiv": "1803.05449",
+  "year": "2018",
+  "title": "SentEval: An Evaluation Toolkit for Universal Sentence Representations",
   "cited_by": [
-   "biggan",
-   "dcgan",
-   "diffusion-original",
-   "inception-score-note",
-   "pixelrnn"
+   "anli",
+   "bge",
+   "helm",
+   "sentence-bert",
+   "t5"
   ],
   "n": 5
  },
  {
-  "arxiv": "2204.07705",
+  "arxiv": "2001.04451",
+  "year": "2020",
+  "title": "Reformer: The Efficient Transformer",
+  "cited_by": [
+   "anti-muslim-bias",
+   "foundation-models",
+   "memory-efficient-attn",
+   "palm",
+   "switch"
+  ],
+  "n": 5
+ },
+ {
+  "arxiv": "1905.03197",
+  "year": "2019",
+  "title": "Unified Language Model Pre-training for Natural Language Understanding and Generation",
+  "cited_by": [
+   "bart",
+   "mt-dnn",
+   "roberta",
+   "t5",
+   "ul2"
+  ],
+  "n": 5
+ },
+ {
+  "arxiv": "1911.04252",
+  "year": "2019",
+  "title": "Self-training with Noisy Student improves ImageNet classification",
+  "cited_by": [
+   "bit",
+   "deit",
+   "done-with-imagenet",
+   "simclr-v2",
+   "vit-scaling"
+  ],
+  "n": 5
+ },
+ {
+  "arxiv": "2212.12017",
   "year": "2022",
-  "title": "Super-NaturalInstructions: Generalization via Declarative Instructions on 1600+ NLP Tasks",
-  "cited_by": [
-   "bloom",
-   "bloomz",
-   "cot",
-   "flan-t5",
-   "llava"
-  ],
-  "n": 5
- },
- {
-  "arxiv": "2210.11399",
-  "year": "2022",
-  "title": "Transcending Scaling Laws with 0.1% Extra Compute",
-  "cited_by": [
-   "bloom",
-   "bloomz",
-   "data-constrained",
-   "emergent",
-   "gpt4"
-  ],
-  "n": 5
- },
- {
-  "arxiv": "2104.08773",
-  "year": "2021",
-  "title": "Cross-Task Generalization via Natural Language Crowdsourcing Instructions",
+  "title": "OPT-IML: Scaling Language Model Instruction Meta Learning through the Lens of Generalization",
   "cited_by": [
    "bloomz",
-   "flan",
-   "gemini",
-   "instructgpt",
-   "rethinking-demos"
-  ],
-  "n": 5
- },
- {
-  "arxiv": "2301.13688",
-  "year": "2023",
-  "title": "The Flan Collection: Designing Data and Methods for Effective Instruction Tuning",
-  "cited_by": [
-   "bloomz",
-   "data-constrained",
-   "llama2",
-   "palm2",
+   "flan-collection",
+   "llama",
+   "llava",
    "qlora"
   ],
   "n": 5
  },
  {
-  "arxiv": "2107.13586",
-  "year": "2021",
-  "title": "Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing",
+  "arxiv": "2212.09689",
+  "year": "2022",
+  "title": "Unnatural Instructions: Tuning Language Models with (Almost) No Human Labor",
   "cited_by": [
-   "cot",
-   "flan",
-   "glm-130b",
-   "pal",
-   "zero-shot-cot"
+   "bloomz",
+   "flan-collection",
+   "llama2",
+   "qlora",
+   "self-instruct"
+  ],
+  "n": 5
+ },
+ {
+  "arxiv": "1811.01088",
+  "year": "2018",
+  "title": "Sentence Encoders on STILTs: Supplementary Training on Intermediate Labeled-data Tasks",
+  "cited_by": [
+   "boolq",
+   "electra",
+   "gpt3",
+   "mt-dnn",
+   "t5"
+  ],
+  "n": 5
+ },
+ {
+  "arxiv": "1803.07728",
+  "year": "2018",
+  "title": "Unsupervised Representation Learning by Predicting Image Rotations",
+  "cited_by": [
+   "byol",
+   "cpc-v2",
+   "pirl",
+   "simclr",
+   "simclr-v2"
+  ],
+  "n": 5
+ },
+ {
+  "arxiv": "2201.07520",
+  "year": "2022",
+  "title": "CM3: A Causal Masked Multimodal Model of the Internet",
+  "cited_by": [
+   "chameleon",
+   "codellama",
+   "dalle2",
+   "flamingo",
+   "incoder"
+  ],
+  "n": 5
+ },
+ {
+  "arxiv": "1906.00910",
+  "year": "2019",
+  "title": "Learning Representations by Maximizing Mutual Information Across Views",
+  "cited_by": [
+   "cmc",
+   "cpc-v2",
+   "moco",
+   "moco-v2",
+   "pirl"
+  ],
+  "n": 5
+ },
+ {
+  "arxiv": "1509.00685",
+  "year": "2015",
+  "title": "A Neural Attention Model for Abstractive Sentence Summarization",
+  "cited_by": [
+   "codebert",
+   "ctrl",
+   "lm-limits",
+   "rl-summarization",
+   "summarize-hf"
   ],
   "n": 5
  },
@@ -241,15 +238,119 @@
   "n": 5
  },
  {
-  "arxiv": "1706.08500",
-  "year": "2017",
-  "title": "GANs Trained by a Two Time-Scale Update Rule Converge to a Local Nash Equilibrium",
+  "arxiv": "1907.02544",
+  "year": "2019",
+  "title": "Large Scale Adversarial Representation Learning",
+  "cited_by": [
+   "cpc-v2",
+   "diffusion-beats-gan",
+   "moco",
+   "pirl",
+   "vtab"
+  ],
+  "n": 5
+ },
+ {
+  "arxiv": "1602.06023",
+  "year": "2016",
+  "title": "Abstractive Text Summarization Using Sequence-to-Sequence RNNs and Beyond",
+  "cited_by": [
+   "ctrl",
+   "gpt2",
+   "instructgpt",
+   "rl-summarization",
+   "t5"
+  ],
+  "n": 5
+ },
+ {
+  "arxiv": "1704.05179",
+  "year": "?",
+  "title": "?",
+  "cited_by": [
+   "ctrl",
+   "monobert",
+   "rag",
+   "record",
+   "spanbert"
+  ],
+  "n": 5
+ },
+ {
+  "arxiv": "1608.05859",
+  "year": "2016",
+  "title": "Using the Output Embedding to Improve Language Models",
+  "cited_by": [
+   "ctrl",
+   "rl-summarization",
+   "simvlm",
+   "transformer",
+   "transformer-xl"
+  ],
+  "n": 5
+ },
+ {
+  "arxiv": "1611.01144",
+  "year": "2016",
+  "title": "Categorical Reparameterization with Gumbel-Softmax",
   "cited_by": [
    "dalle",
-   "ddim",
+   "make-a-scene",
+   "quantization-survey",
+   "vqgan",
+   "vqvae"
+  ],
+  "n": 5
+ },
+ {
+  "arxiv": "2107.02423",
+  "year": "2021",
+  "title": "Improving Text-to-Image Synthesis Using Contrastive Learning",
+  "cited_by": [
+   "dalle2",
+   "glide",
    "imagen",
-   "imagen-video",
-   "sdxl"
+   "make-a-scene",
+   "textual-inversion"
+  ],
+  "n": 5
+ },
+ {
+  "arxiv": "2103.17249",
+  "year": "2021",
+  "title": "StyleCLIP: Text-Driven Manipulation of StyleGAN Imagery",
+  "cited_by": [
+   "dalle2",
+   "diffusion-beats-gan",
+   "dreambooth",
+   "glide",
+   "textual-inversion"
+  ],
+  "n": 5
+ },
+ {
+  "arxiv": "2109.10686",
+  "year": "2021",
+  "title": "Scale Efficiently: Insights from Pre-training and Fine-tuning Transformers",
+  "cited_by": [
+   "data-constrained",
+   "moe-efficient",
+   "st-moe",
+   "ul2",
+   "ul2r"
+  ],
+  "n": 5
+ },
+ {
+  "arxiv": "1710.10196",
+  "year": "2017",
+  "title": "Progressive Growing of GANs for Improved Quality, Stability, and Variation",
+  "cited_by": [
+   "debate",
+   "inception-score-note",
+   "score-improved",
+   "sdedit",
+   "vdm"
   ],
   "n": 5
  },
@@ -267,28 +368,15 @@
   "n": 5
  },
  {
-  "arxiv": "1511.07289",
-  "year": "2015",
-  "title": "Fast and Accurate Deep Network Learning by Exponential Linear Units (ELUs)",
+  "arxiv": "1904.09223",
+  "year": "2019",
+  "title": "ERNIE: Enhanced Representation through Knowledge Integration",
   "cited_by": [
-   "dreamer",
-   "encodec",
-   "score-improved",
-   "soundstream",
-   "swish"
-  ],
-  "n": 5
- },
- {
-  "arxiv": "2202.03286",
-  "year": "2022",
-  "title": "Red Teaming Language Models with Language Models",
-  "cited_by": [
-   "emergent",
-   "flamingo",
-   "gpt4",
-   "red-teaming",
-   "starcoder"
+   "electra",
+   "pangu-alpha",
+   "prompt-survey",
+   "roberta",
+   "spanbert"
   ],
   "n": 5
  },
@@ -319,15 +407,28 @@
   "n": 5
  },
  {
-  "arxiv": "1904.09751",
-  "year": "2019",
-  "title": "The Curious Case of Neural Text Degeneration",
+  "arxiv": "2006.03654",
+  "year": "2020",
+  "title": "DeBERTa: Decoding-enhanced BERT with Disentangled Attention",
   "cited_by": [
    "ethical-risks",
-   "grover",
-   "hellaswag",
-   "summarize-hf",
-   "zero-shot-planner"
+   "humaneval",
+   "llama2",
+   "prompt-survey",
+   "ul2"
+  ],
+  "n": 5
+ },
+ {
+  "arxiv": "2112.06905",
+  "year": "2021",
+  "title": "GLaM: Efficient Scaling of Language Models with Mixture-of-Experts",
+  "cited_by": [
+   "fim",
+   "flan",
+   "palm",
+   "parti",
+   "ul2"
   ],
   "n": 5
  },
@@ -345,15 +446,15 @@
   "n": 5
  },
  {
-  "arxiv": "2112.05682",
-  "year": "2021",
-  "title": "Self-attention Does Not Need $O(n^2)$ Memory",
+  "arxiv": "2209.14375",
+  "year": "2022",
+  "title": "Improving alignment of dialogue agents via targeted human judgements",
   "cited_by": [
-   "flashattention",
-   "flashattention2",
+   "flan-collection",
    "gpt4",
-   "llama",
-   "ring-attention"
+   "palm-e",
+   "qlora",
+   "universal-jailbreak"
   ],
   "n": 5
  },
@@ -371,67 +472,28 @@
   "n": 5
  },
  {
-  "arxiv": "1909.05858",
+  "arxiv": "1902.08295",
   "year": "2019",
-  "title": "CTRL: A Conditional Transformer Language Model for Controllable Generation",
-  "cited_by": [
-   "foundation-models",
-   "gato",
-   "instructgpt",
-   "safety-recipes",
-   "t5"
-  ],
-  "n": 5
- },
- {
-  "arxiv": "2207.05608",
-  "year": "2022",
-  "title": "Inner Monologue: Embodied Reasoning through Planning with Language Models",
-  "cited_by": [
-   "generative-agents",
-   "palm-e",
-   "react",
-   "saycan",
-   "tot"
-  ],
-  "n": 5
- },
- {
-  "arxiv": "1404.5997",
-  "year": "2014",
-  "title": "One weird trick for parallelizing convolutional neural networks",
+  "title": "Lingvo: a Modular and Scalable Framework for Sequence-to-Sequence Modeling",
   "cited_by": [
    "gpipe",
-   "lr-scaling",
-   "moe-efficient",
-   "t5",
-   "tensorflow"
-  ],
-  "n": 5
- },
- {
-  "arxiv": "1806.03377",
-  "year": "2018",
-  "title": "PipeDream: Fast and Efficient Pipeline Parallel DNN Training",
-  "cited_by": [
-   "gpipe",
-   "gpt-neox",
    "gshard",
-   "megatron",
-   "switch"
+   "lamda",
+   "parti",
+   "t5x"
   ],
   "n": 5
  },
  {
-  "arxiv": "1811.00937",
-  "year": "2018",
-  "title": "CommonsenseQA: A Question Answering Challenge Targeting Commonsense Knowledge",
+  "arxiv": "2002.08910",
+  "year": "2020",
+  "title": "How Much Knowledge Can You Pack Into the Parameters of a Language Model?",
   "cited_by": [
-   "gsm8k",
-   "llama2",
-   "mistral",
-   "mixtral",
-   "ul2"
+   "gpt3",
+   "st-moe",
+   "switch",
+   "ul2r",
+   "zero-shot-planner"
   ],
   "n": 5
  },
@@ -448,14 +510,14 @@
   "n": 4
  },
  {
-  "arxiv": "1805.09501",
+  "arxiv": "1805.08974",
   "year": "2018",
-  "title": "AutoAugment: Learning Augmentation Policies from Data",
+  "title": "Do Better ImageNet Models Transfer Better?",
   "cited_by": [
-   "adamw",
-   "deit",
-   "gpipe",
-   "senet"
+   "adapter",
+   "autoaugment",
+   "sam-optimizer",
+   "t5"
   ],
   "n": 4
  },
@@ -484,6 +546,18 @@
   "n": 4
  },
  {
+  "arxiv": "1802.07228",
+  "year": "2018",
+  "title": "The Malicious Use of Artificial Intelligence: Forecasting, Prevention, and Mitigation",
+  "cited_by": [
+   "agent-alignment",
+   "ctrl",
+   "foundation-models",
+   "the-pile"
+  ],
+  "n": 4
+ },
+ {
   "arxiv": "1707.09457",
   "year": "2017",
   "title": "Men Also Like Shopping: Reducing Gender Bias Amplification using Corpus-level Constraints",
@@ -508,14 +582,14 @@
   "n": 4
  },
  {
-  "arxiv": "1905.00546",
-  "year": "2019",
-  "title": "Billion-scale semi-supervised learning for image classification",
+  "arxiv": "1411.2539",
+  "year": "2014",
+  "title": "Unifying Visual-Semantic Embeddings with Multimodal Neural Language Models",
   "cited_by": [
    "align",
-   "depth-anything",
-   "dino",
-   "dinov2"
+   "clip",
+   "coco-captions",
+   "layernorm"
   ],
   "n": 4
  },
@@ -532,26 +606,14 @@
   "n": 4
  },
  {
-  "arxiv": "1411.2539",
-  "year": "2014",
-  "title": "Unifying Visual-Semantic Embeddings with Multimodal Neural Language Models",
+  "arxiv": "2003.10580",
+  "year": "2020",
+  "title": "Meta Pseudo Labels",
   "cited_by": [
    "align",
-   "clip",
-   "coco-captions",
-   "layernorm"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2105.09938",
-  "year": "2021",
-  "title": "Measuring Coding Challenge Competence With APPS",
-  "cited_by": [
-   "alphacode",
-   "humaneval",
-   "santacoder",
-   "zero-shot-planner"
+   "dino",
+   "simclr-v2",
+   "vit-scaling"
   ],
   "n": 4
  },
@@ -568,14 +630,62 @@
   "n": 4
  },
  {
-  "arxiv": "2103.13630",
-  "year": "2021",
-  "title": "A Survey of Quantization Methods for Efficient Neural Network Inference",
+  "arxiv": "1806.00451",
+  "year": "2018",
+  "title": "Do CIFAR-10 Classifiers Generalize to CIFAR-10?",
   "cited_by": [
-   "awq",
-   "foundation-models",
-   "gptq",
-   "llm-int8"
+   "anli",
+   "autoaugment",
+   "gpt2",
+   "vtab"
+  ],
+  "n": 4
+ },
+ {
+  "arxiv": "1908.07125",
+  "year": "2019",
+  "title": "Universal Adversarial Triggers for Attacking and Analyzing NLP",
+  "cited_by": [
+   "anti-muslim-bias",
+   "dedup",
+   "safety-recipes",
+   "universal-jailbreak"
+  ],
+  "n": 4
+ },
+ {
+  "arxiv": "1611.09830",
+  "year": "2016",
+  "title": "NewsQA: A Machine Comprehension Dataset",
+  "cited_by": [
+   "arc-bench",
+   "ctrl",
+   "race",
+   "t5"
+  ],
+  "n": 4
+ },
+ {
+  "arxiv": "1708.04552",
+  "year": "2017",
+  "title": "Improved Regularization of Convolutional Neural Networks with Cutout",
+  "cited_by": [
+   "autoaugment",
+   "gpipe",
+   "senet",
+   "simclr"
+  ],
+  "n": 4
+ },
+ {
+  "arxiv": "1306.5151",
+  "year": "2013",
+  "title": "Fine-Grained Visual Classification of Aircraft",
+  "cited_by": [
+   "autoaugment",
+   "byol",
+   "efficientnet",
+   "internvl"
   ],
   "n": 4
  },
@@ -592,38 +702,38 @@
   "n": 4
  },
  {
-  "arxiv": "1704.04368",
-  "year": "2017",
-  "title": "Get To The Point: Summarization with Pointer-Generator Networks",
-  "cited_by": [
-   "bart",
-   "gpt2",
-   "summarize-hf",
-   "t5"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1905.03197",
-  "year": "2019",
-  "title": "Unified Language Model Pre-training for Natural Language Understanding and Generation",
-  "cited_by": [
-   "bart",
-   "roberta",
-   "t5",
-   "ul2"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2210.07316",
+  "arxiv": "2207.10551",
   "year": "2022",
-  "title": "MTEB: Massive Text Embedding Benchmark",
+  "title": "Scaling Laws vs Model Architectures: How does Inductive Bias Influence Scaling?",
   "cited_by": [
-   "bge",
-   "bloom",
-   "bloomz",
-   "data-constrained"
+   "bbh",
+   "data-constrained",
+   "ring-attention",
+   "ul2r"
+  ],
+  "n": 4
+ },
+ {
+  "arxiv": "2102.01293",
+  "year": "2021",
+  "title": "Scaling Laws for Transfer",
+  "cited_by": [
+   "bbh",
+   "data-constrained",
+   "fim",
+   "pythia"
+  ],
+  "n": 4
+ },
+ {
+  "arxiv": "1801.07736",
+  "year": "2018",
+  "title": "MaskGAN: Better Text Generation via Filling in the______",
+  "cited_by": [
+   "bert",
+   "st-moe",
+   "switch",
+   "xlnet"
   ],
   "n": 4
  },
@@ -640,482 +750,14 @@
   "n": 4
  },
  {
-  "arxiv": "1910.10486",
-  "year": "2019",
-  "title": "Does Gender Matter? Towards Fairness in Dialogue Systems",
-  "cited_by": [
-   "bias-survey",
-   "instructgpt",
-   "opt",
-   "safety-recipes"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2201.07311",
+  "arxiv": "2210.07316",
   "year": "2022",
-  "title": "Datasheet for the Pile",
+  "title": "MTEB: Massive Text Embedding Benchmark",
   "cited_by": [
+   "bge",
    "bloom",
-   "gpt-neox",
-   "pythia",
-   "rwkv"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2106.13353",
-  "year": "2021",
-  "title": "Cutting Down on Prompts and Parameters: Simple Few-Shot Learning with Language Models",
-  "cited_by": [
    "bloomz",
-   "foundation-models",
-   "rethinking-demos",
-   "t0"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2110.15943",
-  "year": "2021",
-  "title": "MetaICL: Learning to Learn In Context",
-  "cited_by": [
-   "bloomz",
-   "data-constrained",
-   "flan",
-   "qlora"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2212.12017",
-  "year": "2022",
-  "title": "OPT-IML: Scaling Language Model Instruction Meta Learning through the Lens of Generalization",
-  "cited_by": [
-   "bloomz",
-   "llama",
-   "llava",
-   "qlora"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2212.09689",
-  "year": "2022",
-  "title": "Unnatural Instructions: Tuning Language Models with (Almost) No Human Labor",
-  "cited_by": [
-   "bloomz",
-   "llama2",
-   "qlora",
-   "self-instruct"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2106.10199",
-  "year": "2021",
-  "title": "BitFit: Simple Parameter-efficient Fine-tuning for Transformer-based Masked Language-models",
-  "cited_by": [
-   "bloomz",
-   "flamingo",
-   "foundation-models",
-   "qlora"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2211.09085",
-  "year": "2022",
-  "title": "Galactica: A Large Language Model for Science",
-  "cited_by": [
-   "bloomz",
-   "data-constrained",
-   "fineweb",
-   "llama2"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1811.01088",
-  "year": "2018",
-  "title": "Sentence Encoders on STILTs: Supplementary Training on Intermediate Labeled-data Tasks",
-  "cited_by": [
-   "boolq",
-   "electra",
-   "gpt3",
-   "t5"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2006.10029",
-  "year": "2020",
-  "title": "Big Self-Supervised Models are Strong Semi-Supervised Learners",
-  "cited_by": [
-   "byol",
-   "clip",
-   "florence",
-   "vit-scaling"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1708.03888",
-  "year": "2017",
-  "title": "Large Batch Training of Convolutional Networks",
-  "cited_by": [
-   "byol",
-   "mae",
-   "megatron",
-   "simclr"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1912.01991",
-  "year": "2019",
-  "title": "Self-Supervised Learning of Pretext-Invariant Representations",
-  "cited_by": [
-   "byol",
-   "cmc",
-   "moco-v2",
-   "simclr"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2107.00630",
-  "year": "2021",
-  "title": "Variational Diffusion Models",
-  "cited_by": [
-   "cfg",
-   "imagen",
-   "imagen-video",
-   "video-diffusion"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2310.03744",
-  "year": "2023",
-  "title": "Improved Baselines with Visual Instruction Tuning",
-  "cited_by": [
-   "chameleon",
-   "internvl",
-   "openvla",
-   "sglang"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2203.13131",
-  "year": "2022",
-  "title": "Make-A-Scene: Scene-Based Text-to-Image Generation with Human Priors",
-  "cited_by": [
-   "chameleon",
-   "dalle2",
-   "dreambooth",
-   "imagen"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2201.07520",
-  "year": "2022",
-  "title": "CM3: A Causal Masked Multimodal Model of the Internet",
-  "cited_by": [
-   "chameleon",
-   "codellama",
-   "dalle2",
-   "flamingo"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1811.03600",
-  "year": "2018",
-  "title": "Measuring the Effects of Data Parallelism on Neural Network Training",
-  "cited_by": [
-   "chinchilla",
-   "empirical-batch",
-   "scaling-laws",
-   "t5"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2004.06100",
-  "year": "2020",
-  "title": "Pretrained Transformers Improve Out-of-Distribution Robustness",
-  "cited_by": [
-   "clip",
-   "foundation-models",
-   "gpt3",
-   "whisper"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1902.10811",
-  "year": "2019",
-  "title": "Do ImageNet Classifiers Generalize to ImageNet?",
-  "cited_by": [
-   "clip",
-   "deit",
-   "done-with-imagenet",
-   "vit-scaling"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1901.11373",
-  "year": "2019",
-  "title": "Learning and Evaluating General Linguistic Intelligence",
-  "cited_by": [
-   "clip",
-   "foundation-models",
-   "gpt2",
-   "gpt3"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2012.15723",
-  "year": "2020",
-  "title": "Making Pre-trained Language Models Better Few-shot Learners",
-  "cited_by": [
-   "clip",
-   "foundation-models",
-   "generative-agents",
-   "zero-shot-planner"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1907.06987",
-  "year": "2019",
-  "title": "A Short Note on the Kinetics-700 Human Action Dataset",
-  "cited_by": [
-   "clip",
-   "coca",
-   "internvl",
-   "slowfast"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1912.11370",
-  "year": "2019",
-  "title": "Big Transfer (BiT): General Visual Representation Learning",
-  "cited_by": [
-   "clip",
-   "done-with-imagenet",
-   "florence",
-   "swin"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1808.01340",
-  "year": "2018",
-  "title": "A Short Note about Kinetics-600",
-  "cited_by": [
-   "coca",
-   "internvl",
-   "slowfast",
-   "video-diffusion"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2204.00598",
-  "year": "2022",
-  "title": "Socratic Models: Composing Zero-Shot Multimodal Reasoning with Language",
-  "cited_by": [
-   "coca",
-   "emergent",
-   "flamingo",
-   "palm-e"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2107.06383",
-  "year": "2021",
-  "title": "How Much Can CLIP Benefit Vision-and-Language Tasks?",
-  "cited_by": [
-   "coca",
-   "dalle2",
-   "laion5b",
-   "simvlm"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1509.00685",
-  "year": "2015",
-  "title": "A Neural Attention Model for Abstractive Sentence Summarization",
-  "cited_by": [
-   "codebert",
-   "lm-limits",
-   "rl-summarization",
-   "summarize-hf"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2207.14255",
-  "year": "2022",
-  "title": "Efficient Training of Language Models to Fill in the Middle",
-  "cited_by": [
-   "codellama",
-   "deepseek-coder",
-   "phi-textbooks",
-   "starcoder"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1909.10351",
-  "year": "2019",
-  "title": "TinyBERT: Distilling BERT for Natural Language Understanding",
-  "cited_by": [
-   "colbert",
-   "electra",
-   "gpt3",
-   "t5"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1511.08228",
-  "year": "2015",
-  "title": "Neural GPUs Learn Algorithms",
-  "cited_by": [
-   "concrete-safety",
-   "grokking",
-   "humaneval",
-   "iterated-amplification"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1512.02595",
-  "year": "2015",
-  "title": "Deep Speech 2: End-to-End Speech Recognition in English and Mandarin",
-  "cited_by": [
-   "concrete-safety",
-   "layernorm",
-   "moe-shazeer",
-   "whisper"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2108.01073",
-  "year": "2021",
-  "title": "SDEdit: Guided Image Synthesis and Editing with Stochastic Differential Equations",
-  "cited_by": [
-   "consistency",
-   "glide",
-   "ldm",
-   "sdxl"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2208.01618",
-  "year": "2022",
-  "title": "An Image is Worth One Word: Personalizing Text-to-Image Generation using Textual Inversion",
-  "cited_by": [
-   "controlnet",
-   "dreambooth",
-   "sdxl",
-   "videoldm"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1607.08022",
-  "year": "2016",
-  "title": "Instance Normalization: The Missing Ingredient for Fast Stylization",
-  "cited_by": [
-   "convnext",
-   "cyclegan",
-   "df-gan",
-   "pix2pix"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1511.06349",
-  "year": "2015",
-  "title": "Generating Sentences from a Continuous Space",
-  "cited_by": [
-   "dalle",
-   "real-nvp",
-   "t5",
-   "vqvae"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1701.05517",
-  "year": "2017",
-  "title": "PixelCNN++: Improving the PixelCNN with Discretized Logistic Mixture Likelihood and Other Modifications",
-  "cited_by": [
-   "dalle",
-   "dit",
-   "s4",
-   "sparse-transformers"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "1606.03498",
-  "year": "2016",
-  "title": "Improved Techniques for Training GANs",
-  "cited_by": [
-   "dalle",
-   "diffusion-beats-gan",
-   "glide",
-   "sdxl"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2103.17249",
-  "year": "2021",
-  "title": "StyleCLIP: Text-Driven Manipulation of StyleGAN Imagery",
-  "cited_by": [
-   "dalle2",
-   "diffusion-beats-gan",
-   "dreambooth",
-   "glide"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2102.01645",
-  "year": "2021",
-  "title": "Generating images from caption and vice versa via CLIP-Guided Generative Latent Space Search",
-  "cited_by": [
-   "dalle2",
-   "diffusion-beats-gan",
-   "foundation-models",
-   "glide"
-  ],
-  "n": 4
- },
- {
-  "arxiv": "2202.08906",
-  "year": "2022",
-  "title": "ST-MoE: Designing Stable and Transferable Sparse Expert Models",
-  "cited_by": [
-   "data-constrained",
-   "emergent",
-   "gpt4",
-   "palm"
+   "data-constrained"
   ],
   "n": 4
  }

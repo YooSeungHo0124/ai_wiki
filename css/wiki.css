@@ -21,7 +21,7 @@ button{font-family:inherit}
 .topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:16px;
   padding:10px 20px;background:color-mix(in srgb,var(--panel) 92%,transparent);
   border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
-.brand{display:flex;align-items:center;gap:10px;cursor:pointer}
+.brand{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none;color:inherit}
 .brand .logo{width:30px;height:30px;border-radius:8px;background:var(--accent);
   color:#06201e;display:grid;place-items:center;font-weight:700;font-size:15px}
 .brand h1{margin:0;font-size:15px;letter-spacing:-.01em}
@@ -47,6 +47,22 @@ button{font-family:inherit}
 .ghost-btn{background:var(--panel2);border:1px solid var(--line);color:var(--text-dim);
   border-radius:8px;padding:6px 10px;cursor:pointer;font-size:13px}
 .ghost-btn:hover{border-color:var(--accent-dim);color:var(--text)}
+
+/* 좁은 화면: 검색창 고정폭(260px) + flex-wrap 없음이 390px 안에 안 들어간다
+   (브랜드+검색창+테마버튼 합이 뷰포트를 넘음). 숨기지 않고 줄인다 — 브랜드
+   부제(장식용 설명)를 접어 자리를 만들고, spacer 대신 검색창이 남는 공간을
+   전부 갖도록 해서 화면 폭에 맞춰 유연하게 줄어들게 한다. 입력창 id="q"·
+   결과 목록 id="res"·콤보박스 ARIA·키보드 "/" 단축키(js/wiki/app.js)는
+   그대로 — 구조·id는 안 바뀌고 크기만 반응형이다. */
+@media(max-width:640px){
+  .topbar{gap:8px;padding:8px 12px}
+  .brand p{display:none}
+  .brand .logo{width:26px;height:26px;font-size:13px}
+  .spacer{flex:0 0 auto;width:0}
+  .searchbox{flex:1 1 auto;min-width:0}
+  .searchbox input{width:100%;min-width:0}
+  .results{width:100%;max-width:calc(100vw - 24px);right:0}
+}
 
 /* ---------- shell ---------- */
 .wrap{max-width:1180px;margin:0 auto;padding:26px 20px 90px}
@@ -130,6 +146,11 @@ svg .axis-t{fill:var(--graph-axis-label);font-size:10.5px}
 
 /* ---------- paper page ---------- */
 .paper{display:grid;grid-template-columns:1fr 250px;gap:30px;align-items:start}
+/* 그리드 트랙 기본 min-width는 auto(=자식의 min-content)라서, KaTeX가 늘어나는
+   델리미터(\left...\right, \sqrt)를 그릴 때 만드는 수천px짜리 SVG가 트랙 자체를
+   그만큼 넓혀 문서 전체를 가로로 밀어낸다(overflow-x:auto가 있어도 트랙 사이징이
+   콘텐츠보다 먼저 계산되므로 무시된다). 0으로 고정해 트랙이 뷰포트 폭을 따르게 한다. */
+.paper>*{min-width:0}
 @media(max-width:980px){.paper{grid-template-columns:1fr}.side{display:none}}
 .side{position:sticky;top:72px;font-size:13px}
 .side h4{margin:0 0 8px;font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
@@ -162,7 +183,11 @@ h3.sec .num{color:var(--muted);font-size:12px;margin-right:8px;font-family:"JetB
   padding:14px 16px 12px;margin-bottom:10px}
 .math .e{font-family:var(--font-mono);font-size:var(--fs-code);color:var(--math-fg);white-space:pre-wrap;letter-spacing:.01em}
 .math .d{font-size:13px;color:var(--text-tertiary);margin-top:6px}
-table.nums{width:100%;border-collapse:collapse;font-size:13.5px}
+/* 표도 같은 문제가 난다: td.v(값 칸)는 white-space:nowrap이라 "6층 · d 512 · head 8 · FFN 2048"
+   같은 값이 있으면 auto 테이블 레이아웃이 열 폭을 콘텐츠에 맞춰 늘리다가 뷰포트를 넘는다.
+   테이블 자신을 block+overflow-x:auto 스크롤 컨테이너로 만들어 표 안에서만 가로 스크롤되게 가둔다
+   (행/셀 표시는 그대로 유지되고, 넘칠 때만 스크롤이 생긴다 — 안 넘치면 평소처럼 보인다). */
+table.nums{width:100%;border-collapse:collapse;font-size:13.5px;display:block;overflow-x:auto;max-width:100%}
 table.nums td,table.nums th{border-bottom:1px solid var(--border-subtle);padding:8px 10px;text-align:left}
 table.nums th{color:var(--text-tertiary);font-size:11.5px;font-weight:500;text-transform:uppercase;letter-spacing:.05em}
 table.nums td.v{font-family:var(--font-mono);color:var(--accent);white-space:nowrap}
@@ -259,10 +284,15 @@ svg .dlabel{fill:var(--dia-label);font-size:11px}
   color:var(--text-primary);
 }
 .idea p.lead + p{ font-size:var(--fs-body-sm); }
-/* KaTeX 블록 수식 */
-.math .e.tex{ padding:4px 0; overflow-x:auto; font-size:var(--fs-code) }
+/* KaTeX 블록 수식 — 늘어나는 델리미터/근호가 수천px SVG를 그려도 이 블록
+   안에서만 가로 스크롤되게 가둔다(min-width:0으로 자기 자신도 콘텐츠 크기로
+   안 늘어나게 고정 — 위 .paper>* 규칙과 같은 이유). 페이지 본문은 절대 안 밀림. */
+.math .e.tex{ padding:4px 0; overflow-x:auto; max-width:100%; min-width:0; font-size:var(--fs-code) }
 .math .e.tex .katex-display{ margin:0; }
 .tex-fallback{ color:var(--text-secondary); }
+/* KaTeX 렌더 경로 공통 방어선: 언제, 어느 콘텐츠 노트에서 렌더되든
+   display-mode 수식(.katex-display)은 항상 자기 블록 안에서만 스크롤된다. */
+.katex-display{ overflow-x:auto; overflow-y:hidden; max-width:100% }
 
 /* 원문에서 발췌한 그림 · 인용 — DESIGN-SYSTEM §5 "인용/출처" 행을 따른다:
    surface 배경, border-subtle 테두리만, 그림자 없음, 좌측 강조선 없음. */
@@ -375,7 +405,7 @@ blockquote.quote cite{ display:block; margin-top:7px; font-style:normal; font-si
 @media(max-width:900px){.pstrip{grid-template-columns:1fr}}
 .pstrip-block{padding:13px 15px;border-radius:var(--radius-md);
   background:var(--surface);border:1px solid var(--border-subtle)}
-.pstrip-block h4{margin:0 0 9px;font-size:var(--fs-micro);letter-spacing:var(--ls-label);
+.pstrip-block h3{margin:0 0 9px;font-size:var(--fs-micro);letter-spacing:var(--ls-label);
   text-transform:uppercase;color:var(--text-tertiary);font-weight:600}
 .course-pills{display:flex;flex-wrap:wrap;align-items:center;gap:4px 2px}
 @media(max-width:600px){.course-pills{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}}

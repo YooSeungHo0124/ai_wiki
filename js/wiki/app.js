@@ -483,14 +483,14 @@
     var stats=W.GRAPH&&W.GRAPH.stats;
     var growingN = stats&&stats.byStage ? (stats.byStage.growing||0) : null;
     var left = recents.length
-      ? '<div class="pstrip-block"><h4>이어보기</h4>'+continueHtml()+'</div>'
-      : '<div class="pstrip-block pstrip-course"><h4>여기서 시작하세요 — 입문 7편</h4>'+coursePills()+'</div>';
+      ? '<div class="pstrip-block"><h3>이어보기</h3>'+continueHtml()+'</div>'
+      : '<div class="pstrip-block pstrip-course"><h3>여기서 시작하세요 — 입문 7편</h3>'+coursePills()+'</div>';
     var growing = growingN==null ? ''
       : (growingN>0
           ? '<a class="widget-item" href="#/growing">성장 중인 노트 '+growingN+'편 →</a>'
           : '<div class="widget-empty">성장 중인 노트 없음</div>');
     return '<div class="pstrip">'+left
-      +'<div class="pstrip-block pstrip-growing"><h4>더 자라는 중</h4>'+growing+'</div>'
+      +'<div class="pstrip-block pstrip-growing"><h3>더 자라는 중</h3>'+growing+'</div>'
       +'</div>';
   }
 
@@ -593,13 +593,32 @@
          JS 없이 리플로우되게 하려는 설계다. 다만 지금 화면 폭에서 절대
          보이지 않을 쪽까지 DOM에 남겨두면 홈 하나에 446편이 사실상 두 번
          존재하게 되어(A11Y-PERF 예산 6,000 초과의 가장 큰 원인) 진행 시간에
-         쓸모없는 노드만 쌓인다. 렌더 직후 딱 한 번, 지금 폭에서 안 쓰는
-         쪽을 제거한다(shelf.css의 767px 분기와 동일 기준). */
+         쓸모없는 노드만 쌓인다. 렌더 직후 딱 한 번, 지금 화면에서 안 쓰는
+         쪽을 제거한다.
+         QA-VIEWPORT.md §3: 예전 코드는 이 판단을 독자적인
+         matchMedia('(min-width:768px)')로 내렸는데, 이 판단 기준(768px)이
+         css/shelf.css:236 의 `@media(max-width:767px)`(767px)와 서로 다른
+         값이었다. 정수 DPR에서는 767<768이라 항상 상보적이지만, 비정수
+         DPR(예: Windows 125% = DPR 1.25)에서는 두 브레이크포인트가 각자
+         다른 서브픽셀 반올림을 거치면서 "둘 다 false"인 767px 데드존이
+         생겨 책장이 통째로 사라졌다(실측: QA-VIEWPORT.md §3).
+         근본 원인은 "값이 767이냐 768이냐"가 아니라 "두 값을 따로 유지하는
+         두 개의 판정 소스가 존재한다"는 것이므로, 값을 맞추는 대신 판정
+         소스를 하나로 합친다: 브레이크포인트를 JS에 다시 하드코딩하지
+         않고, 실제로 브라우저가 CSS를 어떻게 적용했는지(getComputedStyle)
+         를 그대로 물어본다. `.shelf-mobile`이 화면에 보이는 쪽(display가
+         'none'이 아님)이면 그 반대쪽을 지운다 — CSS 쪽 media query 판정
+         결과를 그대로 읽어오는 것이므로 이 판단은 CSS와 원천적으로 어긋날
+         수 없다(같은 값을 두 번 계산하는 게 아니라 한 번 계산된 값을
+         그대로 재사용). DOM 예산(6,000)은 그대로 유지된다 — 지우는 시점과
+         "안 쓰는 쪽 하나만 남긴다"는 전략 자체는 바뀌지 않았고, 바뀐 것은
+         "어느 쪽이 안 쓰는 쪽인지"를 판정하는 방법뿐이다. */
       try{
-        var wide = window.matchMedia('(min-width:768px)').matches;
-        var dead = shelfWrap.querySelector(wide ? '.shelf-mobile' : '.shelf');
+        var mobileEl = shelfWrap.querySelector('.shelf-mobile');
+        var mobileVisible = !!mobileEl && getComputedStyle(mobileEl).display!=='none';
+        var dead = shelfWrap.querySelector(mobileVisible ? '.shelf' : '.shelf-mobile');
         if(dead) dead.remove();
-      }catch(e){ /* matchMedia 실패해도 렌더는 계속 — 둘 다 남아도 기능은 정상 */ }
+      }catch(e){ /* 실패해도 렌더는 계속 — 둘 다 남아도 기능은 정상 */ }
 
       var groupById={}; (W.GROUPS||[]).forEach(function(g){ groupById[g.id]=g; });
       shelfWrap.querySelectorAll('section.shelf-group[data-group]').forEach(function(sec){
@@ -1028,10 +1047,8 @@
     var g=e.target.closest('[data-go]');
     if(g){ e.preventDefault(); W.go(g.dataset.go); }
   });
-  document.querySelector('.brand').onclick=function(){ W.go('#/'); };
-  document.querySelector('.brand').addEventListener('keydown',function(e){
-    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); W.go('#/'); }
-  });
+  /* .brand 는 이제 진짜 <a href="#/"> 다 — 클릭·Enter·우클릭·새 탭이 브라우저
+     기본 동작으로 처리되므로 별도 핸들러가 필요 없다. */
 
   function route(){
     var h=location.hash.replace(/^#/,'');

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>QA Viewport Test Harness</title>
+<style>
+  body{font-family:sans-serif;font-size:13px;background:#eee;margin:0;padding:12px;}
+  .row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;align-items:flex-start;}
+  .cell{background:#fff;border:1px solid #999;}
+  .cell h3{margin:0;padding:4px 6px;font-size:12px;background:#333;color:#fff;}
+  iframe{display:block;border:0;}
+  .report{white-space:pre-wrap;font-family:monospace;font-size:11px;background:#fff;
+    border:1px solid #999;padding:8px;margin-top:6px;max-width:100%;overflow:auto;}
+  button{margin:4px 6px 12px 0;padding:6px 10px;}
+  .route-picker{margin-bottom:10px;}
+</style>
+</head>
+<body>
+<h2>QA Viewport Test Harness</h2>
+<div class="route-picker">
+  Route:
+  <select id="routeSel">
+    <option value="/#/">홈 (#/)</option>
+    <option value="/#/f/llm">분야 페이지 (#/f/llm)</option>
+    <option value="/#/p/transformer">논문 페이지 (#/p/transformer)</option>
+  </select>
+  <button id="loadBtn">이 라우트로 iframe 로드</button>
+  <button id="measureBtn">전체 측정 실행</button>
+</div>
+
+<div class="row" id="frameRow"></div>
+<div class="report" id="report">측정 결과가 여기 표시됩니다. "전체 측정 실행"을 누르세요.</div>
+
+<script>
+var WIDTHS = [
+  {w:390, h:844, label:'390px (모바일)'},
+  {w:767, h:900, label:'767px (책장 경계 아래)'},
+  {w:768, h:1024, label:'768px (책장 경계 위)'},
+  {w:1099, h:900, label:'1099px (좌측내비 경계 아래)'},
+  {w:1100, h:900, label:'1100px (좌측내비 경계 위)'},
+  {w:1440, h:900, label:'1440px (데스크톱)'}
+];
+
+function buildFrames(route){
+  var row = document.getElementById('frameRow');
+  row.innerHTML = '';
+  WIDTHS.forEach(function(spec, i){
+    var cell = document.createElement('div');
+    cell.className = 'cell';
+    var h3 = document.createElement('h3');
+    h3.textContent = spec.label;
+    var iframe = document.createElement('iframe');
+    iframe.id = 'f' + i;
+    iframe.style.width = spec.w + 'px';
+    iframe.style.height = Math.min(spec.h, 500) + 'px';
+    iframe.src = route;
+    iframe.dataset.w = spec.w;
+    iframe.dataset.label = spec.label;
+    cell.appendChild(h3);
+    cell.appendChild(iframe);
+    row.appendChild(cell);
+  });
+}
+
+document.getElementById('loadBtn').addEventListener('click', function(){
+  buildFrames(document.getElementById('routeSel').value);
+});
+buildFrames(document.getElementById('routeSel').value);
+
+function measureOne(iframe){
+  var out = {label: iframe.dataset.label, w: +iframe.dataset.w};
+  try{
+    var doc = iframe.contentDocument;
+    var win = iframe.contentWindow;
+    if(!doc || !win){ out.error = 'contentDocument/contentWindow 접근 불가'; return out; }
+    var de = doc.documentElement;
+    out.scrollWidth = de.scrollWidth;
+    out.clientWidth = de.clientWidth;
+    var nominalW = +iframe.dataset.w;
+    out.hasHScroll = de.scrollWidth > nominalW + 1;
+    out.hasHScrollVsClientWidth = de.scrollWidth > out.clientWidth + 1;
+
+    // find overflow culprit: any element whose right edge exceeds clientWidth
+    if(out.hasHScroll){
+      var culprits = [];
+      var all = doc.body ? doc.body.querySelectorAll('*') : [];
+      for(var i=0;i<all.length;i++){
+        var el = all[i];
+        var r = el.getBoundingClientRect();
+        if(r.right > out.clientWidth + 1){
+          culprits.push({
+            tag: el.tagName,
+            cls: (el.className && el.className.toString) ? el.className.toString().slice(0,60) : '',
+            right: Math.round(r.right),
+            width: Math.round(r.width)
+          });
+        }
+      }
+      culprits.sort(function(a,b){ return b.right - a.right; });
+      out.culprits = culprits.slice(0,8);
+    }
+
+    // diagnostics: actual media query state + dpr (matters when devicePixelRatio
+    // is non-integer, e.g. 125% OS scale — media query boundary can round off
+    // by a fraction of a CSS px and an "exact boundary" width like 767/1099
+    // can evaluate on the wrong side)
+    out.devicePixelRatio = win.devicePixelRatio;
+    out.mq = {
+      max767: win.matchMedia('(max-width:767px)').matches,
+      min768: win.matchMedia('(min-width:768px)').matches,
+      max1099: win.matchMedia('(max-width:1099px)').matches,
+      min1100: win.matchMedia('(min-width:1100px)').matches,
+      max700: win.matchMedia('(max-width:700px)').matches
+    };
+
+    // shelf visibility
+    var shelfEl = doc.querySelector('.shelf');
+    var shelfMobileEl = doc.querySelector('.shelf-mobile');
+    out.shelfDisplay = shelfEl ? win.getComputedStyle(shelfEl).display : '(no .shelf in DOM)';
+    out.shelfMobileDisplay = shelfMobileEl ? win.getComputedStyle(shelfMobileEl).display : '(no .shelf-mobile in DOM)';
+
+    // left nav
+    var navTree = doc.querySelector('.nav-tree');
+    out.navTreeDisplay = navTree ? win.getComputedStyle(navTree).display : '(no .nav-tree)';
+    var navToggle = doc.querySelector('[data-nav-toggle]');
+    out.navToggleDisplay = navToggle ? win.getComputedStyle(navToggle).display : '(no nav-toggle)';
+
+    // lineage graph collapse state (home only)
+    var homeGraph = doc.getElementById('homeGraph');
+    out.homeGraphOpen = homeGraph ? homeGraph.hasAttribute('open') : '(no #homeGraph)';
+    var gbox = doc.getElementById('gbox');
+    if(gbox){
+      out.gboxScrollWidth = gbox.scrollWidth;
+      out.gboxClientWidth = gbox.clientWidth;
+      out.gboxOwnScroll = gbox.scrollWidth > gbox.clientWidth + 1;
+    }
+
+    // mobile item touch target heights
+    var mobileItems = doc.querySelectorAll('.mobile-item');
+    if(mobileItems.length){
+      var heights = [];
+      for(var j=0;j<Math.min(mobileItems.length,20);j++){
+        heights.push(Math.round(mobileItems[j].getBoundingClientRect().height));
+      }
+      out.mobileItemCount = mobileItems.length;
+      out.mobileItemHeights_sample = heights;
+      out.mobileItemMinHeight = Math.min.apply(null, heights);
+    }
+
+    // cover panel (if any book/spine present, don't auto click - just report presence)
+    var coverPanel = doc.querySelector('.cover-panel');
+    out.coverPanelPresent = !!coverPanel;
+
+  }catch(e){
+    out.error = 'measure exception: ' + e.message;
+  }
+  return out;
+}
+
+document.getElementById('measureBtn').addEventListener('click', function(){
+  var report = document.getElementById('report');
+  report.textContent = '측정 중... (스크립트 실행 대기 후 재시도 필요할 수 있음)';
+  setTimeout(function(){
+    var iframes = document.querySelectorAll('#frameRow iframe');
+    var results = [];
+    iframes.forEach(function(f){ results.push(measureOne(f)); });
+    report.textContent = JSON.stringify(results, null, 2);
+  }, 1500);
+});
+</script>
+</body>
+</html>

@@ -22,8 +22,42 @@ window.WIKI = window.WIKI || {};
    * 의도를 지킨다. (design/SHELF-SPEC.md·LIBRARY-CONCEPT.md 어디에도 그래프
    * 데이터를 동기로 갖고 있으라는 요구는 없음.)
    * ---------------------------------------------------------------- */
-  var SPINE_W_MIN=13, SPINE_W_MAX=29;
-  var SPINE_H_MIN=108, SPINE_H_MAX=176, SPINE_H_K=15;
+  /* SPINE_W_MIN: LIBRARY-CONCEPT.md §1.1 확정안은 13px 이지만, 실제 렌더
+   * 실측(§1.3 조판 버그 수정 과정에서 확인) 결과 13px는 물리적으로 렌더링이
+   * 불가능한 값이었다 — .spine-title 은 `writing-mode:vertical-rl`이라
+   * 세로줄(칼럼) 하나의 폭이 `font-size(13px, --fs-spine, TYPOGRAPHY.md §3
+   * 확정)  × line-height(1.35, 역시 §3 확정)` 로 정해지고, 이는 폰트 크기와
+   * 무관하게 항상 필요한 최소 칼럼폭이다. 실측(Chrome, IBM Plex Sans KR
+   * 600) 결과 칼럼 하나가 정확히 18px(±0px, 여러 실제 책등에서 반복 확인:
+   * 단일 문자~9자 라틴 단일 칼럼 전부 18px)을 차지했다. 책등 테두리
+   * (border 1px×2, box-sizing:border-box)를 빼면 폭 13px 책등은 실제
+   * 글자를 담을 칸이 11px밖에 없어 "글자 1자"조차 못 들어간다 — 줄바꿈
+   * 알고리즘을 아무리 고쳐도 해결 불가능한 하한 위반이다.
+   * → 폰트 크기(13px)는 손대지 않고(가독 하한 보존), 폭 하한만 칼럼 1개가
+   * 실제로 들어가는 최소값(18px 칼럼 + 테두리 2px = 20px)으로 올린다.
+   * 상한(29px)과 분위수 매핑 로직·"폭=정보량" 원칙은 그대로 유지 — 하한만
+   * 최소한으로 조정했다(요청사항 그대로). */
+  var SPINE_W_MIN=20, SPINE_W_MAX=29;
+  /* SPINE_H_MIN/MAX: LIBRARY-CONCEPT.md §1.2 확정값 108~176 이었으나, 이
+   * 값에서 책등 63.5%(446편 중 146편, §"책등 조판 실측 보정" 참고)가
+   * 세로 칼럼 높이 부족으로 말줄임됐다(도서관 실패 수준). 실측(구현 중
+   * `.spine` 446개 실제 렌더 결과를 높이별로 버킷팅)으로 확인한 관계는
+   * 대략 "표시 가능 글자수 ≈ (height-56)/6.5"(밴드22px+제목상하패딩6px+
+   * 연도줄~19px 등 높이와 무관한 고정 오버헤드 56px 제외) — 즉 하한
+   * 108px에서는 약 8자까지만 담기는데 `ko` 길이는 중앙값 7자·90분위
+   * 14자·최대 28자(LIBRARY-CONCEPT §0)라 절반 가까이가 애초에 하한부터
+   * 부족했다. → **하한을 108→160으로 올린다**(90분위 14자가 108+? 아니
+   * 160px 기준 (160-56)/6.5≈16자까지 여유 있게 들어가 90%를 커버).
+   * 상한은 별도 숫자를 다시 정하지 않고 같은 로그 공식(K=15 그대로,
+   * §1.2 원 설계 유지)을 새 하한에 얹어서 자연히 정해지도록 둔다 — 원래
+   * 176도 "K=15인 로그 공식이 in=87(transformer, 최댓값)에서 도달하는
+   * 값"이었지 별도 상한 결정이 아니었다(108+15·ln(88)≈175.9→176). 그래서
+   * 새 상한도 같은 방식으로 유도: 160+15·ln(88)≈227.1→227. 이 덧셈식
+   * 이동(shift)은 책과 책 사이의 "절대 높이 차이"(로그 공식의 델타)를
+   * 그대로 보존한다 — "많이 인용된 논문이 크다"는 정보량 자체는 하나도
+   * 손대지 않고, 서가 전체를 위로 밀어 올려 읽는 여유만 준 것이다.
+   * (본 조정 근거는 design/LIBRARY-CONCEPT.md §1.2에도 반영해 둠.) */
+  var SPINE_H_MIN=160, SPINE_H_MAX=227, SPINE_H_K=15;
   var SPINE_BAND_H=22; /* --spine-band-h 와 동일 값, 레이아웃 계산에도 필요해 상수 보유 */
 
   var widthMapCache=null, widthMapKey=null;
@@ -203,6 +237,10 @@ window.WIKI = window.WIKI || {};
     if(stage==='seed') labelParts.push('아직 정리 노트 없음');
     if(isVisited) labelParts.push('이전에 봤음');
     var ariaLabel=labelParts.join(', ');
+    /* 마우스 사용자용 title 툴팁 — 책등이 말줄임되더라도(§1.3) 전체 제목이
+     * 항상 어딘가엔 남아 있어야 한다는 요구사항을 aria-label과는 별도로
+     * 한 번 더 만족시킨다. */
+    var titleAttr = (m.title && m.title!==m.ko) ? (m.ko+' — '+m.title) : m.ko;
 
     var fieldColor = field ? field.color : 'var(--border-strong)';
     var bandStyle = (stage==='seed'||stage==='sprout')
@@ -214,9 +252,9 @@ window.WIKI = window.WIKI || {};
       +'data-search="'+esc((m.ko||'').toLowerCase())+'" '
       +'style="width:'+width+'px;height:'+height+'px;--field-color:'+fieldColor+';'
       +((stage==='seed'||stage==='sprout')?'border-color:'+fieldColor+';':'')
-      +'" aria-label="'+esc(ariaLabel)+'">'
+      +'" aria-label="'+esc(ariaLabel)+'" title="'+esc(titleAttr)+'">'
       +'<span class="spine-band" style="'+bandStyle+'"></span>'
-      +'<span class="spine-title">'+titleHtml+'</span>'
+      +'<span class="spine-title" data-raw="'+esc(m.ko)+'">'+titleHtml+'</span>'
       +'<span class="spine-year">'+esc(yearShort)+'</span>'
       +'</a>';
   }
@@ -406,6 +444,81 @@ window.WIKI = window.WIKI || {};
     formatAuthors: formatAuthors
   };
 
+  /* ------------------------------------------------------------------
+   * 책등 제목 실측 보정(fit-up) — TYPOGRAPHY.md §1.3의 "최대 2줄" 가정은
+   * 34px 책등 목업 기준이었는데, LIBRARY-CONCEPT.md §1.1이 확정한 실제
+   * 폭(13~29px, 위에서 20~29px로 하한만 보정)에서는 세로쓰기 칼럼 폭이
+   * font-size×line-height(13×1.35≈18px)라서 2칼럼(≈36px)이 상한(29px)을
+   * 넘어 물리적으로 절대 안 들어간다(직접 렌더링해 확인). 그래서 폭·글꼴
+   * 수치를 상수로 흉내내 미리 계산하는 대신, 실제 DOM 레이아웃 결과를
+   * 그 자리에서 재보 — 브라우저·폰트가 달라져도(서브픽셀 반올림 등)
+   * 항상 "실측상 안 넘친다"를 보장한다. wrapSpineTitle()의 결과(최대
+   * 2줄)를 1차 시도로 쓰고, 그래도 넘치면 한 줄로 접은 뒤 필요한 만큼만
+   * 말줄임(…)한다 — 말줄임은 문서가 요구한 대로 최후 수단이다.
+   * W.shelf() 자체는 순수 함수로 남기고(§0 주석), 이 보정은 상태를 만지는
+   * W.wireShelf()쪽 책임으로 둔다. */
+  function titleOverflows(el){
+    return el.scrollWidth > el.clientWidth+2 || el.scrollHeight > el.clientHeight+2;
+  }
+  /* TYPOGRAPHY.md §3.3 실측 가독 하한 — 이 아래로는 절대 내리지 않는다. */
+  var SPINE_FS_DEFAULT=13, SPINE_FS_FLOOR=10.5, SPINE_FS_STEP=0.5;
+  function fitOneSpineTitle(el){
+    var raw = el.getAttribute('data-raw');
+    if(raw==null) return;
+    /* 항상 원본(raw)·기본 글자크기에서 다시 계산한다 — 이 함수가 두 번째로
+     * 불릴 수도 있어서다(구글 폰트 `display:swap` 때문에 대체 글꼴로 1차
+     * 측정한 뒤 실제 --font-kr 로 교체되면 글자폭이 달라진다, 아래
+     * fitSpineTitles()의 document.fonts.ready 재실행 참고). 이전 호출이
+     * 남긴 축소 글자크기·말줄임 결과를 그대로 두고 재판정하면 실제로는
+     * 이제 안 넘치는 책도 불필요하게 작게/짧게 남는다. */
+    el.style.fontSize='';
+    if(el.textContent!==raw) el.textContent = raw;
+    if(!titleOverflows(el)) return; /* 기본 13px로 들어맞으면 손대지 않는다 */
+
+    /* 1) 말줄임보다 먼저 글자 크기를 줄여본다 — LIBRARY-CONCEPT.md 결정:
+     * "긴 제목에 한해" 10.5px(TYPOGRAPHY.md §3.3 가독 하한)까지만 축소.
+     * 전체 텍스트가 다 보이는 쪽이 축약보다 도서관으로서 낫다는 판단. */
+    var fs=SPINE_FS_DEFAULT;
+    while(titleOverflows(el) && fs>SPINE_FS_FLOOR+1e-6){
+      fs=Math.max(SPINE_FS_FLOOR, fs-SPINE_FS_STEP);
+      el.style.fontSize=fs+'px';
+    }
+    if(!titleOverflows(el)) return; /* 축소만으로 해결됨 — 말줄임 없음 */
+
+    /* 2) 가독 하한(10.5px)에서도 여전히 안 들어가면 그때만 말줄임(최후
+     * 수단). 이진 탐색으로 "실측상 안 넘치는 최대 길이"를 찾는다.
+     * title/aria-label(위 renderSpine에서 이미 세팅)은 이 함수가 건드리지
+     * 않으므로 전체 제목이 항상 어딘가엔 남는다. */
+    var lo=0, hi=raw.length, best=0;
+    while(lo<=hi){
+      var mid=(lo+hi)>>1;
+      el.textContent = mid<raw.length ? raw.slice(0,mid)+'…' : raw;
+      if(titleOverflows(el)){ hi=mid-1; } else { best=mid; lo=mid+1; }
+    }
+    el.textContent = best<raw.length ? (best>0 ? raw.slice(0,best)+'…' : '…') : raw;
+  }
+  function fitSpineTitles(root){
+    if(!root || !root.querySelectorAll) return;
+    var run=function(){
+      var titles = root.querySelectorAll('.spine-title[data-raw]');
+      for(var i=0;i<titles.length;i++) fitOneSpineTitle(titles[i]);
+    };
+    run();
+    /* 구글 폰트가 `display:swap`(index.html)이라 처음엔 대체 글꼴
+     * (Apple SD Gothic Neo/Malgun Gothic/sans-serif, tokens.css --font-kr)
+     * 로 측정하게 된다 — 실측 결과 대체 글꼴 기준 글자폭이 실제
+     * IBM Plex Sans KR과 달라, 폰트 캐시가 빈 상태(하드 리로드)에서는
+     * 34개가 아니라 61개가 넘치는 것까지 재현됐다. 실제 글꼴이 도착하면
+     * (document.fonts.ready) 한 번 더 실측해 최종 글꼴 기준으로 다시
+     * 맞춘다. */
+    try{
+      if(document.fonts && document.fonts.status!=='loaded'){
+        document.fonts.ready.then(run);
+      }
+    }catch(e){}
+  }
+  W.shelfHelpers.fitSpineTitles = fitSpineTitles;
+
   /* ================== 배선: W.wireShelf(rootEl) ==================
    * SHELF-SPEC §3(로빙 tabindex + 방향키 + 타입어헤드) 을 구현한다.
    * 이 함수는 상태(현재 활성 인덱스, 타입어헤드 버퍼)를 rootEl 에 딸린
@@ -549,6 +662,11 @@ window.WIKI = window.WIKI || {};
       var i=spines.indexOf(el);
       if(i>=0 && i!==activeIdx) setTabbable(i);
     });
+
+    /* 책등 제목 실측 보정 — 위 fitSpineTitles() 주석 참고. DOM에 실제로
+     * 붙은 뒤라야 scrollWidth/scrollHeight가 의미 있으므로 wireShelf 시점
+     * (호출부가 이미 DOM 삽입 후 부르는 지점, js/wiki/app.js 참고)에 돈다. */
+    fitSpineTitles(root);
   };
 
 })(window.WIKI);

@@ -1,0 +1,78 @@
+{
+ "issues": [
+  {
+   "slug": "alphafold3",
+   "src": "원문 Figure 1d, p.28",
+   "issue": "page_exceeds_pdf",
+   "cited_page": 28,
+   "pdf_pages": 24
+  },
+  {
+   "slug": "alphafold3",
+   "src": "원문 Figure 1c, p.28",
+   "issue": "page_exceeds_pdf",
+   "cited_page": 28,
+   "pdf_pages": 24
+  },
+  {
+   "slug": "alphageometry",
+   "src": "원문 Figure 1a-d, p.477",
+   "issue": "page_exceeds_pdf",
+   "cited_page": 477,
+   "pdf_pages": 21
+  },
+  {
+   "slug": "alphageometry",
+   "src": "원문 Figure 2, p.477",
+   "issue": "page_exceeds_pdf",
+   "cited_page": 477,
+   "pdf_pages": 21
+  },
+  {
+   "slug": "alphago",
+   "src": "원문 Figure 1, p.485 (p.2)",
+   "issue": "page_exceeds_pdf",
+   "cited_page": 485,
+   "pdf_pages": 20
+  },
+  {
+   "slug": "alphago",
+   "src": "원문 Figure 3, p.486 (p.3)",
+   "issue": "page_exceeds_pdf",
+   "cited_page": 486,
+   "pdf_pages": 20
+  },
+  {
+   "slug": "gnome",
+   "src": "원문 Figure 1a, p.81",
+   "issue": "page_exceeds_pdf",
+   "cited_page": 81,
+   "pdf_pages": 11
+  },
+  {
+   "slug": "gnome",
+   "src": "원문 Figure 1e, p.81",
+   "issue": "page_exceeds_pdf",
+   "cited_page": 81,
+   "pdf_pages": 11
+  },
+  {
+   "slug": "mf",
+   "src": "원문 Figure 3, p.47",
+   "issue": "page_exceeds_pdf",
+   "cited_page": 47,
+   "pdf_pages": 8
+  },
+  {
+   "slug": "mf",
+   "src": "원문 Figure 4, p.48",
+   "issue": "page_exceeds_pdf",
+   "cited_page": 48,
+   "pdf_pages": 8
+  }
+ ],
+ "no_pdf": [
+  "perceptron",
+  "sae"
+ ]
+}

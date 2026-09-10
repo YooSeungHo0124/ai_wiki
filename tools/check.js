@@ -57,6 +57,17 @@ META.forEach(m=>{
   [...new Set(links)].forEach(s=>{ if(!SLUGS.has(s)) err.push('DEADLINK '+m.slug+' -> #/p/'+s+'   (오타이거나, 아직 없는 논문이다 — 후자라면 인덱스에 추가할 후보)'); });
   if(links.includes(m.slug)) warn.push('SELFLINK '+m.slug);
 });
+/* 캐시 버스터 검사 — content/fields.js 를 고치고 index.html 의 ?v= 를 안 올리면
+   이미 방문한 사람은 옛 인덱스를 계속 본다. 실제로 논문 40편을 추가하고
+   버스터를 안 올려서 브라우저가 446편짜리 옛 파일을 계속 쓴 적이 있다. */
+try{
+  const fsx=require('fs'), px=require('path');
+  const rootx=px.join(__dirname,'..');
+  const fieldsM=fsx.statSync(px.join(rootx,'content','fields.js')).mtimeMs;
+  const htmlM=fsx.statSync(px.join(rootx,'index.html')).mtimeMs;
+  if(fieldsM > htmlM + 1000)
+    warn.push('CACHEBUST content/fields.js 가 index.html 보다 새롭다 — index.html 의 ?v= 를 올려야 방문자가 새 인덱스를 받는다');
+}catch(e){}
 console.log('논문 '+META.length+'편 중 작성 '+have+'편 ('+(100*have/META.length).toFixed(0)+'%)');
 if(warn.length){ console.log('\n-- 경고 '+warn.length+' --'); warn.forEach(w=>console.log('  '+w)); }
 if(err.length){ console.log('\n-- 오류 '+err.length+' --'); err.forEach(e=>console.log('  '+e)); process.exit(1); }

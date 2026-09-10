@@ -1,0 +1,2793 @@
+[
+ {
+  "slug": "3dgs",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 19
+ },
+ {
+  "slug": "a3c",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 3
+ },
+ {
+  "slug": "act",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "adam",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "adamw",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "adapter",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "agent-alignment",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "agieval",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 18
+ },
+ {
+  "slug": "albert",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "alexnet",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "alibi",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "align",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 18
+ },
+ {
+  "slug": "alphacode",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "alphafold",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 8
+ },
+ {
+  "slug": "alphafold3",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "alphageometry",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "alphago",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "alphastar",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "alphazero",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 18
+ },
+ {
+  "slug": "anli",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "anthropic-hh",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "arc-bench",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "attention-not-explanation",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "audiolm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "awq",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "babi",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "backprop",
+  "has_source": true,
+  "unmatched": [
+   {
+    "field": "v",
+    "entry_k": "대칭성 과제",
+    "entry_v": "은닉 2개 · 1,425 sweep",
+    "raw_token": "1,425",
+    "value": 1425.0
+   },
+   {
+    "field": "d",
+    "entry_k": "대칭성 과제",
+    "entry_v": "은닉 2개 · 1,425 sweep",
+    "raw_token": "64",
+    "value": 64.0
+   },
+   {
+    "field": "d",
+    "entry_k": "대칭성 과제",
+    "entry_v": "은닉 2개 · 1,425 sweep",
+    "raw_token": "0.1",
+    "value": 0.1
+   },
+   {
+    "field": "v",
+    "entry_k": "가족관계 과제",
+    "entry_v": "5층 · 100/104 triple 학습",
+    "raw_token": "100",
+    "value": 100.0
+   },
+   {
+    "field": "v",
+    "entry_k": "가족관계 과제",
+    "entry_v": "5층 · 100/104 triple 학습",
+    "raw_token": "104",
+    "value": 104.0
+   },
+   {
+    "field": "v",
+    "entry_k": "가족관계 학습량",
+    "entry_v": "1,500 sweep",
+    "raw_token": "1,500",
+    "value": 1500.0
+   },
+   {
+    "field": "d",
+    "entry_k": "가족관계 학습량",
+    "entry_v": "1,500 sweep",
+    "raw_token": "20",
+    "value": 20.0
+   },
+   {
+    "field": "d",
+    "entry_k": "가족관계 학습량",
+    "entry_v": "1,500 sweep",
+    "raw_token": "0.005",
+    "value": 0.005
+   },
+   {
+    "field": "d",
+    "entry_k": "가족관계 학습량",
+    "entry_v": "1,500 sweep",
+    "raw_token": "0.5",
+    "value": 0.5
+   },
+   {
+    "field": "d",
+    "entry_k": "가족관계 학습량",
+    "entry_v": "1,500 sweep",
+    "raw_token": "0.01",
+    "value": 0.01
+   },
+   {
+    "field": "v",
+    "entry_k": "weight decay",
+    "entry_v": "갱신마다 0.2% 감쇠",
+    "raw_token": "0.2%",
+    "value": 0.2
+   },
+   {
+    "field": "v",
+    "entry_k": "초기 가중치",
+    "entry_v": "U(−0.3, 0.3)",
+    "raw_token": "0.3",
+    "value": 0.3
+   },
+   {
+    "field": "v",
+    "entry_k": "초기 가중치",
+    "entry_v": "U(−0.3, 0.3)",
+    "raw_token": "0.3",
+    "value": 0.3
+   }
+  ],
+  "checked": 15
+ },
+ {
+  "slug": "bahdanau",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 18
+ },
+ {
+  "slug": "bart",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "batchnorm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "bbh",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 23
+ },
+ {
+  "slug": "beit",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 21
+ },
+ {
+  "slug": "bert",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "bert4rec",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "bge",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 8
+ },
+ {
+  "slug": "bias-in-generation",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "bias-survey",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 8
+ },
+ {
+  "slug": "bigbench",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 4
+ },
+ {
+  "slug": "biggan",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "billion-word",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "blip",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "blip2",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "bloom",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 18
+ },
+ {
+  "slug": "bloomz",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 18
+ },
+ {
+  "slug": "bm25",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "boolq",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "bpe",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 19
+ },
+ {
+  "slug": "byol",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "caffe",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 2
+ },
+ {
+  "slug": "carbon-quantify",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "carbon",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "cascaded-diffusion",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 26
+ },
+ {
+  "slug": "cfg",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 22
+ },
+ {
+  "slug": "chameleon",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 19
+ },
+ {
+  "slug": "chatbot-arena",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "chinchilla",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 19
+ },
+ {
+  "slug": "clip",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "cmc",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "coca",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "coco-captions",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "codebert",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "codellama",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 26
+ },
+ {
+  "slug": "codet5",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "cogvideox",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "cola",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "colbert",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 22
+ },
+ {
+  "slug": "commonsense-lm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "concrete-safety",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 0
+ },
+ {
+  "slug": "conformer",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 21
+ },
+ {
+  "slug": "consistency",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "constitutional",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 1
+ },
+ {
+  "slug": "controlnet",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "convnext",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "cot",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "cpc",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "cyclegan",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "dalle",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "dalle2",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "data-constrained",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "datacomp",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 22
+ },
+ {
+  "slug": "datasheets",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 0
+ },
+ {
+  "slug": "dcgan",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "ddim",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "ddpg",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 5
+ },
+ {
+  "slug": "ddpm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 8
+ },
+ {
+  "slug": "debate",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 4
+ },
+ {
+  "slug": "decanlp",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "decoder-only-wiki",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "dedup",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 18
+ },
+ {
+  "slug": "deeper-self-attention",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "deepfm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "deeplab",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "deepseek-coder",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "deepseek-r1",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "deepseek-v3",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "deepwalk",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "deit",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "densenet",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "depth-anything",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "detr",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "df-gan",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "diffusion-beats-gan",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 24
+ },
+ {
+  "slug": "diffusion-original",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 4
+ },
+ {
+  "slug": "diffusion-policy",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "din",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "dino",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "dinov2",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "distilbert",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "distillation",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 21
+ },
+ {
+  "slug": "dit",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 21
+ },
+ {
+  "slug": "dolma",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "done-with-imagenet",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "double-descent",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "dp-sgd",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "dpo",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 3
+ },
+ {
+  "slug": "dpr",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "dqn-2013",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "dqn",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "dreambooth",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "dreamer",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "dropout-2012",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "dropout",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "e5",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "efficientnet",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 22
+ },
+ {
+  "slug": "electra",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "elmo",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 19
+ },
+ {
+  "slug": "emergent",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 21
+ },
+ {
+  "slug": "empirical-batch",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "encodec",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 18
+ },
+ {
+  "slug": "energy-policy",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "esmfold",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "ethical-risks",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 2
+ },
+ {
+  "slug": "extracting-training-data",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 3
+ },
+ {
+  "slug": "faiss",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "faster-rcnn",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "fastspeech",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "fasttext",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "fcn",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "fedavg",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "fgsm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "fineweb",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "flamingo",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "flan-t5",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "flan",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "flashattention",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 19
+ },
+ {
+  "slug": "flashattention2",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "florence",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "flow-matching",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "fno",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "focal-loss",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "foundation-models",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "fpn",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "gae",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 20
+ },
+ {
+  "slug": "gan",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 5
+ },
+ {
+  "slug": "gat",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "gato",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "gcn",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "gelu",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "gemini",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "general-assistant",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "generative-agents",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "generative-scaling",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "gin",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "glide",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "glm-130b",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 21
+ },
+ {
+  "slug": "glove",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "glu-variants",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "glue",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 8
+ },
+ {
+  "slug": "gnmt",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "gnome",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "googlenet",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "gopher",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 23
+ },
+ {
+  "slug": "gpipe",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "gpt-neox",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 20
+ },
+ {
+  "slug": "gpt1",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "gpt2",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 30
+ },
+ {
+  "slug": "gpt3",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "gpt4",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "gptq",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "gqa",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "grad-cam",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "grad-checkpointing",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 4
+ },
+ {
+  "slug": "graphcast",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "graphormer",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "graphsage",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "graves-rnn",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "grokking",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "grover",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "grpo",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "gru",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 8
+ },
+ {
+  "slug": "gshard",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "gsm8k",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "hellaswag",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "helm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "hifi-gan",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "hnsw",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "hubert",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 19
+ },
+ {
+  "slug": "huggingface",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 3
+ },
+ {
+  "slug": "humaneval",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "i3d",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 18
+ },
+ {
+  "slug": "iddpm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 22
+ },
+ {
+  "slug": "imagen-video",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 19
+ },
+ {
+  "slug": "imagen",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 20
+ },
+ {
+  "slug": "imagenet",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "inception-score-note",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "induction-heads",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 4
+ },
+ {
+  "slug": "information-bottleneck",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 4
+ },
+ {
+  "slug": "instructgpt",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "internvl",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "intriguing",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "iterated-amplification",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 0
+ },
+ {
+  "slug": "jukebox",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "kinetics",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 21
+ },
+ {
+  "slug": "laion400m",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "laion5b",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "lambada",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "lamda",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "large-batch",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "layernorm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 1
+ },
+ {
+  "slug": "ldm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "least-to-most",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "lenet",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "lime",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "linformer",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "llama",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 27
+ },
+ {
+  "slug": "llama2",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "llava",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 8
+ },
+ {
+  "slug": "llm-int8",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 8
+ },
+ {
+  "slug": "lm-limits",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "lora",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "lost-in-the-middle",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "lottery",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "lr-scaling",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 20
+ },
+ {
+  "slug": "lstm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "lsun",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "machine-unlearning",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "mae",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "make-a-video",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "mamba",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "mamba2",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "mask-rcnn",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 24
+ },
+ {
+  "slug": "math-dataset",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 20
+ },
+ {
+  "slug": "mbpp",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "medusa",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 8
+ },
+ {
+  "slug": "meena",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "megatron",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "membership-inference",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "memory-networks",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "mf",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "minerva",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 19
+ },
+ {
+  "slug": "mistral",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 21
+ },
+ {
+  "slug": "mixed-precision",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "mixtral",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "mixup",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "mmlu",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "mobile-aloha",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "mobilenet",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 24
+ },
+ {
+  "slug": "moco-v2",
+  "has_source": true,
+  "unmatched": [
+   {
+    "field": "v",
+    "entry_k": "GPU 메모리(배치256)",
+    "entry_v": "MoCo 5.0G vs end-to-end 7.4G",
+    "raw_token": "5.0G",
+    "value": 5000000000.0
+   },
+   {
+    "field": "v",
+    "entry_k": "end-to-end 배치4096 메모리",
+    "entry_v": "약 93.0G(추정)",
+    "raw_token": "93.0G",
+    "value": 93000000000.0
+   }
+  ],
+  "checked": 19
+ },
+ {
+  "slug": "moco",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "moe-efficient",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "moe-shazeer",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 20
+ },
+ {
+  "slug": "monobert",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "mpnn",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 4
+ },
+ {
+  "slug": "mqa",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "ms-marco",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "mt-nlg",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 18
+ },
+ {
+  "slug": "mt5",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "muzero",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 19
+ },
+ {
+  "slug": "ncf",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "nerf",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "nice",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 8
+ },
+ {
+  "slug": "nnlm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 18
+ },
+ {
+  "slug": "node2vec",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "ntk",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "ntm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "olmo",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 19
+ },
+ {
+  "slug": "one-epoch",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "open-x",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "openbookqa",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "openpose",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "openvla",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "opt",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "pal",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "pali",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "palm-e",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "palm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 20
+ },
+ {
+  "slug": "palm2",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "pangu-alpha",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 22
+ },
+ {
+  "slug": "pangu-weather",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "perceptron",
+  "has_source": false,
+  "unmatched": [],
+  "checked": 0
+ },
+ {
+  "slug": "phi-textbooks",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "pi0",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "pinsage",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 21
+ },
+ {
+  "slug": "pix2pix",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "pixelrnn",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "position-interpolation",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "ppo",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 4
+ },
+ {
+  "slug": "prefix-tuning",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 2
+ },
+ {
+  "slug": "prompt-tuning",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "pythia",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 19
+ },
+ {
+  "slug": "qanet",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "qlora",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "quantify-memorization",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 20
+ },
+ {
+  "slug": "qwen-vl",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "qwen2",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 28
+ },
+ {
+  "slug": "race",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "raft",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "rag",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 20
+ },
+ {
+  "slug": "rainbow",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 8
+ },
+ {
+  "slug": "rcnn",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "react",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "real-nvp",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "realm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "realtoxicity",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "record",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 21
+ },
+ {
+  "slug": "red-teaming",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "refinedweb",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "reflexion",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 5
+ },
+ {
+  "slug": "resnet",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "rethinking-demos",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "rethinking-generalization",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "retro",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "reward-modeling",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 0
+ },
+ {
+  "slug": "rezende-vae",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "ring-attention",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "rl-summarization",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "rlhf-prefs",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "roberta",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "rope",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 8
+ },
+ {
+  "slug": "rt1",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "rt2",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "rwkv",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 8
+ },
+ {
+  "slug": "s4",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "sac",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 2
+ },
+ {
+  "slug": "sae",
+  "has_source": false,
+  "unmatched": [],
+  "checked": 0
+ },
+ {
+  "slug": "safety-recipes",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "sam-optimizer",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "sam",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 29
+ },
+ {
+  "slug": "santacoder",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 23
+ },
+ {
+  "slug": "sasrec",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "saycan",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "scaling-laws",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 8
+ },
+ {
+  "slug": "scaling-predictable",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "score-improved",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "score-sde",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "scratchpad",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 19
+ },
+ {
+  "slug": "sdxl",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 20
+ },
+ {
+  "slug": "self-consistency",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "self-instruct",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "self-refine",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "senet",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 23
+ },
+ {
+  "slug": "sentence-bert",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 19
+ },
+ {
+  "slug": "sentencepiece",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "sentiment-neuron",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "seq2seq",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "sgdr",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "sglang",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 8
+ },
+ {
+  "slug": "shap",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 0
+ },
+ {
+  "slug": "siglip",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 8
+ },
+ {
+  "slug": "simclr",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "simcse",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 6
+ },
+ {
+  "slug": "simvlm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "sleeper-agents",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "slowfast",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "socialiqa",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "soundstream",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 8
+ },
+ {
+  "slug": "spanbert",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 18
+ },
+ {
+  "slug": "sparks-agi",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "sparse-attn",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "sparse-transformers",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 19
+ },
+ {
+  "slug": "spatial-transformer",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "speculative",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "splade",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "squad",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "squad2",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "sr3",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 22
+ },
+ {
+  "slug": "ssd",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 20
+ },
+ {
+  "slug": "starcoder",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "stereoset",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "stochastic-parrots-risk",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 5
+ },
+ {
+  "slug": "straight-through",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "stylegan",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "summarize-hf",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "superglue",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "svd",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 25
+ },
+ {
+  "slug": "swe-agent",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "swe-bench",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ },
+ {
+  "slug": "swin",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "swish",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "switch",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "t0",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "t5",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 21
+ },
+ {
+  "slug": "t5x",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 2
+ },
+ {
+  "slug": "tacotron2",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "tensorflow",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 5
+ },
+ {
+  "slug": "the-pile",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 18
+ },
+ {
+  "slug": "timesformer",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "toolformer",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 23
+ },
+ {
+  "slug": "tot",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 26
+ },
+ {
+  "slug": "transformer-xl",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "transformer",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "triviaqa",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "trpo",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 1
+ },
+ {
+  "slug": "truthfulqa",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "two-stream",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 23
+ },
+ {
+  "slug": "two-tower",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "ucf101",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "ul2",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "ulmfit",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "unet",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 15
+ },
+ {
+  "slug": "universal-jailbreak",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "universal-transformer",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "vae",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 7
+ },
+ {
+  "slug": "vall-e",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "vgg",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "video-diffusion",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "videoldm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "videomae",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "vit-scaling",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "vit",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 27
+ },
+ {
+  "slug": "vits",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "vllm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 16
+ },
+ {
+  "slug": "voyager",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 3
+ },
+ {
+  "slug": "vqgan",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "vqvae",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "vqvae2",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "vtab",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 17
+ },
+ {
+  "slug": "watermark",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "wav2vec2",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 23
+ },
+ {
+  "slug": "wavenet",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "webgpt",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "wgan",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 5
+ },
+ {
+  "slug": "whisper",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 26
+ },
+ {
+  "slug": "wide-deep",
+  "has_source": true,
+  "unmatched": [
+   {
+    "field": "v",
+    "entry_k": "서비스 규모",
+    "entry_v": "앱 100만+ · 활성 사용자 10억+",
+    "raw_token": "10억",
+    "value": 1000000000.0
+   }
+  ],
+  "checked": 15
+ },
+ {
+  "slug": "wide-resnet",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 23
+ },
+ {
+  "slug": "wikitext",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "word2vec",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 26
+ },
+ {
+  "slug": "world-models",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 10
+ },
+ {
+  "slug": "xlm",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "xlnet",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 13
+ },
+ {
+  "slug": "yarn",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 18
+ },
+ {
+  "slug": "yolo",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "youtube-dnn",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 12
+ },
+ {
+  "slug": "zero-shot-cot",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 11
+ },
+ {
+  "slug": "zero-shot-planner",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 14
+ },
+ {
+  "slug": "zero",
+  "has_source": true,
+  "unmatched": [],
+  "checked": 9
+ }
+]

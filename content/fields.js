@@ -636,6 +636,7 @@ WIKI.INDEX = [
 ['spanbert',2019,'SpanBERT: Improving Pre-training by Representing and Predicting Spans','SpanBERT','llm','pretrain',['bert','roberta']],
 ['distilbert',2019,'DistilBERT, a Distilled Version of BERT','DistilBERT','efficiency','quant',['bert','distillation']],
 ['meena',2020,'Towards a Human-like Open-Domain Chatbot (Meena)','Meena','llm','align',['transformer','seq2seq']],
+['gpipe',2019,'GPipe: Efficient Training of Giant Neural Networks using Pipeline Parallelism','GPipe','efficiency','serve',['resnet','transformer']],
 ['gshard',2020,'GShard: Scaling Giant Models with Conditional Computation and Automatic Sharding','GShard','llm','scale',['moe-shazeer','transformer']],
 ['mt5',2020,'mT5: A Massively Multilingual Pre-trained Text-to-Text Transformer','mT5','llm','pretrain',['t5','sentencepiece']],
 ['jukebox',2020,'Jukebox: A Generative Model for Music','Jukebox','speech','codec',['vqvae','sparse-transformers']],

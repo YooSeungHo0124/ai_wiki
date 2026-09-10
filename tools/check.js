@@ -54,7 +54,7 @@ META.forEach(m=>{
   if(src.length<3500) warn.push('SHORT    '+m.slug+': '+src.length+' bytes');
   // 내부 링크 검사
   const links=[...src.matchAll(/\(#\/p\/([a-z0-9-]+)\)/g)].map(x=>x[1]);
-  [...new Set(links)].forEach(s=>{ if(!SLUGS.has(s)) err.push('DEADLINK '+m.slug+' -> #/p/'+s); });
+  [...new Set(links)].forEach(s=>{ if(!SLUGS.has(s)) err.push('DEADLINK '+m.slug+' -> #/p/'+s+'   (오타이거나, 아직 없는 논문이다 — 후자라면 인덱스에 추가할 후보)'); });
   if(links.includes(m.slug)) warn.push('SELFLINK '+m.slug);
 });
 console.log('논문 '+META.length+'편 중 작성 '+have+'편 ('+(100*have/META.length).toFixed(0)+'%)');

@@ -52,7 +52,7 @@ impact:'XLNet은 "마스크 언어모델이 아니어도 양방향 문맥을 얻
 legacy:[
  '**[UL2](#/p/ul2)**가 XLNet의 순열/자기회귀 목적을 [T5](#/p/t5)·[BART](#/p/bart)의 denoising 목적과 함께 Mixture-of-Denoisers라는 한 틀로 통합',
  '**RoBERTa의 반증** — 같은 시기 "더 단순한 BERT + 더 많은 학습"이 유사 성능을 내면서, 목적함수를 정교하게 바꾸는 것보다 스케일을 늘리는 쪽이 더 값싸다는 교훈을 남김',
- '**relative position encoding 계열** — Transformer-XL에서 XLNet을 거쳐 다듬어진 상대 위치 아이디어는 이후 [RoPE](#/p/rope) 등 더 단순한 대안으로 대체됨',
+ '**relative position encoding 계열** — [Transformer-XL](#/p/transformer-xl)에서 XLNet을 거쳐 다듬어진 상대 위치 아이디어는 이후 [RoPE](#/p/rope) 등 더 단순한 대안으로 대체됨',
  '**two-stream attention**은 이후 순열 기반·비자기회귀 생성 연구에서 "위치와 내용을 분리한다"는 패턴으로 간간이 재등장'
 ],
 

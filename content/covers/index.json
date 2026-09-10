@@ -1,0 +1,2222 @@
+{
+"3dgs": {
+"bytes": 17256,
+"h": 259,
+"w": 800
+},
+"a3c": {
+"bytes": 9240,
+"h": 259,
+"w": 800
+},
+"act": {
+"bytes": 13060,
+"h": 259,
+"w": 800
+},
+"adam": {
+"bytes": 8016,
+"h": 282,
+"w": 800
+},
+"adamw": {
+"bytes": 7536,
+"h": 259,
+"w": 800
+},
+"adapter": {
+"bytes": 8040,
+"h": 259,
+"w": 800
+},
+"agent-alignment": {
+"bytes": 19182,
+"h": 282,
+"w": 800
+},
+"agieval": {
+"bytes": 7908,
+"h": 259,
+"w": 800
+},
+"albert": {
+"bytes": 12322,
+"h": 259,
+"w": 800
+},
+"alexnet": {
+"bytes": 5996,
+"h": 259,
+"w": 800
+},
+"alibi": {
+"bytes": 12034,
+"h": 259,
+"w": 800
+},
+"align": {
+"bytes": 8688,
+"h": 259,
+"w": 800
+},
+"alphacode": {
+"bytes": 18896,
+"h": 282,
+"w": 800
+},
+"alphafold": {
+"bytes": 20466,
+"h": 266,
+"w": 800
+},
+"alphafold3": {
+"bytes": 20388,
+"h": 266,
+"w": 800
+},
+"alphageometry": {
+"bytes": 17576,
+"h": 266,
+"w": 800
+},
+"alphago": {
+"bytes": 19038,
+"h": 262,
+"w": 800
+},
+"alphastar": {
+"bytes": 20434,
+"h": 283,
+"w": 800
+},
+"alphazero": {
+"bytes": 6718,
+"h": 259,
+"w": 800
+},
+"anli": {
+"bytes": 8346,
+"h": 282,
+"w": 800
+},
+"anthropic-hh": {
+"bytes": 7210,
+"h": 259,
+"w": 800
+},
+"arc-bench": {
+"bytes": 11582,
+"h": 259,
+"w": 800
+},
+"attention-not-explanation": {
+"bytes": 5590,
+"h": 282,
+"w": 800
+},
+"audiolm": {
+"bytes": 14520,
+"h": 259,
+"w": 800
+},
+"awq": {
+"bytes": 11514,
+"h": 259,
+"w": 800
+},
+"babi": {
+"bytes": 12122,
+"h": 259,
+"w": 800
+},
+"backprop": {
+"bytes": 19428,
+"h": 197,
+"w": 578
+},
+"bahdanau": {
+"bytes": 8912,
+"h": 259,
+"w": 800
+},
+"bart": {
+"bytes": 13006,
+"h": 282,
+"w": 800
+},
+"batchnorm": {
+"bytes": 12956,
+"h": 259,
+"w": 800
+},
+"bbh": {
+"bytes": 6886,
+"h": 259,
+"w": 800
+},
+"beit": {
+"bytes": 6678,
+"h": 259,
+"w": 800
+},
+"bert": {
+"bytes": 9730,
+"h": 282,
+"w": 800
+},
+"bert4rec": {
+"bytes": 17098,
+"h": 259,
+"w": 800
+},
+"bge": {
+"bytes": 13484,
+"h": 259,
+"w": 800
+},
+"bias-in-generation": {
+"bytes": 13572,
+"h": 283,
+"w": 800
+},
+"bias-survey": {
+"bytes": 11822,
+"h": 282,
+"w": 800
+},
+"bigbench": {
+"bytes": 16050,
+"h": 259,
+"w": 800
+},
+"biggan": {
+"bytes": 9928,
+"h": 259,
+"w": 800
+},
+"billion-word": {
+"bytes": 10236,
+"h": 259,
+"w": 800
+},
+"blip": {
+"bytes": 8790,
+"h": 259,
+"w": 800
+},
+"blip2": {
+"bytes": 9614,
+"h": 259,
+"w": 800
+},
+"bloom": {
+"bytes": 10960,
+"h": 259,
+"w": 800
+},
+"bloomz": {
+"bytes": 20340,
+"h": 282,
+"w": 800
+},
+"bm25": {
+"bytes": 4422,
+"h": 283,
+"w": 800
+},
+"boolq": {
+"bytes": 11368,
+"h": 283,
+"w": 800
+},
+"bpe": {
+"bytes": 9030,
+"h": 259,
+"w": 800
+},
+"byol": {
+"bytes": 10024,
+"h": 259,
+"w": 800
+},
+"caffe": {
+"bytes": 14202,
+"h": 259,
+"w": 800
+},
+"carbon": {
+"bytes": 20320,
+"h": 220,
+"w": 680
+},
+"carbon-quantify": {
+"bytes": 5748,
+"h": 259,
+"w": 800
+},
+"cascaded-diffusion": {
+"bytes": 7556,
+"h": 259,
+"w": 800
+},
+"cfg": {
+"bytes": 5818,
+"h": 259,
+"w": 800
+},
+"chameleon": {
+"bytes": 9986,
+"h": 259,
+"w": 800
+},
+"chatbot-arena": {
+"bytes": 10288,
+"h": 259,
+"w": 800
+},
+"chinchilla": {
+"bytes": 16178,
+"h": 282,
+"w": 800
+},
+"clip": {
+"bytes": 12052,
+"h": 259,
+"w": 800
+},
+"cmc": {
+"bytes": 6238,
+"h": 259,
+"w": 800
+},
+"coca": {
+"bytes": 7252,
+"h": 259,
+"w": 800
+},
+"coco-captions": {
+"bytes": 18224,
+"h": 259,
+"w": 800
+},
+"codebert": {
+"bytes": 20046,
+"h": 282,
+"w": 800
+},
+"codellama": {
+"bytes": 16134,
+"h": 259,
+"w": 800
+},
+"codet5": {
+"bytes": 12340,
+"h": 282,
+"w": 800
+},
+"cogvideox": {
+"bytes": 14478,
+"h": 259,
+"w": 800
+},
+"cola": {
+"bytes": 9594,
+"h": 282,
+"w": 800
+},
+"colbert": {
+"bytes": 13034,
+"h": 259,
+"w": 800
+},
+"commonsense-lm": {
+"bytes": 5742,
+"h": 259,
+"w": 800
+},
+"concrete-safety": {
+"bytes": 2644,
+"h": 282,
+"w": 800
+},
+"conformer": {
+"bytes": 12858,
+"h": 282,
+"w": 800
+},
+"consistency": {
+"bytes": 5686,
+"h": 259,
+"w": 800
+},
+"constitutional": {
+"bytes": 7688,
+"h": 259,
+"w": 800
+},
+"controlnet": {
+"bytes": 8344,
+"h": 259,
+"w": 800
+},
+"convnext": {
+"bytes": 7736,
+"h": 259,
+"w": 800
+},
+"cot": {
+"bytes": 6590,
+"h": 259,
+"w": 800
+},
+"cpc": {
+"bytes": 5940,
+"h": 259,
+"w": 800
+},
+"cyclegan": {
+"bytes": 11556,
+"h": 259,
+"w": 800
+},
+"dalle": {
+"bytes": 7156,
+"h": 259,
+"w": 800
+},
+"dalle2": {
+"bytes": 6282,
+"h": 259,
+"w": 800
+},
+"data-constrained": {
+"bytes": 7876,
+"h": 259,
+"w": 800
+},
+"datacomp": {
+"bytes": 10002,
+"h": 259,
+"w": 800
+},
+"datasheets": {
+"bytes": 11402,
+"h": 296,
+"w": 800
+},
+"dcgan": {
+"bytes": 10310,
+"h": 259,
+"w": 800
+},
+"ddim": {
+"bytes": 7410,
+"h": 259,
+"w": 800
+},
+"ddpg": {
+"bytes": 11228,
+"h": 259,
+"w": 800
+},
+"ddpm": {
+"bytes": 7192,
+"h": 259,
+"w": 800
+},
+"debate": {
+"bytes": 3408,
+"h": 282,
+"w": 800
+},
+"decanlp": {
+"bytes": 7574,
+"h": 259,
+"w": 800
+},
+"decoder-only-wiki": {
+"bytes": 10586,
+"h": 259,
+"w": 800
+},
+"dedup": {
+"bytes": 8164,
+"h": 282,
+"w": 800
+},
+"deeper-self-attention": {
+"bytes": 7704,
+"h": 259,
+"w": 800
+},
+"deepfm": {
+"bytes": 13400,
+"h": 259,
+"w": 800
+},
+"deeplab": {
+"bytes": 17414,
+"h": 259,
+"w": 800
+},
+"deepseek-coder": {
+"bytes": 13210,
+"h": 282,
+"w": 800
+},
+"deepseek-r1": {
+"bytes": 8478,
+"h": 282,
+"w": 800
+},
+"deepseek-v3": {
+"bytes": 5226,
+"h": 282,
+"w": 800
+},
+"deepwalk": {
+"bytes": 12964,
+"h": 259,
+"w": 800
+},
+"deit": {
+"bytes": 4746,
+"h": 259,
+"w": 800
+},
+"densenet": {
+"bytes": 8236,
+"h": 259,
+"w": 800
+},
+"depth-anything": {
+"bytes": 9000,
+"h": 259,
+"w": 800
+},
+"detr": {
+"bytes": 12284,
+"h": 297,
+"w": 800
+},
+"df-gan": {
+"bytes": 13008,
+"h": 259,
+"w": 800
+},
+"diffusion-beats-gan": {
+"bytes": 5854,
+"h": 259,
+"w": 800
+},
+"diffusion-original": {
+"bytes": 6324,
+"h": 259,
+"w": 800
+},
+"diffusion-policy": {
+"bytes": 16310,
+"h": 282,
+"w": 800
+},
+"din": {
+"bytes": 13886,
+"h": 259,
+"w": 800
+},
+"dino": {
+"bytes": 8644,
+"h": 259,
+"w": 800
+},
+"dinov2": {
+"bytes": 14886,
+"h": 259,
+"w": 800
+},
+"distilbert": {
+"bytes": 7266,
+"h": 259,
+"w": 800
+},
+"distillation": {
+"bytes": 6390,
+"h": 259,
+"w": 800
+},
+"dit": {
+"bytes": 9776,
+"h": 259,
+"w": 800
+},
+"dolma": {
+"bytes": 17862,
+"h": 282,
+"w": 800
+},
+"done-with-imagenet": {
+"bytes": 6360,
+"h": 259,
+"w": 800
+},
+"double-descent": {
+"bytes": 9540,
+"h": 259,
+"w": 800
+},
+"dp-sgd": {
+"bytes": 10758,
+"h": 259,
+"w": 800
+},
+"dpo": {
+"bytes": 6828,
+"h": 259,
+"w": 800
+},
+"dpr": {
+"bytes": 13728,
+"h": 282,
+"w": 800
+},
+"dqn": {
+"bytes": 16202,
+"h": 262,
+"w": 800
+},
+"dqn-2013": {
+"bytes": 6670,
+"h": 259,
+"w": 800
+},
+"dreambooth": {
+"bytes": 9882,
+"h": 259,
+"w": 800
+},
+"dreamer": {
+"bytes": 11080,
+"h": 259,
+"w": 800
+},
+"dropout": {
+"bytes": 9768,
+"h": 259,
+"w": 800
+},
+"dropout-2012": {
+"bytes": 5532,
+"h": 259,
+"w": 800
+},
+"e5": {
+"bytes": 7118,
+"h": 259,
+"w": 800
+},
+"efficientnet": {
+"bytes": 6442,
+"h": 259,
+"w": 800
+},
+"electra": {
+"bytes": 11496,
+"h": 259,
+"w": 800
+},
+"elmo": {
+"bytes": 14194,
+"h": 282,
+"w": 800
+},
+"emergent": {
+"bytes": 9242,
+"h": 259,
+"w": 800
+},
+"empirical-batch": {
+"bytes": 7298,
+"h": 259,
+"w": 800
+},
+"encodec": {
+"bytes": 7108,
+"h": 259,
+"w": 800
+},
+"energy-policy": {
+"bytes": 9576,
+"h": 283,
+"w": 800
+},
+"esmfold": {
+"bytes": 19052,
+"h": 259,
+"w": 800
+},
+"ethical-risks": {
+"bytes": 19038,
+"h": 282,
+"w": 800
+},
+"extracting-training-data": {
+"bytes": 8570,
+"h": 259,
+"w": 800
+},
+"faiss": {
+"bytes": 7494,
+"h": 259,
+"w": 800
+},
+"faster-rcnn": {
+"bytes": 20152,
+"h": 273,
+"w": 800
+},
+"fastspeech": {
+"bytes": 6062,
+"h": 259,
+"w": 800
+},
+"fasttext": {
+"bytes": 7784,
+"h": 259,
+"w": 800
+},
+"fcn": {
+"bytes": 6266,
+"h": 259,
+"w": 800
+},
+"fedavg": {
+"bytes": 8062,
+"h": 259,
+"w": 800
+},
+"fgsm": {
+"bytes": 8436,
+"h": 259,
+"w": 800
+},
+"fineweb": {
+"bytes": 8672,
+"h": 259,
+"w": 800
+},
+"flamingo": {
+"bytes": 6180,
+"h": 259,
+"w": 800
+},
+"flan": {
+"bytes": 9202,
+"h": 259,
+"w": 800
+},
+"flan-t5": {
+"bytes": 16036,
+"h": 259,
+"w": 800
+},
+"flashattention": {
+"bytes": 8404,
+"h": 259,
+"w": 800
+},
+"flashattention2": {
+"bytes": 6264,
+"h": 259,
+"w": 800
+},
+"florence": {
+"bytes": 12644,
+"h": 259,
+"w": 800
+},
+"flow-matching": {
+"bytes": 8696,
+"h": 259,
+"w": 800
+},
+"fno": {
+"bytes": 13260,
+"h": 259,
+"w": 800
+},
+"focal-loss": {
+"bytes": 5766,
+"h": 259,
+"w": 800
+},
+"foundation-models": {
+"bytes": 17664,
+"h": 296,
+"w": 800
+},
+"fpn": {
+"bytes": 7108,
+"h": 259,
+"w": 800
+},
+"gae": {
+"bytes": 12872,
+"h": 259,
+"w": 800
+},
+"gan": {
+"bytes": 7628,
+"h": 259,
+"w": 800
+},
+"gat": {
+"bytes": 11866,
+"h": 259,
+"w": 800
+},
+"gato": {
+"bytes": 16260,
+"h": 259,
+"w": 800
+},
+"gcn": {
+"bytes": 9998,
+"h": 259,
+"w": 800
+},
+"gelu": {
+"bytes": 7330,
+"h": 259,
+"w": 800
+},
+"gemini": {
+"bytes": 13130,
+"h": 282,
+"w": 800
+},
+"general-assistant": {
+"bytes": 6548,
+"h": 259,
+"w": 800
+},
+"generative-agents": {
+"bytes": 14254,
+"h": 259,
+"w": 800
+},
+"generative-scaling": {
+"bytes": 6476,
+"h": 259,
+"w": 800
+},
+"gin": {
+"bytes": 9544,
+"h": 259,
+"w": 800
+},
+"glide": {
+"bytes": 8636,
+"h": 259,
+"w": 800
+},
+"glm-130b": {
+"bytes": 12014,
+"h": 259,
+"w": 800
+},
+"glove": {
+"bytes": 10364,
+"h": 282,
+"w": 800
+},
+"glu-variants": {
+"bytes": 4476,
+"h": 259,
+"w": 800
+},
+"glue": {
+"bytes": 13906,
+"h": 259,
+"w": 800
+},
+"gnmt": {
+"bytes": 10200,
+"h": 259,
+"w": 800
+},
+"gnome": {
+"bytes": 20268,
+"h": 266,
+"w": 800
+},
+"googlenet": {
+"bytes": 5364,
+"h": 259,
+"w": 800
+},
+"gopher": {
+"bytes": 20160,
+"h": 282,
+"w": 800
+},
+"gpipe": {
+"bytes": 7204,
+"h": 259,
+"w": 800
+},
+"gpt-neox": {
+"bytes": 12998,
+"h": 282,
+"w": 800
+},
+"gpt1": {
+"bytes": 6752,
+"h": 259,
+"w": 800
+},
+"gpt2": {
+"bytes": 9054,
+"h": 259,
+"w": 800
+},
+"gpt3": {
+"bytes": 7360,
+"h": 259,
+"w": 800
+},
+"gpt4": {
+"bytes": 2252,
+"h": 259,
+"w": 800
+},
+"gptq": {
+"bytes": 10906,
+"h": 259,
+"w": 800
+},
+"gqa": {
+"bytes": 9716,
+"h": 282,
+"w": 800
+},
+"grad-cam": {
+"bytes": 8626,
+"h": 282,
+"w": 800
+},
+"grad-checkpointing": {
+"bytes": 7678,
+"h": 259,
+"w": 800
+},
+"graphcast": {
+"bytes": 16866,
+"h": 282,
+"w": 800
+},
+"graphormer": {
+"bytes": 6864,
+"h": 259,
+"w": 800
+},
+"graphsage": {
+"bytes": 7168,
+"h": 259,
+"w": 800
+},
+"graves-rnn": {
+"bytes": 3114,
+"h": 259,
+"w": 800
+},
+"grokking": {
+"bytes": 7688,
+"h": 259,
+"w": 800
+},
+"grover": {
+"bytes": 8782,
+"h": 259,
+"w": 800
+},
+"grpo": {
+"bytes": 12098,
+"h": 282,
+"w": 800
+},
+"gru": {
+"bytes": 17394,
+"h": 282,
+"w": 800
+},
+"gshard": {
+"bytes": 8538,
+"h": 259,
+"w": 800
+},
+"gsm8k": {
+"bytes": 2546,
+"h": 259,
+"w": 800
+},
+"hellaswag": {
+"bytes": 11478,
+"h": 282,
+"w": 800
+},
+"helm": {
+"bytes": 20128,
+"h": 259,
+"w": 800
+},
+"hifi-gan": {
+"bytes": 7632,
+"h": 259,
+"w": 800
+},
+"hnsw": {
+"bytes": 16584,
+"h": 273,
+"w": 800
+},
+"hubert": {
+"bytes": 15282,
+"h": 259,
+"w": 800
+},
+"huggingface": {
+"bytes": 16576,
+"h": 282,
+"w": 800
+},
+"humaneval": {
+"bytes": 16316,
+"h": 259,
+"w": 800
+},
+"i3d": {
+"bytes": 8300,
+"h": 259,
+"w": 800
+},
+"iddpm": {
+"bytes": 8294,
+"h": 259,
+"w": 800
+},
+"imagen": {
+"bytes": 9020,
+"h": 259,
+"w": 800
+},
+"imagen-video": {
+"bytes": 13806,
+"h": 259,
+"w": 800
+},
+"imagenet": {
+"bytes": 8216,
+"h": 259,
+"w": 800
+},
+"inception-score-note": {
+"bytes": 7020,
+"h": 259,
+"w": 800
+},
+"induction-heads": {
+"bytes": 5030,
+"h": 275,
+"w": 800
+},
+"information-bottleneck": {
+"bytes": 9354,
+"h": 259,
+"w": 800
+},
+"instructgpt": {
+"bytes": 6646,
+"h": 259,
+"w": 800
+},
+"internvl": {
+"bytes": 13008,
+"h": 259,
+"w": 800
+},
+"intriguing": {
+"bytes": 6660,
+"h": 259,
+"w": 800
+},
+"iterated-amplification": {
+"bytes": 6082,
+"h": 259,
+"w": 800
+},
+"jukebox": {
+"bytes": 9552,
+"h": 259,
+"w": 800
+},
+"kinetics": {
+"bytes": 8288,
+"h": 259,
+"w": 800
+},
+"laion400m": {
+"bytes": 6914,
+"h": 259,
+"w": 800
+},
+"laion5b": {
+"bytes": 9710,
+"h": 259,
+"w": 800
+},
+"lambada": {
+"bytes": 17910,
+"h": 282,
+"w": 800
+},
+"lamda": {
+"bytes": 11184,
+"h": 259,
+"w": 800
+},
+"large-batch": {
+"bytes": 11446,
+"h": 259,
+"w": 800
+},
+"layernorm": {
+"bytes": 6650,
+"h": 259,
+"w": 800
+},
+"ldm": {
+"bytes": 11704,
+"h": 259,
+"w": 800
+},
+"least-to-most": {
+"bytes": 11676,
+"h": 259,
+"w": 800
+},
+"lenet": {
+"bytes": 15286,
+"h": 259,
+"w": 800
+},
+"lime": {
+"bytes": 14178,
+"h": 259,
+"w": 800
+},
+"linformer": {
+"bytes": 7496,
+"h": 259,
+"w": 800
+},
+"llama": {
+"bytes": 12576,
+"h": 282,
+"w": 800
+},
+"llama2": {
+"bytes": 15340,
+"h": 259,
+"w": 800
+},
+"llava": {
+"bytes": 6234,
+"h": 259,
+"w": 800
+},
+"llm-int8": {
+"bytes": 6228,
+"h": 259,
+"w": 800
+},
+"lm-limits": {
+"bytes": 8084,
+"h": 259,
+"w": 800
+},
+"lora": {
+"bytes": 10044,
+"h": 259,
+"w": 800
+},
+"lost-in-the-middle": {
+"bytes": 11264,
+"h": 282,
+"w": 800
+},
+"lottery": {
+"bytes": 8918,
+"h": 259,
+"w": 800
+},
+"lr-scaling": {
+"bytes": 7962,
+"h": 259,
+"w": 800
+},
+"lstm": {
+"bytes": 4480,
+"h": 283,
+"w": 800
+},
+"lsun": {
+"bytes": 8604,
+"h": 259,
+"w": 800
+},
+"machine-unlearning": {
+"bytes": 17710,
+"h": 259,
+"w": 800
+},
+"mae": {
+"bytes": 7046,
+"h": 259,
+"w": 800
+},
+"make-a-video": {
+"bytes": 9038,
+"h": 259,
+"w": 800
+},
+"mamba": {
+"bytes": 7068,
+"h": 259,
+"w": 800
+},
+"mamba2": {
+"bytes": 6966,
+"h": 259,
+"w": 800
+},
+"mask-rcnn": {
+"bytes": 4132,
+"h": 259,
+"w": 800
+},
+"math-dataset": {
+"bytes": 8168,
+"h": 259,
+"w": 800
+},
+"mbpp": {
+"bytes": 8086,
+"h": 259,
+"w": 800
+},
+"medusa": {
+"bytes": 7858,
+"h": 259,
+"w": 800
+},
+"meena": {
+"bytes": 13594,
+"h": 282,
+"w": 800
+},
+"megatron": {
+"bytes": 8096,
+"h": 259,
+"w": 800
+},
+"membership-inference": {
+"bytes": 10660,
+"h": 259,
+"w": 800
+},
+"memory-networks": {
+"bytes": 6792,
+"h": 259,
+"w": 800
+},
+"mf": {
+"bytes": 8316,
+"h": 275,
+"w": 800
+},
+"minerva": {
+"bytes": 9742,
+"h": 259,
+"w": 800
+},
+"mistral": {
+"bytes": 9426,
+"h": 259,
+"w": 800
+},
+"mixed-precision": {
+"bytes": 9942,
+"h": 259,
+"w": 800
+},
+"mixtral": {
+"bytes": 9088,
+"h": 259,
+"w": 800
+},
+"mixup": {
+"bytes": 6938,
+"h": 259,
+"w": 800
+},
+"mmlu": {
+"bytes": 10466,
+"h": 259,
+"w": 800
+},
+"mobile-aloha": {
+"bytes": 10552,
+"h": 282,
+"w": 800
+},
+"mobilenet": {
+"bytes": 8742,
+"h": 259,
+"w": 800
+},
+"moco": {
+"bytes": 8272,
+"h": 259,
+"w": 800
+},
+"moco-v2": {
+"bytes": 6644,
+"h": 259,
+"w": 800
+},
+"moe-efficient": {
+"bytes": 16674,
+"h": 282,
+"w": 800
+},
+"moe-shazeer": {
+"bytes": 12356,
+"h": 259,
+"w": 800
+},
+"monobert": {
+"bytes": 7278,
+"h": 259,
+"w": 800
+},
+"mpnn": {
+"bytes": 7536,
+"h": 259,
+"w": 800
+},
+"mqa": {
+"bytes": 5644,
+"h": 259,
+"w": 800
+},
+"ms-marco": {
+"bytes": 8736,
+"h": 259,
+"w": 800
+},
+"mt-nlg": {
+"bytes": 12768,
+"h": 259,
+"w": 800
+},
+"mt5": {
+"bytes": 8496,
+"h": 282,
+"w": 800
+},
+"muzero": {
+"bytes": 8534,
+"h": 259,
+"w": 800
+},
+"ncf": {
+"bytes": 14578,
+"h": 259,
+"w": 800
+},
+"nerf": {
+"bytes": 14434,
+"h": 297,
+"w": 800
+},
+"nice": {
+"bytes": 9086,
+"h": 259,
+"w": 800
+},
+"nnlm": {
+"bytes": 9708,
+"h": 259,
+"w": 800
+},
+"node2vec": {
+"bytes": 8280,
+"h": 259,
+"w": 800
+},
+"ntk": {
+"bytes": 6258,
+"h": 259,
+"w": 800
+},
+"ntm": {
+"bytes": 2382,
+"h": 259,
+"w": 800
+},
+"olmo": {
+"bytes": 14872,
+"h": 282,
+"w": 800
+},
+"one-epoch": {
+"bytes": 5550,
+"h": 259,
+"w": 800
+},
+"open-x": {
+"bytes": 19826,
+"h": 259,
+"w": 800
+},
+"openbookqa": {
+"bytes": 13904,
+"h": 282,
+"w": 800
+},
+"openpose": {
+"bytes": 8334,
+"h": 259,
+"w": 800
+},
+"openvla": {
+"bytes": 13378,
+"h": 259,
+"w": 800
+},
+"opt": {
+"bytes": 14950,
+"h": 282,
+"w": 800
+},
+"pal": {
+"bytes": 8206,
+"h": 259,
+"w": 800
+},
+"pali": {
+"bytes": 16022,
+"h": 259,
+"w": 800
+},
+"palm": {
+"bytes": 12022,
+"h": 259,
+"w": 800
+},
+"palm-e": {
+"bytes": 16338,
+"h": 259,
+"w": 800
+},
+"palm2": {
+"bytes": 2672,
+"h": 259,
+"w": 800
+},
+"pangu-alpha": {
+"bytes": 7848,
+"h": 259,
+"w": 800
+},
+"pangu-weather": {
+"bytes": 19780,
+"h": 259,
+"w": 800
+},
+"phi-textbooks": {
+"bytes": 11300,
+"h": 259,
+"w": 800
+},
+"pi0": {
+"bytes": 17056,
+"h": 259,
+"w": 800
+},
+"pinsage": {
+"bytes": 9762,
+"h": 259,
+"w": 800
+},
+"pix2pix": {
+"bytes": 9330,
+"h": 259,
+"w": 800
+},
+"pixelrnn": {
+"bytes": 5942,
+"h": 259,
+"w": 800
+},
+"position-interpolation": {
+"bytes": 9348,
+"h": 259,
+"w": 800
+},
+"ppo": {
+"bytes": 5894,
+"h": 282,
+"w": 800
+},
+"prefix-tuning": {
+"bytes": 7194,
+"h": 282,
+"w": 800
+},
+"prompt-tuning": {
+"bytes": 6866,
+"h": 282,
+"w": 800
+},
+"pythia": {
+"bytes": 11450,
+"h": 259,
+"w": 800
+},
+"qanet": {
+"bytes": 12034,
+"h": 259,
+"w": 800
+},
+"qlora": {
+"bytes": 5388,
+"h": 259,
+"w": 800
+},
+"quantify-memorization": {
+"bytes": 9744,
+"h": 259,
+"w": 800
+},
+"qwen-vl": {
+"bytes": 10462,
+"h": 259,
+"w": 800
+},
+"qwen2": {
+"bytes": 16462,
+"h": 259,
+"w": 800
+},
+"race": {
+"bytes": 11212,
+"h": 282,
+"w": 800
+},
+"raft": {
+"bytes": 10188,
+"h": 297,
+"w": 800
+},
+"rag": {
+"bytes": 5566,
+"h": 259,
+"w": 800
+},
+"rainbow": {
+"bytes": 11954,
+"h": 259,
+"w": 800
+},
+"rcnn": {
+"bytes": 8122,
+"h": 259,
+"w": 800
+},
+"react": {
+"bytes": 11158,
+"h": 259,
+"w": 800
+},
+"real-nvp": {
+"bytes": 8252,
+"h": 259,
+"w": 800
+},
+"realm": {
+"bytes": 8928,
+"h": 259,
+"w": 800
+},
+"realtoxicity": {
+"bytes": 14944,
+"h": 282,
+"w": 800
+},
+"record": {
+"bytes": 10500,
+"h": 282,
+"w": 800
+},
+"red-teaming": {
+"bytes": 10476,
+"h": 259,
+"w": 800
+},
+"refinedweb": {
+"bytes": 7658,
+"h": 259,
+"w": 800
+},
+"reflexion": {
+"bytes": 6228,
+"h": 259,
+"w": 800
+},
+"resnet": {
+"bytes": 6196,
+"h": 259,
+"w": 800
+},
+"rethinking-demos": {
+"bytes": 12042,
+"h": 259,
+"w": 800
+},
+"rethinking-generalization": {
+"bytes": 8880,
+"h": 259,
+"w": 800
+},
+"retro": {
+"bytes": 19892,
+"h": 282,
+"w": 800
+},
+"reward-modeling": {
+"bytes": 8458,
+"h": 259,
+"w": 800
+},
+"rezende-vae": {
+"bytes": 8074,
+"h": 259,
+"w": 800
+},
+"ring-attention": {
+"bytes": 5974,
+"h": 259,
+"w": 800
+},
+"rl-summarization": {
+"bytes": 8612,
+"h": 259,
+"w": 800
+},
+"rlhf-prefs": {
+"bytes": 6196,
+"h": 259,
+"w": 800
+},
+"roberta": {
+"bytes": 15246,
+"h": 283,
+"w": 800
+},
+"rope": {
+"bytes": 6360,
+"h": 259,
+"w": 800
+},
+"rt1": {
+"bytes": 20150,
+"h": 259,
+"w": 800
+},
+"rt2": {
+"bytes": 20142,
+"h": 282,
+"w": 800
+},
+"rwkv": {
+"bytes": 19716,
+"h": 282,
+"w": 800
+},
+"s4": {
+"bytes": 8060,
+"h": 259,
+"w": 800
+},
+"sac": {
+"bytes": 7358,
+"h": 259,
+"w": 800
+},
+"safety-recipes": {
+"bytes": 5634,
+"h": 282,
+"w": 800
+},
+"sam": {
+"bytes": 8576,
+"h": 259,
+"w": 800
+},
+"sam-optimizer": {
+"bytes": 11052,
+"h": 259,
+"w": 800
+},
+"santacoder": {
+"bytes": 9902,
+"h": 259,
+"w": 800
+},
+"sasrec": {
+"bytes": 13502,
+"h": 259,
+"w": 800
+},
+"saycan": {
+"bytes": 18562,
+"h": 259,
+"w": 800
+},
+"scaling-laws": {
+"bytes": 5702,
+"h": 259,
+"w": 800
+},
+"scaling-predictable": {
+"bytes": 11194,
+"h": 259,
+"w": 800
+},
+"score-improved": {
+"bytes": 6884,
+"h": 259,
+"w": 800
+},
+"score-sde": {
+"bytes": 12674,
+"h": 259,
+"w": 800
+},
+"scratchpad": {
+"bytes": 11284,
+"h": 259,
+"w": 800
+},
+"sdxl": {
+"bytes": 7324,
+"h": 259,
+"w": 800
+},
+"self-consistency": {
+"bytes": 12034,
+"h": 259,
+"w": 800
+},
+"self-instruct": {
+"bytes": 14380,
+"h": 282,
+"w": 800
+},
+"self-refine": {
+"bytes": 8450,
+"h": 259,
+"w": 800
+},
+"senet": {
+"bytes": 20310,
+"h": 259,
+"w": 800
+},
+"sentence-bert": {
+"bytes": 9892,
+"h": 282,
+"w": 800
+},
+"sentencepiece": {
+"bytes": 8098,
+"h": 282,
+"w": 800
+},
+"sentiment-neuron": {
+"bytes": 8816,
+"h": 259,
+"w": 800
+},
+"seq2seq": {
+"bytes": 4952,
+"h": 259,
+"w": 800
+},
+"sgdr": {
+"bytes": 8136,
+"h": 259,
+"w": 800
+},
+"sglang": {
+"bytes": 8506,
+"h": 259,
+"w": 800
+},
+"shap": {
+"bytes": 6762,
+"h": 259,
+"w": 800
+},
+"siglip": {
+"bytes": 7454,
+"h": 259,
+"w": 800
+},
+"simclr": {
+"bytes": 7648,
+"h": 259,
+"w": 800
+},
+"simcse": {
+"bytes": 11772,
+"h": 282,
+"w": 800
+},
+"simvlm": {
+"bytes": 12674,
+"h": 259,
+"w": 800
+},
+"sleeper-agents": {
+"bytes": 16564,
+"h": 259,
+"w": 800
+},
+"slowfast": {
+"bytes": 5482,
+"h": 259,
+"w": 800
+},
+"socialiqa": {
+"bytes": 13812,
+"h": 282,
+"w": 800
+},
+"soundstream": {
+"bytes": 16402,
+"h": 259,
+"w": 800
+},
+"spanbert": {
+"bytes": 16908,
+"h": 282,
+"w": 800
+},
+"sparks-agi": {
+"bytes": 11626,
+"h": 259,
+"w": 800
+},
+"sparse-attn": {
+"bytes": 7480,
+"h": 282,
+"w": 800
+},
+"sparse-transformers": {
+"bytes": 8518,
+"h": 259,
+"w": 800
+},
+"spatial-transformer": {
+"bytes": 5422,
+"h": 259,
+"w": 800
+},
+"speculative": {
+"bytes": 8612,
+"h": 259,
+"w": 800
+},
+"splade": {
+"bytes": 10882,
+"h": 259,
+"w": 800
+},
+"squad": {
+"bytes": 9608,
+"h": 259,
+"w": 800
+},
+"squad2": {
+"bytes": 8310,
+"h": 282,
+"w": 800
+},
+"sr3": {
+"bytes": 10134,
+"h": 259,
+"w": 800
+},
+"ssd": {
+"bytes": 17864,
+"h": 297,
+"w": 800
+},
+"starcoder": {
+"bytes": 19198,
+"h": 259,
+"w": 800
+},
+"stereoset": {
+"bytes": 15816,
+"h": 282,
+"w": 800
+},
+"stochastic-parrots-risk": {
+"bytes": 4796,
+"h": 259,
+"w": 800
+},
+"straight-through": {
+"bytes": 7490,
+"h": 259,
+"w": 800
+},
+"stylegan": {
+"bytes": 7296,
+"h": 259,
+"w": 800
+},
+"summarize-hf": {
+"bytes": 6974,
+"h": 259,
+"w": 800
+},
+"superglue": {
+"bytes": 8568,
+"h": 259,
+"w": 800
+},
+"svd": {
+"bytes": 10910,
+"h": 259,
+"w": 800
+},
+"swe-agent": {
+"bytes": 7248,
+"h": 259,
+"w": 800
+},
+"swe-bench": {
+"bytes": 11260,
+"h": 259,
+"w": 800
+},
+"swin": {
+"bytes": 9704,
+"h": 259,
+"w": 800
+},
+"swish": {
+"bytes": 6160,
+"h": 259,
+"w": 800
+},
+"switch": {
+"bytes": 8958,
+"h": 259,
+"w": 800
+},
+"t0": {
+"bytes": 12912,
+"h": 259,
+"w": 800
+},
+"t5": {
+"bytes": 9756,
+"h": 259,
+"w": 800
+},
+"t5x": {
+"bytes": 6750,
+"h": 259,
+"w": 800
+},
+"tacotron2": {
+"bytes": 13212,
+"h": 259,
+"w": 800
+},
+"tensorflow": {
+"bytes": 17526,
+"h": 259,
+"w": 800
+},
+"the-pile": {
+"bytes": 11674,
+"h": 282,
+"w": 800
+},
+"timesformer": {
+"bytes": 9174,
+"h": 259,
+"w": 800
+},
+"toolformer": {
+"bytes": 9246,
+"h": 282,
+"w": 800
+},
+"tot": {
+"bytes": 7938,
+"h": 259,
+"w": 800
+},
+"transformer": {
+"bytes": 8418,
+"h": 259,
+"w": 800
+},
+"transformer-xl": {
+"bytes": 10856,
+"h": 282,
+"w": 800
+},
+"triviaqa": {
+"bytes": 15208,
+"h": 282,
+"w": 800
+},
+"trpo": {
+"bytes": 8342,
+"h": 259,
+"w": 800
+},
+"truthfulqa": {
+"bytes": 8646,
+"h": 282,
+"w": 800
+},
+"two-stream": {
+"bytes": 5630,
+"h": 259,
+"w": 800
+},
+"two-tower": {
+"bytes": 13366,
+"h": 259,
+"w": 800
+},
+"ucf101": {
+"bytes": 6134,
+"h": 259,
+"w": 800
+},
+"ul2": {
+"bytes": 8838,
+"h": 259,
+"w": 800
+},
+"ulmfit": {
+"bytes": 8136,
+"h": 282,
+"w": 800
+},
+"unet": {
+"bytes": 6864,
+"h": 259,
+"w": 800
+},
+"universal-jailbreak": {
+"bytes": 6932,
+"h": 259,
+"w": 800
+},
+"universal-transformer": {
+"bytes": 10018,
+"h": 259,
+"w": 800
+},
+"vae": {
+"bytes": 5884,
+"h": 259,
+"w": 800
+},
+"vall-e": {
+"bytes": 8776,
+"h": 259,
+"w": 800
+},
+"vgg": {
+"bytes": 10148,
+"h": 259,
+"w": 800
+},
+"video-diffusion": {
+"bytes": 5318,
+"h": 259,
+"w": 800
+},
+"videoldm": {
+"bytes": 11692,
+"h": 259,
+"w": 800
+},
+"videomae": {
+"bytes": 8922,
+"h": 259,
+"w": 800
+},
+"vit": {
+"bytes": 14586,
+"h": 259,
+"w": 800
+},
+"vit-scaling": {
+"bytes": 7294,
+"h": 259,
+"w": 800
+},
+"vits": {
+"bytes": 6750,
+"h": 259,
+"w": 800
+},
+"vllm": {
+"bytes": 15524,
+"h": 259,
+"w": 800
+},
+"voyager": {
+"bytes": 8198,
+"h": 259,
+"w": 800
+},
+"vqgan": {
+"bytes": 8874,
+"h": 259,
+"w": 800
+},
+"vqvae": {
+"bytes": 7202,
+"h": 259,
+"w": 800
+},
+"vqvae2": {
+"bytes": 6044,
+"h": 259,
+"w": 800
+},
+"vtab": {
+"bytes": 13088,
+"h": 259,
+"w": 800
+},
+"watermark": {
+"bytes": 5692,
+"h": 259,
+"w": 800
+},
+"wav2vec2": {
+"bytes": 7312,
+"h": 259,
+"w": 800
+},
+"wavenet": {
+"bytes": 7452,
+"h": 259,
+"w": 800
+},
+"webgpt": {
+"bytes": 6758,
+"h": 259,
+"w": 800
+},
+"wgan": {
+"bytes": 1542,
+"h": 259,
+"w": 800
+},
+"whisper": {
+"bytes": 10262,
+"h": 259,
+"w": 800
+},
+"wide-deep": {
+"bytes": 13110,
+"h": 259,
+"w": 800
+},
+"wide-resnet": {
+"bytes": 16250,
+"h": 302,
+"w": 800
+},
+"wikitext": {
+"bytes": 8642,
+"h": 259,
+"w": 800
+},
+"word2vec": {
+"bytes": 5194,
+"h": 259,
+"w": 800
+},
+"world-models": {
+"bytes": 4046,
+"h": 259,
+"w": 800
+},
+"xlm": {
+"bytes": 7864,
+"h": 282,
+"w": 800
+},
+"xlnet": {
+"bytes": 7608,
+"h": 259,
+"w": 800
+},
+"yarn": {
+"bytes": 8480,
+"h": 259,
+"w": 800
+},
+"yolo": {
+"bytes": 7866,
+"h": 259,
+"w": 800
+},
+"youtube-dnn": {
+"bytes": 8214,
+"h": 259,
+"w": 800
+},
+"zero": {
+"bytes": 4626,
+"h": 259,
+"w": 800
+},
+"zero-shot-cot": {
+"bytes": 6896,
+"h": 259,
+"w": 800
+},
+"zero-shot-planner": {
+"bytes": 9780,
+"h": 259,
+"w": 800
+}
+}

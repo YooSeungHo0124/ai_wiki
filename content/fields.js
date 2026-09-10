@@ -123,6 +123,15 @@ WIKI.FIELDS = [
       {id:'expressive', name:'표현력 · Transformer'}
     ]},
 
+  { id:'tabular', name:'정형 데이터 · 시계열', en:'Tabular & Time Series',
+    color:'var(--field-tabular)',
+    blurb:'딥러닝이 이기지 못한 영역. 표와 시계열에서는 아직도 그래디언트 부스팅과 단순한 선형 기저가 강하고, 그 사실 자체가 중요한 정보다.',
+    tracks:[
+      {id:'gbdt',    name:'그래디언트 부스팅'},
+      {id:'deep',    name:'표를 위한 딥러닝'},
+      {id:'forecast',name:'시계열 예측'}
+    ]},
+
   { id:'recsys', name:'추천 시스템', en:'Recommender Systems',
     color:'var(--field-recsys)',
     blurb:'가장 오래됐고 가장 돈이 되는 응용. 행렬 분해에서 딥러닝으로, 다시 사용자 행동을 시퀀스로 보는 방향으로 옮겨왔다.',
@@ -217,7 +226,7 @@ WIKI.GROUPS = [
   { id:'modal', name:'모달리티 · 응용',
     desc:'무엇을 다루는가(이미지·언어·음성·영상·그래프)와 어디에 쓰는가(추천·코드·로봇·과학).',
     fields:['vision','nlp','llm','generative','multimodal','speech','video',
-            'graph','rl','robotics','recsys','ir','code','science'] },
+            'graph','rl','robotics','recsys','tabular','ir','code','science'] },
   { id:'cross', name:'가로지르는 관심사',
     desc:'특정 모달리티에 속하지 않고 전 분야를 관통하는 문제 — 효율, 데이터, 추론 방식, 해석, 안전.',
     fields:['efficiency','data','agent','interp','privacy'] }
@@ -884,7 +893,39 @@ WIKI.INDEX = [
 ['lottery-ticket',2018,'The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks','복권 가설','efficiency','quant',['deep-compression']],
 ['movement-pruning',2020,'Movement Pruning: Adaptive Sparsity by Fine-Tuning','Movement Pruning','efficiency','quant',['lottery-ticket','bert']],
 ['midas',2019,'Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer','MiDaS','vision','dense',['resnet']],
-['deepseek-v2',2024,'DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model','DeepSeek-V2 · MLA','efficiency','attn',['switch','llama']]
+['deepseek-v2',2024,'DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model','DeepSeek-V2 · MLA','efficiency','attn',['switch','llama']],
+
+// ════════ 12차 확장 — 음성 뿌리 · 정형/시계열 · 실무 공백 ════════
+['ctc',2006,'Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks','CTC 손실','speech','asr',['lstm']],
+['rnn-t',2012,'Sequence Transduction with Recurrent Neural Networks (RNN-T)','RNN 트랜스듀서','speech','asr',['ctc','lstm']],
+['deep-speech',2014,'Deep Speech: Scaling up end-to-end speech recognition','Deep Speech','speech','asr',['ctc']],
+['las',2015,'Listen, Attend and Spell','Listen, Attend and Spell','speech','asr',['seq2seq','bahdanau']],
+['wav2vec',2019,'wav2vec: Unsupervised Pre-training for Speech Recognition','wav2vec','speech','asr',['cpc','deep-speech']],
+['xgboost',2016,'XGBoost: A Scalable Tree Boosting System','XGBoost','tabular','gbdt',[]],
+['lightgbm',2017,'LightGBM: A Highly Efficient Gradient Boosting Decision Tree','LightGBM','tabular','gbdt',['xgboost']],
+['catboost',2017,'CatBoost: unbiased boosting with categorical features','CatBoost','tabular','gbdt',['xgboost']],
+['tabnet',2019,'TabNet: Attentive Interpretable Tabular Learning','TabNet','tabular','deep',['xgboost','transformer']],
+['ft-transformer',2021,'Revisiting Deep Learning Models for Tabular Data','FT-Transformer','tabular','deep',['tabnet','transformer']],
+['trees-still-win',2022,'Why do tree-based models still outperform deep learning on tabular data?','나무가 아직 이긴다','tabular','gbdt',['xgboost','ft-transformer']],
+['deepar',2017,'DeepAR: Probabilistic Forecasting with Autoregressive Recurrent Networks','DeepAR','tabular','forecast',['lstm']],
+['nbeats',2019,'N-BEATS: Neural basis expansion analysis for interpretable time series forecasting','N-BEATS','tabular','forecast',['deepar']],
+['informer',2020,'Informer: Beyond Efficient Transformer for Long Sequence Time-Series Forecasting','Informer','tabular','forecast',['transformer','deepar']],
+['autoformer',2021,'Autoformer: Decomposition Transformers with Auto-Correlation for Long-Term Series Forecasting','Autoformer','tabular','forecast',['informer']],
+['dlinear',2022,'Are Transformers Effective for Time Series Forecasting?','선형 하나면 된다(DLinear)','tabular','forecast',['informer','autoformer']],
+['patchtst',2022,'A Time Series is Worth 64 Words: Long-term Forecasting with Transformers','PatchTST','tabular','forecast',['dlinear','vit']],
+['padim',2020,'PaDiM: a Patch Distribution Modeling Framework for Anomaly Detection and Localization','PaDiM','interp','trust',['resnet','msp-baseline']],
+['patchcore',2021,'Towards Total Recall in Industrial Anomaly Detection (PatchCore)','PatchCore','interp','trust',['padim']],
+['apex',2018,'Distributed Prioritized Experience Replay (Ape-X)','Ape-X','rl','value',['dqn']],
+['impala',2018,'IMPALA: Scalable Distributed Deep-RL with Importance Weighted Actor-Learner Architectures','IMPALA','rl','policy',['a3c']],
+['td3',2018,'Addressing Function Approximation Error in Actor-Critic Methods (TD3)','TD3','rl','policy',['ddpg']],
+['monot5',2020,'Document Ranking with a Pretrained Sequence-to-Sequence Model (monoT5)','monoT5 리랭커','ir','late',['t5','monobert']],
+['contriever',2021,'Unsupervised Dense Information Retrieval with Contrastive Learning','Contriever','ir','dense',['dpr','cpc']],
+['hyde',2022,'Precise Zero-Shot Dense Retrieval without Relevance Labels (HyDE)','HyDE','ir','dense',['contriever','gpt3']],
+['self-rag',2023,'Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection','Self-RAG','ir','dense',['rag','instructgpt']],
+['bpr',2009,'BPR: Bayesian Personalized Ranking from Implicit Feedback','BPR','recsys','cf',['mf']],
+['item2vec',2016,'Item2Vec: Neural Item Embedding for Collaborative Filtering','Item2Vec','recsys','cf',['word2vec','mf']],
+['dien',2018,'Deep Interest Evolution Network for Click-Through Rate Prediction','DIEN','recsys','seq',['din','lstm']],
+['alpaca-eval',2024,'Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators','길이 보정 AlpacaEval','interp','eval',['chatbot-arena','instructgpt']]
 ];
 
 WIKI.META = WIKI.INDEX.map(function(r){

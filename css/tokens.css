@@ -91,6 +91,7 @@
   --field-speech-L:#89522e;       --field-speech-D:#c88659;
   --field-graph-L:#326962;        --field-graph-D:#4da397;
   --field-recsys-L:#9a398a;       --field-recsys-D:#ce7bc0;
+  --field-tabular-L:#2d6a86;      --field-tabular-D:#67b3ce;
   --field-ir-L:#4732ad;           --field-ir-D:#9385dc;
   --field-code-L:#4e8135;         --field-code-D:#73b851;
   --field-video-L:#a84ec4;        --field-video-D:#d1a1e0;
@@ -196,6 +197,7 @@
   --field-speech:var(--field-speech-L);
   --field-graph:var(--field-graph-L);
   --field-recsys:var(--field-recsys-L);
+  --field-tabular:var(--field-tabular-L);
   --field-ir:var(--field-ir-L);
   --field-code:var(--field-code-L);
   --field-video:var(--field-video-L);
@@ -427,6 +429,7 @@
     --field-speech:var(--field-speech-D);
     --field-graph:var(--field-graph-D);
     --field-recsys:var(--field-recsys-D);
+    --field-tabular:var(--field-tabular-D);
     --field-ir:var(--field-ir-D);
     --field-code:var(--field-code-D);
     --field-video:var(--field-video-D);
@@ -503,6 +506,7 @@ html[data-theme="dark"]{
   --field-speech:var(--field-speech-D);
   --field-graph:var(--field-graph-D);
   --field-recsys:var(--field-recsys-D);
+  --field-tabular:var(--field-tabular-D);
   --field-ir:var(--field-ir-D);
   --field-code:var(--field-code-D);
   --field-video:var(--field-video-D);

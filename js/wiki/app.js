@@ -212,6 +212,123 @@
     });
   }
 
+  /* ---------- 좌측 내비게이션 트리 (UX-SPEC 2.6) ----------
+     그룹(WIKI.GROUPS) → 분야 → 트랙 → 논문 4단계. 전체를 항상 DOM에
+     내려보내되(<details> 네이티브 토글로 수동 펼침이 가능해야 하므로),
+     펼침 상태(open)만 "현재 보고 있는 논문의 분야·트랙"에 맞춰 계산한다.
+     넓은 화면에서만 보이고(css 미디어쿼리), 좁은 화면은 ☰ 토글로 연다. */
+  function navTreeHTML(activeSlug, activeFieldId){
+    var cur = activeSlug ? W.byId(activeSlug) : null;
+    var activeField = cur ? cur.field : (activeFieldId||null);
+    var activeTrack = cur ? cur.track : null;
+    var groups = (W.GROUPS||[]).length ? W.GROUPS
+      : [{id:'all', name:'', fields:W.FIELDS.map(function(f){return f.id;})}];
+    var byField={}; W.META.forEach(function(m){ (byField[m.field]=byField[m.field]||[]).push(m); });
+    var stats = W.GRAPH && W.GRAPH.stats;
+
+    function paperLi(m){
+      var g=W.graphOf(m.slug), seed = g && g.stage==='seed';
+      var isCur = m.slug===activeSlug;
+      return '<li><a class="nav-paper'+(seed?' nav-seed':'')+(isCur?' nav-current':'')+'" href="#/p/'+m.slug+'"'
+        +(isCur?' aria-current="page"':'')+'>'+(seed?'<span aria-hidden="true">🌱</span> ':'')
+        +W.esc(m.ko)+' <span class="nav-yr">'+m.year+'</span></a></li>';
+    }
+    function trackLi(f, tr){
+      var mine=(byField[f.id]||[]).filter(function(m){return m.track===tr.id;}).sort(function(a,b){return a.year-b.year;});
+      if(!mine.length) return '';
+      var open = f.id===activeField && tr.id===activeTrack;
+      return '<li><details class="nav-track"'+(open?' open':'')+'>'
+        +'<summary>'+W.esc(tr.name)+' <span class="nav-count">'+mine.length+'</span></summary>'
+        +'<ul class="nav-papers">'+mine.map(paperLi).join('')+'</ul>'
+        +'</details></li>';
+    }
+    function fieldLi(f){
+      var fs = stats && stats.byField && stats.byField[f.id];
+      var allSeed = fs && fs.total>0 && fs.written===0;
+      var open = f.id===activeField;
+      var tracksHtml = f.tracks.map(function(tr){ return trackLi(f,tr); }).join('');
+      if(!tracksHtml) return '';
+      return '<li><details class="nav-field'+(allSeed?' nav-field-empty':'')+'"'+(open?' open':'')+'>'
+        +'<summary>'+W.esc(f.name)+(allSeed?' <span class="nav-seed-badge" title="이 분야는 아직 씨앗 단계입니다" aria-label="이 분야는 아직 씨앗 단계입니다">🌱</span>':'')+'</summary>'
+        +'<ul class="nav-tracks">'+tracksHtml+'</ul>'
+        +'</details></li>';
+    }
+    var body = groups.map(function(g){
+      var fs = g.fields.map(function(id){ return W.field(id); }).filter(Boolean);
+      var fieldsHtml = fs.map(fieldLi).join('');
+      if(!fieldsHtml) return '';
+      return '<li class="nav-group">'+(g.name?'<div class="nav-group-name">'+W.esc(g.name)+'</div>':'')
+        +'<ul class="nav-fields">'+fieldsHtml+'</ul></li>';
+    }).join('');
+    return '<nav class="nav-tree" aria-label="분야·트랙 내비게이션"><ul class="nav-groups">'+body+'</ul></nav>';
+  }
+  function navToggleBtn(){
+    return '<button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-label="분야 내비게이션 열기">☰</button>';
+  }
+  function shell(navHtml, wrapClass, innerHtml){
+    return '<div class="shell">'+navHtml+'<div class="'+wrapClass+'">'+innerHtml+'</div></div>';
+  }
+  var navScrimEl=null, mobileNavEl=null;
+  function ensureScrim(){
+    if(navScrimEl) return navScrimEl;
+    navScrimEl=document.createElement('div');
+    navScrimEl.className='nav-scrim';
+    document.body.appendChild(navScrimEl);
+    navScrimEl.addEventListener('click', closeMobileNav);
+    return navScrimEl;
+  }
+  function closeMobileNav(){
+    if(mobileNavEl) mobileNavEl.classList.remove('nav-open');
+    if(navScrimEl) navScrimEl.classList.remove('on');
+    var btn=document.querySelector('[data-nav-toggle]');
+    if(btn) btn.setAttribute('aria-expanded','false');
+  }
+  function wireNavToggle(root){
+    var nav=root.querySelector('.nav-tree');
+    var btn=root.querySelector('[data-nav-toggle]');
+    if(!nav||!btn){ mobileNavEl=null; return; }
+    mobileNavEl=nav;
+    btn.addEventListener('click',function(){
+      var open=nav.classList.toggle('nav-open');
+      btn.setAttribute('aria-expanded', open?'true':'false');
+      ensureScrim().classList.toggle('on', open);
+    });
+  }
+  window.addEventListener('hashchange', closeMobileNav);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMobileNav(); });
+
+  /* ---------- 이어보기 (localStorage, UX-SPEC 3.1/2.5 P1) ----------
+     읽기/쓰기 모두 try/catch — 시크릿 모드 등으로 localStorage 접근이
+     막혀도 홈 렌더링에는 영향이 없어야 한다. 인덱스에서 사라진 slug는
+     recentSlugs()에서 걸러낸다. */
+  var RECENT_KEY='wiki-recent';
+  function recordVisit(slug){
+    try{
+      var raw=localStorage.getItem(RECENT_KEY);
+      var arr=raw? JSON.parse(raw) : [];
+      if(!Array.isArray(arr)) arr=[];
+      arr=arr.filter(function(s){ return s!==slug; });
+      arr.unshift(slug);
+      localStorage.setItem(RECENT_KEY, JSON.stringify(arr.slice(0,5)));
+    }catch(e){ /* 저장 실패는 조용히 무시 — 이어보기 위젯이 빈 상태로 남을 뿐 */ }
+  }
+  function recentSlugs(){
+    try{
+      var raw=localStorage.getItem(RECENT_KEY);
+      var arr=raw? JSON.parse(raw) : [];
+      if(!Array.isArray(arr)) return [];
+      return arr.filter(function(s){ return typeof s==='string' && W.byId(s); }).slice(0,5);
+    }catch(e){ return []; }
+  }
+  function continueHtml(){
+    var recents=recentSlugs();
+    if(!recents.length) return '<div class="widget-empty">아직 본 논문이 없습니다</div>';
+    return recents.map(function(s){
+      var m=W.byId(s); if(!m) return '';
+      return '<a class="widget-item" href="#/p/'+m.slug+'">'+W.esc(m.ko)+'<span class="wd">'+m.year+'</span></a>';
+    }).join('');
+  }
+
   /* ---------- 뷰: 홈 ---------- */
   var homeFieldFilter=null;   /* null = 전체, 배열이면 그 field id만 그래프에 표시 */
   var homeGraphOpen=false;    /* 전체 계보도는 보조 뷰 — 기본 접힘, 한 번 펼치면 재렌더링에도 유지 */
@@ -244,6 +361,7 @@
     }
 
     return '<div class="widget-grid">'
+      +'<div class="widget"><h4>이어보기</h4>'+continueHtml()+'</div>'
       +'<div class="widget"><h4>최근 갱신</h4>'+recentHtml+'</div>'
       +'<div class="widget"><h4>오늘의 씨앗</h4>'+seedHtml+'</div>'
       +'</div>';
@@ -343,15 +461,16 @@
         }).join('')+'</div>';
     }).join('');
 
-    app.innerHTML='<div class="wrap wide">'
-      +'<div class="crumb"><a href="#/">전체 지도</a> › '+W.esc(f.name)+'</div>'
+    var inner='<div class="crumb"><a href="#/">전체 지도</a> › '+W.esc(f.name)+navToggleBtn()+'</div>'
       +'<div class="hero"><h2>'+W.esc(f.name)+' <span style="color:var(--muted);font-size:15px">'+W.esc(f.en)+'</span></h2>'
       +'<p>'+W.esc(f.blurb)+'</p></div>'
       +zoomToolbar()
       +'<div class="graph-viewport graph-box" id="fgbox" style="margin-top:0">'+W.graph(items,lanes,function(m){return m.track},{})+'</div>'
       +'<div class="graph-card" id="fieldGraphCard" hidden aria-live="polite"></div>'
-      +list+'</div>';
+      +list;
+    app.innerHTML=shell(navTreeHTML(null, id), 'wrap wide', inner);
     wireZoom(app);
+    wireNavToggle(app);
     wireGraphSelection(document.getElementById('fgbox'), document.getElementById('fieldGraphCard'));
   }
 
@@ -362,8 +481,10 @@
        분야만 색을 가진 칩, 트랙은 색 없는 아웃라인, 연도는 칩 자체가 없다.
        venue/authors/arxiv는 본문(p)에만 있는 정보라 로드 전에는 생략된다 —
        renderPaper가 p를 들고 다시 부를 때 자연스럽게 채워진다. */
-    return '<div class="crumb"><a href="#/">전체 지도</a> › <a href="#/f/'+f.id+'">'+W.esc(f.name)+'</a> › '+W.esc(tr?tr.name:'')+'</div>'
-      +'<h2 class="ptitle">'+W.esc(m.ko)+'</h2>'
+    return '<div class="crumb"><a href="#/">전체 지도</a> › <a href="#/f/'+f.id+'">'+W.esc(f.name)+'</a> › '+W.esc(tr?tr.name:'')+navToggleBtn()+'</div>'
+      +'<div class="ptitle-row"><h2 class="ptitle">'+W.esc(m.ko)+'</h2>'
+      +'<button type="button" class="copy-link-btn" data-copy-slug="'+W.esc(m.slug)+'" aria-live="polite" aria-label="이 논문 링크 복사">'
+      +'<span class="cl-icon" aria-hidden="true">🔗</span><span class="cl-label">링크 복사</span></button></div>'
       +'<p class="psub">'+W.esc(m.title)+'</p>'
       +'<div class="pmeta">'
       +'<span class="chip-field" style="color:'+f.color+';border-color:color-mix(in srgb,'+f.color+' 45%,transparent);background:color-mix(in srgb,'+f.color+' 12%,var(--surface))">'+W.esc(f.name)+'</span>'
@@ -379,10 +500,12 @@
   function viewPaper(slug){
     var m=W.byId(slug); if(!m) return viewHome();
     var f=W.field(m.field), tr=W.track(m.field,m.track);
+    recordVisit(slug);
     /* 헤더(브레드크럼·제목·메타)는 인덱스 데이터만으로 즉시 그릴 수 있다.
        본문(content/papers/<slug>.js)만 lazy 로드 대상이므로 그 부분만 스켈레톤. */
-    app.innerHTML='<div class="wrap"><div>'+buildHead(m,f,tr)
-      +'<div class="tldr skeleton">불러오는 중…</div></div></div>';
+    app.innerHTML=shell(navTreeHTML(slug), 'wrap', '<div>'+buildHead(m,f,tr)
+      +'<div class="tldr skeleton">불러오는 중…</div></div>');
+    wireNavToggle(app);
     window.scrollTo(0,0);
     W.load(slug).then(function(p){ renderPaper(m,f,tr,p); });
   }
@@ -465,10 +588,11 @@
 
     if(!p){
       /* 씨앗 페이지 — 빈 화면 금지: 계보·백링크·이전/다음 내비는 인덱스만으로 항상 그릴 수 있다 */
-      app.innerHTML='<div class="wrap">'+head+guideBox(m)
+      app.innerHTML=shell(navTreeHTML(m.slug), 'wrap', head+guideBox(m)
         +'<h3 class="sec" style="margin-top:28px">계보상 위치</h3>'+lineageSection(m)
         +(backlinksSection(m)? '<h3 class="sec">백링크</h3>'+backlinksSection(m) : '')
-        +pn+'</div>';
+        +pn);
+      wireNavToggle(app);
       wireGraphSelection(document.getElementById('lgBox'), document.getElementById('lgCard'));
       return;
     }
@@ -513,8 +637,9 @@
     add('함께 읽으면 좋은', togetherSection(m, prev&&prev.slug, next&&next.slug));
     add('더 읽기', (p.links||[]).length? '<ul class="plain">'+p.links.map(function(l){return '<li><a href="'+W.esc(l.u)+'" target="_blank" rel="noopener">'+W.esc(l.t)+'</a></li>'}).join('')+'</ul>':'');
 
-    app.innerHTML='<div class="wrap"><div class="paper"><div>'+head+body+secs.join('')+pn+'</div>'
-      +'<aside class="side"><h4>목차</h4>'+nav.join('')+'</aside></div></div>';
+    app.innerHTML=shell(navTreeHTML(m.slug), 'wrap', '<div class="paper"><div>'+head+body+secs.join('')+pn+'</div>'
+      +'<aside class="side"><h4>목차</h4>'+nav.join('')+'</aside></div>');
+    wireNavToggle(app);
     wireGraphSelection(document.getElementById('lgBox'), document.getElementById('lgCard'));
   }
 
@@ -525,6 +650,141 @@
   app.addEventListener('click',function(e){
     var g=e.target.closest('[data-go]'); if(g){ W.go(g.dataset.go); }
   });
+
+  /* ---------- 링크 복사 버튼 (UX-SPEC S4 / P1) ----------
+     현재 페이지가 아니라 버튼에 박힌 slug 기준으로 절대 URL을 만든다
+     (버튼이 렌더된 시점의 논문을 가리켜야 하므로 location.hash를 읽지 않는다).
+     navigator.clipboard 실패 시 execCommand 폴백, 그마저 실패하면
+     버튼 라벨로 실패를 알린다(조용히 실패하지 않음). 2초 후 원상복구. */
+  app.addEventListener('click',function(e){
+    var btn=e.target.closest('[data-copy-slug]'); if(!btn) return;
+    var slug=btn.dataset.copySlug;
+    var url=location.origin+location.pathname+'#/p/'+slug;
+    var labelEl=btn.querySelector('.cl-label');
+    function setState(text, cls){
+      if(labelEl) labelEl.textContent=text;
+      btn.classList.remove('copy-done','copy-error');
+      if(cls) btn.classList.add(cls);
+      clearTimeout(btn._copyTimer);
+      btn._copyTimer=setTimeout(function(){
+        if(labelEl) labelEl.textContent='링크 복사';
+        btn.classList.remove('copy-done','copy-error');
+      },2000);
+    }
+    function fallbackCopy(){
+      try{
+        var ta=document.createElement('textarea');
+        ta.value=url; ta.style.position='fixed'; ta.style.opacity='0'; ta.style.pointerEvents='none';
+        document.body.appendChild(ta); ta.focus(); ta.select();
+        var ok=document.execCommand && document.execCommand('copy');
+        document.body.removeChild(ta);
+        if(ok) setState('복사됨 ✓','copy-done');
+        else setState('복사 실패 — 직접 복사하세요','copy-error');
+      }catch(err){ setState('복사 실패 — 직접 복사하세요','copy-error'); }
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      /* 권한 프롬프트가 응답 없이 걸리는 환경(임베디드 브라우저 등)에서도
+         버튼이 영원히 "링크 복사" 상태로 멈추지 않도록 타임아웃과 경쟁시킨다. */
+      var settled=false;
+      var timeout=setTimeout(function(){ if(!settled){ settled=true; fallbackCopy(); } },1200);
+      navigator.clipboard.writeText(url).then(function(){
+        if(settled) return; settled=true; clearTimeout(timeout);
+        setState('복사됨 ✓','copy-done');
+      }, function(){
+        if(settled) return; settled=true; clearTimeout(timeout);
+        fallbackCopy();
+      });
+    } else {
+      fallbackCopy();
+    }
+  });
+
+  /* ---------- 링크 호버 프리뷰 (UX-SPEC S4/컨셉 0장, P1) ----------
+     본문 안 #/p/<slug> 위키링크에 마우스를 250ms 이상 올리면(또는 키보드
+     포커스) 제목·연도·분야·tldr 카드를 띄운다. 터치 기기(hover 불가)에서는
+     아예 리스너를 달지 않는다. 좌측 내비 트리는 "본문 링크"가 아니므로 제외. */
+  (function(){
+    var canHover=true;
+    try{ canHover=window.matchMedia('(hover:hover) and (pointer:fine)').matches; }catch(e){ canHover=true; }
+    if(!canHover) return;
+
+    var PREVIEW_DELAY=250, el=null, timer=null, curSlug=null;
+    function ensureEl(){
+      if(el) return el;
+      el=document.createElement('div');
+      el.className='link-preview';
+      el.setAttribute('role','tooltip');
+      el.hidden=true;
+      document.body.appendChild(el);
+      return el;
+    }
+    function hide(){
+      clearTimeout(timer); timer=null; curSlug=null;
+      if(el) el.hidden=true;
+    }
+    function position(anchor){
+      var box=ensureEl();
+      requestAnimationFrame(function(){
+        if(box.hidden) return;
+        var r=anchor.getBoundingClientRect();
+        var w=box.offsetWidth||280, h=box.offsetHeight||90;
+        var x=r.left, y=r.bottom+6;
+        if(x+w>window.innerWidth-8) x=Math.max(8, window.innerWidth-w-8);
+        if(x<8) x=8;
+        if(y+h>window.innerHeight-8) y=r.top-h-6;
+        if(y<8) y=8;
+        box.style.left=Math.round(x+window.scrollX)+'px';
+        box.style.top=Math.round(y+window.scrollY)+'px';
+      });
+    }
+    function show(slug, anchor){
+      var m=W.byId(slug); if(!m){ hide(); return; }
+      var f=W.field(m.field);
+      var box=ensureEl();
+      box.innerHTML='<div class="lp-title">'+W.esc(m.ko)+'</div>'
+        +'<div class="lp-meta">'+m.year+(f?' · '+W.esc(f.name):'')+'</div>'
+        +'<div class="lp-tldr">불러오는 중…</div>';
+      box.hidden=false;
+      position(anchor);
+      W.load(slug).then(function(p){
+        if(curSlug!==slug || box.hidden) return; /* 그 사이 다른 링크로 옮겨갔으면 버림 */
+        var t=box.querySelector('.lp-tldr');
+        if(t) t.textContent = p&&p.tldr ? String(p.tldr).slice(0,220) : '아직 정리 노트가 없습니다.';
+        position(anchor);
+      });
+    }
+    function anchorOf(target){
+      var a=target.closest && target.closest('a[href^="#/p/"]');
+      if(!a || a.closest('.nav-tree') || !app.contains(a)) return null;
+      return a;
+    }
+    function schedule(a){
+      var slug=a.getAttribute('href').replace('#/p/','');
+      if(!W.byId(slug)) return;
+      clearTimeout(timer);
+      curSlug=slug;
+      timer=setTimeout(function(){ show(slug, a); }, PREVIEW_DELAY);
+    }
+    document.addEventListener('mouseover',function(e){
+      var a=anchorOf(e.target); if(!a) return;
+      schedule(a);
+    });
+    document.addEventListener('mouseout',function(e){
+      var a=anchorOf(e.target); if(!a) return;
+      if(e.relatedTarget && a.contains(e.relatedTarget)) return;
+      hide();
+    });
+    document.addEventListener('focus',function(e){
+      var a=anchorOf(e.target); if(!a) return;
+      schedule(a);
+    },true);
+    document.addEventListener('blur',function(e){
+      var a=anchorOf(e.target); if(!a) return;
+      hide();
+    },true);
+    window.addEventListener('scroll', hide, true);
+    window.addEventListener('hashchange', hide);
+  })();
   app.addEventListener('keydown',function(e){
     if(e.key!=='Enter'&&e.key!==' ') return;
     var g=e.target.closest('[data-go]');

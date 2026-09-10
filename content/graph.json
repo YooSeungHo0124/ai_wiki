@@ -104,7 +104,9 @@
     "world-models",
     "alphastar",
     "graves-rnn",
-    "lm-limits"
+    "lm-limits",
+    "gru",
+    "sentiment-neuron"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -151,6 +153,8 @@
     "moco",
     "two-stream",
     "i3d",
+    "lsun",
+    "kinetics",
     "coco-captions",
     "ucf101"
    ],
@@ -342,7 +346,8 @@
     "dinov2",
     "deepseek-r1",
     "lottery",
-    "distilbert"
+    "distilbert",
+    "energy-policy"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -1238,7 +1243,9 @@
     "openpose",
     "pali",
     "grad-cam",
-    "palm-e"
+    "palm-e",
+    "beit",
+    "simvlm"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -1354,7 +1361,8 @@
     "byol",
     "bert",
     "videomae",
-    "electra"
+    "electra",
+    "beit"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -1631,7 +1639,8 @@
     "deepwalk",
     "graphsage",
     "cpc",
-    "ulmfit"
+    "ulmfit",
+    "sentiment-neuron"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -1780,7 +1789,8 @@
     "fasttext",
     "gpt1",
     "bert",
-    "ulmfit"
+    "ulmfit",
+    "cola"
    ],
    "diagram": "stack",
    "extLinks": 3,
@@ -1821,7 +1831,8 @@
     "tacotron2",
     "fastspeech",
     "graves-rnn",
-    "gnmt"
+    "gnmt",
+    "gru"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -1862,7 +1873,8 @@
     "din",
     "attention-not-explanation",
     "graves-rnn",
-    "gnmt"
+    "gnmt",
+    "gru"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -1974,6 +1986,8 @@
     "meena",
     "gpipe",
     "generative-scaling",
+    "universal-transformer",
+    "energy-policy",
     "glu-variants"
    ],
    "diagram": "stack",
@@ -2025,7 +2039,8 @@
     "gelu",
     "foundation-models",
     "decoder-only-wiki",
-    "ulmfit"
+    "ulmfit",
+    "commonsense-lm"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -2109,6 +2124,10 @@
     "albert",
     "spanbert",
     "distilbert",
+    "cola",
+    "socialiqa",
+    "energy-policy",
+    "beit",
     "xlnet",
     "boolq",
     "ul2"
@@ -2157,6 +2176,7 @@
     "whisper",
     "audiolm",
     "sparse-transformers",
+    "commonsense-lm",
     "realtoxicity"
    ],
    "diagram": "split",
@@ -2403,6 +2423,9 @@
     "scaling-predictable",
     "lm-limits",
     "generative-scaling",
+    "universal-transformer",
+    "energy-policy",
+    "quantify-memorization",
     "truthfulqa"
    ],
    "diagram": "compare",
@@ -2564,6 +2587,7 @@
     "lm-limits",
     "decoder-only-wiki",
     "gshard",
+    "universal-transformer",
     "glu-variants"
    ],
    "diagram": "split",
@@ -2600,6 +2624,7 @@
     "megatron",
     "gshard",
     "mt-nlg",
+    "moe-efficient",
     "carbon"
    ],
    "diagram": "split",
@@ -2662,6 +2687,7 @@
     "t0",
     "agent-alignment",
     "zero-shot-cot",
+    "reward-modeling",
     "realtoxicity",
     "truthfulqa"
    ],
@@ -2795,7 +2821,8 @@
     "mmlu",
     "alphacode",
     "swe-bench",
-    "voyager"
+    "voyager",
+    "agieval"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -2999,7 +3026,8 @@
     "deepseek-v3",
     "gqa",
     "megatron",
-    "gshard"
+    "gshard",
+    "moe-efficient"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -3959,7 +3987,9 @@
     "gan",
     "pix2pix",
     "wgan",
-    "stylegan"
+    "stylegan",
+    "lsun",
+    "biggan"
    ],
    "diagram": "stack",
    "extLinks": 3,
@@ -4025,7 +4055,8 @@
    ],
    "in": [
     "gan",
-    "dcgan"
+    "dcgan",
+    "biggan"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -4089,7 +4120,9 @@
     "dcgan",
     "wgan",
     "ddpm",
-    "ldm"
+    "ldm",
+    "lsun",
+    "biggan"
    ],
    "diagram": "stack",
    "extLinks": 3,
@@ -4127,7 +4160,9 @@
     "wav2vec2",
     "straight-through",
     "rezende-vae",
-    "jukebox"
+    "jukebox",
+    "vqvae2",
+    "beit"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -4164,7 +4199,8 @@
     "dalle",
     "ddpm",
     "ldm",
-    "chameleon"
+    "chameleon",
+    "vqvae2"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -4203,7 +4239,8 @@
     "make-a-video",
     "glide",
     "dalle2",
-    "laion400m"
+    "laion400m",
+    "vqvae2"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -4261,6 +4298,8 @@
     "alphafold3",
     "glide",
     "diffusion-original",
+    "lsun",
+    "score-improved",
     "diffusion-beats-gan",
     "cascaded-diffusion",
     "sr3"
@@ -4298,7 +4337,8 @@
     "cfg",
     "flow-matching",
     "consistency",
-    "diffusion-original"
+    "diffusion-original",
+    "score-improved"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -4701,6 +4741,7 @@
     "coca",
     "florence",
     "palm-e",
+    "simvlm",
     "coco-captions"
    ],
    "diagram": "compare",
@@ -4731,7 +4772,8 @@
    "in": [
     "clip",
     "siglip",
-    "blip"
+    "blip",
+    "simvlm"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -4803,6 +4845,7 @@
     "blip2",
     "llava",
     "pali",
+    "simvlm",
     "coco-captions"
    ],
    "diagram": "stack",
@@ -4839,6 +4882,7 @@
     "blip2",
     "llava",
     "coca",
+    "simvlm",
     "coco-captions"
    ],
    "diagram": "loop",
@@ -4878,7 +4922,8 @@
     "blip",
     "llava",
     "qwen-vl",
-    "chameleon"
+    "chameleon",
+    "simvlm"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -4923,7 +4968,8 @@
     "blip2",
     "qwen-vl",
     "chameleon",
-    "internvl"
+    "internvl",
+    "simvlm"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -5383,7 +5429,8 @@
     "trpo",
     "summarize-hf",
     "grpo",
-    "self-refine"
+    "self-refine",
+    "reward-modeling"
    ],
    "diagram": "loop",
    "extLinks": 3,
@@ -5418,7 +5465,8 @@
     "instructgpt",
     "ppo",
     "rlhf-prefs",
-    "grpo"
+    "grpo",
+    "reward-modeling"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -5518,6 +5566,7 @@
     "bbh",
     "zero-shot-cot",
     "rethinking-demos",
+    "agieval",
     "scratchpad"
    ],
    "diagram": "compare",
@@ -5910,7 +5959,8 @@
     "grokking",
     "sae",
     "attention-not-explanation",
-    "rethinking-demos"
+    "rethinking-demos",
+    "sentiment-neuron"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -5967,7 +6017,8 @@
    "in": [
     "word2vec",
     "elmo",
-    "induction-heads"
+    "induction-heads",
+    "sentiment-neuron"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -6006,7 +6057,8 @@
     "flan-t5",
     "arc-bench",
     "hellaswag",
-    "glue"
+    "glue",
+    "agieval"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -6111,7 +6163,8 @@
     "bbh",
     "glue",
     "superglue",
-    "zero-shot-cot"
+    "zero-shot-cot",
+    "agieval"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -6189,7 +6242,8 @@
     "tot",
     "mmlu",
     "helm",
-    "superglue"
+    "superglue",
+    "agieval"
    ],
    "diagram": "loop",
    "extLinks": 3,
@@ -7634,6 +7688,7 @@
     "two-stream",
     "slowfast",
     "timesformer",
+    "kinetics",
     "ucf101"
    ],
    "diagram": "compare",
@@ -7666,6 +7721,7 @@
     "two-stream",
     "i3d",
     "timesformer",
+    "kinetics",
     "ucf101"
    ],
    "diagram": "compare",
@@ -7699,7 +7755,8 @@
     "i3d",
     "slowfast",
     "video-diffusion",
-    "videomae"
+    "videomae",
+    "kinetics"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -7764,6 +7821,7 @@
    "in": [
     "i3d",
     "timesformer",
+    "kinetics",
     "ucf101"
    ],
    "diagram": "compare",
@@ -8380,6 +8438,7 @@
     "fineweb",
     "opt",
     "realtoxicity",
+    "quantify-memorization",
     "gpt-neox"
    ],
    "diagram": "split",
@@ -8413,7 +8472,8 @@
     "data-constrained",
     "dp-sgd",
     "extracting-training-data",
-    "realtoxicity"
+    "realtoxicity",
+    "quantify-memorization"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -8894,7 +8954,8 @@
     "dp-sgd",
     "membership-inference",
     "watermark",
-    "machine-unlearning"
+    "machine-unlearning",
+    "quantify-memorization"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -10238,7 +10299,8 @@
     "chatbot-arena"
    ],
    "in": [
-    "glue"
+    "glue",
+    "agieval"
    ],
    "diagram": "matrix",
    "extLinks": 2,
@@ -10491,7 +10553,8 @@
     "olmo"
    ],
    "in": [
-    "dolma"
+    "dolma",
+    "quantify-memorization"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -10709,7 +10772,8 @@
     "gpt2"
    ],
    "in": [
-    "jukebox"
+    "jukebox",
+    "vqvae2"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -11081,7 +11145,10 @@
    "in": [
     "arc-bench",
     "glue",
-    "superglue"
+    "superglue",
+    "commonsense-lm",
+    "record",
+    "socialiqa"
    ],
    "diagram": "loop",
    "extLinks": 2,
@@ -11222,7 +11289,8 @@
     "cfg"
    ],
    "in": [
-    "rezende-vae"
+    "rezende-vae",
+    "score-improved"
    ],
    "diagram": "loop",
    "extLinks": 2,
@@ -11392,6 +11460,7 @@
    "in": [
     "superglue",
     "squad",
+    "cola",
     "boolq"
    ],
    "diagram": "flow",
@@ -11454,6 +11523,7 @@
    "in": [
     "glue",
     "superglue",
+    "record",
     "boolq",
     "triviaqa"
    ],
@@ -11873,7 +11943,8 @@
     "mixtral"
    ],
    "in": [
-    "mt-nlg"
+    "mt-nlg",
+    "moe-efficient"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -11932,7 +12003,9 @@
     "audiolm",
     "vall-e"
    ],
-   "in": [],
+   "in": [
+    "vqvae2"
+   ],
    "diagram": "flow",
    "extLinks": 3,
    "tags": [
@@ -12078,7 +12151,9 @@
     "constitutional",
     "ethical-risks"
    ],
-   "in": [],
+   "in": [
+    "reward-modeling"
+   ],
    "diagram": "split",
    "extLinks": 2,
    "tags": [
@@ -12196,7 +12271,8 @@
     "blip"
    ],
    "in": [
-    "florence"
+    "florence",
+    "simvlm"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -12262,18 +12338,30 @@
    "mtime": "2026-09-10"
   },
   "gru": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 9494,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "seq2seq",
+    "lstm",
+    "bahdanau"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "compare",
+   "extLinks": 2,
    "tags": [
     "nlp",
     "seq",
     "2014"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "dqn-2013": {
    "stage": "evergreen",
@@ -12303,32 +12391,58 @@
    "mtime": "2026-09-10"
   },
   "lsun": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "growing",
+   "bytes": 7810,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "imagenet",
+    "dcgan",
+    "biggan",
+    "stylegan",
+    "ddpm"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "loop",
+   "extLinks": 2,
    "tags": [
     "data",
     "corpus",
     "2015"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "sentiment-neuron": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 8946,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "word2vec",
+    "lstm",
+    "induction-heads",
+    "sae"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "interp",
     "interp",
     "2017"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "swish": {
    "stage": "evergreen",
@@ -12357,139 +12471,254 @@
    "mtime": "2026-09-10"
   },
   "kinetics": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "growing",
+   "bytes": 7747,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "ucf101",
+    "imagenet",
+    "i3d",
+    "slowfast",
+    "timesformer",
+    "videomae"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "video",
     "understand",
     "2017"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "cola": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 10354,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "glue",
+    "bert",
+    "elmo"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "stack",
+   "extLinks": 3,
    "tags": [
     "interp",
     "eval",
     "2018"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "commonsense-lm": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 8600,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "gpt2",
+    "hellaswag",
+    "gpt1"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "interp",
     "eval",
     "2018"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "biggan": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
-   "in": [
+   "stage": "evergreen",
+   "bytes": 9112,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "dcgan",
+    "wgan",
+    "stylegan",
     "diffusion-beats-gan"
    ],
-   "diagram": null,
-   "extLinks": 0,
+   "in": [
+    "lsun",
+    "vqvae2",
+    "diffusion-beats-gan"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "generative",
     "gan",
     "2019"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "reward-modeling": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 10091,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "rlhf-prefs",
+    "agent-alignment",
+    "summarize-hf",
+    "instructgpt"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "loop",
+   "extLinks": 2,
    "tags": [
     "rl",
     "rlhf",
     "2018"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "universal-transformer": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 8455,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "transformer",
+    "moe-shazeer",
+    "scaling-laws"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "compare",
+   "extLinks": 2,
    "tags": [
     "llm",
     "core",
     "2018"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "record": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 9247,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "squad",
+    "hellaswag"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 3,
    "tags": [
     "interp",
     "eval",
     "2018"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "socialiqa": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "growing",
+   "bytes": 9127,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "hellaswag",
+    "bert"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "interp",
     "eval",
     "2019"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "energy-policy": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "growing",
+   "bytes": 7681,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "transformer",
+    "bert",
+    "scaling-laws",
+    "carbon",
+    "carbon-quantify",
+    "distillation"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "compare",
+   "extLinks": 2,
    "tags": [
     "llm",
     "scale",
     "2019"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "carbon-quantify": {
    "stage": "seed",
    "bytes": 0,
    "sections": [],
    "out": [],
-   "in": [],
+   "in": [
+    "energy-policy"
+   ],
    "diagram": null,
    "extLinks": 0,
    "tags": [
@@ -12499,32 +12728,59 @@
    ]
   },
   "vqvae2": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 9676,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "vqvae",
+    "biggan",
+    "sparse-transformers",
+    "vqgan",
+    "dalle",
+    "jukebox"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "stack",
+   "extLinks": 2,
    "tags": [
     "generative",
     "vae",
     "2019"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "score-improved": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 10915,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "diffusion-original",
+    "score-sde",
+    "ddpm"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "generative",
     "diffusion",
     "2020"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "realtoxicity": {
    "stage": "evergreen",
@@ -12574,7 +12830,9 @@
     "imagen",
     "ldm"
    ],
-   "in": [],
+   "in": [
+    "biggan"
+   ],
    "diagram": "loop",
    "extLinks": 2,
    "tags": [
@@ -12585,50 +12843,92 @@
    "mtime": "2026-09-10"
   },
   "beit": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 10752,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "bert",
+    "vit",
+    "mae",
+    "vqvae"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "vision",
     "vit",
     "2021"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "moe-efficient": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 8297,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "gshard",
+    "switch",
+    "mixtral"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "compare",
+   "extLinks": 2,
    "tags": [
     "llm",
     "scale",
     "2021"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "simvlm": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 8026,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "clip",
+    "align",
+    "vit",
+    "coca",
+    "blip",
+    "flamingo",
+    "blip2",
+    "llava"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "compare",
+   "extLinks": 1,
    "tags": [
     "multimodal",
     "vlm",
     "2021"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "webgpt": {
    "stage": "seed",
-   "bytes": 0,
+   "bytes": 9967,
    "sections": [],
    "out": [],
    "in": [],
@@ -12638,35 +12938,65 @@
     "agent",
     "tool",
     "2021"
-   ]
+   ],
+   "mtime": "2026-09-10",
+   "error": "Unexpected identifier 'm'"
   },
   "quantify-memorization": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "evergreen",
+   "bytes": 9802,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "extracting-training-data",
+    "the-pile",
+    "dedup",
+    "fineweb",
+    "scaling-laws"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 2,
    "tags": [
     "privacy",
     "attack",
     "2022"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "agieval": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "growing",
+   "bytes": 9066,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "mmlu",
+    "cot",
+    "gpt4",
+    "helm",
+    "bigbench",
+    "chatbot-arena"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "compare",
+   "extLinks": 3,
    "tags": [
     "interp",
     "eval",
     "2023"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "decanlp": {
    "stage": "evergreen",
@@ -12925,7 +13255,9 @@
     "bloom",
     "switch"
    ],
-   "in": [],
+   "in": [
+    "energy-policy"
+   ],
    "diagram": "flow",
    "extLinks": 1,
    "tags": [
@@ -13126,7 +13458,9 @@
     "videomae",
     "svd"
    ],
-   "in": [],
+   "in": [
+    "kinetics"
+   ],
    "diagram": "compare",
    "extLinks": 2,
    "tags": [
@@ -13139,11 +13473,11 @@
  },
  "stats": {
   "total": 393,
-  "written": 372,
+  "written": 391,
   "byStage": {
-   "evergreen": 334,
-   "growing": 38,
-   "seed": 21
+   "evergreen": 348,
+   "growing": 43,
+   "seed": 2
   },
   "byField": {
    "foundations": {
@@ -13152,15 +13486,15 @@
    },
    "nlp": {
     "total": 15,
-    "written": 14
+    "written": 15
    },
    "vision": {
     "total": 39,
-    "written": 38
+    "written": 39
    },
    "llm": {
     "total": 57,
-    "written": 53
+    "written": 56
    },
    "efficiency": {
     "total": 31,
@@ -13168,11 +13502,11 @@
    },
    "generative": {
     "total": 34,
-    "written": 31
+    "written": 34
    },
    "multimodal": {
     "total": 14,
-    "written": 13
+    "written": 14
    },
    "speech": {
     "total": 14,
@@ -13180,7 +13514,7 @@
    },
    "rl": {
     "total": 18,
-    "written": 17
+    "written": 18
    },
    "agent": {
     "total": 15,
@@ -13192,11 +13526,11 @@
    },
    "interp": {
     "total": 35,
-    "written": 29
+    "written": 35
    },
    "privacy": {
     "total": 14,
-    "written": 13
+    "written": 14
    },
    "graph": {
     "total": 9,
@@ -13212,7 +13546,7 @@
    },
    "video": {
     "total": 12,
-    "written": 11
+    "written": 12
    },
    "robotics": {
     "total": 11,
@@ -13224,7 +13558,7 @@
    },
    "data": {
     "total": 13,
-    "written": 12
+    "written": 13
    },
    "theory": {
     "total": 9,

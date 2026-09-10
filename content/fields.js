@@ -668,7 +668,7 @@ WIKI.INDEX = [
 ['socialiqa',2019,'SocialIQA: Commonsense Reasoning about Social Interactions','SocialIQA','interp','eval',['bert','hellaswag']],
 ['energy-policy',2019,'Energy and Policy Considerations for Deep Learning in NLP','에너지와 정책','llm','scale',['transformer','bert']],
 ['carbon-quantify',2019,'Quantifying the Carbon Emissions of Machine Learning','탄소 배출 정량화','llm','scale',['energy-policy']],
-['vqvae2',2019,'Generating Diverse High-Fidelity Images with VQ-VAE-2','VQ-VAE-2','generative','vae',['vqvae','sparse-transformers']],
+['vqvae2',2019,'Generating Diverse High-Fidelity Images with VQ-VAE-2','VQ-VAE-2','generative','vae',['vqvae']],
 ['score-improved',2020,'Improved Techniques for Training Score-Based Generative Models','스코어 모델 개선','generative','diffusion',['diffusion-original','vae']],
 ['realtoxicity',2020,'RealToxicityPrompts: Evaluating Neural Toxic Degeneration','RealToxicityPrompts','privacy','safety',['gpt2','the-pile']],
 ['diffusion-beats-gan',2021,'Diffusion Models Beat GANs on Image Synthesis','확산이 GAN을 이기다','generative','diffusion',['ddpm','biggan','ddim']],

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>책등 조판 방향 비교 — mixed vs sideways vs rotate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/wiki.css">
+<link rel="stylesheet" href="../../css/shelf.css">
+<style>
+  body{padding:24px;background:var(--bg);color:var(--text-primary);font-family:var(--font-kr)}
+  h1{font-size:18px}
+  h2{font-size:15px;margin:32px 0 8px}
+  .note{font-size:12px;color:var(--text-tertiary);max-width:70ch;margin:0 0 12px}
+  .variant{border:1px solid var(--border-strong);padding:12px;margin-bottom:20px}
+  .variant .shelf-row{border-bottom:none}
+  /* ---- 옵션 A: mixed (현재값) ---- */
+  .opt-mixed .spine-title{ writing-mode:vertical-rl; text-orientation:mixed; }
+  /* ---- 옵션 B: sideways (전부 눕히기) ---- */
+  .opt-sideways .spine-title{ writing-mode:vertical-rl; text-orientation:sideways; }
+  /* ---- 옵션 C: 책등 자체를 회전 (가로 조판 후 -90deg 회전) ---- */
+  .opt-rotate .spine{ writing-mode:initial; }
+  .opt-rotate .spine-title{
+    writing-mode:horizontal-tb;
+    text-orientation:initial;
+    transform:rotate(-90deg);
+    transform-origin:center;
+    white-space:nowrap;
+    width:var(--rot-w, 200px);
+    justify-content:center;
+  }
+  .theme-toggle{position:fixed;top:12px;right:12px;z-index:10}
+</style>
+</head>
+<body>
+<button class="theme-toggle" id="themeBtn">테마 전환</button>
+<h1>책등 세로 조판 방향 비교 — 실제 라벨 445개 기준 표본</h1>
+<p class="note">
+  실제 데이터 분포: 순한글 58/445(13%) · 순라틴 362/445(81%) · 한글+라틴 혼합 25/445(6%).
+  아래 표본은 세 범주에서 골고루 뽑았고, 실제 <code>js/wiki/shelf.js</code>의
+  <code>renderSpine</code>/<code>wrapSpineTitle</code>과 <code>fitSpineTitles</code> 보정 로직을 그대로 사용한다.
+</p>
+
+<h2>A. text-orientation: mixed (현재 — 한글 직립 / 라틴 회전, 통일성 문제 있음)</h2>
+<div class="variant opt-mixed"><div class="shelf-row" id="row-mixed"></div></div>
+
+<h2>B. text-orientation: sideways (전부 눕히기 — 서양 책등 관례)</h2>
+<div class="variant opt-sideways"><div class="shelf-row" id="row-sideways"></div></div>
+
+<h2>C. 책등 회전 (가로 조판 후 -90deg 통째 회전)</h2>
+<p class="note">주의: 이 옵션은 폭/높이 측정 모델이 현재 구현과 달라진다(가로 조판 폭이 책등 "높이"가 되고, 회전 후 보이는 폭은 원래 책등 폭에 맞춰야 함) — 비교용 근사치이며 실제 채택 시 레이아웃 재계산이 필요하다.</p>
+<div class="variant opt-rotate"><div class="shelf-row" id="row-rotate"></div></div>
+
+<script src="../../content/fields.js"></script>
+<script src="../../js/wiki/shelf.js"></script>
+<script>
+  // 실제 데이터에서 세 범주 고르게 표본 추출
+  var HANGUL_RE=/[가-힣]/, LATIN_RE=/[A-Za-z]/;
+  function cat(s){
+    var h=HANGUL_RE.test(s), l=LATIN_RE.test(s);
+    if(h&&l) return 'mixed';
+    if(h) return 'kr';
+    return 'lat';
+  }
+  var byCat={kr:[],lat:[],mixed:[]};
+  WIKI.META.forEach(function(m){ byCat[cat(m.ko)].push(m); });
+  // 다양한 길이 포함해서 각 카테고리 6~7개씩 뽑기
+  function pick(arr,n){
+    arr = arr.slice().sort(function(a,b){return a.ko.length-b.ko.length});
+    var out=[], step=Math.max(1, Math.floor(arr.length/n));
+    for(var i=0;i<arr.length && out.length<n;i+=step) out.push(arr[i]);
+    return out;
+  }
+  var sample = pick(byCat.kr,7).concat(pick(byCat.lat,7)).concat(pick(byCat.mixed,7));
+
+  var fieldById={}; WIKI.FIELDS.forEach(function(f){fieldById[f.id]=f;});
+  var widthMap={};
+  sample.forEach(function(m,i){ widthMap[m.slug] = 20 + (i%10); });
+
+  function renderInto(id){
+    var html='';
+    sample.forEach(function(m){
+      html += WIKI.shelfHelpers ? '' : '';
+    });
+    return html;
+  }
+
+  // renderSpine은 비공개라 W.shelf()를 통째로 쓰지 않고, 동일 데이터로
+  // 축소된 index/groups를 만들어 W.shelf()를 그대로 호출한다(실제 렌더 경로 재사용).
+  var miniGroups=[{id:'g',name:'표본',fields:sample.map(function(m){return m.field}).filter(function(v,i,a){return a.indexOf(v)===i})}];
+  function buildRow(elId){
+    var html = WIKI.shelf({ index:sample, fields:WIKI.FIELDS, groups:miniGroups, graph:{papers:{}}, meta:{}, axis:'field' });
+    // W.shelf()는 shelf-group 전체 마크업을 주므로 shelf-row만 뽑아 붙인다
+    var tmp=document.createElement('div'); tmp.innerHTML=html;
+    var rows=tmp.querySelectorAll('.shelf-row');
+    var target=document.getElementById(elId);
+    rows.forEach(function(r){ target.innerHTML += r.innerHTML; });
+  }
+  buildRow('row-mixed');
+  buildRow('row-sideways');
+  buildRow('row-rotate');
+
+  // C 옵션: 회전 후 원래 책등 폭에 맞춰 보이도록 title의 가로폭(회전 전
+  // width)을 책등 실제 height에 맞춰 근사 설정 + 책등 자체 폭을 넓혀본다
+  document.querySelectorAll('.opt-rotate .spine').forEach(function(sp){
+    var h = parseInt(sp.style.height,10)||160;
+    var t = sp.querySelector('.spine-title');
+    if(t) t.style.setProperty('--rot-w', (h-40)+'px');
+  });
+
+  document.getElementById('themeBtn').addEventListener('click', function(){
+    var cur = document.documentElement.getAttribute('data-theme');
+    document.documentElement.setAttribute('data-theme', cur==='dark' ? 'light' : 'dark');
+  });
+
+  // fit 보정도 세 그룹 다 실측 적용
+  [document.getElementById('row-mixed'), document.getElementById('row-sideways'), document.getElementById('row-rotate')].forEach(function(root){
+    WIKI.shelfHelpers.fitSpineTitles(root);
+  });
+</script>
+</body>
+</html>

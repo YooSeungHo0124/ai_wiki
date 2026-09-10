@@ -114,19 +114,30 @@ window.WIKI = window.WIKI || {};
       +'background:color-mix(in srgb,'+f.color+' 12%,var(--surface))">'+W.esc(f.name)+'</span>';
   }
 
-  function fallbackMarkup(m, f, authorsLine, hidden){
+  /* 대체 표지용 2글자 모노그램 — 분야 영문명(`en`)에서 뽑는다. 실측 21개 전부
+   * 라틴 대문자 2글자로 정리 가능(Vision->VI, LLM->LL, Foundations->FO 등). */
+  function fieldMonogram(f){
+    if(!f) return '';
+    var src = String(f.en||f.name||'').replace(/[^A-Za-z가-힣]/g,'');
+    return src.slice(0,2).toUpperCase();
+  }
+
+  function fallbackMarkup(m, f, hidden){
     /* 원문 렌더가 없거나 <img> 로드 자체가 실패했을 때 쓰는 "조판된 표지".
-     * 깨진 이미지 아이콘 대신 분야색 밴드 + 제목 + 저자 + 연도로 채운다. */
-    return '<div class="cover-fallback"'+(hidden?' hidden':'')+' style="--cover-field-color:'+(f?f.color:'var(--text-tertiary)')+'">'
+     * 제목·저자·연도는 바로 아래 카드 본문(.cover-body)에 이미 나오므로 여기서
+     * 다시 쓰면 같은 문장이 카드 안에 두 번 보이는 중복이 생긴다(실측으로 발견,
+     * 특히 perceptron·sae처럼 저자가 1명뿐이거나 없는 짧은 카드에서 두드러짐).
+     * 대신 분야 밴드 + 큰 모노그램만으로 "사진이 아니라 의도된 조판"임을
+     * 보여주는 자체완결 그래픽으로 만든다 — 정보는 실제 헤딩(h3)이 전달하므로
+     * 이 블록 전체를 장식으로 접어 스크린리더에서 건너뛰게 한다. */
+    return '<div class="cover-fallback"'+(hidden?' hidden':'')+' aria-hidden="true" style="--cover-field-color:'+(f?f.color:'var(--text-tertiary)')+'">'
       +'<div class="cover-fallback-band"></div>'
       +'<div class="cover-fallback-body">'
-      +'<p class="cover-fallback-title">'+W.esc(m.ko)+'</p>'
-      +(authorsLine ? '<p class="cover-fallback-authors">'+authorsLine+'</p>' : '')
-      +'<p class="cover-fallback-year">'+m.year+'</p>'
+      +'<span class="cover-fallback-mono">'+W.esc(fieldMonogram(f))+'</span>'
       +'</div></div>';
   }
 
-  function mediaMarkup(m, f, authorsLine){
+  function mediaMarkup(m, f){
     var missing = W.coverImageMissing(m.slug);
     var dims = W.coverDimsOf(m.slug);
     var w = dims ? dims.w : DEFAULT_ASPECT[0];
@@ -135,12 +146,12 @@ window.WIKI = window.WIKI || {};
     /* _missing.json에 이미 올라 있으면 <img>조차 만들지 않는다 — 404 요청 자체를
      * 내지 않아 콘솔 에러 예산을 지킨다(A11Y-PERF §3 정신 + 이번 작업의 "콘솔 에러 0" 요구). */
     if(missing){
-      inner = fallbackMarkup(m, f, authorsLine, false);
+      inner = fallbackMarkup(m, f, false);
     } else {
       inner = '<img class="cover-img" src="content/covers/'+encodeURIComponent(m.slug)+'.webp" '
         +'width="'+w+'" height="'+h+'" alt="'+W.esc(m.ko)+' 표지" loading="lazy" decoding="async" '
         +'onerror="this.hidden=true;var f=this.nextElementSibling;if(f)f.hidden=false;">'
-        +fallbackMarkup(m, f, authorsLine, true);
+        +fallbackMarkup(m, f, true);
     }
     /* 이미지 유무와 무관하게 같은 비율의 자리를 미리 잡아 레이아웃 시프트를 0으로 만든다
      * (A11Y-PERF §3.4). 실측 치수가 없으면(결측 슬러그) 카탈로그 표준 비율로 대체. */
@@ -174,7 +185,7 @@ window.WIKI = window.WIKI || {};
     if(closable){
       html += '<button type="button" class="graph-card-close cover-close" data-cover-close aria-label="닫기">×</button>';
     }
-    html += mediaMarkup(m, f, authorsLine);
+    html += mediaMarkup(m, f);
     html += '<div class="cover-body">';
     html += '<div class="cover-toprow">'+fieldChip(f)+stage+'</div>';
     html += '<h3 class="cover-title">'+W.esc(m.ko)+'</h3>';

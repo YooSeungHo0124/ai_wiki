@@ -1,0 +1,21 @@
+{
+ "quote_mismatches": [
+  {
+   "slug": "backprop",
+   "quote": "The ability to create useful new features distinguishes back-propagation from earlier, simpler methods such as the perceptron-convergence procedure.",
+   "src": "Abstract, p.1",
+   "word_coverage": 0.0,
+   "contiguous_run_found": false,
+   "has_ellipsis_or_bracket": false
+  },
+  {
+   "slug": "carbon",
+   "quote": "The most sustainable energy is the energy you don\\u2019t use.",
+   "src": "Introduction, p.1",
+   "word_coverage": 0.818,
+   "contiguous_run_found": true,
+   "has_ellipsis_or_bracket": false
+  }
+ ],
+ "year_issues": []
+}

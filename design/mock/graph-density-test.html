@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>계보 그래프 밀도 실험 — 노드 수 증가에 따른 가독성</title>
+<style>
+  :root{ --line:#8892a0; --muted:#8892a0; --text:#1a1d22; --bg:#f4f5f8; }
+  body{ font-family:system-ui,sans-serif; background:#0b0e14; color:#e6e9ef; margin:0; padding:24px; }
+  h1{ font-size:18px; } p.note{ color:#9aa3b2; font-size:13px; max-width:900px; }
+  .frame{ position:relative; width:1280px; height:700px; overflow:hidden; border:2px solid #445; margin:20px 0 8px; background:#12161f; }
+  .frame svg{ display:block; }
+  .stat{ font-size:12px; color:#9aa3b2; margin-bottom:28px; font-family:monospace; white-space:pre; }
+  .lanebg{ fill:#1a2030; }
+  .lane{ font-size:11px; }
+  .axis{ stroke:#333a48; }
+  .axis-t{ font-size:10px; fill:#7a8494; }
+  .edge{ fill:none; stroke:#4a5568; stroke-width:1.1; opacity:.55; }
+  g.node rect{ fill:#1c2333; stroke:#4a5568; stroke-width:1; }
+  g.node text{ font-size:10px; fill:#dfe3ea; font-family:system-ui,sans-serif; }
+  g.node text.yr{ fill:#8892a0; font-size:9px; }
+</style>
+</head>
+<body>
+<h1>계보 그래프 밀도 실험</h1>
+<p class="note">실제 <code>js/wiki/graph.js</code>의 W.graph 레이아웃 알고리즘(박스 126×40, 레인 간격 10px, 연도 간격 142px)을 그대로 재현해 실제 META 배열에서 처음 N편을 뽑아 그렸다. 뷰포트는 1280×700(신형 노트북 화면 하나 분량)으로 고정하고, 그 창 안에 전체 그래프의 몇 %가 들어오는지, 자른 뒷부분은 스크롤해야 보이는지를 측정한다. 실제 W.graph()를 fetch로 불러와 그대로 실행한다(로직 사본 아님).</p>
+<div id="out"></div>
+
+<script src="../../js/wiki/core.js"></script>
+<script src="../../content/fields.js"></script>
+<script src="../../js/wiki/graph.js"></script>
+<script>
+(function(){
+  var out = document.getElementById('out');
+  var Ns = [15, 30, 60, 120, 250, WIKI.META.length];
+  var lanes = WIKI.FIELDS.map(function(f){return {id:f.id,name:f.name,color:f.color}});
+  Ns.forEach(function(N){
+    var items = WIKI.META.slice(0, N);
+    var svgHtml = WIKI.graph(items, lanes, function(m){return m.field}, {});
+    var h1 = document.createElement('div');
+    h1.innerHTML = '<h2 style="margin:24px 0 4px;font-size:15px">N = '+N+' 논문 (실제 논문 446편 중 앞 '+N+'편, field 순서 그대로)</h2>';
+    out.appendChild(h1);
+    var frame = document.createElement('div');
+    frame.className='frame';
+    frame.innerHTML = svgHtml;
+    out.appendChild(frame);
+    var svg = frame.querySelector('svg');
+    var totalW = +svg.getAttribute('width'), totalH = +svg.getAttribute('height');
+    var visW = 1280, visH = 700;
+    var pctVisible = Math.min(1,visW/totalW) * Math.min(1,visH/totalH) * 100;
+    var nodeCount = svg.querySelectorAll('g.node').length;
+    var edgeCount = svg.querySelectorAll('path.edge').length;
+    var stat = document.createElement('div');
+    stat.className='stat';
+    stat.textContent = 'SVG 전체 크기: '+totalW+'x'+totalH+'px   노드 '+nodeCount+'개, 간선 '+edgeCount+'개\n'
+      + '1280x700 뷰포트에 보이는 면적 비율: '+pctVisible.toFixed(1)+'%'
+      + (pctVisible<100 ? '  ← 스크롤 없이는 전체를 볼 수 없음' : '  ← 스크롤 없이 전부 보임');
+    out.appendChild(stat);
+  });
+})();
+</script>
+</body>
+</html>

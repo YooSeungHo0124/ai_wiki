@@ -49,10 +49,30 @@
   object-fit: cover;
   object-position: top center; /* 원문 상단 크롭 인상을 유지 */
   filter: grayscale(70%) contrast(0.92) brightness(1.04);
+  transition: filter var(--dur-micro, 120ms) var(--ease-standard, ease);
+}
+/* 다크 테마: content/covers/*.webp도 content/figures와 같은 원문 PDF 제목 페이지
+   크롭이라 흰 배경 그대로 노출되면 --surface-raised(카드) 위에서 눈부시다
+   (DARK-AUDIT §2-B). 이 카드는 이미 라이트에서도 grayscale(70%)로 채도를 죽여
+   "표지 이미지"처럼 통일된 톤을 주고 있었으므로, 다크에서는 거기에 brightness만
+   추가로 낮춰(반전 없이) 피크 화이트를 줄인다 — 실제 표지가 있는 논문
+   (transformer, gemini, gpt-4, vllm 등)과 없는 논문(생성 폴백, 이미 다크와 잘
+   어울림)을 스크린샷으로 나란히 비교해 결정한 값(brightness .74). 카드를
+   클릭해 열었을 때 이미지에 직접 마우스를 올리면(hover) 원문 그대로의 밝기로
+   복원되어, 자세히 보고 싶을 때는 매트가 방해하지 않는다. */
+html[data-theme="dark"] .cover-img{
+  filter: grayscale(70%) contrast(0.88) brightness(0.74);
+}
+html[data-theme="dark"] .cover-img:hover{
+  filter: grayscale(70%) contrast(0.92) brightness(1.0);
+}
+@media (prefers-reduced-motion: reduce){
+  .cover-img{ transition-duration:0ms; }
 }
 
 /* ---------- 대체 표지(원문 렌더 없음 / 로드 실패) ----------
- * 분야색 밴드 + 제목 + 저자 + 연도로 채운 "조판된 표지". 깨진 이미지 아이콘 없음. */
+ * 분야색 밴드 + 옅은 분야색 틴트 + 분야 모노그램으로 채운 "조판된 표지".
+ * 깨진 이미지 아이콘 없음, 제목/저자/연도 텍스트 중복도 없음(아래 참고). */
 .cover-fallback{
   position: absolute; inset: 0;
   display: flex;
@@ -68,39 +88,27 @@
 .cover-fallback-body{
   flex: 1 1 auto;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 10px 16px;
   min-height: 0;
   overflow: hidden;
+  /* 밴드와 같은 분야색을 아주 옅게 깔아 "빈 자리"가 아니라 "이 분야 표지
+     디자인"으로 읽히게 한다 — LIBRARY-CONCEPT §6.4가 이미 허용한 12% 틴트
+     (--chip-field-bg와 동일 공식), 카드 전체가 아니라 이미지 자리에만 한정. */
+  background: color-mix(in srgb, var(--cover-field-color, var(--text-tertiary)) 8%, var(--surface));
 }
-.cover-fallback-title{
-  margin: 0;
-  font-size: var(--fs-h4);
-  font-weight: 600;
-  color: var(--text-primary);
-  line-height: 1.35;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  word-break: keep-all;
-  overflow-wrap: break-word;
-}
-.cover-fallback-authors{
-  margin: 0;
-  font-size: var(--fs-body-sm);
-  color: var(--text-tertiary);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.cover-fallback-year{
-  margin: 0;
+/* 제목·저자·연도는 바로 아래 .cover-body에 이미 실제 텍스트로 나오므로 여기서
+   반복하지 않는다(중복 실측으로 발견, perceptron/sae 케이스). 대신 분야
+   모노그램 하나로 "사진 없이도 의도된 표지"라는 인상만 준다 — 순수 장식이라
+   aria-hidden으로 스크린리더에서 건너뛴다(fallbackMarkup 참고). */
+.cover-fallback-mono{
   font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  color: var(--text-secondary); /* --text-faint는 AA 대비 미달 실측(A11Y-PERF §4.6) — 대신 이 토큰 사용 */
+  font-size: 38px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--cover-field-color, var(--text-tertiary)) 55%, var(--text-faint));
+  line-height: 1;
+  user-select: none;
 }
 
 /* ---------- 본문 ---------- */
@@ -164,7 +172,12 @@
   margin-left: auto;
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
-  color: var(--text-secondary); /* --chip-year-text(=--text-faint)는 AA 미달 실측값이라 쓰지 않는다 */
+  /* DARK-AUDIT §1 수정: 이 파일이 --chip-year-text(당시 --text-faint 별칭)의
+     AA 미달을 독자적으로 발견해 --text-secondary로 우회했었는데(2026-09,
+     shelf.css/graphview 쪽에는 전달 안 됨), 근본 원인(tokens.css의
+     --text-faint-raised 신설)이 고쳐졌으니 다시 "가장 옅은" 단계로 되돌린다
+     — 연도는 저자보다 한 단계 더 흐려야 한다(§5.4). */
+  color: var(--text-faint-raised);
   letter-spacing: 0.02em;
 }
 
@@ -189,14 +202,32 @@
   color: var(--accent);
   border-color: var(--accent-soft-border);
 }
-/* graph-card-move(기존 "이 논문으로 이동" 버튼)를 재사용해 새 버튼 스타일을 만들지 않는다.
-   실제로는 <a href>라 A11Y-PERF §4.3이 요구한 "진짜 링크"를 그대로 만족한다. */
+/* graph-card-move(기존 "이 논문으로 이동" 버튼)를 재사용해 새 버튼 클래스를 만들지 않는다.
+   실제로는 <a href>라 A11Y-PERF §4.3이 요구한 "진짜 링크"를 그대로 만족한다.
+   단, wiki.css의 기본값(라이트에서 accent 100% 배경 풀폭 버튼)은 정보 그래프의
+   "다음 행동" 버튼용 무게라 표지 카드 안에서는 제목보다 시선을 더 끈다 — 서지
+   정보(제목>저자>연도)가 카드에서 가장 먼저 읽혀야 한다는 위계(§6.5)가 CTA
+   버튼 하나 때문에 뒤집힌다(실측: 라이트 모드 스크린샷에서 풀폭 solid 버튼이
+   카드에서 가장 큰 색 면적이었다). accent-soft 톤으로 눌러 "링크보다는 강하지만
+   제목보다는 약하게" 재조정한다. */
 .cover-expand{
   flex: 1 1 auto;
   min-width: 140px;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
+  background: var(--accent-soft-bg);
+  border-color: var(--accent-soft-border);
+  color: var(--accent);
+  font-weight: 600;
+  transition: background-color var(--dur-micro, 120ms) var(--ease-standard),
+              border-color var(--dur-micro, 120ms) var(--ease-standard);
+}
+.cover-expand:hover,
+.cover-expand:focus-visible{
+  background: color-mix(in srgb, var(--accent) 20%, var(--surface));
+  border-color: var(--accent);
+  opacity: 1;
 }
 
 /* ---------- 결측 안전망 ---------- */
@@ -207,5 +238,6 @@
 }
 
 @media (prefers-reduced-motion: reduce){
-  .cover-lineage{ transition-duration: 0ms; }
+  .cover-lineage,
+  .cover-expand{ transition-duration: 0ms; }
 }

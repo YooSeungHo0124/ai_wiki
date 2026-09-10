@@ -2,9 +2,10 @@
 (function(W){
   var app=document.getElementById('app');
 
-  /* ---------- 테마 ---------- */
-  var t=localStorage.getItem('wiki-theme')||'dark';
-  document.documentElement.setAttribute('data-theme',t);
+  /* ---------- 테마 ----------
+     초기 판정(저장된 선택 → OS prefers-color-scheme → 기본값)은 FOUC를 막기
+     위해 index.html <head> 최상단 인라인 스크립트로 옮겼다(design/DARK-AUDIT.md).
+     app.js는 이미 <html data-theme>가 정해진 뒤 로드되므로 토글 배선만 한다. */
   document.getElementById('themeBtn').onclick=function(){
     var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
     document.documentElement.setAttribute('data-theme',n);
@@ -65,9 +66,10 @@
     lastQuery=q;
     if(!q.filters.length && !q.free) return [];
     var matched=W.META.filter(function(m){
-      if(q.free && (m.slug+' '+m.title+' '+m.ko).toLowerCase().indexOf(q.free)<0) return false;
+      if(q.free && !W.freeTextMatches(m,q.free)) return false;
       return q.filters.every(function(ft){ return matchFilter(m,ft); });
     });
+    if(q.free) matched.sort(function(a,b){ return W.rankScore(b,q.free)-W.rankScore(a,q.free); });
     lastFull=matched;
     /* 필터만 있고 자유어가 없으면(작업 큐) 캡 없이 전부 */
     return (q.filters.length && !q.free) ? matched : matched.slice(0,12);
@@ -142,13 +144,15 @@
     });
     apply();
   }
-  function zoomToolbar(){
+  function zoomToolbar(fsKind){
     return '<div class="graph-toolbar"><div class="zoom-ctl">'
       +'<button data-zoom="out" aria-label="축소">−</button>'
       +'<span class="zoom-pct">100%</span>'
       +'<button data-zoom="in" aria-label="확대">+</button>'
       +'<button data-zoom="reset" aria-label="원래 크기">⟲</button>'
-      +'</div><span style="color:var(--muted);font-size:12px">드래그 대신 스크롤 · 버튼으로 확대/축소 · 노드는 클릭하면 선택됩니다</span></div>';
+      +'</div>'
+      +(fsKind? '<button type="button" class="ghost-btn graph-fs-btn" data-graph-fullscreen="'+fsKind+'" aria-label="계보 그래프 전체 화면으로 보기">⛶ 전체 화면</button>' : '')
+      +'<span style="color:var(--muted);font-size:12px">드래그 대신 스크롤 · 버튼으로 확대/축소 · 노드는 클릭하면 선택됩니다</span></div>';
   }
 
   /* ---------- 그래프 선택 (GRAPH-INTERACTION.md) ----------
@@ -169,7 +173,7 @@
   }
   function wireGraphSelection(svgHost, cardEl){
     var svg=svgHost&&svgHost.querySelector('svg');
-    if(!svg||!cardEl) return;
+    if(!svg||!cardEl) return null;
     var selected=null;
     function nodesOf(){ return svg.querySelectorAll('.node[data-slug]'); }
     function edgesOf(){ return svg.querySelectorAll('.edge'); }
@@ -220,7 +224,16 @@
     cardEl.addEventListener('click',function(e){
       if(e.target.closest('[data-card-close]')) clear();
     });
+    return {
+      select:function(slug){ if(slug && slug!==selected){ selected=slug; render(); } },
+      clear:clear,
+      get:function(){ return selected; }
+    };
   }
+  /* graphview.js(전체 화면 뷰어)가 같은 선택/카드 규약(GRAPH-INTERACTION.md)을
+     재사용할 수 있도록 노출한다 — 새 선택 로직을 또 만들지 않기 위함. */
+  W._wireGraphSelection = wireGraphSelection;
+  W._graphCardHTML = graphCardHTML;
 
   /* ---------- 좌측 내비게이션 트리 (UX-SPEC 2.6) ----------
      그룹(WIKI.GROUPS) → 분야 → 트랙 → 논문 4단계. 전체를 항상 DOM에
@@ -460,6 +473,8 @@
   var homeGraphOpen=null;     /* null = 아직 결정 안 됨(첫 렌더에서 화면 폭 기준 결정) — 계보 그래프는 이제
                                   홈의 핵심 섹션이라 데스크톱 기본 펼침, 모바일만 기본 접힘(HOME-IA §7.2) */
   var homeGroupState=null;    /* 책장 그룹(3개) 접기 상태 — 첫 렌더에서 화면 폭 기준 결정, 이후 사용자 토글 유지 */
+  var homeGraphCtl=null;      /* wireGraphSelection() 컨트롤러 — 전체 화면 뷰어가 나갈 때 선택 상태를 되돌리는 데 쓴다 */
+  var fieldGraphCtl=null;
 
   /* ---------- 입문 경로 — HOME-IA §4.2, 실측 백링크·자식 수 상위권에서만 고른 7편 ---------- */
   var START_COURSE=['resnet','transformer','bert','gpt3','vit','clip','instructgpt'];
@@ -552,8 +567,12 @@
       +'<details class="graph-collapse lineage-collapse" id="homeGraph"'+(homeGraphOpen?' open':'')+'>'
       +'<summary>계보 그래프 보기</summary>'
       +'<div class="field-chips">'+chips+'</div>'
-      +zoomToolbar()
-      +'<div class="graph-viewport" id="gbox">'+(items.length? W.graph(items,lanes,function(m){return m.field},{}) : '<div class="stub">최소 한 분야는 선택해야 합니다.</div>')+'</div>'
+      +zoomToolbar('home')
+      /* DOM 예산(GRAPH-REFERENCES.md §5 필수 부속): <details>가 닫혀 있으면
+         그래프 SVG(약 3,100 요소)를 아예 만들지 않는다 — 열릴 때 지연 생성.
+         gbox는 항상 빈 채로 내려가고, 실제 내용은 buildHomeGraphBody()가
+         open 시점(초회 렌더 시 이미 열려 있으면 즉시, 아니면 toggle에서)에 채운다. */
+      +'<div class="graph-viewport" id="gbox" data-built="0"></div>'
       +'<div class="graph-card" id="homeGraphCard" hidden aria-live="polite"></div>'
       +'</details>'
       +'</section>';
@@ -562,7 +581,21 @@
     wireNavToggle(app);
 
     var det=document.getElementById('homeGraph');
-    det.addEventListener('toggle',function(){ homeGraphOpen=det.open; });
+    function buildHomeGraphBody(){
+      var box=document.getElementById('gbox');
+      if(!box || box.dataset.built==='1') return;
+      box.dataset.built='1';
+      box.innerHTML = items.length? W.graph(items,lanes,function(m){return m.field},{}) : '<div class="stub">최소 한 분야는 선택해야 합니다.</div>';
+      if(items.length){
+        wireZoom(det);
+        homeGraphCtl = wireGraphSelection(box, document.getElementById('homeGraphCard'));
+      }
+    }
+    if(det.open) buildHomeGraphBody();
+    det.addEventListener('toggle',function(){
+      homeGraphOpen=det.open;
+      if(det.open) buildHomeGraphBody();
+    });
     det.querySelectorAll('[data-field-chip]').forEach(function(chip){
       chip.setAttribute('tabindex','0'); chip.setAttribute('role','checkbox');
       chip.setAttribute('aria-checked', chip.classList.contains('on')?'true':'false');
@@ -579,8 +612,6 @@
       chip.addEventListener('click',toggle);
       chip.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
     });
-    if(items.length){ wireZoom(det); wireGraphSelection(document.getElementById('gbox'), document.getElementById('homeGraphCard')); }
-
     /* 책장 — 그룹/분야 헤더에 소개 문장을 덧붙인다(shelf.js는 이름·권수만
        그린다, LIBRARY-CONCEPT §7 "분야 한 줄 소개"는 여기서 주입). 로빙
        tabindex·키보드·타입어헤드는 W.wireShelf가 담당, 표지 카드 연결은
@@ -719,14 +750,14 @@
     var inner='<div class="crumb"><a href="#/">전체 지도</a> › '+W.esc(f.name)+navToggleBtn()+'</div>'
       +'<div class="hero"><h2>'+W.esc(f.name)+' <span style="color:var(--muted);font-size:15px">'+W.esc(f.en)+'</span></h2>'
       +'<p>'+W.esc(f.blurb)+'</p></div>'
-      +zoomToolbar()
+      +zoomToolbar('field')
       +'<div class="graph-viewport graph-box" id="fgbox" style="margin-top:0">'+W.graph(items,lanes,function(m){return m.track},{})+'</div>'
       +'<div class="graph-card" id="fieldGraphCard" hidden aria-live="polite"></div>'
       +list;
     app.innerHTML=shell(navTreeHTML(null, id), 'wrap wide', inner);
     wireZoom(app);
     wireNavToggle(app);
-    wireGraphSelection(document.getElementById('fgbox'), document.getElementById('fieldGraphCard'));
+    fieldGraphCtl = wireGraphSelection(document.getElementById('fgbox'), document.getElementById('fieldGraphCard'));
   }
 
   /* ---------- 뷰: 논문 ---------- */
@@ -752,8 +783,44 @@
       +'</div>';
   }
 
+  /* ---------- 논문 목차(TOC) 스크롤 위치 표시 (신규) ----------
+     h3.sec는 position:sticky;top:62px로 상단에 붙는다(css/wiki.css). 관찰
+     대상(root)을 뷰포트 전체로 두면 흔한 함정에 걸린다 — 스티키로 붙은 헤더는
+     그 섹션을 읽는 내내 화면에 남아 있고(그 자체는 의도된 동작), 동시에 그
+     아래 다음 섹션의 헤더도 아직 스티키가 되기 전부터 화면 하단에 미리
+     보이기 시작해 함께 "교차 중"으로 잡힌다 — 그러면 목차 링크 두세 개가
+     한꺼번에 active로 뜬다. rootMargin으로 관찰 영역을 "헤더가 실제로 상단에
+     붙는 좁은 띠"(topbar 아래, 뷰포트 상단 25% 안쪽)로 좁혀 한 번에 하나만
+     active가 되게 한다. 값은 브라우저로 직접 스크롤하며 맞췄다. */
+  var tocObserver=null;
+  function disconnectToc(){ if(tocObserver){ tocObserver.disconnect(); tocObserver=null; } }
+  function wireToc(){
+    disconnectToc();
+    if(!('IntersectionObserver' in window)) return; /* 구형 브라우저 — 목차 자체(링크 이동)는 그대로 동작, 강조만 생략 */
+    var headers=Array.prototype.slice.call(document.querySelectorAll('.paper h3.sec[id]'));
+    var side=document.querySelector('.side');
+    if(!headers.length || !side) return;
+    var links={};
+    side.querySelectorAll('a[href^="#s"]').forEach(function(a){ links[a.getAttribute('href').slice(1)]=a; });
+    var visible={};
+    function setActive(id){
+      Object.keys(links).forEach(function(k){ links[k].classList.toggle('active', k===id); });
+    }
+    tocObserver=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting) visible[en.target.id]=true; else delete visible[en.target.id];
+      });
+      /* 그래도 두 개 이상 겹치는 경계 순간엔 문서 순서상 가장 아래(가장 최근에
+         지나온) 헤더를 "지금 읽는 섹션"으로 본다. */
+      var ids=headers.map(function(h){return h.id;}).filter(function(id){return visible[id];});
+      if(ids.length) setActive(ids[ids.length-1]);
+    }, {root:null, rootMargin:'-70px 0px -75% 0px', threshold:0});
+    headers.forEach(function(h){ tocObserver.observe(h); });
+  }
+
   function viewPaper(slug){
     var m=W.byId(slug); if(!m) return viewHome();
+    disconnectToc(); /* 다른 논문/화면으로 옮겨가는 즉시 이전 관찰자를 끊는다(누수 방지) */
     var f=W.field(m.field), tr=W.track(m.field,m.track);
     setTitle(m.ko);
     recordVisit(slug);
@@ -898,6 +965,67 @@
       +'<aside class="side"><h4>목차</h4>'+nav.join('')+'</aside></div>');
     wireNavToggle(app);
     wireGraphSelection(document.getElementById('lgBox'), document.getElementById('lgCard'));
+    wireToc();
+  }
+
+  /* ---------- 전체 화면 그래프 뷰어 진입점 (graphview.js, GRAPH-REFERENCES.md 권고 1) ----------
+     홈/분야의 인라인 그래프에서 "⛶ 전체 화면" 버튼을 누르면 그 화면과 같은
+     items/lanes/laneOf로 W.openGraphFull()을 연다. 나갈 때는 원래 화면의
+     스크롤 위치와 선택 상태를 그대로 되돌린다(맥락 유지). graphview.js가
+     로드되지 않았거나 실패한 경우에도 조용히 무시한다. */
+  function graphFullSpecFor(kind){
+    if(kind==='home'){
+      var activeFields=homeFieldFilter||W.FIELDS.map(function(f){return f.id});
+      var lanes=W.FIELDS.filter(function(f){return activeFields.indexOf(f.id)>=0;})
+        .map(function(f){return {id:f.id,name:f.name,color:f.color};});
+      var items=W.META.filter(function(m){return activeFields.indexOf(m.field)>=0;});
+      return {items:items, lanes:lanes, laneOf:function(m){return m.field;},
+        title:'전체 계보 그래프', viewportEl:document.querySelector('#homeGraph .graph-viewport'),
+        getCtl:function(){return homeGraphCtl;}, setCtl:function(c){homeGraphCtl=c;}};
+    }
+    if(kind==='field'){
+      var h=location.hash.replace(/^#/,'');
+      var id = h.indexOf('/f/')===0 ? h.slice(3) : null;
+      var f=id&&W.field(id); if(!f) return null;
+      var fitems=W.META.filter(function(m){return m.field===id;});
+      var flanes=f.tracks.map(function(t){return {id:t.id,name:t.name,color:f.color};});
+      return {items:fitems, lanes:flanes, laneOf:function(m){return m.track;},
+        title:f.name+' 계보 그래프', viewportEl:document.getElementById('fgbox'),
+        getCtl:function(){return fieldGraphCtl;}, setCtl:function(c){fieldGraphCtl=c;}};
+    }
+    return null;
+  }
+  app.addEventListener('click',function(e){
+    var btn=e.target.closest('[data-graph-fullscreen]'); if(!btn) return;
+    if(typeof W.openGraphFull!=='function') return; /* graphview.js 미로드 — 조용히 무시 */
+    var spec=graphFullSpecFor(btn.dataset.graphFullscreen); if(!spec) return;
+    var vp=spec.viewportEl;
+    var savedTop = vp? vp.scrollTop : 0, savedLeft = vp? vp.scrollLeft : 0;
+    var ctl=spec.getCtl();
+    W.openGraphFull({
+      items:spec.items, lanes:spec.lanes, laneOf:spec.laneOf, title:spec.title,
+      focus: ctl? ctl.get() : null,
+      onClose:function(state){
+        if(vp){ vp.scrollTop=savedTop; vp.scrollLeft=savedLeft; }
+        var ctl2=spec.getCtl();
+        if(ctl2 && state && state.focus) ctl2.select(state.focus);
+      }
+    });
+  });
+  function viewGraphFull(){
+    setTitle('전체 계보 그래프');
+    app.innerHTML='<div class="crumb"><a href="#/">전체 지도</a> › 전체 계보 그래프</div>'
+      +'<div class="stub" id="graphFullRouteStub">전체 화면 그래프를 여는 중…</div>';
+    if(typeof W.openGraphFull!=='function'){
+      document.getElementById('graphFullRouteStub').textContent='그래프 뷰어를 불러오지 못했습니다.';
+      return;
+    }
+    var lanes=W.FIELDS.map(function(f){return {id:f.id,name:f.name,color:f.color};});
+    W.openGraphFull({
+      items:W.META.slice(), lanes:lanes, laneOf:function(m){return m.field;},
+      title:'전체 계보 그래프', focus:null,
+      onClose:function(){ if(location.hash==='#/graph') W.go('#/'); }
+    });
   }
 
   /* ---------- 라우팅 ---------- */
@@ -1052,10 +1180,12 @@
 
   function route(){
     var h=location.hash.replace(/^#/,'');
+    if(h.indexOf('/p/')!==0) disconnectToc(); /* 논문 페이지를 벗어나는 모든 라우트에서 TOC 관찰자를 끊는다(viewPaper 자체도 진입 시 한 번 더 끊는다) */
     if(h.indexOf('/p/')===0) return viewPaper(h.slice(3));
     if(h.indexOf('/f/')===0) return viewField(h.slice(3));
     if(h==='/growing') return viewGrowing();
     if(h==='/course') return viewCourse();
+    if(h==='/graph') return viewGraphFull();
     if(h && h[0]!=='/'){ document.getElementById(h.replace(/^#/,''))?.scrollIntoView(); return; }
     viewHome();
   }

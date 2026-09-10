@@ -71,10 +71,10 @@ pitfalls:[
 figures:[
  {f:'fig1-architecture.png',
   cap:'추론 파이프라인 전체 흐름. 왼쪽 입력 임베더 이후 Template/MSA 모듈(작게 축소)을 거쳐 Pairformer(48블록)가 pair·single representation을 갱신하고, 그 표현을 조건으로 Diffusion Module이 순수 노이즈(회색 점구름)에서 시작해 반복적으로(Diffusion iterations, 녹색 점선) 원자 좌표를 생성한다. 파란 Recycling 점선은 트렁크 반복.',
-  src:'원문 Figure 1d, p.28'},
+  src:'원문 Figure 1d, p.2'},
  {f:'fig1-benchmarks.png',
   cap:'네 개 패널이 각각 리간드(PoseBusters), 핵산, 공유 변형, 단백질 카테고리에서 AF3(하늘색)와 기존 전용 도구를 비교한다. 막대는 성공률(%), 오차선은 95% 신뢰구간, ***는 p<0.001. 왼쪽 첫 패널만 봐도 AF3가 AutoDock Vina·RoseTTAFold All-Atom을 20%p 이상 앞선다.',
-  src:'원문 Figure 1c, p.28'}
+  src:'원문 Figure 1c, p.2'}
 ],
 
 quotes:[

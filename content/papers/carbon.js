@@ -76,7 +76,7 @@ figures:[
 quotes:[
  {t:'Remarkably, the choice of DNN, datacenter, and processor can reduce the carbon footprint up to ~100-1000X.',
   src:'Abstract, p.1'},
- {t:'The most sustainable energy is the energy you don\\u2019t use.',
+ {t:'The most sustainable energy is the energy you don\u2019t use.',
   src:'Introduction, p.1'}
 ],
 

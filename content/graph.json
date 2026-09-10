@@ -8612,7 +8612,7 @@
   },
   "alphafold3": {
    "stage": "evergreen",
-   "bytes": 11662,
+   "bytes": 11660,
    "sections": [
     "venue",
     "authors",
@@ -8635,7 +8635,7 @@
     "bio",
     "2024"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "the-pile": {
    "stage": "growing",
@@ -10266,7 +10266,7 @@
   },
   "alphastar": {
    "stage": "evergreen",
-   "bytes": 10922,
+   "bytes": 10954,
    "sections": [
     "venue",
     "authors",
@@ -10290,7 +10290,7 @@
     "search",
     "2019"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-10"
   },
   "dreamer": {
    "stage": "evergreen",
@@ -15094,7 +15094,7 @@
   },
   "carbon": {
    "stage": "evergreen",
-   "bytes": 8958,
+   "bytes": 8957,
    "sections": [
     "venue",
     "authors",

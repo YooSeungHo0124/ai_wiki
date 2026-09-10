@@ -40,7 +40,7 @@
 .shelf-block-count{
   font-family:var(--font-mono);
   font-size:var(--fs-micro);
-  color:var(--text-faint);
+  color:var(--text-faint-raised);
   flex:0 0 auto;
 }
 
@@ -125,11 +125,13 @@ html[data-theme="dark"] .spine{ background:var(--surface-raised); }
   flex:0 0 auto;
 }
 
-/* 세로 조판 제목 — writing-mode: vertical-rl; text-orientation: mixed
-   (TYPOGRAPHY.md §1.1 실측 결론) */
+/* 세로 조판 제목 — writing-mode: vertical-rl; text-orientation: sideways
+   (TYPOGRAPHY.md §1.1 재검토 — 446권 실 서가에서 mixed는 한글은 서고 라틴만
+   눕는 "섞인" 결과가 되어 방향이 불일치했다. sideways로 통일: design/mock/
+   spine-orient.html 실측 참고) */
 .spine-title{
   writing-mode:vertical-rl;
-  text-orientation:mixed;
+  text-orientation:sideways;
   font-family:var(--font-kr);
   font-size:var(--fs-spine, 13px);
   font-weight:600;
@@ -167,7 +169,9 @@ html[data-theme="dark"] .spine{ background:var(--surface-raised); }
   writing-mode:horizontal-tb;
   font-family:var(--font-mono);
   font-size:var(--fs-spine-meta, 10.5px);
-  color:var(--text-faint);
+  /* --text-faint가 아니라 --text-faint-raised(DARK-AUDIT §1): .spine 배경이
+     다크에서 --surface-raised(#171d29)라 --text-faint는 3.99:1로 AA 미달이었다. */
+  color:var(--text-faint-raised);
   flex:0 0 auto;
   padding-bottom:4px;
   pointer-events:none;
@@ -211,7 +215,7 @@ html[data-theme="dark"] .spine{ background:var(--surface-raised); }
 }
 .track-slot-label{
   writing-mode:vertical-rl;
-  text-orientation:mixed;
+  text-orientation:sideways;  /* 책등과 같은 방향으로 통일 */
   font-family:var(--font-kr);
   font-size:var(--fs-spine-meta, 10.5px);
   color:var(--text-tertiary);
@@ -254,7 +258,7 @@ html[data-theme="dark"] .spine{ background:var(--surface-raised); }
 }
 .mobile-field summary::-webkit-details-marker{ display:none; }
 .mf-name{ font-size:var(--fs-body); color:var(--text-primary); font-weight:600; }
-.mf-count{ font-family:var(--font-mono); font-size:var(--fs-micro); color:var(--text-faint); }
+.mf-count{ font-family:var(--font-mono); font-size:var(--fs-micro); color:var(--text-faint-raised); }
 
 .mobile-list{
   list-style:none;
@@ -291,6 +295,6 @@ html[data-theme="dark"] .spine{ background:var(--surface-raised); }
 .mi-year{
   font-family:var(--font-mono);
   font-size:var(--fs-micro);
-  color:var(--text-faint);
+  color:var(--text-faint-raised);
   flex:0 0 auto;
 }

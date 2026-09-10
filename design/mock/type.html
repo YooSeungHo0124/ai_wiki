@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>타이포그래피 목업 — 책등 · 혼합 조판</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/tokens.css">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg-page);color:var(--text-primary);font-family:var(--font-kr);}
+  body{padding:32px 32px 120px;}
+  h1{font-size:22px;margin:0 0 4px}
+  h2{font-size:17px;margin:48px 0 4px;padding-top:16px;border-top:1px solid var(--border-subtle)}
+  h3{font-size:14.5px;margin:20px 0 8px;color:var(--text-secondary)}
+  .note{font-size:13px;color:var(--text-tertiary);max-width:68ch;line-height:1.6;margin:0 0 16px}
+  .row{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end;margin-bottom:24px}
+  .col{display:flex;flex-direction:column;gap:6px}
+  .lbl{font-size:11px;color:var(--text-faint);font-family:var(--font-mono)}
+  code{font-family:var(--font-mono);background:var(--surface-sunken);padding:1px 4px;border-radius:4px;font-size:13px}
+  table{border-collapse:collapse;font-size:13px;margin:12px 0 32px}
+  td,th{border:1px solid var(--border-subtle);padding:6px 10px;text-align:left;vertical-align:top}
+  th{background:var(--surface-sunken);font-weight:600}
+
+  /* ============== 책등(spine) 시제품 ============== */
+  .shelf{display:flex;align-items:flex-end;gap:3px;background:var(--surface-sunken);padding:24px 16px 0;border-radius:var(--radius-md);margin-bottom:8px}
+  .spine{
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    width:34px; height:260px;
+    background:var(--surface);
+    border:1px solid var(--border-strong);
+    border-left:4px solid var(--field-c, var(--field-llm));
+    border-radius:2px 2px 0 0;
+    display:flex; flex-direction:column; align-items:center;
+    padding:10px 0 8px;
+    gap:8px;
+    overflow:hidden;
+    flex-shrink:0;
+    color:var(--text-primary);
+    cursor:pointer;
+  }
+  .spine:hover{border-color:var(--accent)}
+  .spine .sp-title{
+    font-size:13px; font-weight:600; letter-spacing:0.02em;
+    line-height:1.35;
+  }
+  .spine .sp-meta{
+    font-family:var(--font-mono); font-size:10.5px; color:var(--text-tertiary);
+    letter-spacing:0.02em;
+  }
+  .spine .sp-year{font-size:10.5px;color:var(--text-faint);font-family:var(--font-mono)}
+  .spine.upright{ text-orientation: upright; }
+  .spine.sideways{ text-orientation: sideways; }
+
+  .spine-wide{width:44px}
+  .spine-thin{width:26px}
+
+  .cover-mock{
+    width:180px; min-height:240px; background:var(--surface); border:1px solid var(--border-strong);
+    border-radius:var(--radius-md); padding:16px; display:flex; flex-direction:column; gap:10px;
+  }
+  .cover-mock h4{margin:0;font-size:17px;line-height:1.3;letter-spacing:var(--ls-heading)}
+  .cover-mock .sub{font-size:13px;color:var(--text-secondary)}
+  .cover-mock .authors{font-size:12px;color:var(--text-tertiary);line-height:1.5}
+  .cover-mock .meta{font-size:11px;color:var(--text-faint);font-family:var(--font-mono);letter-spacing:0.02em}
+
+  .mix{font-size:15px;line-height:1.75;max-width:60ch;padding:12px 14px;background:var(--surface);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);margin-bottom:10px}
+  .mix .bad{background:color-mix(in srgb, var(--state-danger) 16%, transparent)}
+</style>
+</head>
+<body>
+
+<h1>타이포그래피 목업 — 책등 · 혼합 조판 · 저자 표기</h1>
+<p class="note">design/TYPOGRAPHY.md의 근거 자료. content/meta.json·content/fields.js에서 뽑은 실제 데이터로 조판했다.
+브라우저에서 실제 렌더링을 확인하는 용도이며 제품 코드가 아니다.</p>
+
+<h2>1. 세로 책등 — text-orientation 비교</h2>
+<p class="note">
+같은 문자열 3종(순한글, 순영문, 한글+영문 혼합)을 <code>text-orientation: mixed</code> /
+<code>upright</code> / <code>sideways</code> 세 값으로 각각 렌더링. 첫 줄(mixed)이 실제 채택안 후보다.
+</p>
+
+<h3>1-1. mixed — 채택 후보</h3>
+<div class="shelf">
+  <div class="spine" style="--field-c:var(--field-foundations)"><div class="sp-title">퍼셉트론</div></div>
+  <div class="spine" style="--field-c:var(--field-llm)"><div class="sp-title">Transformer</div></div>
+  <div class="spine" style="--field-c:var(--field-theory)"><div class="sp-title">코사인 스케줄 · warm restart</div></div>
+  <div class="spine" style="--field-c:var(--field-llm)"><div class="sp-title">깊은 self-attention 문자 LM</div></div>
+  <div class="spine" style="--field-c:var(--field-llm)"><div class="sp-title">BERT</div></div>
+  <div class="spine" style="--field-c:var(--field-llm)"><div class="sp-title">GPT-4</div></div>
+  <div class="spine" style="--field-c:var(--field-robotics)"><div class="sp-title">Open X-Embodiment</div></div>
+</div>
+<p class="note">관찰(실제 렌더링 확인): 한글(가/나/다…)은 그대로 서서(upright) 위→아래로 흐르고, 라틴 알파벳·숫자는
+단어/구 단위로 <b>시계방향 90도 회전</b>한 채로 <b>한글과 똑같이 위→아래</b> 순서로 흐른다("Transformer"를
+확대하면 T가 맨 위, r가 맨 아래) — 다만 낱글자가 옆으로 누워 있어서 읽으려면 <b>책을 시계방향으로 90도
+기울여야</b> 한다(서구 책등의 "고개를 오른쪽으로 기울여 읽는" 관례와 동일 방향).
+한글 문장에 영문 약어가 섞이면(<code>깊은 self-attention 문자 LM</code>) 회전 구간과 직립 구간이
+번갈아 나타나 그때마다 고개 각도를 바꿔야 한다 — 짧은 영문 토큰 1개 정도는 허용, 2개 이상 섞이면 책등에서는 피한다(§2 참고).</p>
+
+<h3>1-2. upright — 기각</h3>
+<div class="shelf">
+  <div class="spine upright" style="--field-c:var(--field-llm)"><div class="sp-title">Transformer</div></div>
+  <div class="spine upright" style="--field-c:var(--field-robotics)"><div class="sp-title">Open X-Embodiment</div></div>
+</div>
+<p class="note">라틴 문자까지 강제로 세우면 알파벳이 한 글자씩 쌓여 단어로 못 읽는다(Open X-Embodiment가 O-p-e-n…으로
+분리). 영문 제목이 섞이는 이 위키에서는 채택 불가.</p>
+
+<h3>1-3. sideways — 기각</h3>
+<div class="shelf">
+  <div class="spine sideways" style="--field-c:var(--field-foundations)"><div class="sp-title">퍼셉트론</div></div>
+  <div class="spine sideways" style="--field-c:var(--field-llm)"><div class="sp-title">BERT</div></div>
+</div>
+<p class="note">한글까지 통째로 90도 눕혀버려 세로 서가에서 한글 단어가 옆으로 누운 라틴처럼 보인다 — 국문 서가의
+관례(한글은 세워 읽는다)와 어긋난다. 기각.</p>
+
+<h2>2. 책등 최종안 — 길이 상한 검증</h2>
+<p class="note">
+책등 높이를 3단계(두꺼운 책=긴 슬롯 260px / 보통 200px / 얇은 책=짧은 슬롯 150px, bytes 기반)로 가정하고
+실제 최악 사례(가장 긴 ko 제목·저자 최다·저자 없음)를 채워 넣는다. 13px/1.35 기준 실측.
+</p>
+<div class="shelf" style="padding-top:24px">
+  <div class="col">
+    <div class="spine" style="height:200px;--field-c:var(--field-multimodal)">
+      <div class="sp-title">Gemini</div>
+      <div class="sp-meta">Gemini Team 외 1350인</div>
+      <div class="sp-year">2023</div>
+    </div>
+    <span class="lbl">gemini · 저자 1351명 · ko 짧음</span>
+  </div>
+  <div class="col">
+    <div class="spine" style="height:200px;--field-c:var(--field-interp)">
+      <div class="sp-title">BIG-bench</div>
+      <div class="sp-meta">Srivastava 외 450인</div>
+      <div class="sp-year">2022</div>
+    </div>
+    <span class="lbl">bigbench · 첫 저자가 팀이 아닌 개인</span>
+  </div>
+  <div class="col">
+    <div class="spine" style="height:200px;--field-c:var(--field-llm)">
+      <div class="sp-title">깊은 self-attention<br>문자 LM</div>
+      <div class="sp-meta">Al-Rfou 외 4인</div>
+      <div class="sp-year">2018</div>
+    </div>
+    <span class="lbl">deeper-self-attention · ko 23자, 최장 한글 제목 — 2줄로 꺾음</span>
+  </div>
+  <div class="col">
+    <div class="spine" style="height:150px;--field-c:var(--field-foundations)">
+      <div class="sp-title">퍼셉트론</div>
+      <div class="sp-year">1958</div>
+    </div>
+    <span class="lbl">perceptron · meta.json에 항목 없음(저자 폴백=연도만)</span>
+  </div>
+  <div class="col">
+    <div class="spine" style="height:150px;--field-c:var(--field-foundations)">
+      <div class="sp-title">역전파</div>
+      <div class="sp-year">1986</div>
+    </div>
+    <span class="lbl">backprop · 저자 없음 폴백</span>
+  </div>
+  <div class="col">
+    <div class="spine" style="height:260px;--field-c:var(--field-efficiency)">
+      <div class="sp-title">vLLM /<br>PagedAttention</div>
+      <div class="sp-meta">Kwon 외 8인</div>
+      <div class="sp-year">2023</div>
+    </div>
+    <span class="lbl">vllm · ko 21자, 슬래시 포함 — 슬래시에서 줄바꿈</span>
+  </div>
+</div>
+<p class="note">
+<b>결론(§ TYPOGRAPHY.md 1절 근거):</b> 책등 제목은 <code>ko</code>(통칭)를 쓴다 — 이미 카드·목차·검색결과
+전체가 <code>ko</code>를 1차 표기로 쓰고 있어(js/wiki/app.js 전수 확인) 책등만 <code>title</code>(영문 원제)을
+쓰면 "같은 책인데 서가에서만 다른 이름"이 된다. ko가 <b>한글 8자 / 라틴 14자</b>를 넘기면 책등 폭(34px, 13px
+서체) 안에서 2줄로 접어야 물리적으로 들어간다 — 위 표의 "깊은 self-attention 문자 LM"(23자)과
+"vLLM / PagedAttention"(21자)이 실측 최악 사례이고 각각 2줄로 접어 슬롯 높이 260px 안에 들어갔다. 3줄
+이상 필요한 제목은 없었다(전수 확인: 한글 최장 23자, 라틴-only ko 중 3줄 필요한 것 없음) — 상한을
+<b>2줄, 8자(한글)/14자(라틴) 기준으로 줄바꿈, 그래도 넘치면 말줄임(…)</b>으로 정한다.
+</p>
+
+<h2>3. 저자 표기 규칙 — 실측</h2>
+<table>
+<tr><th>슬러그</th><th>저자 수</th><th>첫 저자</th><th>책등(sp-meta, 1줄)</th><th>표지(cover)</th><th>비고</th></tr>
+<tr><td>transformer</td><td>8</td><td>Ashish Vaswani</td><td>Vaswani 외 7인</td><td>Vaswani, Shazeer, Parmar 외 5인</td><td>표준 케이스</td></tr>
+<tr><td>bert</td><td>4</td><td>Jacob Devlin</td><td>Devlin 외 3인</td><td>Devlin, Chang, Lee, Toutanova</td><td>4인 이하는 표지에서 전원 표기</td></tr>
+<tr><td>resnet</td><td>4</td><td>Kaiming He</td><td>He 외 3인</td><td>He, Zhang, Ren, Sun</td><td>&nbsp;</td></tr>
+<tr><td>sgdr</td><td>2</td><td>Ilya Loshchilov</td><td>Loshchilov · Hutter</td><td>Loshchilov · Hutter</td><td>2인이면 "외" 대신 가운뎃점으로 나열(더 정확한 정보량)</td></tr>
+<tr><td>one-epoch</td><td>1</td><td>Aran Komatsuzaki</td><td>Komatsuzaki</td><td>Aran Komatsuzaki</td><td>단독 저자는 "외" 자체가 없음</td></tr>
+<tr><td>gemini</td><td>1351</td><td>Gemini Team</td><td>Gemini Team 외 1350인</td><td>Gemini Team (외 1350인 공동연구)</td><td>첫 저자가 이미 팀/기관명 — 성만 떼면 "Team 외"가 되어 무의미, 전체 표기 유지</td></tr>
+<tr><td>gpt4</td><td>281</td><td>OpenAI</td><td>OpenAI 외 280인</td><td>OpenAI (외 280인 공동연구)</td><td>동일 — 기관명 저자</td></tr>
+<tr><td>open-x</td><td>294</td><td>Open X-Embodiment Collaboration</td><td>Open X-Embodiment 외 293인</td><td>Open X-Embodiment Collaboration (외 293인)</td><td>컬래버레이션 명은 책등에서 축약(Collaboration 생략)</td></tr>
+<tr><td>perceptron / backprop / alphago 등 60여편</td><td>0(메타 없음)</td><td>—</td><td>연도만 표기, 저자 줄 자체를 그리지 않는다</td><td>저자 정보 없음(원문 미상 시대 재수록 등)</td><td>레이아웃 필수: 저자 줄 <code>&lt;div&gt;</code> 자체를 생략 — 빈 문자열로 두면 줄 높이만 차지하는 빈 칸이 남는다</td></tr>
+</table>
+<p class="note">
+<b>규칙:</b> (1) 저자 ≤4명 → 전원 나열(가운뎃점 구분, 책등은 성만). (2) 저자 5~9명 → "제1저자 성 외 N인"
+(N=전체-1). (3) 저자 ≥10명 → 동일 형식이지만 첫 저자가 팀/기관명(대문자 약어 없는 조직명, 예: Gemini Team,
+OpenAI, *Collaboration)이면 성 대신 <b>그 이름 전체</b>를 쓰고 "외 N인"을 붙인다 — "OpenAI 외 280인"이
+"O 외 280인"보다 정보량이 크다. (4) "et al." 대신 한국어 "외 N인"을 쓴다 — 국문 사이트 관례 + §5.4
+칩 규칙과 동일하게 라틴 약어를 남발하지 않는다는 원칙(DESIGN-SYSTEM.md 원칙 4)과 합치.
+(5) 저자 없음(전체 445편 중 60편, meta.json 미수록) → 저자 줄 자체를 렌더링하지 않는다. "저자 미상"
+같은 대체 텍스트도 넣지 않는다 — 없는 정보를 있는 것처럼 라벨링하지 않는다(빈 자리가 정직하다).
+</p>
+
+<h2>4. 표지(cover) 목업 — 저자 줄 유무 비교</h2>
+<div class="row">
+  <div class="cover-mock" style="border-left:4px solid var(--field-llm)">
+    <h4>Transformer</h4>
+    <p class="sub">Attention Is All You Need</p>
+    <p class="authors">Vaswani, Shazeer, Parmar 외 5인</p>
+    <p class="meta">2017 · NeurIPS · LLM</p>
+  </div>
+  <div class="cover-mock" style="border-left:4px solid var(--field-foundations)">
+    <h4>퍼셉트론</h4>
+    <p class="sub">The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain</p>
+    <p class="meta">1958 · 기초 · 학습 알고리즘</p>
+  </div>
+</div>
+<p class="note">두 번째(저자 없음) 카드는 authors 줄이 아예 빠져 sub와 meta 사이 간격만 <code>--sp-2</code>로
+좁아진다 — 빈 태그를 만들고 <code>visibility:hidden</code>으로 숨기면 안 된다(스크린리더가 빈 줄을 읽어
+혼란을 준다). DOM에서 통째로 생략.</p>
+
+<h2>5. 혼합 조판 — 한글 옆 라틴/숫자/약어</h2>
+<div class="mix">일반 문단: Transformer는 attention만으로 시퀀스를 처리해 BERT, GPT-4 같은 후속 LLM의 토대가 됐다. d_k가 커질수록 QKᵀ의 분산이 커진다.</div>
+<div class="mix">letter-spacing 음수 실험(<span class="bad">피해야 할 사례</span>): 제목처럼 -0.02em 자간을 본문에 적용하면
+"<span style="letter-spacing:-0.02em">GPT-4는 BERT보다 크다</span>"처럼 숫자·대문자 뭉치가 다닥다닥
+붙어 보인다 — DESIGN-SYSTEM.md §3.2 규칙(본문은 자간 미조정) 재확인, 위반 사례를 실제로 렌더링해 근거로 남김.</div>
+<div class="mix" style="word-break:keep-all">word-break: keep-all 적용: 한글 어절 단위 줄바꿈이 지켜지며 "PagedAttention을",
+"AlphaGo가" 같은 한글 조사가 붙은 영문 토큰도 어절째로 줄바꿈된다 — 현재 wiki.css 미적용 시 어절 중간에서
+잘리는 문제(예: "Trans-\nformer는") 발생 가능성을 아래에서 대조.</div>
+<div class="mix" style="word-break:break-all;border-color:var(--state-danger)">word-break: break-all(대조군, 비권장): 어절이 강제로 쪼개져 "PagedAttentio\nn을"처럼 글자 중간에서
+잘릴 수 있다 — 폭이 좁은 사이드바 요약이나 책등처럼 폭이 극단적으로 좁은 곳이 아니면 쓰지 않는다.</div>
+
+<h2>6. 타입 스케일 — 랜딩 매핑</h2>
+<table>
+<tr><th>랜딩 요소</th><th>기존 토큰 재사용</th><th>비고</th></tr>
+<tr><td>서재 전체 타이틀("AI Wiki 서재")</td><td><code>--fs-h1</code>(28px)</td><td>topbar h1과 동일 위계, 새 토큰 불필요</td></tr>
+<tr><td>분야 선반 라벨</td><td><code>--fs-h3</code>(17px)</td><td>기존 분야 페이지 대제목(h2, 22px)보다 한 단계 낮게 — 선반 라벨은 반복 요소라 h2까지 키우면 시끄럽다</td></tr>
+<tr><td>책등 제목(13px)</td><td><b>신규:</b> <code>--fs-spine</code> 제안(13px, 위 실측)</td><td>기존 스케일에 12~14px대 토큰이 없다 — <code>--fs-h4</code>(14.5px)를 그대로 쓰면 책등이 너무 두꺼워 보여(§2 실측) 1.5px 작은 전용 토큰 필요</td></tr>
+<tr><td>책등 연도·저자(10.5px)</td><td><b>신규:</b> <code>--fs-spine-meta</code> 제안(10.5px)</td><td><code>--fs-micro</code>(11px)와 거의 같지만, DESIGN-SYSTEM §8 "수식·코드 폰트는 본문보다 작게 내리지 않는다" 규칙은 본문에 대한 것이고 책등은 장식적 라벨(연도 축과 동일 성격, §2.2 text-faint 예외 조항)이라 10.5px까지는 허용 — 그 아래(10px 미만)는 §6-1에서 가독 실패 확인</td></tr>
+<tr><td>표지 제목</td><td><code>--fs-h2</code>(22px)</td><td>&nbsp;</td></tr>
+<tr><td>표지 부제(영문 원제)</td><td><code>--fs-body-sm</code>(13px)</td><td>&nbsp;</td></tr>
+<tr><td>표지 저자</td><td><code>--fs-body-sm</code>(13px), color <code>--text-tertiary</code></td><td>&nbsp;</td></tr>
+<tr><td>표지 메타(연도·학회·분야)</td><td><code>--fs-micro</code>(11px), <code>--font-mono</code></td><td>기존 pmeta 태그줄과 동일 처리</td></tr>
+</table>
+
+<h3>6-1. 가독 하한 실측 — 10px 미만은 기각</h3>
+<div class="row">
+  <div class="col"><span style="font-size:11px;font-family:var(--font-mono)">2023 · Vaswani</span><span class="lbl">11px</span></div>
+  <div class="col"><span style="font-size:10.5px;font-family:var(--font-mono)">2023 · Vaswani</span><span class="lbl">10.5px — 채택 하한</span></div>
+  <div class="col"><span style="font-size:9px;font-family:var(--font-mono)">2023 · Vaswani</span><span class="lbl">9px — 획 뭉침 시작, 기각</span></div>
+</div>
+
+<h2>7. 위계표 요약</h2>
+<table>
+<tr><th>화면</th><th>요소</th><th>폰트</th><th>크기</th><th>굵기</th><th>행간</th><th>자간</th><th>색</th></tr>
+<tr><td>홈(서재)</td><td>서재 타이틀</td><td>--font-kr</td><td>--fs-h1 28px</td><td>700</td><td>1.3</td><td>--ls-heading</td><td>--text-primary</td></tr>
+<tr><td>홈</td><td>선반(분야) 라벨</td><td>--font-kr</td><td>--fs-h3 17px</td><td>600</td><td>1.35</td><td>--ls-heading</td><td>--field-*</td></tr>
+<tr><td>홈</td><td>책등 제목</td><td>--font-kr</td><td>--fs-spine(신규) 13px</td><td>600</td><td>1.35</td><td>0.02em</td><td>--text-primary</td></tr>
+<tr><td>홈</td><td>책등 저자/연도</td><td>--font-mono</td><td>--fs-spine-meta(신규) 10.5px</td><td>400</td><td>1.4</td><td>0.02em</td><td>--text-tertiary / --text-faint</td></tr>
+<tr><td>분야</td><td>분야 대제목</td><td>--font-kr</td><td>--fs-h2 22px</td><td>700</td><td>1.3</td><td>--ls-heading</td><td>--text-primary</td></tr>
+<tr><td>분야</td><td>블러브(설명문)</td><td>--font-kr</td><td>--fs-body 15px</td><td>400</td><td>--lh-body 1.75</td><td>0</td><td>--text-secondary</td></tr>
+<tr><td>논문</td><td>표지 제목(ko)</td><td>--font-kr</td><td>--fs-h2 22px</td><td>700</td><td>1.3</td><td>--ls-heading</td><td>--text-primary</td></tr>
+<tr><td>논문</td><td>표지 부제(title)</td><td>--font-kr(라틴 글리프)</td><td>--fs-body-sm 13px</td><td>400</td><td>1.5</td><td>0</td><td>--text-secondary</td></tr>
+<tr><td>논문</td><td>표지 저자</td><td>--font-kr</td><td>--fs-body-sm 13px</td><td>400</td><td>1.5</td><td>0</td><td>--text-tertiary</td></tr>
+<tr><td>논문</td><td>표지 메타(연도·학회·분야)</td><td>--font-mono</td><td>--fs-micro 11px</td><td>400</td><td>1.4</td><td>--ls-label 0.05em</td><td>--text-faint</td></tr>
+</table>
+
+</body>
+</html>

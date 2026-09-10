@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>446 spine DOM test</title>
+<style>
+  body{margin:0;font-family:sans-serif;background:#111;color:#eee}
+  #shelf{display:flex;flex-wrap:wrap;align-items:flex-end;gap:2px;padding:20px}
+  .spine{width:28px;height:160px;background:#3a5;display:flex;flex-direction:column;justify-content:flex-end;
+    writing-mode:vertical-rl;font-size:10px;padding:4px 2px;box-sizing:border-box;border-radius:2px 2px 0 0;cursor:pointer}
+  .spine .t{font-weight:600}
+  .spine .y{opacity:.7;font-size:9px}
+  .spine .a{opacity:.6;font-size:8px}
+</style>
+</head>
+<body>
+<div id="shelf" role="list"></div>
+<script>
+window.__t_start = performance.now();
+const N = 446;
+const shelf = document.getElementById('shelf');
+const frag = document.createDocumentFragment();
+for (let i=0;i<N;i++){
+  const el = document.createElement('div');
+  el.className='spine';
+  el.tabIndex=0;
+  el.setAttribute('role','link');
+  el.setAttribute('aria-label','Paper title '+i+', 2020, Author Name');
+  el.style.height = (100+ (i%80)) + 'px';
+  el.style.background = 'hsl(' + ((i*37)%360) + ',50%,45%)';
+  const t=document.createElement('span'); t.className='t'; t.textContent='Paper Title Example '+i;
+  const y=document.createElement('span'); y.className='y'; y.textContent='20'+(10+(i%16));
+  const a=document.createElement('span'); a.className='a'; a.textContent='Author '+i;
+  el.appendChild(t); el.appendChild(y); el.appendChild(a);
+  frag.appendChild(el);
+}
+shelf.appendChild(frag);
+window.__t_afterAppend = performance.now();
+requestAnimationFrame(()=>{
+  window.__t_afterRaf1 = performance.now();
+  requestAnimationFrame(()=>{
+    window.__t_afterRaf2 = performance.now();
+    window.__domCount = document.getElementsByTagName('*').length;
+    window.__ready = true;
+  });
+});
+</script>
+</body></html>

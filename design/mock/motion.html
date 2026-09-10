@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Motion tokens mock — AI Wiki 책장</title>
+<style>
+:root{
+  /* ---- 기존 tokens.css 값 재사용 (색은 최소만 옮김) ---- */
+  --bg-page:#0a0d13; --surface:#12161f; --surface-raised:#171d29; --surface-sunken:#0d1119;
+  --text-primary:#e7eaf2; --text-secondary:#aab3c7; --text-tertiary:#7e889d; --text-faint:#6b7590;
+  --border-subtle:#232b3a; --border-strong:#303b4e;
+  --accent:#5eead0; --accent-strong:#8ff2df;
+  --field-vision:#3fbd7e; --field-llm:#88a5f3; --field-nlp:#e1b346; --field-generative:#e98aad;
+  --shadow-2:0 8px 28px rgba(0,0,0,.4);
+  --radius-sm:6px; --radius-md:10px;
+
+  /* ---- 제안 모션 토큰 (MOTION.md §2) ---- */
+  --dur-micro:120ms;      /* 색/보더/불투명도 미세 피드백 */
+  --dur-state:180ms;      /* 단일 요소 위치/그림자 변화 (호버 리프트) */
+  --dur-layout:260ms;     /* 여러 요소 동시 재배치(디밍) */
+  --dur-loading:1400ms;   /* 스켈레톤 펄스 1주기 */
+
+  --ease-standard:cubic-bezier(.2,.7,.3,1); /* 상태 피드백 전반 */
+  --ease-decel:cubic-bezier(0,0,.2,1);      /* 레이아웃 진입/정착 */
+  --ease-loop:ease-in-out;                  /* 로딩 펄스 전용 */
+
+  --dim-opacity:.32; /* 필터 불일치 항목 — 계보 그래프 sel-dim과 동일 값 재사용 */
+}
+[data-rm="1"]{
+  --dur-micro:0ms; --dur-state:0ms; --dur-layout:0ms;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg-page);color:var(--text-primary);
+  font-family:-apple-system,"IBM Plex Sans KR",sans-serif;padding:28px 32px 80px;line-height:1.6}
+h1{font-size:20px;margin:0 0 4px}
+h2{font-size:15px;color:var(--text-secondary);margin:36px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border-subtle)}
+p.note{color:var(--text-tertiary);font-size:13px;margin:0 0 14px;max-width:70ch}
+code{background:var(--surface-sunken);padding:1px 5px;border-radius:4px;font-size:12px}
+
+.topbar{display:flex;align-items:center;gap:14px;position:sticky;top:0;background:var(--bg-page);
+  padding:10px 0;border-bottom:1px solid var(--border-subtle);z-index:5;flex-wrap:wrap}
+.topbar button{background:var(--surface);border:1px solid var(--border-strong);color:var(--text-primary);
+  border-radius:var(--radius-sm);padding:7px 12px;font-size:13px;cursor:pointer}
+.topbar button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+.topbar .fps{font-size:12px;color:var(--text-tertiary);font-family:monospace}
+
+/* ---------- 책등(spine) ---------- */
+.shelf{display:flex;gap:3px;flex-wrap:wrap;align-items:flex-end;padding:16px;background:var(--surface-sunken);
+  border-radius:var(--radius-md);margin-bottom:10px}
+.spine{--h:120px;width:26px;height:var(--h);border-radius:3px 3px 2px 2px;cursor:pointer;position:relative;
+  border:1px solid rgba(255,255,255,.08);
+  transition:transform var(--dur-state) var(--ease-standard),
+             box-shadow var(--dur-state) var(--ease-standard),
+             opacity var(--dur-layout) var(--ease-decel);
+  transform-origin:bottom center;
+}
+.spine:hover,.spine:focus-visible{transform:translateY(-6px);box-shadow:var(--shadow-2);outline:none}
+.spine:focus-visible{box-shadow:0 0 0 2px var(--accent),var(--shadow-2)}
+.spine.dim{opacity:var(--dim-opacity)}
+.spine.f-vision{background:color-mix(in srgb, var(--field-vision) 55%, var(--surface))}
+.spine.f-llm{background:color-mix(in srgb, var(--field-llm) 55%, var(--surface))}
+.spine.f-nlp{background:color-mix(in srgb, var(--field-nlp) 55%, var(--surface))}
+.spine.f-generative{background:color-mix(in srgb, var(--field-generative) 55%, var(--surface))}
+
+/* ---------- 필터 칩 ---------- */
+.chips{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.chip{border:1px solid var(--border-strong);background:var(--surface);color:var(--text-secondary);
+  border-radius:999px;padding:5px 12px;font-size:12.5px;cursor:pointer;user-select:none;
+  transition:border-color var(--dur-micro) var(--ease-standard),color var(--dur-micro) var(--ease-standard)}
+.chip[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+
+/* ---------- 표지 카드 스왑 (모션 없음 — 즉시 교체) ---------- */
+.coverwrap{display:flex;gap:20px;align-items:flex-start;margin-top:6px}
+.cover{width:150px;height:210px;background:var(--surface);border:1px solid var(--border-strong);
+  border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;
+  color:var(--text-tertiary);font-size:12px;text-align:center;padding:10px}
+.coverinfo{font-size:13px;color:var(--text-secondary);max-width:40ch}
+
+/* ---------- 스켈레톤 펄스 ---------- */
+.skeleton{background:var(--surface);border:1px solid var(--border-subtle);border-radius:var(--radius-md);
+  padding:14px 16px;color:var(--text-tertiary);font-size:14px;width:280px}
+.skeleton.pulse{animation:pulse var(--dur-loading) var(--ease-loop) infinite}
+[data-rm="1"] .skeleton.pulse{animation:none;opacity:.75}
+@keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
+
+/* ---------- 버튼 상태 피드백 (미세) ---------- */
+.microbtn{background:var(--surface-sunken);border:1px solid var(--border-strong);color:var(--text-secondary);
+  border-radius:var(--radius-sm);padding:6px 11px;font-size:12.5px;cursor:pointer;
+  transition:border-color var(--dur-micro) var(--ease-standard),color var(--dur-micro) var(--ease-standard)}
+.microbtn:hover{border-color:var(--accent);color:var(--accent)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<h1>모션 토큰 재생 — design/MOTION.md 부속</h1>
+<p class="note">이 파일은 제품 코드가 아니다. MOTION.md에서 정한 토큰 값을 실제로 눈으로 재생해 검증하기 위한 목업. 책등 수는 성능 판단용으로 220개까지 늘릴 수 있다.</p>
+
+<div class="topbar">
+  <button id="rmToggle" aria-pressed="false">prefers-reduced-motion 시뮬레이션: 꺼짐</button>
+  <button id="countToggle">책등 24개 → 220개</button>
+  <span class="fps">우측 하단 카운터로 필터 전환 시 리플로우 여부를 눈으로 확인하세요 (책등은 위치를 바꾸지 않고 dim만 됩니다)</span>
+</div>
+
+<h2>1) 필터 전환 — 재배치 없음, 제자리 디밍만 (§4 결정)</h2>
+<p class="note">220개 동시 트랜지션 시 <code>opacity</code>만 바뀌므로 레이아웃 재계산이 없다. 위치를 바꿔 "빈칸을 메우는" 방식은 채택하지 않았다 — 근거는 MOTION.md §4.</p>
+<div class="chips">
+  <button class="chip" data-f="all" aria-pressed="true">전체</button>
+  <button class="chip" data-f="vision" aria-pressed="false">vision</button>
+  <button class="chip" data-f="llm" aria-pressed="false">llm</button>
+  <button class="chip" data-f="nlp" aria-pressed="false">nlp</button>
+  <button class="chip" data-f="generative" aria-pressed="false">generative</button>
+</div>
+<div class="shelf" id="shelf"></div>
+
+<h2>2) 책등 호버/포커스 — transform + box-shadow만 (§4 결정)</h2>
+<p class="note">색·보더 변화 없음. translateY(-6px)만 씀 — 리페인트가 아니라 컴포지터 레이어로만 처리되도록 <code>transform</code>/<code>opacity</code>/<code>box-shadow</code> 조합 확인. Tab으로 이동해 포커스 상태도 확인.</p>
+<div class="shelf" style="flex-wrap:nowrap">
+  <div class="spine f-vision" tabindex="0" style="--h:90px"></div>
+  <div class="spine f-llm" tabindex="0" style="--h:130px"></div>
+  <div class="spine f-nlp" tabindex="0" style="--h:70px"></div>
+  <div class="spine f-generative" tabindex="0" style="--h:150px"></div>
+</div>
+
+<div class="grid2">
+<div>
+<h2>3) 표지 카드 스왑 — 등장 애니메이션 없음 (§5 결정)</h2>
+<p class="note">스핀 클릭 시 즉시 교체. 논문 상세 페이지 전환(해시 라우팅)이 이미 무모션이라 그것과 일관되게 맞춘 결정 — MOTION.md §5.</p>
+<button class="microbtn" id="coverBtn">책등 클릭 시뮬레이션</button>
+<div class="coverwrap" style="margin-top:12px">
+  <div class="cover" id="cover">표지 없음 — 책등을 클릭하세요</div>
+  <div class="coverinfo" id="coverInfo"></div>
+</div>
+</div>
+
+<div>
+<h2>4) 스켈레톤 로딩 — 펄스는 로딩 중임을 알릴 때만 (§7 결정)</h2>
+<p class="note">reduced-motion 시뮬레이션을 켜면 펄스가 정적 상태(불투명도 고정)로 바뀐다 — "정보 손실 없이 즉시 상태 확인"이 목표.</p>
+<div class="skeleton pulse">불러오는 중…</div>
+</div>
+</div>
+
+<h2>5) 미세 상태 피드백 (--dur-micro, 120ms)</h2>
+<p class="note">색·보더 전용. 위치·크기 변화 없음.</p>
+<button class="microbtn">호버해 보세요</button>
+
+<script>
+var FIELDS=['vision','llm','nlp','generative'];
+function buildShelf(n){
+  var s=document.getElementById('shelf'); s.innerHTML='';
+  for(var i=0;i<n;i++){
+    var f=FIELDS[i%FIELDS.length];
+    var h=60+((i*37)%110);
+    var el=document.createElement('div');
+    el.className='spine f-'+f; el.dataset.field=f; el.tabIndex=0;
+    el.style.setProperty('--h',h+'px');
+    s.appendChild(el);
+  }
+}
+buildShelf(24);
+var countBig=false;
+document.getElementById('countToggle').onclick=function(){
+  countBig=!countBig; buildShelf(countBig?220:24);
+  this.textContent=countBig?'책등 220개 → 24개':'책등 24개 → 220개';
+};
+document.querySelectorAll('.chips .chip').forEach(function(btn){
+  btn.onclick=function(){
+    document.querySelectorAll('.chips .chip').forEach(function(b){b.setAttribute('aria-pressed','false')});
+    btn.setAttribute('aria-pressed','true');
+    var f=btn.dataset.f;
+    document.querySelectorAll('#shelf .spine').forEach(function(sp){
+      sp.classList.toggle('dim', f!=='all' && sp.dataset.field!==f);
+    });
+  };
+});
+document.getElementById('rmToggle').onclick=function(){
+  var on=this.getAttribute('aria-pressed')==='true';
+  this.setAttribute('aria-pressed', on?'false':'true');
+  this.textContent='prefers-reduced-motion 시뮬레이션: '+(on?'꺼짐':'켜짐');
+  document.documentElement.setAttribute('data-rm', on?'0':'1');
+};
+document.getElementById('coverBtn').onclick=function(){
+  document.getElementById('cover').textContent='표지 이미지 (즉시 표시)';
+  document.getElementById('coverInfo').textContent='Attention Is All You Need — Vaswani et al., 2017. 전환 애니메이션 없음.';
+};
+</script>
+</body>
+</html>

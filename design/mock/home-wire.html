@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>홈 와이어프레임 — AI Wiki</title>
+<style>
+  :root{
+    --bg:#111; --panel:#1b1b1b; --panel2:#232323; --line:#3a3a3a; --line2:#4a4a4a;
+    --text:#ddd; --text2:#999; --text3:#666; --accent:#6aa9ff; --shelf:#2a3550; --graph:#3a2a50;
+  }
+  *{box-sizing:border-box}
+  body{background:#0a0a0a;color:var(--text);font:13px/1.5 -apple-system,"Segoe UI",sans-serif;margin:0;padding:24px}
+  h1{font-size:16px;margin:0 0 4px}
+  .note{color:var(--text3);font-size:12px;margin:0 0 22px;max-width:760px}
+  .frame{border:1px solid var(--line2);margin-bottom:40px}
+  .frame-label{background:#000;color:var(--text2);font-size:11px;padding:6px 10px;border-bottom:1px solid var(--line2);
+    display:flex;justify-content:space-between}
+  .frame-label b{color:var(--text)}
+  .screen{padding:14px;background:var(--bg)}
+  .box{border:1px dashed var(--line2);border-radius:4px;padding:8px 10px;margin-bottom:10px;position:relative}
+  .box .tag{position:absolute;top:-9px;left:8px;background:var(--bg);padding:0 5px;font-size:10px;color:var(--accent);letter-spacing:.02em}
+  .box p{margin:2px 0;color:var(--text2);font-size:11.5px}
+  .fold-line{border:none;border-top:2px dotted #b8860b;margin:14px 0;position:relative}
+  .fold-line span{position:absolute;top:-9px;right:0;background:var(--bg);color:#b8860b;font-size:10px;padding:0 5px}
+
+  .header{display:flex;align-items:center;gap:10px}
+  .header .logo{width:22px;height:22px;background:var(--line2);border-radius:4px;flex:0 0 auto}
+  .header .search{flex:1;height:22px;background:var(--panel2);border-radius:4px;max-width:220px}
+  .header .theme{width:22px;height:22px;background:var(--panel2);border-radius:50%}
+
+  .hero h2{margin:2px 0 4px;font-size:14px;color:var(--text)}
+
+  .strip{display:flex;gap:8px}
+  .strip .cell{flex:1;background:var(--panel2);border-radius:4px;padding:6px 8px}
+  .strip .cell b{display:block;font-size:11px;color:var(--text);margin-bottom:4px}
+  .pillrow{display:flex;gap:4px;flex-wrap:wrap}
+  .pill{background:var(--shelf);border:1px solid #4a5a80;border-radius:10px;padding:1px 7px;font-size:10px;color:#bcd}
+  .pill.done{background:#2a5040;border-color:#3a7050;color:#9dc}
+
+  .shelfgroup{background:var(--panel);border-radius:4px;padding:8px 10px;margin-bottom:8px}
+  .shelfgroup .ghead{display:flex;justify-content:space-between;color:var(--text2);font-size:11px;margin-bottom:6px}
+  .shelfgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+  .shelf{background:var(--panel2);border-radius:4px;padding:6px 8px;border-left:3px solid var(--accent)}
+  .shelf b{display:block;font-size:11px}
+  .spines{display:flex;gap:1px;height:18px;margin:5px 0 3px;align-items:flex-end}
+  .spines i{display:block;background:var(--accent);opacity:.55;width:6px}
+  .shelf .meta{font-size:10px;color:var(--text3)}
+
+  .transition{text-align:center;color:var(--text3);font-size:11px;padding:6px 0}
+
+  .graphbox{background:linear-gradient(180deg,var(--graph),#241a30);border-radius:4px;padding:10px;min-height:110px;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;border:1px solid #5a3a80}
+  .graphbox b{font-size:12px}
+  .graphbox .lines{width:90%;height:50px;background:repeating-linear-gradient(90deg,#7a5aa0 0 1px,transparent 1px 24px)}
+
+  .collapsed{background:var(--panel2);border-radius:4px;padding:6px 10px;color:var(--text3);font-size:11px;display:flex;justify-content:space-between}
+
+  /* tablet/mobile column layout */
+  .cols{display:flex;gap:24px;flex-wrap:wrap}
+  .col{flex:1;min-width:260px}
+</style>
+</head>
+<body>
+
+<h1>홈 와이어프레임 — 3개 브레이크포인트</h1>
+<p class="note">회색조 박스 목업. 실제 색·폰트·컴포넌트는 DESIGN-SYSTEM.md / 비주얼 디자이너 담당. 이 문서가 고정하는 것은 오직 "무엇이 어떤 순서·비중으로, 첫 화면 안에 무엇이 들어가는가"뿐이다. 점선 금색 선 = 대략적인 "첫 화면(above the fold)" 경계.</p>
+
+<!-- ============ DESKTOP ============ -->
+<div class="frame">
+  <div class="frame-label"><span>데스크톱 <b>&ge;1100px</b> — 예: 1440px</span><span>계보 그래프까지 스크롤 2~3회</span></div>
+  <div class="screen" style="max-width:900px;margin:0 auto">
+
+    <div class="box" style="border-style:solid"><span class="tag">헤더 (고정)</span>
+      <div class="header">
+        <div class="logo"></div><b style="font-size:12px">AI Wiki</b>
+        <div style="flex:1"></div>
+        <div class="search"></div><div class="theme"></div>
+      </div>
+    </div>
+
+    <div class="box hero"><span class="tag">히어로</span>
+      <h2>인공지능 논문 계보 — 21개 분야, 446편</h2>
+      <p>446편 모두 정리됐고, 그중 63편은 아직 자라는 중입니다. / 키로 검색.</p>
+    </div>
+
+    <div class="box"><span class="tag">개인화 스트립 — Q2 · Q3</span>
+      <div class="strip">
+        <div class="cell"><b>이어보기 (재방문자) / 시작 경로 7편 (첫방문)</b>
+          <div class="pillrow">
+            <span class="pill done">resnet</span><span class="pill done">transformer</span>
+            <span class="pill">bert</span><span class="pill">gpt3</span><span class="pill">vit</span>
+            <span class="pill">clip</span><span class="pill">instructgpt</span>
+          </div>
+        </div>
+        <div class="cell"><b>성장 중인 노트</b><p>growing 63편 → (검색 팔레트 필터로 이동)</p></div>
+      </div>
+    </div>
+
+    <hr class="fold-line"><span></span>
+    <p style="color:#b8860b;font-size:10px;margin:-10px 0 10px">↑ 데스크톱 첫 화면(1440×900 기준)은 대략 여기까지 — 히어로 + 스트립 + 책장 그룹 헤더 정도</p>
+
+    <div class="box"><span class="tag">책장 — Q1 · Q4 (분야 3그룹, 그룹 접기로 스스로 줄어듦)</span>
+
+      <div class="shelfgroup">
+        <div class="ghead"><span>기반 · 2분야 · 22편 (펼침 — 가장 작음)</span><span>▾</span></div>
+        <div class="shelfgrid">
+          <div class="shelf"><b>기초 · 학습 알고리즘</b>
+            <div class="spines">
+              <i style="height:40%"></i><i style="height:55%"></i><i style="height:70%"></i><i style="height:50%"></i>
+              <i style="height:80%"></i><i style="height:60%"></i><i style="height:45%"></i>
+            </div>
+            <div class="meta">13편 · 1958–2017 · 트랙 3개</div>
+          </div>
+          <div class="shelf"><b>학습 이론 · 일반화</b>
+            <div class="spines"><i style="height:60%"></i><i style="height:50%"></i><i style="height:65%"></i></div>
+            <div class="meta">9편 · 2016–2021 · 트랙 2개</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shelfgroup">
+        <div class="ghead"><span>모달리티 · 응용 · 14분야 · 289편 (접힘 — 요약 1줄)</span><span>▸</span></div>
+      </div>
+      <div class="shelfgroup">
+        <div class="ghead"><span>가로지르는 관심사 · 5분야 · 135편 (접힘)</span><span>▸</span></div>
+      </div>
+
+      <div class="transition">21개 분야, 446편 — 어디서 왔는지 궁금하면 아래 계보 그래프로, 한 분야를 깊게 보고 싶으면 위 칸을 클릭하세요.</div>
+    </div>
+
+    <div class="box graphbox"><span class="tag" style="color:#c9a8ff">전체 계보도 — Q5 (핵심, 기본 펼침)</span>
+      <b>446편을 연도축 위에 한 장으로</b>
+      <div class="lines"></div>
+      <p style="margin:0;color:#bba0d8;font-size:10px">필드 칩으로 필터 · 줌/스크롤 · 노드 클릭 시 로컬 그래프 카드 (기존 로직 유지)</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ TABLET ============ -->
+<div class="frame">
+  <div class="frame-label"><span>태블릿 <b>700–1099px</b></span><span>책장 1열 · 스트립 세로 2단</span></div>
+  <div class="screen" style="max-width:520px;margin:0 auto">
+    <div class="box" style="border-style:solid"><div class="header">
+      <div class="logo"></div><b style="font-size:12px">AI Wiki</b><div style="flex:1"></div><div class="search" style="max-width:110px"></div><div class="theme"></div>
+    </div></div>
+    <div class="box hero"><span class="tag">히어로</span><p>446편 모두 정리됨 · 63편 성장 중</p></div>
+    <div class="box"><span class="tag">개인화 (세로 스택)</span>
+      <p><b>시작 경로 7편</b></p>
+      <div class="pillrow"><span class="pill done">resnet</span><span class="pill done">transformer</span><span class="pill">bert</span><span class="pill">…</span></div>
+      <p style="margin-top:6px">성장 중인 노트 63편 →</p>
+    </div>
+    <hr class="fold-line"><span></span>
+    <div class="box"><span class="tag">책장 (1열, 책등 6개로 축소)</span>
+      <div class="shelfgroup">
+        <div class="ghead"><span>기반 · 2분야 (펼침)</span><span>▾</span></div>
+        <div class="shelfgrid" style="grid-template-columns:1fr">
+          <div class="shelf"><b>기초 · 학습 알고리즘</b>
+            <div class="spines"><i style="height:40%"></i><i style="height:55%"></i><i style="height:70%"></i><i style="height:50%"></i></div>
+            <div class="meta">13편 · 1958–2017</div>
+          </div>
+        </div>
+      </div>
+      <div class="shelfgroup"><div class="ghead"><span>모달리티 · 응용 (접힘)</span><span>▸</span></div></div>
+      <div class="shelfgroup"><div class="ghead"><span>가로지르는 관심사 (접힘)</span><span>▸</span></div></div>
+      <div class="transition">전체 지도 · 계보 그래프 →</div>
+    </div>
+    <div class="box graphbox" style="min-height:90px"><span class="tag" style="color:#c9a8ff">계보 그래프 (가로 스크롤, 세로 축소)</span></div>
+  </div>
+</div>
+
+<!-- ============ MOBILE ============ -->
+<div class="frame">
+  <div class="frame-label"><span>모바일 <b>&lt;700px</b></span><span>책등 스트립 버림 · 그룹 3개 전부 접힘 · 그래프 버튼화</span></div>
+  <div class="screen" style="max-width:340px;margin:0 auto">
+    <div class="box" style="border-style:solid"><div class="header">
+      <div class="logo"></div><b style="font-size:11px">AI Wiki</b><div style="flex:1"></div><div class="theme"></div>
+    </div></div>
+    <div class="box hero"><span class="tag">히어로 (축약)</span><p>446편 정리됨 · 63편 성장 중</p></div>
+    <div class="box"><span class="tag">시작 경로 (가로 스와이프 1줄)</span>
+      <div class="pillrow" style="flex-wrap:nowrap;overflow-x:auto">
+        <span class="pill done">resnet</span><span class="pill done">transformer</span><span class="pill">bert</span><span class="pill">gpt3</span><span class="pill">vit</span><span class="pill">clip</span><span class="pill">instructgpt</span>
+      </div>
+    </div>
+    <hr class="fold-line"><span></span>
+    <div class="box"><span class="tag">책장 (텍스트만, 책등 없음 — 은유를 줄인다)</span>
+      <div class="shelfgroup"><div class="ghead"><span>기반 · 2분야 · 22편</span><span>▸</span></div></div>
+      <div class="shelfgroup"><div class="ghead"><span>모달리티 · 응용 · 14분야 · 289편</span><span>▸</span></div></div>
+      <div class="shelfgroup"><div class="ghead"><span>가로지르는 관심사 · 5분야 · 135편</span><span>▸</span></div></div>
+    </div>
+    <div class="collapsed"><span>계보 그래프 보기 (버튼, 기본 접힘)</span><span>▸</span></div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>서가 목업 — spine/shelf mock (참고용, 제품 코드 아님)</title>
+<style>
+/* =========================================================
+   실제 css/tokens.css 값을 그대로 복사해왔다 (product 파일은
+   건드리지 않고, 이 목업 파일 안에서만 재현). 값이 바뀌면
+   여기도 다시 복붙해야 한다 — 이건 참고용 mockup, 제품 코드가 아님.
+   ========================================================= */
+:root{
+  --n-0:#ffffff; --n-50:#f4f5f8; --n-100:#eceef3; --n-150:#e4e7ee; --n-200:#e1e4ea;
+  --n-300:#ccd1dc; --n-500:#8990a3; --n-600:#6a7387; --n-700:#454e62; --n-900:#1b2030;
+  --brand-500:#0d7d74; --brand-300:#5eead0;
+  --bg-page:var(--n-50); --surface:var(--n-0); --surface-raised:var(--n-0); --surface-sunken:var(--n-100);
+  --text-primary:var(--n-900); --text-secondary:var(--n-700); --text-tertiary:var(--n-600); --text-faint:var(--n-500);
+  --border-subtle:var(--n-200); --border-strong:var(--n-300);
+  --accent:var(--brand-500);
+  --stage-seed:var(--text-tertiary); --stage-sprout-L:#726f28; --stage-sprout-D:#d8d382;
+  --stage-growing-L:#5a6e1f; --stage-growing-D:#b9d17a; --stage-evergreen-L:#3c5c22; --stage-evergreen-D:#8fc06a;
+  --stage-sprout:var(--stage-sprout-L); --stage-growing:var(--stage-growing-L); --stage-evergreen:var(--stage-evergreen-L);
+  --field-foundations-L:#5c616d; --field-foundations-D:#9499a4;
+  --field-vision-L:#2c8458; --field-vision-D:#3fbd7e;
+  --field-llm-L:#3e6cec; --field-llm-D:#88a5f3;
+  --field-foundations:var(--field-foundations-L); --field-vision:var(--field-vision-L); --field-llm:var(--field-llm-L);
+  --shadow-1:0 1px 2px rgba(20,26,40,.06); --shadow-2:0 6px 20px rgba(20,26,40,.08); --shadow-3:0 16px 40px rgba(20,26,40,.14);
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px; --sp-6:24px; --sp-8:32px; --sp-10:40px; --sp-12:48px; --sp-16:64px;
+  --radius-sm:6px; --radius-md:10px; --radius-lg:14px;
+  --font-kr:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --fs-micro:0.6875rem; --fs-body-sm:0.8125rem; --fs-body:0.9375rem; --fs-h4:0.90625rem; --fs-h3:1.0625rem; --fs-h2:1.375rem; --fs-h1:1.75rem;
+  --chip-field-bg:color-mix(in srgb, currentColor 12%, var(--surface));
+  --chip-field-border:color-mix(in srgb, currentColor 45%, var(--surface));
+
+  /* -------- 신규(이 목업에서 처음 정의) — 서가 전용 토큰 -------- */
+  --spine-radius: 2px;         /* 3단계 라운드(6/10/14)보다 한 단계 더 낮은, 13~29px 폭 객체 전용 예외 */
+  --spine-band-h: 22px;        /* 분야색 상단 밴드 고정 높이(책 전체 높이와 무관) */
+  --spine-gap: 2px;            /* 책등 사이 간격 */
+  --shelf-row-gap: 32px;       /* 줄바꿈된 서가 행 사이 간격 = --sp-8 */
+  --shelf-group-gap: 64px;     /* 그룹(기반/모달리티/가로지르는 관심사) 사이 = --sp-16 */
+  --shelf-baseline: var(--border-strong);
+}
+html[data-theme="light"]{
+  --bg-page:var(--n-50); --surface:#fff; --surface-raised:#fff; --surface-sunken:#eceef3;
+  --text-primary:#1b2030; --text-secondary:#454e62; --text-tertiary:#6a7387; --text-faint:#8990a3;
+  --border-subtle:#e1e4ea; --border-strong:#ccd1dc; --accent:#0d7d74;
+  --stage-sprout:var(--stage-sprout-L); --stage-growing:var(--stage-growing-L); --stage-evergreen:var(--stage-evergreen-L);
+  --field-foundations:var(--field-foundations-L); --field-vision:var(--field-vision-L); --field-llm:var(--field-llm-L);
+}
+html[data-theme="dark"]{
+  --bg-page:#0a0d13; --surface:#12161f; --surface-raised:#171d29; --surface-sunken:#0d1119;
+  --text-primary:#e7eaf2; --text-secondary:#aab3c7; --text-tertiary:#7e889d; --text-faint:#6b7590;
+  --border-subtle:#232b3a; --border-strong:#303b4e; --accent:#5eead0;
+  --stage-sprout:var(--stage-sprout-D); --stage-growing:var(--stage-growing-D); --stage-evergreen:var(--stage-evergreen-D);
+  --field-foundations:var(--field-foundations-D); --field-vision:var(--field-vision-D); --field-llm:var(--field-llm-D);
+  --shadow-1:0 1px 2px rgba(0,0,0,.4); --shadow-2:0 8px 28px rgba(0,0,0,.4); --shadow-3:0 20px 50px rgba(0,0,0,.5);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg-page);color:var(--text-primary);font-family:var(--font-kr);font-size:var(--fs-body);line-height:1.5}
+h1,h2,h3{font-weight:700;letter-spacing:-0.02em;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding:var(--sp-8) var(--sp-6) 140px}
+
+.mockbar{position:sticky;top:0;z-index:50;display:flex;gap:var(--sp-3);align-items:center;
+  background:var(--surface);border-bottom:1px solid var(--border-strong);padding:var(--sp-3) var(--sp-6);
+  font-size:var(--fs-body-sm);color:var(--text-secondary)}
+.mockbar b{color:var(--text-primary)}
+.mockbar button{font:inherit;background:var(--surface-sunken);border:1px solid var(--border-strong);color:var(--text-primary);
+  padding:6px 12px;border-radius:var(--radius-sm);cursor:pointer}
+.mockbar button:hover{border-color:var(--accent)}
+
+.note{background:var(--surface-sunken);border-left:3px solid var(--accent);padding:var(--sp-3) var(--sp-4);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:var(--fs-body-sm);color:var(--text-secondary);margin:var(--sp-6) 0}
+.note code{font-family:var(--font-mono);font-size:0.85em}
+
+/* -------------------- 그룹 / 분야 헤더 -------------------- */
+.group{margin-top:var(--shelf-group-gap)}
+.group:first-child{margin-top:var(--sp-8)}
+.group-head{display:flex;align-items:baseline;gap:var(--sp-3);margin-bottom:var(--sp-6);
+  padding-bottom:var(--sp-2);border-bottom:1px solid var(--border-subtle)}
+.group-head h2{font-size:var(--fs-h2)}
+.group-head span{color:var(--text-tertiary);font-size:var(--fs-body-sm)}
+
+.field{margin-top:var(--sp-10)}
+.field:first-child{margin-top:0}
+.field-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp-4);margin-bottom:var(--sp-4)}
+.field-head .name{display:flex;align-items:baseline;gap:var(--sp-2)}
+.field-head .name b{font-size:var(--fs-h3)}
+.field-head .name .en{color:var(--text-tertiary);font-size:var(--fs-body-sm);font-family:var(--font-mono)}
+.field-head .meta{color:var(--text-tertiary);font-size:var(--fs-body-sm);font-family:var(--font-mono);white-space:nowrap}
+.field-head .blurb{color:var(--text-secondary);font-size:var(--fs-body-sm);margin:2px 0 0;max-width:70ch}
+
+/* -------------------- 서가(shelf) -------------------- */
+.shelf{
+  display:flex;flex-wrap:wrap;align-items:flex-end;gap:var(--spine-gap);
+  row-gap:var(--shelf-row-gap);
+  padding-bottom:0;border-bottom:2px solid var(--shelf-baseline);
+}
+
+/* -------------------- 책등(spine) -------------------- */
+.spine{
+  position:relative;flex:0 0 auto;
+  width:var(--w); height:var(--h);
+  background:var(--surface);
+  border:1px solid var(--border-strong);
+  border-top-left-radius:var(--spine-radius); border-top-right-radius:var(--spine-radius);
+  border-bottom-left-radius:0; border-bottom-right-radius:0;
+  cursor:pointer; outline:none;
+  display:block; text-decoration:none; color:inherit;
+}
+.spine:focus-visible{box-shadow:0 0 0 2px var(--bg-page),0 0 0 4px var(--accent)}
+.spine .band{
+  position:absolute; top:0; left:0; right:0; height:var(--spine-band-h);
+  background:var(--field-color);
+  border-top-left-radius:var(--spine-radius); border-top-right-radius:var(--spine-radius);
+}
+.spine .title{
+  position:absolute; top:calc(var(--spine-band-h) + 6px); left:0; right:0; bottom:6px;
+  writing-mode:vertical-rl; text-orientation:mixed;
+  font-size:11px; line-height:1.25; letter-spacing:0.01em;
+  color:var(--text-primary); overflow:hidden;
+  padding:2px 0;
+  display:flex; align-items:flex-start; justify-content:center;
+}
+.spine .year{
+  position:absolute; bottom:4px; left:0; right:0; text-align:center;
+  font-family:var(--font-mono); font-size:9px; color:var(--text-faint);
+  writing-mode:horizontal-tb;
+}
+.spine:hover{border-color:var(--accent)}
+.spine:hover .title{color:var(--accent)}
+
+/* growing: 은은한 8% 필드색 틴트 (기존 성장단계 규칙 재사용) */
+.spine.stage-growing{ background:color-mix(in srgb, var(--field-color) 8%, var(--surface)); }
+
+/* sprout: 밴드가 채워지지 않고 outline만 (데모) */
+.spine.stage-sprout .band{ background:transparent; border:1.5px solid var(--field-color); box-sizing:border-box; }
+.spine.stage-sprout{ background:var(--surface); }
+
+/* seed: 색을 전혀 쓰지 않는다 — 전체가 점선 테두리, 제목은 tertiary (데모) */
+.spine.stage-seed{ border:1.5px dashed var(--border-strong); background:var(--surface); }
+.spine.stage-seed .band{ background:transparent; }
+.spine.stage-seed .title{ color:var(--text-tertiary); font-style:normal; letter-spacing:0.03em; }
+
+/* 빈 트랙 placeholder — "체크아웃된 책" 자리 */
+.slot-empty{
+  flex:0 0 auto; width:34px; height:108px;
+  border:1.5px dashed color-mix(in srgb, var(--field-color) 45%, var(--border-strong));
+  border-radius:var(--spine-radius) var(--spine-radius) 0 0;
+  display:flex; align-items:center; justify-content:center;
+  writing-mode:vertical-rl; font-size:10px; color:var(--text-faint); text-align:center; padding:4px 2px;
+}
+
+/* -------------------- 표지(cover) 미리보기 카드 -------------------- */
+.coverlay{
+  position:fixed; z-index:200; width:224px;
+  background:var(--surface-raised); border:1px solid var(--border-strong); border-radius:var(--radius-md);
+  box-shadow:var(--shadow-3); overflow:hidden; display:none;
+}
+.coverlay.show{display:block}
+.coverlay .art{
+  height:132px; background:var(--surface-sunken); position:relative; overflow:hidden;
+  border-bottom:1px solid var(--border-strong);
+}
+.coverlay .art img{width:100%;height:100%;object-fit:cover;object-position:top;filter:grayscale(70%) contrast(0.92) brightness(1.04);display:block}
+.coverlay .art.fallback{display:flex;align-items:center;justify-content:center}
+.coverlay .art.fallback .wm{font-size:38px;font-weight:700;color:var(--text-faint);opacity:.5;font-family:var(--font-mono)}
+.coverlay .body{padding:var(--sp-3) var(--sp-3) var(--sp-4)}
+.coverlay .chiprow{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.coverlay .fieldchip{font-size:10px;padding:2px 7px;border-radius:999px;font-weight:600}
+.coverlay .stagechip{font-size:10px;color:var(--text-tertiary)}
+.coverlay .ko{font-size:var(--fs-h4);font-weight:700;margin:0 0 3px;line-height:1.3}
+.coverlay .orig{font-size:11.5px;color:var(--text-secondary);margin:0 0 8px;line-height:1.35;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.coverlay .authors{font-size:11px;color:var(--text-tertiary);margin:0 0 6px;line-height:1.4;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.coverlay .bottom{display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid var(--border-subtle);padding-top:6px;margin-top:2px}
+.coverlay .year{font-family:var(--font-mono);font-size:10.5px;color:var(--text-faint)}
+
+/* -------------------- 축 전환 토글 -------------------- */
+.axistoggle{display:flex;gap:var(--sp-2);align-items:center;margin:var(--sp-6) 0 0;font-size:var(--fs-body-sm);color:var(--text-tertiary)}
+.axistoggle button{font:inherit;background:var(--surface-sunken);border:1px solid var(--border-strong);color:var(--text-secondary);
+  padding:5px 11px;border-radius:999px;cursor:pointer}
+.axistoggle button.on{background:color-mix(in srgb, var(--accent) 12%, var(--surface));border-color:var(--accent);color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="mockbar">
+  <b>서가 목업</b> — design/mock/spine.html (참고용, 제품 코드 아님)
+  <button onclick="toggleTheme()">라이트/다크 전환</button>
+  <span>현재: <b id="themeLabel">dark</b></span>
+  <span style="margin-left:auto;color:var(--text-tertiary)">폭=bytes 분위수매핑(13–29px) · 높이=log(1+피인용)(108–176px)</span>
+</div>
+
+<div class="wrap">
+
+  <div class="note">
+    이 목업은 <code>content/graph.json</code>·<code>content/fields.js</code>·<code>content/meta.json</code>의
+    실제 값으로 폭/높이를 계산해 채웠다(vision 24편, llm 22편, foundations 13편 + 데모용 seed/sprout 2편을
+    <code>foundations</code>에 인위로 추가함, <code>_demo-</code> 접두사로 표시). LIBRARY-CONCEPT.md §1~§4의
+    결정을 실물 크기로 검증하기 위한 것이며 그 자체가 스펙은 아니다.
+  </div>
+
+  <div class="axistoggle">
+    정렬 축: <button class="on">분야 (기본)</button><button>연대순 (전환)</button>
+  </div>
+
+  <div class="group">
+    <div class="group-head"><h2>기반</h2><span>학습 알고리즘과 이론 — 채도 8~17%, 거의 무채색</span></div>
+    <div id="foundations-field"></div>
+  </div>
+
+  <div class="group">
+    <div class="group-head"><h2>모달리티 · 응용</h2><span>무엇을 다루고 어디에 쓰는가 — 채도 42~82%, 선명한 색</span></div>
+    <div id="vision-field"></div>
+    <div id="llm-field"></div>
+  </div>
+
+</div>
+
+<div class="coverlay" id="coverlay"></div>
+
+<script>
+const DATA = {"vision": [{"slug": "lenet", "year": 1998, "title": "Gradient-Based Learning Applied to Document Recognition", "ko": "LeNet-5", "field": "vision", "track": "cnn", "stage": "evergreen", "bytes": 9725, "incount": 4, "width": 21, "height": 132, "authors": null, "hasPage": true}, {"slug": "alexnet", "year": 2012, "title": "ImageNet Classification with Deep CNNs", "ko": "AlexNet", "field": "vision", "track": "cnn", "stage": "evergreen", "bytes": 9780, "incount": 16, "width": 21, "height": 150, "authors": null, "hasPage": false}, {"slug": "vgg", "year": 2014, "title": "Very Deep Convolutional Networks (VGG)", "ko": "VGG", "field": "vision", "track": "cnn", "stage": "evergreen", "bytes": 9904, "incount": 12, "width": 22, "height": 146, "authors": ["Karen Simonyan", "Andrew Zisserman"], "hasPage": true}, {"slug": "googlenet", "year": 2014, "title": "Going Deeper with Convolutions (GoogLeNet/Inception)", "ko": "Inception", "field": "vision", "track": "cnn", "stage": "evergreen", "bytes": 9479, "incount": 6, "width": 19, "height": 137, "authors": ["Christian Szegedy", "Wei Liu", "Yangqing Jia", "Pierre Sermanet", "Scott Reed", "Dragomir Anguelov", "Dumitru Erhan", "Vincent Vanhoucke", "Andrew Rabinovich"], "hasPage": true}, {"slug": "rcnn", "year": 2014, "title": "Rich Feature Hierarchies for Accurate Object Detection (R-CNN)", "ko": "R-CNN", "field": "vision", "track": "detect", "stage": "evergreen", "bytes": 9730, "incount": 5, "width": 21, "height": 135, "authors": ["Ross Girshick", "Jeff Donahue", "Trevor Darrell", "Jitendra Malik"], "hasPage": true}, {"slug": "resnet", "year": 2015, "title": "Deep Residual Learning for Image Recognition", "ko": "ResNet", "field": "vision", "track": "cnn", "stage": "evergreen", "bytes": 10902, "incount": 32, "width": 26, "height": 160, "authors": ["Kaiming He", "Xiangyu Zhang", "Shaoqing Ren", "Jian Sun"], "hasPage": true}, {"slug": "faster-rcnn", "year": 2015, "title": "Faster R-CNN: Towards Real-Time Object Detection with RPN", "ko": "Faster R-CNN", "field": "vision", "track": "detect", "stage": "evergreen", "bytes": 10766, "incount": 9, "width": 26, "height": 143, "authors": ["Shaoqing Ren", "Kaiming He", "Ross Girshick", "Jian Sun"], "hasPage": true}, {"slug": "fcn", "year": 2015, "title": "Fully Convolutional Networks for Semantic Segmentation", "ko": "FCN", "field": "vision", "track": "seg", "stage": "evergreen", "bytes": 11157, "incount": 10, "width": 27, "height": 144, "authors": ["Jonathan Long", "Evan Shelhamer", "Trevor Darrell"], "hasPage": true}, {"slug": "unet", "year": 2015, "title": "U-Net: Convolutional Networks for Biomedical Image Segmentation", "ko": "U-Net", "field": "vision", "track": "seg", "stage": "evergreen", "bytes": 10792, "incount": 10, "width": 26, "height": 144, "authors": ["Olaf Ronneberger", "Philipp Fischer", "Thomas Brox"], "hasPage": false}, {"slug": "spatial-transformer", "year": 2015, "title": "Spatial Transformer Networks", "ko": "Spatial Transformer", "field": "vision", "track": "cnn", "stage": "evergreen", "bytes": 10243, "incount": 1, "width": 24, "height": 118, "authors": ["Max Jaderberg", "Karen Simonyan", "Andrew Zisserman", "Koray Kavukcuoglu"], "hasPage": true}, {"slug": "yolo", "year": 2016, "title": "You Only Look Once: Unified, Real-Time Object Detection", "ko": "YOLO", "field": "vision", "track": "detect", "stage": "evergreen", "bytes": 10405, "incount": 5, "width": 24, "height": 135, "authors": ["Joseph Redmon", "Santosh Divvala", "Ross Girshick", "Ali Farhadi"], "hasPage": true}, {"slug": "ssd", "year": 2016, "title": "SSD: Single Shot MultiBox Detector", "ko": "SSD", "field": "vision", "track": "detect", "stage": "evergreen", "bytes": 10481, "incount": 6, "width": 25, "height": 137, "authors": ["Wei Liu", "Dragomir Anguelov", "Dumitru Erhan", "Christian Szegedy", "Scott Reed", "Cheng-Yang Fu", "Alexander C. Berg"], "hasPage": true}, {"slug": "wide-resnet", "year": 2016, "title": "Wide Residual Networks", "ko": "Wide ResNet", "field": "vision", "track": "cnn", "stage": "evergreen", "bytes": 7598, "incount": 2, "width": 14, "height": 124, "authors": ["Sergey Zagoruyko", "Nikos Komodakis"], "hasPage": true}, {"slug": "densenet", "year": 2017, "title": "Densely Connected Convolutional Networks", "ko": "DenseNet", "field": "vision", "track": "cnn", "stage": "evergreen", "bytes": 9958, "incount": 3, "width": 22, "height": 129, "authors": ["Gao Huang", "Zhuang Liu", "Laurens van der Maaten", "Kilian Q. Weinberger"], "hasPage": false}, {"slug": "mobilenet", "year": 2017, "title": "MobileNets: Efficient CNNs for Mobile Vision", "ko": "MobileNet", "field": "vision", "track": "cnn", "stage": "evergreen", "bytes": 9654, "incount": 6, "width": 20, "height": 137, "authors": ["Andrew G. Howard", "Menglong Zhu", "Bo Chen", "Dmitry Kalenichenko", "Weijun Wang", "Tobias Weyand", "Marco Andreetto", "Hartwig Adam"], "hasPage": false}, {"slug": "fpn", "year": 2017, "title": "Feature Pyramid Networks for Object Detection", "ko": "FPN", "field": "vision", "track": "detect", "stage": "evergreen", "bytes": 10989, "incount": 9, "width": 27, "height": 143, "authors": ["Tsung-Yi Lin", "Piotr Dollár", "Ross Girshick", "Kaiming He", "Bharath Hariharan", "Serge Belongie"], "hasPage": true}, {"slug": "focal-loss", "year": 2017, "title": "Focal Loss for Dense Object Detection (RetinaNet)", "ko": "Focal Loss", "field": "vision", "track": "detect", "stage": "evergreen", "bytes": 10649, "incount": 6, "width": 25, "height": 137, "authors": ["Tsung-Yi Lin", "Priya Goyal", "Ross Girshick", "Kaiming He", "Piotr Dollár"], "hasPage": true}, {"slug": "mask-rcnn", "year": 2017, "title": "Mask R-CNN", "ko": "Mask R-CNN", "field": "vision", "track": "seg", "stage": "evergreen", "bytes": 10465, "incount": 10, "width": 24, "height": 144, "authors": ["Kaiming He", "Georgia Gkioxari", "Piotr Dollár", "Ross Girshick"], "hasPage": true}, {"slug": "deeplab", "year": 2017, "title": "DeepLab: Atrous Convolution for Semantic Segmentation", "ko": "DeepLab", "field": "vision", "track": "seg", "stage": "evergreen", "bytes": 9919, "incount": 3, "width": 22, "height": 129, "authors": ["Liang-Chieh Chen", "George Papandreou", "Iasonas Kokkinos", "Kevin Murphy", "Alan L. Yuille"], "hasPage": true}, {"slug": "openpose", "year": 2017, "title": "Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields", "ko": "OpenPose", "field": "vision", "track": "dense", "stage": "evergreen", "bytes": 9231, "incount": 0, "width": 18, "height": 108, "authors": ["Zhe Cao", "Tomas Simon", "Shih-En Wei", "Yaser Sheikh"], "hasPage": false}, {"slug": "senet", "year": 2018, "title": "Squeeze-and-Excitation Networks", "ko": "SENet", "field": "vision", "track": "cnn", "stage": "evergreen", "bytes": 9117, "incount": 1, "width": 17, "height": 118, "authors": ["Jie Hu", "Li Shen", "Samuel Albanie", "Gang Sun", "Enhua Wu"], "hasPage": true}, {"slug": "mixup", "year": 2018, "title": "mixup: Beyond Empirical Risk Minimization", "ko": "mixup", "field": "vision", "track": "cnn", "stage": "evergreen", "bytes": 8968, "incount": 0, "width": 17, "height": 108, "authors": ["Hongyi Zhang", "Moustapha Cisse", "Yann N. Dauphin", "David Lopez-Paz"], "hasPage": true}, {"slug": "cpc", "year": 2018, "title": "Representation Learning with Contrastive Predictive Coding", "ko": "CPC", "field": "vision", "track": "selfsup", "stage": "evergreen", "bytes": 10040, "incount": 1, "width": 23, "height": 118, "authors": ["Aaron van den Oord", "Yazhe Li", "Oriol Vinyals"], "hasPage": true}, {"slug": "efficientnet", "year": 2019, "title": "EfficientNet: Rethinking Model Scaling for CNNs", "ko": "EfficientNet", "field": "vision", "track": "cnn", "stage": "evergreen", "bytes": 10453, "incount": 9, "width": 24, "height": 143, "authors": ["Mingxing Tan", "Quoc V. Le"], "hasPage": true}], "llm": [{"slug": "memory-networks", "year": 2014, "title": "Memory Networks", "ko": "Memory Networks", "field": "llm", "track": "core", "stage": "evergreen", "bytes": 8514, "incount": 2, "width": 15, "height": 124, "authors": ["Jason Weston", "Sumit Chopra", "Antoine Bordes"], "hasPage": true}, {"slug": "ntm", "year": 2014, "title": "Neural Turing Machines", "ko": "Neural Turing Machine", "field": "llm", "track": "core", "stage": "evergreen", "bytes": 9793, "incount": 0, "width": 21, "height": 108, "authors": ["Alex Graves", "Greg Wayne", "Ivo Danihelka"], "hasPage": true}, {"slug": "transformer", "year": 2017, "title": "Attention Is All You Need", "ko": "Transformer", "field": "llm", "track": "core", "stage": "evergreen", "bytes": 10263, "incount": 87, "width": 24, "height": 175, "authors": ["Ashish Vaswani", "Noam Shazeer", "Niki Parmar", "Jakob Uszkoreit", "Llion Jones", "Aidan N. Gomez", "Lukasz Kaiser", "Illia Polosukhin"], "hasPage": true}, {"slug": "moe-shazeer", "year": 2017, "title": "Outrageously Large Neural Networks: Sparsely-Gated MoE", "ko": "Sparse MoE", "field": "llm", "track": "scale", "stage": "evergreen", "bytes": 11095, "incount": 11, "width": 27, "height": 145, "authors": ["Noam Shazeer", "Azalia Mirhoseini", "Krzysztof Maziarz", "Andy Davis", "Quoc Le", "Geoffrey Hinton", "Jeff Dean"], "hasPage": true}, {"slug": "scaling-predictable", "year": 2017, "title": "Deep Learning Scaling is Predictable, Empirically", "ko": "예측 가능한 스케일링", "field": "llm", "track": "scale", "stage": "evergreen", "bytes": 10495, "incount": 0, "width": 25, "height": 108, "authors": ["Joel Hestness", "Sharan Narang", "Newsha Ardalani", "Gregory Diamos", "Heewoo Jun", "Hassan Kianinejad", "Md. Mostofa Ali Patwary", "Yang Yang", "Yanqi Zhou"], "hasPage": true}, {"slug": "gpt1", "year": 2018, "title": "Improving Language Understanding by Generative Pre-Training", "ko": "GPT-1", "field": "llm", "track": "pretrain", "stage": "evergreen", "bytes": 10012, "incount": 20, "width": 23, "height": 154, "authors": null, "hasPage": true}, {"slug": "bert", "year": 2018, "title": "BERT: Pre-training of Deep Bidirectional Transformers", "ko": "BERT", "field": "llm", "track": "pretrain", "stage": "evergreen", "bytes": 9962, "incount": 67, "width": 22, "height": 171, "authors": ["Jacob Devlin", "Ming-Wei Chang", "Kenton Lee", "Kristina Toutanova"], "hasPage": true}, {"slug": "decoder-only-wiki", "year": 2018, "title": "Generating Wikipedia by Summarizing Long Sequences", "ko": "decoder-only Transformer", "field": "llm", "track": "core", "stage": "evergreen", "bytes": 9779, "incount": 0, "width": 21, "height": 108, "authors": ["Peter J. Liu", "Mohammad Saleh", "Etienne Pot", "Ben Goodrich", "Ryan Sepassi", "Lukasz Kaiser", "Noam Shazeer"], "hasPage": true}, {"slug": "universal-transformer", "year": 2018, "title": "Universal Transformers", "ko": "Universal Transformer", "field": "llm", "track": "core", "stage": "evergreen", "bytes": 8467, "incount": 0, "width": 15, "height": 108, "authors": ["Mostafa Dehghani", "Stephan Gouws", "Oriol Vinyals", "Jakob Uszkoreit", "Łukasz Kaiser"], "hasPage": true}, {"slug": "deeper-self-attention", "year": 2018, "title": "Character-Level Language Modeling with Deeper Self-Attention", "ko": "깊은 self-attention 문자 LM", "field": "llm", "track": "core", "stage": "evergreen", "bytes": 8877, "incount": 0, "width": 16, "height": 108, "authors": ["Rami Al-Rfou", "Dokook Choe", "Noah Constant", "Mandy Guo", "Llion Jones"], "hasPage": false}, {"slug": "gpt2", "year": 2019, "title": "Language Models are Unsupervised Multitask Learners", "ko": "GPT-2", "field": "llm", "track": "pretrain", "stage": "evergreen", "bytes": 9919, "incount": 21, "width": 22, "height": 154, "authors": null, "hasPage": true}, {"slug": "roberta", "year": 2019, "title": "RoBERTa: A Robustly Optimized BERT Pretraining Approach", "ko": "RoBERTa", "field": "llm", "track": "pretrain", "stage": "growing", "bytes": 7952, "incount": 13, "width": 14, "height": 148, "authors": ["Yinhan Liu", "Myle Ott", "Naman Goyal", "Jingfei Du", "Mandar Joshi", "Danqi Chen", "Omer Levy", "Mike Lewis", "Luke Zettlemoyer", "Veselin Stoyanov"], "hasPage": true}, {"slug": "t5", "year": 2019, "title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer", "ko": "T5", "field": "llm", "track": "pretrain", "stage": "evergreen", "bytes": 10783, "incount": 29, "width": 26, "height": 159, "authors": ["Colin Raffel", "Noam Shazeer", "Adam Roberts", "Katherine Lee", "Sharan Narang", "Michael Matena", "Yanqi Zhou", "Wei Li", "Peter J. Liu"], "hasPage": true}, {"slug": "bart", "year": 2019, "title": "BART: Denoising Sequence-to-Sequence Pre-training", "ko": "BART", "field": "llm", "track": "pretrain", "stage": "evergreen", "bytes": 9717, "incount": 1, "width": 21, "height": 118, "authors": ["Mike Lewis", "Yinhan Liu", "Naman Goyal", "Marjan Ghazvininejad", "Abdelrahman Mohamed", "Omer Levy", "Ves Stoyanov", "Luke Zettlemoyer"], "hasPage": true}, {"slug": "transformer-xl", "year": 2019, "title": "Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context", "ko": "Transformer-XL", "field": "llm", "track": "context", "stage": "evergreen", "bytes": 9543, "incount": 3, "width": 20, "height": 129, "authors": ["Zihang Dai", "Zhilin Yang", "Yiming Yang", "Jaime Carbonell", "Quoc V. Le", "Ruslan Salakhutdinov"], "hasPage": true}, {"slug": "albert", "year": 2019, "title": "ALBERT: A Lite BERT for Self-supervised Learning of Language Representations", "ko": "ALBERT", "field": "llm", "track": "pretrain", "stage": "evergreen", "bytes": 8964, "incount": 1, "width": 17, "height": 118, "authors": ["Zhenzhong Lan", "Mingda Chen", "Sebastian Goodman", "Kevin Gimpel", "Piyush Sharma", "Radu Soricut"], "hasPage": true}, {"slug": "spanbert", "year": 2019, "title": "SpanBERT: Improving Pre-training by Representing and Predicting Spans", "ko": "SpanBERT", "field": "llm", "track": "pretrain", "stage": "evergreen", "bytes": 7825, "incount": 0, "width": 14, "height": 108, "authors": ["Mandar Joshi", "Danqi Chen", "Yinhan Liu", "Daniel S. Weld", "Luke Zettlemoyer", "Omer Levy"], "hasPage": true}, {"slug": "energy-policy", "year": 2019, "title": "Energy and Policy Considerations for Deep Learning in NLP", "ko": "에너지와 정책", "field": "llm", "track": "scale", "stage": "growing", "bytes": 7681, "incount": 1, "width": 14, "height": 118, "authors": ["Emma Strubell", "Ananya Ganesh", "Andrew McCallum"], "hasPage": false}, {"slug": "carbon-quantify", "year": 2019, "title": "Quantifying the Carbon Emissions of Machine Learning", "ko": "탄소 배출 정량화", "field": "llm", "track": "scale", "stage": "evergreen", "bytes": 7455, "incount": 1, "width": 13, "height": 118, "authors": ["Alexandre Lacoste", "Alexandra Luccioni", "Victor Schmidt", "Thomas Dandres"], "hasPage": false}, {"slug": "xlm", "year": 2019, "title": "Cross-lingual Language Model Pretraining (XLM)", "ko": "XLM", "field": "llm", "track": "pretrain", "stage": "evergreen", "bytes": 8773, "incount": 0, "width": 16, "height": 108, "authors": ["Guillaume Lample", "Alexis Conneau"], "hasPage": true}, {"slug": "one-epoch", "year": 2019, "title": "One Epoch Is All You Need", "ko": "1 epoch 만으로 충분하다", "field": "llm", "track": "scale", "stage": "evergreen", "bytes": 9379, "incount": 0, "width": 19, "height": 108, "authors": ["Aran Komatsuzaki"], "hasPage": true}, {"slug": "xlnet", "year": 2019, "title": "XLNet: Generalized Autoregressive Pretraining for Language Understanding", "ko": "XLNet", "field": "llm", "track": "pretrain", "stage": "evergreen", "bytes": 10172, "incount": 2, "width": 23, "height": 124, "authors": ["Zhilin Yang", "Zihang Dai", "Yiming Yang", "Jaime Carbonell", "Ruslan Salakhutdinov", "Quoc V. Le"], "hasPage": true}], "foundations": [{"slug": "perceptron", "year": 1958, "title": "The Perceptron: A Probabilistic Model for Information Storage", "ko": "퍼셉트론", "field": "foundations", "track": "learning", "stage": "evergreen", "bytes": 8815, "incount": 1, "width": 16, "height": 118, "authors": null, "hasPage": false}, {"slug": "backprop", "year": 1986, "title": "Learning Representations by Back-Propagating Errors", "ko": "역전파", "field": "foundations", "track": "learning", "stage": "evergreen", "bytes": 11362, "incount": 8, "width": 28, "height": 141, "authors": null, "hasPage": false}, {"slug": "imagenet", "year": 2009, "title": "ImageNet: A Large-Scale Hierarchical Image Database", "ko": "ImageNet", "field": "foundations", "track": "data", "stage": "evergreen", "bytes": 10522, "incount": 16, "width": 25, "height": 150, "authors": null, "hasPage": false}, {"slug": "dropout-2012", "year": 2012, "title": "Improving Neural Networks by Preventing Co-adaptation of Feature Detectors", "ko": "드롭아웃 최초 보고", "field": "foundations", "track": "stabilize", "stage": "growing", "bytes": 7505, "incount": 0, "width": 13, "height": 108, "authors": ["Geoffrey E. Hinton", "Nitish Srivastava", "Alex Krizhevsky", "Ilya Sutskever", "Ruslan R. Salakhutdinov"], "hasPage": true}, {"slug": "straight-through", "year": 2013, "title": "Estimating or Propagating Gradients Through Stochastic Neurons", "ko": "Straight-Through 추정기", "field": "foundations", "track": "learning", "stage": "evergreen", "bytes": 8773, "incount": 0, "width": 16, "height": 108, "authors": ["Yoshua Bengio", "Nicholas Léonard", "Aaron Courville"], "hasPage": true}, {"slug": "dropout", "year": 2014, "title": "Dropout: A Simple Way to Prevent Neural Networks from Overfitting", "ko": "드롭아웃", "field": "foundations", "track": "stabilize", "stage": "evergreen", "bytes": 10694, "incount": 9, "width": 26, "height": 143, "authors": null, "hasPage": true}, {"slug": "batchnorm", "year": 2015, "title": "Batch Normalization", "ko": "배치 정규화", "field": "foundations", "track": "stabilize", "stage": "evergreen", "bytes": 10303, "incount": 13, "width": 24, "height": 148, "authors": ["Sergey Ioffe", "Christian Szegedy"], "hasPage": true}, {"slug": "adam", "year": 2015, "title": "Adam: A Method for Stochastic Optimization", "ko": "Adam 옵티마이저", "field": "foundations", "track": "learning", "stage": "evergreen", "bytes": 10654, "incount": 5, "width": 25, "height": 135, "authors": ["Diederik P. Kingma", "Jimmy Ba"], "hasPage": true}, {"slug": "distillation", "year": 2015, "title": "Distilling the Knowledge in a Neural Network", "ko": "지식 증류", "field": "foundations", "track": "learning", "stage": "evergreen", "bytes": 9860, "incount": 10, "width": 21, "height": 144, "authors": ["Geoffrey Hinton", "Oriol Vinyals", "Jeff Dean"], "hasPage": false}, {"slug": "layernorm", "year": 2016, "title": "Layer Normalization", "ko": "레이어 정규화", "field": "foundations", "track": "stabilize", "stage": "evergreen", "bytes": 10500, "incount": 5, "width": 25, "height": 135, "authors": ["Jimmy Lei Ba", "Jamie Ryan Kiros", "Geoffrey E. Hinton"], "hasPage": true}, {"slug": "gelu", "year": 2016, "title": "Gaussian Error Linear Units (GELUs)", "ko": "GELU", "field": "foundations", "track": "stabilize", "stage": "evergreen", "bytes": 8905, "incount": 1, "width": 16, "height": 118, "authors": ["Dan Hendrycks", "Kevin Gimpel"], "hasPage": true}, {"slug": "adamw", "year": 2017, "title": "Decoupled Weight Decay Regularization (AdamW)", "ko": "AdamW", "field": "foundations", "track": "learning", "stage": "evergreen", "bytes": 10207, "incount": 2, "width": 23, "height": 124, "authors": ["Ilya Loshchilov", "Frank Hutter"], "hasPage": true}, {"slug": "swish", "year": 2017, "title": "Searching for Activation Functions (Swish · SiLU)", "ko": "Swish · SiLU", "field": "foundations", "track": "stabilize", "stage": "evergreen", "bytes": 8637, "incount": 0, "width": 16, "height": 108, "authors": ["Prajit Ramachandran", "Barret Zoph", "Quoc V. Le"], "hasPage": true}, {"slug": "_demo-seed", "year": 2024, "title": "(DEMO) Example Unwritten Paper", "ko": "(데모) 아직 안 쓴 논문", "field": "foundations", "track": "learning", "stage": "seed", "bytes": 0, "incount": 3, "width": 17, "height": 118, "authors": null, "hasPage": false, "demo": true}, {"slug": "_demo-sprout", "year": 2024, "title": "(DEMO) Example Skeleton Paper", "ko": "(데모) 골격만 있는 논문", "field": "foundations", "track": "learning", "stage": "sprout", "bytes": 6800, "incount": 1, "width": 14, "height": 112, "authors": null, "hasPage": false, "demo": true}]};
+
+const FIELD_META = {
+  foundations: {name:'기초 · 학습 알고리즘', en:'Foundations'},
+  vision: {name:'컴퓨터 비전', en:'Vision'},
+  llm: {name:'LLM', en:'Large Language Models'},
+};
+const STAGE_LABEL = {seed:'🌱 씨앗', sprout:'🌿 새싹', growing:'🪴 자라는 중', evergreen:'🌳 여문 글'};
+
+function render(fieldKey, mountId){
+  const items = DATA[fieldKey];
+  const years = items.filter(i=>!i.demo).map(i=>i.year);
+  const meta = FIELD_META[fieldKey];
+  const mount = document.getElementById(mountId);
+
+  const head = document.createElement('div');
+  head.className = 'field';
+  head.innerHTML = `
+    <div class="field-head">
+      <div class="name"><b>${meta.name}</b><span class="en">${meta.en}</span></div>
+      <div class="meta">${items.length}편 · ${Math.min(...years)}–${Math.max(...years)} · ${items.filter(i=>i.stage==='evergreen').length}편 여문 글</div>
+    </div>
+  `;
+  const shelf = document.createElement('div');
+  shelf.className = 'shelf';
+
+  items.forEach(it=>{
+    const a = document.createElement('a');
+    a.className = 'spine stage-'+it.stage;
+    a.href = '#/p/'+it.slug;
+    a.style.setProperty('--w', it.width+'px');
+    a.style.setProperty('--h', it.height+'px');
+    a.style.setProperty('--field-color', `var(--field-${it.field})`);
+    a.setAttribute('aria-label', `${it.ko} — ${it.title}, ${it.year}, ${meta.name}, ${STAGE_LABEL[it.stage]}`);
+    a.innerHTML = `<span class="band"></span><span class="title">${it.ko}</span><span class="year">'${String(it.year).slice(2)}</span>`;
+    a.addEventListener('mouseenter', (e)=>showCover(it, a));
+    a.addEventListener('mouseleave', hideCover);
+    a.addEventListener('focus', (e)=>showCover(it, a));
+    a.addEventListener('blur', hideCover);
+    shelf.appendChild(a);
+  });
+
+  // 빈 트랙 placeholder 데모(가상: foundations에 "미래의 빈 트랙" 하나를 시연)
+  if(fieldKey==='foundations'){
+    const slot = document.createElement('div');
+    slot.className = 'slot-empty';
+    slot.style.setProperty('--field-color', 'var(--field-foundations)');
+    slot.textContent = '데이터 · 벤치마크 0편';
+    shelf.appendChild(slot);
+  }
+
+  head.appendChild(shelf);
+  mount.appendChild(head);
+}
+
+render('foundations','foundations-field');
+render('vision','vision-field');
+render('llm','llm-field');
+
+const overlay = document.getElementById('coverlay');
+let hideTimer=null;
+function showCover(it, el){
+  clearTimeout(hideTimer);
+  const rect = el.getBoundingClientRect();
+  const authorsLine = it.authors ? it.authors.slice(0,3).join(', ') + (it.authors.length>3?' 외 '+(it.authors.length-3)+'인':'') : null;
+  overlay.style.setProperty('--field-color', `var(--field-${it.field})`);
+  overlay.innerHTML = `
+    <div class="art ${it.hasPage? '' : 'fallback'}">
+      ${it.hasPage
+        ? `<img src="https://placehold.co/440x260/1b2030/6a7387?text=p-01.png+crop" alt="">`
+        : `<span class="wm">${it.field.slice(0,2).toUpperCase()}</span>`}
+    </div>
+    <div class="body">
+      <div class="chiprow">
+        <span class="fieldchip" style="background:var(--chip-field-bg);border:1px solid var(--chip-field-border);color:var(--field-color)">${FIELD_META[it.field]?.name || it.field}</span>
+        <span class="stagechip">${STAGE_LABEL[it.stage]}</span>
+      </div>
+      <p class="ko">${it.ko}</p>
+      <p class="orig">${it.title}</p>
+      ${authorsLine ? `<p class="authors">${authorsLine}</p>` : ``}
+      <div class="bottom"><span class="year">${it.year}</span></div>
+    </div>
+  `;
+  const overlayH = 300;
+  let top = rect.top - overlayH - 8;
+  if(top < 8) top = Math.min(window.innerHeight - overlayH - 8, rect.bottom + 8);
+  let left = rect.left - 40;
+  if(left + 224 > window.innerWidth - 8) left = window.innerWidth - 232;
+  if(left < 8) left = 8;
+  overlay.style.top = top+'px';
+  overlay.style.left = left+'px';
+  overlay.classList.add('show');
+}
+function hideCover(){
+  hideTimer = setTimeout(()=>overlay.classList.remove('show'), 120);
+}
+overlay.addEventListener('mouseenter', ()=>clearTimeout(hideTimer));
+overlay.addEventListener('mouseleave', hideCover);
+
+function toggleTheme(){
+  const html = document.documentElement;
+  const next = html.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  document.getElementById('themeLabel').textContent = next;
+}
+</script>
+</body>
+</html>

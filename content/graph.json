@@ -2188,6 +2188,7 @@
     "squad2",
     "xlm",
     "bias-in-generation",
+    "huggingface",
     "stereoset",
     "xlnet",
     "boolq",
@@ -2242,6 +2243,7 @@
     "realtoxicity",
     "lambada",
     "bias-in-generation",
+    "huggingface",
     "stochastic-parrots-risk"
    ],
    "diagram": "split",
@@ -2343,6 +2345,7 @@
     "mt5",
     "prompt-tuning",
     "t0",
+    "t5x",
     "decanlp",
     "xlnet",
     "glu-variants",
@@ -2590,7 +2593,8 @@
     "opt",
     "palm-e",
     "pangu-alpha",
-    "minerva"
+    "minerva",
+    "t5x"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -3780,7 +3784,8 @@
     "gpipe",
     "gshard",
     "mt-nlg",
-    "pangu-alpha"
+    "pangu-alpha",
+    "t5x"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -11854,7 +11859,9 @@
     "rcnn",
     "fcn"
    ],
-   "in": [],
+   "in": [
+    "huggingface"
+   ],
    "diagram": "stack",
    "extLinks": 2,
    "tags": [
@@ -13608,18 +13615,29 @@
    "mtime": "2026-09-10"
   },
   "huggingface": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "growing",
+   "bytes": 7851,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "bert",
+    "gpt2",
+    "caffe"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "stack",
+   "extLinks": 2,
    "tags": [
     "efficiency",
     "serve",
     "2019"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "vtab": {
    "stage": "growing",
@@ -13896,18 +13914,29 @@
    "mtime": "2026-09-10"
   },
   "t5x": {
-   "stage": "seed",
-   "bytes": 0,
-   "sections": [],
-   "out": [],
+   "stage": "growing",
+   "bytes": 8217,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "t5",
+    "megatron",
+    "palm"
+   ],
    "in": [],
-   "diagram": null,
-   "extLinks": 0,
+   "diagram": "flow",
+   "extLinks": 3,
    "tags": [
     "efficiency",
     "serve",
     "2022"
-   ]
+   ],
+   "mtime": "2026-09-10"
   },
   "sparks-agi": {
    "stage": "growing",
@@ -14417,11 +14446,10 @@
  },
  "stats": {
   "total": 418,
-  "written": 416,
+  "written": 418,
   "byStage": {
    "evergreen": 362,
-   "growing": 54,
-   "seed": 2
+   "growing": 56
   },
   "byField": {
    "foundations": {
@@ -14442,7 +14470,7 @@
    },
    "efficiency": {
     "total": 34,
-    "written": 32
+    "written": 34
    },
    "generative": {
     "total": 35,

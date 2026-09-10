@@ -75,7 +75,7 @@ quotes:[
  {t:'It is, to the best of our knowledge, the largest monolithic language model trained to date, with 3x more parameters than GPT-3.',
   src:'Introduction, p.2'},
  {t:'Our work further extends this line of work, situating ourselves at the largest monolithic transformer language model to date at 530 billion parameters, achieving unprecedented training efficiency and model quality.',
-  src:'Section 5 (Related Work), p.19'}
+  src:'Section 8 (Related Works), p.27'}
 ],
 
 links:[

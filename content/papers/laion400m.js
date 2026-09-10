@@ -25,7 +25,7 @@ ideas:[
 
 diagram:{type:'flow', cap:'Common Crawl의 원시 HTML에서 최종 400M 쌍까지 이어지는 정제 파이프라인.',
  nodes:[
-  {t:'Common Crawl WAT', s:'페타바이트급 원시 웹'},
+  {t:'Common Crawl', s:'페타바이트급 원시 웹'},
   {t:'alt-text 파싱', s:'img 태그 추출'},
   {t:'경량 필터', s:'길이·용량·중복'},
   {t:'CLIP 유사도 필터', s:'cos < 0.3 제거', acc:true},

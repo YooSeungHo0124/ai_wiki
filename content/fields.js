@@ -711,7 +711,7 @@ WIKI.INDEX = [
 ['nice',2014,'NICE: Non-linear Independent Components Estimation','NICE','generative','vae',['vae','backprop']],
 ['intriguing',2013,'Intriguing Properties of Neural Networks','적대적 예제의 발견','privacy','attack',['alexnet','backprop']],
 ['fgsm',2014,'Explaining and Harnessing Adversarial Examples (FGSM)','FGSM','privacy','attack',['intriguing','alexnet']],
-['gae',2015,'High-Dimensional Continuous Control Using Generalized Advantage Estimation','GAE','rl','policy',['trpo','ddpg']],
+['gae',2015,'High-Dimensional Continuous Control Using Generalized Advantage Estimation','GAE','rl','policy',['trpo']],
 ['pixelrnn',2016,'Pixel Recurrent Neural Networks','PixelRNN · PixelCNN','generative','vae',['lstm','vae']],
 ['tensorflow',2016,'TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems','TensorFlow','efficiency','serve',['caffe','backprop']],
 ['wikitext',2016,'Pointer Sentinel Mixture Models (WikiText)','WikiText','interp','eval',['lstm','nnlm']],

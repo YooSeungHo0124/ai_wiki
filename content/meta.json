@@ -641,6 +641,27 @@
 "published": "2021-06-24",
 "title": "Autoformer: Decomposition Transformers with Auto-Correlation for Long-Term Series Forecasting"
 },
+"autogen": {
+"arxiv": "2308.08155",
+"authors": [
+"Qingyun Wu",
+"Gagan Bansal",
+"Jieyu Zhang",
+"Yiran Wu",
+"Beibin Li",
+"Erkang Zhu",
+"Li Jiang",
+"Xiaoyun Zhang",
+"Shaokun Zhang",
+"Jiale Liu",
+"Ahmed Hassan Awadallah",
+"Ryen W White",
+"Doug Burger",
+"Chi Wang"
+],
+"published": "2023-08-16",
+"title": "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation"
+},
 "awq": {
 "arxiv": "2306.00978",
 "authors": [
@@ -770,6 +791,33 @@
 ],
 "published": "2019-04-14",
 "title": "BERT4Rec: Sequential Recommendation with Bidirectional Encoder Representations from Transformer"
+},
+"bevdet": {
+"arxiv": "2112.11790",
+"authors": [
+"Junjie Huang",
+"Guan Huang",
+"Zheng Zhu",
+"Yun Ye",
+"Dalong Du"
+],
+"published": "2021-12-22",
+"title": "BEVDet: High-performance Multi-camera 3D Object Detection in Bird-Eye-View"
+},
+"bevformer": {
+"arxiv": "2203.17270",
+"authors": [
+"Zhiqi Li",
+"Wenhai Wang",
+"Hongyang Li",
+"Enze Xie",
+"Chonghao Sima",
+"Tong Lu",
+"Qiao Yu",
+"Jifeng Dai"
+],
+"published": "2022-03-31",
+"title": "BEVFormer: Learning Bird's-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers"
 },
 "bge": {
 "arxiv": "2309.07597",
@@ -1871,6 +1919,18 @@
 "published": "2014-06-20",
 "title": "Caffe: Convolutional Architecture for Fast Feature Embedding"
 },
+"camel": {
+"arxiv": "2303.17760",
+"authors": [
+"Guohao Li",
+"Hasan Abed Al Kader Hammoud",
+"Hani Itani",
+"Dmitrii Khizbullin",
+"Bernard Ghanem"
+],
+"published": "2023-03-31",
+"title": "CAMEL: Communicative Agents for \"Mind\" Exploration of Large Language Model Society"
+},
 "carbon": {
 "arxiv": "2104.10350",
 "authors": [
@@ -1953,6 +2013,16 @@
 "published": "2019-04-16",
 "title": "Objects as Points"
 },
+"centerpoint": {
+"arxiv": "2006.11275",
+"authors": [
+"Tianwei Yin",
+"Xingyi Zhou",
+"Philipp Krähenbühl"
+],
+"published": "2020-06-19",
+"title": "Center-based 3D Object Detection and Tracking"
+},
 "cfg": {
 "arxiv": "2207.12598",
 "authors": [
@@ -1987,6 +2057,25 @@
 ],
 "published": "2024-03-07",
 "title": "Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference"
+},
+"chexnet": {
+"arxiv": "1711.05225",
+"authors": [
+"Pranav Rajpurkar",
+"Jeremy Irvin",
+"Kaylie Zhu",
+"Brandon Yang",
+"Hershel Mehta",
+"Tony Duan",
+"Daisy Ding",
+"Aarti Bagul",
+"Curtis Langlotz",
+"Katie Shpanskaya",
+"Matthew P. Lungren",
+"Andrew Y. Ng"
+],
+"published": "2017-11-14",
+"title": "CheXNet: Radiologist-Level Pneumonia Detection on Chest X-Rays with Deep Learning"
 },
 "chinchilla": {
 "arxiv": "2203.15556",
@@ -3976,6 +4065,17 @@
 "published": "2019-12-03",
 "title": "Dream to Control: Learning Behaviors by Latent Imagination"
 },
+"dreamerv3": {
+"arxiv": "2301.04104",
+"authors": [
+"Danijar Hafner",
+"Jurgis Pasukonis",
+"Jimmy Ba",
+"Timothy Lillicrap"
+],
+"published": "2023-01-10",
+"title": "Mastering Diverse Domains through World Models"
+},
 "dropout": {
 "arxiv": null,
 "authors": [
@@ -4016,6 +4116,17 @@
 "published": "2022-12-07",
 "title": "Text Embeddings by Weakly-Supervised Contrastive Pre-training"
 },
+"eagle": {
+"arxiv": "2401.15077",
+"authors": [
+"Yuhui Li",
+"Fangyun Wei",
+"Chao Zhang",
+"Hongyang Zhang"
+],
+"published": "2024-01-26",
+"title": "EAGLE: Speculative Sampling Requires Rethinking Feature Uncertainty"
+},
 "efficientdet": {
 "arxiv": "1911.09070",
 "authors": [
@@ -4043,6 +4154,18 @@
 ],
 "published": "2021-04-01",
 "title": "EfficientNetV2: Smaller Models and Faster Training"
+},
+"efficientzero": {
+"arxiv": "2111.00210",
+"authors": [
+"Weirui Ye",
+"Shaohuai Liu",
+"Thanard Kurutach",
+"Pieter Abbeel",
+"Yang Gao"
+],
+"published": "2021-10-30",
+"title": "Mastering Atari Games with Limited Data"
 },
 "electra": {
 "arxiv": "2003.10555",
@@ -4112,6 +4235,23 @@
 ],
 "published": "2018-12-14",
 "title": "An Empirical Model of Large-Batch Training"
+},
+"emu-video": {
+"arxiv": "2311.10709",
+"authors": [
+"Rohit Girdhar",
+"Mannat Singh",
+"Andrew Brown",
+"Quentin Duval",
+"Samaneh Azadi",
+"Sai Saketh Rambhatla",
+"Akbar Shah",
+"Xi Yin",
+"Devi Parikh",
+"Ishan Misra"
+],
+"published": "2023-11-17",
+"title": "Emu Video: Factorizing Text-to-Video Generation by Explicit Image Conditioning"
 },
 "encodec": {
 "arxiv": "2210.13438",
@@ -4842,6 +4982,19 @@
 ],
 "published": "2022-05-12",
 "title": "A Generalist Agent"
+},
+"gcg": {
+"arxiv": "2307.15043",
+"authors": [
+"Andy Zou",
+"Zifan Wang",
+"Nicholas Carlini",
+"Milad Nasr",
+"J. Zico Kolter",
+"Matt Fredrikson"
+],
+"published": "2023-07-27",
+"title": "Universal and Transferable Adversarial Attacks on Aligned Language Models"
 },
 "gcn": {
 "arxiv": "1609.02907",
@@ -6589,6 +6742,24 @@
 "published": "2021-12-08",
 "title": "Scaling Language Models: Methods, Analysis & Insights from Training Gopher"
 },
+"got": {
+"arxiv": "2308.09687",
+"authors": [
+"Maciej Besta",
+"Nils Blach",
+"Ales Kubicek",
+"Robert Gerstenberger",
+"Michal Podstawski",
+"Lukas Gianinazzi",
+"Joanna Gajda",
+"Tomasz Lehmann",
+"Hubert Niewiadomski",
+"Piotr Nyczyk",
+"Torsten Hoefler"
+],
+"published": "2023-08-18",
+"title": "Graph of Thoughts: Solving Elaborate Problems with Large Language Models"
+},
 "gpipe": {
 "arxiv": "1811.06965",
 "authors": [
@@ -6606,6 +6777,21 @@
 ],
 "published": "2018-11-16",
 "title": "GPipe: Efficient Training of Giant Neural Networks using Pipeline Parallelism"
+},
+"gpqa": {
+"arxiv": "2311.12022",
+"authors": [
+"David Rein",
+"Betty Li Hou",
+"Asa Cooper Stickland",
+"Jackson Petty",
+"Richard Yuanzhe Pang",
+"Julien Dirani",
+"Julian Michael",
+"Samuel R. Bowman"
+],
+"published": "2023-11-20",
+"title": "GPQA: A Graduate-Level Google-Proof Q&A Benchmark"
 },
 "gpt-neox": {
 "arxiv": "2204.06745",
@@ -7234,6 +7420,25 @@
 "published": "2016-11-03",
 "title": "Categorical Reparameterization with Gumbel-Softmax"
 },
+"h2o": {
+"arxiv": "2306.14048",
+"authors": [
+"Zhenyu Zhang",
+"Ying Sheng",
+"Tianyi Zhou",
+"Tianlong Chen",
+"Lianmin Zheng",
+"Ruisi Cai",
+"Zhao Song",
+"Yuandong Tian",
+"Christopher Ré",
+"Clark Barrett",
+"Zhangyang Wang",
+"Beidi Chen"
+],
+"published": "2023-06-24",
+"title": "H$_2$O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models"
+},
 "hellaswag": {
 "arxiv": "1905.07830",
 "authors": [
@@ -7483,6 +7688,21 @@
 "published": "2021-02-18",
 "title": "Improved Denoising Diffusion Probabilistic Models"
 },
+"ifeval": {
+"arxiv": "2311.07911",
+"authors": [
+"Jeffrey Zhou",
+"Tianjian Lu",
+"Swaroop Mishra",
+"Siddhartha Brahma",
+"Sujoy Basu",
+"Yi Luan",
+"Denny Zhou",
+"Le Hou"
+],
+"published": "2023-11-14",
+"title": "Instruction-Following Evaluation for Large Language Models"
+},
 "imagen": {
 "arxiv": "2205.11487",
 "authors": [
@@ -7637,6 +7857,16 @@
 ],
 "published": "2022-09-24",
 "title": "In-context Learning and Induction Heads"
+},
+"infini-attention": {
+"arxiv": "2404.07143",
+"authors": [
+"Tsendsuren Munkhdalai",
+"Manaal Faruqui",
+"Siddharth Gopal"
+],
+"published": "2024-04-10",
+"title": "Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention"
 },
 "information-bottleneck": {
 "arxiv": "1703.00810",
@@ -7867,6 +8097,18 @@
 "published": "2017-05-19",
 "title": "The Kinetics Human Action Video Dataset"
 },
+"kto": {
+"arxiv": "2402.01306",
+"authors": [
+"Kawin Ethayarajh",
+"Winnie Xu",
+"Niklas Muennighoff",
+"Dan Jurafsky",
+"Douwe Kiela"
+],
+"published": "2024-02-02",
+"title": "KTO: Model Alignment as Prospect Theoretic Optimization"
+},
 "laion400m": {
 "arxiv": "2111.02114",
 "authors": [
@@ -8022,6 +8264,18 @@
 "published": "2015-08-05",
 "title": "Listen, Attend and Spell"
 },
+"lats": {
+"arxiv": "2310.04406",
+"authors": [
+"Andy Zhou",
+"Kai Yan",
+"Michal Shlapentokh-Rothman",
+"Haohan Wang",
+"Yu-Xiong Wang"
+],
+"published": "2023-10-06",
+"title": "Language Agent Tree Search Unifies Reasoning Acting and Planning in Language Models"
+},
 "layernorm": {
 "arxiv": "1607.06450",
 "authors": [
@@ -8120,6 +8374,23 @@
 ],
 "published": "2020-06-08",
 "title": "Linformer: Self-Attention with Linear Complexity"
+},
+"livecodebench": {
+"arxiv": "2403.07974",
+"authors": [
+"Naman Jain",
+"King Han",
+"Alex Gu",
+"Wen-Ding Li",
+"Fanjia Yan",
+"Tianjun Zhang",
+"Sida Wang",
+"Armando Solar-Lezama",
+"Koushik Sen",
+"Ion Stoica"
+],
+"published": "2024-03-12",
+"title": "LiveCodeBench: Holistic and Contamination Free Evaluation of Large Language Models for Code"
 },
 "llama": {
 "arxiv": "2302.13971",
@@ -8251,6 +8522,21 @@
 "published": "2016-02-07",
 "title": "Exploring the Limits of Language Modeling"
 },
+"longrope": {
+"arxiv": "2402.13753",
+"authors": [
+"Yiran Ding",
+"Li Lyna Zhang",
+"Chengruidong Zhang",
+"Yuanyuan Xu",
+"Ning Shang",
+"Jiahang Xu",
+"Fan Yang",
+"Mao Yang"
+],
+"published": "2024-02-21",
+"title": "LongRoPE: Extending LLM Context Window Beyond 2 Million Tokens"
+},
 "lora": {
 "arxiv": "2106.09685",
 "authors": [
@@ -8313,6 +8599,15 @@
 ],
 "published": "2017-06-08",
 "title": "Accurate, Large Minibatch SGD: Training ImageNet in 1 Hour"
+},
+"lss": {
+"arxiv": "2008.05711",
+"authors": [
+"Jonah Philion",
+"Sanja Fidler"
+],
+"published": "2020-08-13",
+"title": "Lift, Splat, Shoot: Encoding Images From Arbitrary Camera Rigs by Implicitly Unprojecting to 3D"
 },
 "lstm": {
 "arxiv": null,
@@ -8533,6 +8828,19 @@
 "published": "2015-06-06",
 "title": "Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning"
 },
+"medsam": {
+"arxiv": "2304.12306",
+"authors": [
+"Jun Ma",
+"Yuting He",
+"Feifei Li",
+"Lin Han",
+"Chenyu You",
+"Bo Wang"
+],
+"published": "2023-04-24",
+"title": "Segment Anything in Medical Images"
+},
 "medusa": {
 "arxiv": "2401.10774",
 "authors": [
@@ -8607,6 +8915,28 @@
 ],
 "published": "2014-10-15",
 "title": "Memory Networks"
+},
+"metagpt": {
+"arxiv": "2308.00352",
+"authors": [
+"Sirui Hong",
+"Mingchen Zhuge",
+"Jiaqi Chen",
+"Xiawu Zheng",
+"Yuheng Cheng",
+"Ceyao Zhang",
+"Jinlin Wang",
+"Zili Wang",
+"Steven Ka Shing Yau",
+"Zijuan Lin",
+"Liyang Zhou",
+"Chenyu Ran",
+"Lingfeng Xiao",
+"Chenglin Wu",
+"Jürgen Schmidhuber"
+],
+"published": "2023-08-01",
+"title": "MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework"
 },
 "mf": {
 "arxiv": null,
@@ -8797,6 +9127,30 @@
 ],
 "published": "2020-09-07",
 "title": "Measuring Massive Multitask Language Understanding"
+},
+"mmlu-pro": {
+"arxiv": "2406.01574",
+"authors": [
+"Yubo Wang",
+"Xueguang Ma",
+"Ge Zhang",
+"Yuansheng Ni",
+"Abhranil Chandra",
+"Shiguang Guo",
+"Weiming Ren",
+"Aaran Arulraj",
+"Xuan He",
+"Ziyan Jiang",
+"Tianle Li",
+"Max Ku",
+"Kai Wang",
+"Alex Zhuang",
+"Rongqi Fan",
+"Xiang Yue",
+"Wenhu Chen"
+],
+"published": "2024-06-03",
+"title": "MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark"
 },
 "mobile-aloha": {
 "arxiv": "2401.02117",
@@ -9182,6 +9536,24 @@
 "title": "A Neural Probabilistic Language Model",
 "venue": "Journal of Machine Learning Research"
 },
+"nnunet": {
+"arxiv": "1809.10486",
+"authors": [
+"Fabian Isensee",
+"Jens Petersen",
+"Andre Klein",
+"David Zimmerer",
+"Paul F. Jaeger",
+"Simon Kohl",
+"Jakob Wasserthal",
+"Gregor Koehler",
+"Tobias Norajitra",
+"Sebastian Wirkert",
+"Klaus H. Maier-Hein"
+],
+"published": "2018-09-27",
+"title": "nnU-Net: Self-adapting Framework for U-Net-Based Medical Image Segmentation"
+},
 "node2vec": {
 "arxiv": "1607.00653",
 "authors": [
@@ -9244,6 +9616,23 @@
 ],
 "published": "2019-04-22",
 "title": "The Curious Case of Neural Text Degeneration"
+},
+"nuscenes": {
+"arxiv": "1903.11027",
+"authors": [
+"Holger Caesar",
+"Varun Bankiti",
+"Alex H. Lang",
+"Sourabh Vora",
+"Venice Erin Liong",
+"Qiang Xu",
+"Anush Krishnan",
+"Yu Pan",
+"Giancarlo Baldan",
+"Oscar Beijbom"
+],
+"published": "2019-03-26",
+"title": "nuScenes: A multimodal dataset for autonomous driving"
 },
 "odin": {
 "arxiv": "1706.02690",
@@ -9719,6 +10108,16 @@
 ],
 "published": "2022-12-22",
 "title": "OPT-IML: Scaling Language Model Instruction Meta Learning through the Lens of Generalization"
+},
+"orpo": {
+"arxiv": "2403.07691",
+"authors": [
+"Jiwoo Hong",
+"Noah Lee",
+"James Thorne"
+],
+"published": "2024-03-12",
+"title": "ORPO: Monolithic Preference Optimization without Reference Model"
 },
 "owl-vit": {
 "arxiv": "2205.06230",
@@ -10312,6 +10711,41 @@
 "published": "2017-04-14",
 "title": "Get To The Point: Summarization with Pointer-Generator Networks"
 },
+"pointnet": {
+"arxiv": "1612.00593",
+"authors": [
+"Charles R. Qi",
+"Hao Su",
+"Kaichun Mo",
+"Leonidas J. Guibas"
+],
+"published": "2016-12-02",
+"title": "PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation"
+},
+"pointnet2": {
+"arxiv": "1706.02413",
+"authors": [
+"Charles R. Qi",
+"Li Yi",
+"Hao Su",
+"Leonidas J. Guibas"
+],
+"published": "2017-06-07",
+"title": "PointNet++: Deep Hierarchical Feature Learning on Point Sets in a Metric Space"
+},
+"pointpillars": {
+"arxiv": "1812.05784",
+"authors": [
+"Alex H. Lang",
+"Sourabh Vora",
+"Holger Caesar",
+"Lubing Zhou",
+"Jiong Yang",
+"Oscar Beijbom"
+],
+"published": "2018-12-14",
+"title": "PointPillars: Fast Encoders for Object Detection from Point Clouds"
+},
 "position-interpolation": {
 "arxiv": "2306.15595",
 "authors": [
@@ -10322,6 +10756,17 @@
 ],
 "published": "2023-06-27",
 "title": "Extending Context Window of Large Language Models via Positional Interpolation"
+},
+"pot": {
+"arxiv": "2211.12588",
+"authors": [
+"Wenhu Chen",
+"Xueguang Ma",
+"Xinyi Wang",
+"William W. Cohen"
+],
+"published": "2022-11-22",
+"title": "Program of Thoughts Prompting: Disentangling Computation from Reasoning for Numerical Reasoning Tasks"
 },
 "ppo": {
 "arxiv": "1707.06347",
@@ -10460,6 +10905,19 @@
 ],
 "published": "2021-03-25",
 "title": "A Survey of Quantization Methods for Efficient Neural Network Inference"
+},
+"quiet-star": {
+"arxiv": "2403.09629",
+"authors": [
+"Eric Zelikman",
+"Georges Harik",
+"Yijia Shao",
+"Varuna Jayasiri",
+"Nick Haber",
+"Noah D. Goodman"
+],
+"published": "2024-03-14",
+"title": "Quiet-STaR: Language Models Can Teach Themselves to Think Before Speaking"
 },
 "qwen-vl": {
 "arxiv": "2308.12966",
@@ -10922,6 +11380,24 @@
 ],
 "published": "2017-05-11",
 "title": "A Deep Reinforced Model for Abstractive Summarization"
+},
+"rlaif": {
+"arxiv": "2309.00267",
+"authors": [
+"Harrison Lee",
+"Samrat Phatale",
+"Hassan Mansoor",
+"Thomas Mesnard",
+"Johan Ferret",
+"Kellie Lu",
+"Colton Bishop",
+"Ethan Hall",
+"Victor Carbune",
+"Abhinav Rastogi",
+"Sushant Prakash"
+],
+"published": "2023-09-01",
+"title": "RLAIF vs. RLHF: Scaling Reinforcement Learning from Human Feedback with AI Feedback"
 },
 "rlhf-prefs": {
 "arxiv": "1706.03741",
@@ -12060,6 +12536,17 @@
 "published": "2022-02-17",
 "title": "ST-MoE: Designing Stable and Transferable Sparse Expert Models"
 },
+"star": {
+"arxiv": "2203.14465",
+"authors": [
+"Eric Zelikman",
+"Yuhuai Wu",
+"Jesse Mu",
+"Noah D. Goodman"
+],
+"published": "2022-03-28",
+"title": "STaR: Bootstrapping Reasoning With Reasoning"
+},
 "starcoder": {
 "arxiv": "2305.06161",
 "authors": [
@@ -12174,6 +12661,18 @@
 ],
 "published": "2013-08-15",
 "title": "Estimating or Propagating Gradients Through Stochastic Neurons for Conditional Computation"
+},
+"streaming-llm": {
+"arxiv": "2309.17453",
+"authors": [
+"Guangxuan Xiao",
+"Yuandong Tian",
+"Beidi Chen",
+"Song Han",
+"Mike Lewis"
+],
+"published": "2023-09-29",
+"title": "Efficient Streaming Language Models with Attention Sinks"
 },
 "styleclip": {
 "arxiv": "2103.17249",
@@ -12917,6 +13416,40 @@
 "published": "2015-05-18",
 "title": "U-Net: Convolutional Networks for Biomedical Image Segmentation"
 },
+"unetpp": {
+"arxiv": "1807.10165",
+"authors": [
+"Zongwei Zhou",
+"Md Mahfuzur Rahman Siddiquee",
+"Nima Tajbakhsh",
+"Jianming Liang"
+],
+"published": "2018-07-18",
+"title": "UNet++: A Nested U-Net Architecture for Medical Image Segmentation"
+},
+"uniad": {
+"arxiv": "2212.10156",
+"authors": [
+"Yihan Hu",
+"Jiazhi Yang",
+"Li Chen",
+"Keyu Li",
+"Chonghao Sima",
+"Xizhou Zhu",
+"Siqi Chai",
+"Senyao Du",
+"Tianwei Lin",
+"Wenhai Wang",
+"Lewei Lu",
+"Xiaosong Jia",
+"Qiang Liu",
+"Jifeng Dai",
+"Yu Qiao",
+"Hongyang Li"
+],
+"published": "2022-12-20",
+"title": "Planning-oriented Autonomous Driving"
+},
 "unilm": {
 "arxiv": "1905.03197",
 "authors": [
@@ -13154,6 +13687,43 @@
 "published": "2023-09-12",
 "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention"
 },
+"vnet": {
+"arxiv": "1606.04797",
+"authors": [
+"Fausto Milletari",
+"Nassir Navab",
+"Seyed-Ahmad Ahmadi"
+],
+"published": "2016-06-15",
+"title": "V-Net: Fully Convolutional Neural Networks for Volumetric Medical Image Segmentation"
+},
+"voicebox": {
+"arxiv": "2306.15687",
+"authors": [
+"Matthew Le",
+"Apoorv Vyas",
+"Bowen Shi",
+"Brian Karrer",
+"Leda Sari",
+"Rashel Moritz",
+"Mary Williamson",
+"Vimal Manohar",
+"Yossi Adi",
+"Jay Mahadeokar",
+"Wei-Ning Hsu"
+],
+"published": "2023-06-23",
+"title": "Voicebox: Text-Guided Multilingual Universal Speech Generation at Scale"
+},
+"voxelnet": {
+"arxiv": "1711.06396",
+"authors": [
+"Yin Zhou",
+"Oncel Tuzel"
+],
+"published": "2017-11-17",
+"title": "VoxelNet: End-to-End Learning for Point Cloud Based 3D Object Detection"
+},
 "voyager": {
 "arxiv": "2305.16291",
 "authors": [
@@ -13273,6 +13843,25 @@
 ],
 "published": "2016-09-12",
 "title": "WaveNet: A Generative Model for Raw Audio"
+},
+"weak-to-strong": {
+"arxiv": "2312.09390",
+"authors": [
+"Collin Burns",
+"Pavel Izmailov",
+"Jan Hendrik Kirchner",
+"Bowen Baker",
+"Leo Gao",
+"Leopold Aschenbrenner",
+"Yining Chen",
+"Adrien Ecoffet",
+"Manas Joglekar",
+"Jan Leike",
+"Ilya Sutskever",
+"Jeff Wu"
+],
+"published": "2023-12-14",
+"title": "Weak-to-Strong Generalization: Eliciting Strong Capabilities With Weak Supervision"
 },
 "webgpt": {
 "arxiv": "2112.09332",

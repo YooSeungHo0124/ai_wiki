@@ -201,7 +201,23 @@ WIKI.CONCEPTS = [
 ['retraining','Retraining · Continual Update','재학습 파이프라인','mlops',2,['ewc','icarl']],
 ['feature-store','Feature Store','피처 스토어','mlops',3,['wide-deep']],
 ['cost-optimization','Inference Cost Optimization','추론 비용 최적화','mlops',2,['gptq','vllm','distillation']],
-['reproducibility','Reproducibility','재현성','mlops',2,['pythia','olmo']]
+['reproducibility','Reproducibility','재현성','mlops',2,['pythia','olmo']],
+['test-time-compute','Test-Time Compute Scaling','추론 시 계산 확장','gen',2,['cot','self-consistency','deepseek-r1']],
+['reasoning-model','Reasoning Model','추론 모델','gen',2,['deepseek-r1','star','cot']],
+['agent-c','Agent','에이전트란 무엇인가','llmops',1,['react','reflexion','swe-agent']],
+['context-engineering','Context Engineering','컨텍스트 엔지니어링','llmops',2,['lost-in-the-middle','rag','prompt-survey']],
+['rag-vs-finetune','RAG vs Fine-tuning','RAG 와 미세조정 중 무엇을','llmops',2,['rag','lora','closed-book-qa']],
+['inference-params','Inference Parameters','추론 파라미터 총정리','llmops',1,['nucleus-sampling','ifeval']],
+['attention-variants','MHA · MQA · GQA · MLA','어텐션 변형 비교','arch',2,['mqa','gqa','deepseek-v2']],
+['flash-attention-c','IO-Aware Attention','IO 인식 어텐션이 빠른 이유','arch',3,['flashattention','memory-efficient-attn']],
+['ssm-c','State Space Model · Mamba','상태공간 모델','arch',3,['s4','mamba','rwkv']],
+['distributed-training','Data · Tensor · Pipeline Parallel','분산 학습 3축','basic',3,['zero','megatron','gpipe']],
+['similarity-metric','Cosine · Dot Product · Euclidean','유사도 측정','math',1,['sentence-bert','faiss']],
+['reranking','Reranking','리랭킹','nlp',2,['monobert','monot5','colbert']],
+['hybrid-search','Hybrid Search · BM25 + Dense','하이브리드 검색','nlp',2,['bm25','dpr','splade']],
+['multimodal-c','Multimodal Model','멀티모달 모델','arch',1,['clip','llava','flamingo']],
+['vision-encoder','Vision Encoder · Projector','비전 인코더와 프로젝터','arch',2,['clip','llava','blip2']],
+['eval-harness','Evaluation Harness','평가 하네스','eval',2,['helm','mmlu','livecodebench']]
 ];
 
 WIKI.CONCEPT_META = WIKI.CONCEPTS.map(function(r){

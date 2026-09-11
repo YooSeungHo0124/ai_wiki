@@ -30,6 +30,55 @@ window.WIKI = window.WIKI || {};
     return pending[slug];
   };
 
+  /* ----------------------------------------------------------------
+   * 개념 사전 (content/concepts.js 의 WIKI.CONCEPT_GROUPS/WIKI.CONCEPTS/
+   * WIKI.CONCEPT_META 가 이미 인덱스를 정의한다 — 논문의 WIKI.META와 같은
+   * 자리). 본문은 content/concepts/<slug>.js 에 WIKI.concept({...})로 두고,
+   * 논문 W.load()와 똑같은 지연 로딩 패턴으로 가져온다.
+   * ---------------------------------------------------------------- */
+  W.CONCEPTS = {};        // slug -> 본문(WIKI.concept가 채움)
+  var pendingC = {};      // slug -> promise
+
+  W.concept = function(o){ W.CONCEPTS[o.slug] = o; };
+
+  W.conceptById = function(slug){
+    return (W.CONCEPT_META||[]).filter(function(c){return c.slug===slug})[0];
+  };
+  W.conceptGroup = function(id){
+    return (W.CONCEPT_GROUPS||[]).filter(function(g){return g.id===id})[0];
+  };
+
+  W.loadConcept = function(slug){
+    if(W.CONCEPTS[slug]) return Promise.resolve(W.CONCEPTS[slug]);
+    if(pendingC[slug]) return pendingC[slug];
+    pendingC[slug] = new Promise(function(res){
+      var s=document.createElement('script');
+      s.src='content/concepts/'+slug+'.js?v='+(W.V||1);
+      s.onload=function(){ res(W.CONCEPTS[slug]||null); };
+      s.onerror=function(){ res(null); };
+      document.head.appendChild(s);
+    });
+    return pendingC[slug];
+  };
+
+  /* 논문 → 관련 개념 역색인. WIKI.CONCEPTS(색인)의 papers[]를 뒤집는다.
+     content/concepts.js 로드 후 첫 호출 시 한 번만 만든다. */
+  var paperConceptIdx = null;
+  function ensurePaperConceptIdx(){
+    if(paperConceptIdx) return paperConceptIdx;
+    paperConceptIdx = {};
+    (W.CONCEPT_META||[]).forEach(function(c){
+      (c.papers||[]).forEach(function(pslug){
+        (paperConceptIdx[pslug]=paperConceptIdx[pslug]||[]).push(c.slug);
+      });
+    });
+    return paperConceptIdx;
+  }
+  W.conceptsForPaper = function(slug){
+    var idx=ensurePaperConceptIdx();
+    return (idx[slug]||[]).map(W.conceptById).filter(Boolean);
+  };
+
   /* 아주 작은 인라인 마크업: **굵게**, `코드`, [글자](주소), $수식$ */
   W.esc = function(s){
     return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -272,6 +321,65 @@ window.WIKI = window.WIKI || {};
     }
     var g=W.graphOf(m.slug);
     if(g && g.in) score += Math.min(g.in.length,10)*2;
+    return score;
+  };
+
+  /* ----------------------------------------------------------------
+   * 개념 검색 매칭 — 위 자유어 엔진(W.freeTextMatches/W.rankScore)과 같은
+   * 어휘(KO_SYN 번역표·오타 허용 editDistLE)를 재사용하되, 개념은 저자/연도가
+   * 없고 name(영문)·ko(한국어) 두 필드만 색인한다는 점이 달라 별도 blob
+   * 캐시를 둔다. "temperature"로도 "온도"로도 찾혀야 한다는 요구는 애초에
+   * name+ko를 같은 text blob에 합쳐두는 것만으로 만족된다(번역표 없이도).
+   * ---------------------------------------------------------------- */
+  var blobCacheC=null, blobBySlugC=null;
+  function ensureBlobsConcept(){
+    if(blobCacheC) return blobBySlugC;
+    blobBySlugC={};
+    blobCacheC=(W.CONCEPT_META||[]).map(function(c){
+      var nameLower=String(c.name||'').toLowerCase();
+      var koLower=String(c.ko||'').toLowerCase();
+      var text=c.slug+' '+nameLower+' '+koLower;
+      var b={ slug:c.slug, nameLower:nameLower, koLower:koLower, text:text,
+        tokens: text.split(TOKEN_RE).filter(Boolean) };
+      blobBySlugC[c.slug]=b;
+      return b;
+    });
+    return blobBySlugC;
+  }
+  function wordMatchesConcept(w, blob){
+    if(!w) return true;
+    if(blob.text.indexOf(w)>=0) return true;
+    var syn = KO_SYN[w];
+    if(syn && blob.text.indexOf(syn)>=0) return true;
+    if(w.length>=4){
+      var maxD = w.length<=5 ? 1 : 2;
+      for(var i=0;i<blob.tokens.length;i++){
+        var tok=blob.tokens[i];
+        if(tok.length<3) continue;
+        if(editDistLE(w,tok,maxD)) return true;
+      }
+    }
+    return false;
+  }
+  W.freeTextMatchesConcept = function(c, freeLower){
+    if(!freeLower) return true;
+    var blobs=ensureBlobsConcept();
+    var blob=blobs[c.slug]; if(!blob) return false;
+    if(blob.text.indexOf(freeLower)>=0) return true;
+    var words=freeLower.split(/\s+/).filter(Boolean);
+    for(var i=0;i<words.length;i++){ if(!wordMatchesConcept(words[i],blob)) return false; }
+    return true;
+  };
+  W.rankScoreConcept = function(c, freeLower){
+    var blobs=ensureBlobsConcept();
+    var blob=blobs[c.slug];
+    var score=0;
+    if(blob){
+      if(blob.nameLower===freeLower || blob.koLower===freeLower) score+=1000;
+      else if(blob.nameLower.indexOf(freeLower)===0 || blob.koLower.indexOf(freeLower)===0) score+=500;
+      else if(freeLower && blob.text.indexOf(freeLower)>=0) score+=200;
+      else score+=80;
+    }
     return score;
   };
 })(window.WIKI);

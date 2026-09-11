@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-10",
+ "generated": "2026-09-11",
  "papers": {
   "perceptron": {
    "stage": "evergreen",
@@ -183,7 +183,8 @@
     "bit",
     "imagenet-v2",
     "autoaugment",
-    "chexnet"
+    "chexnet",
+    "nasnet"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -308,7 +309,9 @@
     "large-batch",
     "ntk",
     "adamw",
-    "adadelta"
+    "adadelta",
+    "adafactor",
+    "lion"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -390,7 +393,8 @@
     "noisy-student",
     "deep-compression",
     "movement-pruning",
-    "mobile-sam"
+    "mobile-sam",
+    "lwf"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -480,7 +484,8 @@
     "lars",
     "one-weird-trick",
     "deep-compression",
-    "shufflenet"
+    "shufflenet",
+    "saliency"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -525,7 +530,8 @@
     "deeplab",
     "openpose",
     "grad-cam",
-    "srgan"
+    "srgan",
+    "nasnet"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -661,7 +667,9 @@
     "shufflenet",
     "repvgg",
     "cutout",
-    "vnet"
+    "vnet",
+    "nasnet",
+    "matryoshka"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -779,7 +787,8 @@
     "mobilenetv2",
     "repvgg",
     "efficientnetv2",
-    "coatnet"
+    "coatnet",
+    "mnasnet"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -1417,7 +1426,8 @@
     "mobilevit",
     "coatnet",
     "swinv2",
-    "internimage"
+    "internimage",
+    "matryoshka"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -1549,7 +1559,9 @@
     "vitpose",
     "swinv2",
     "eva",
-    "data2vec"
+    "data2vec",
+    "ijepa",
+    "vjepa"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -1594,7 +1606,8 @@
     "pirl",
     "billion-scale-ssl",
     "simsiam",
-    "ibot"
+    "ibot",
+    "ijepa"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -1982,7 +1995,9 @@
     "gnmt",
     "lm-limits",
     "xlm",
-    "tied-embeddings"
+    "tied-embeddings",
+    "unigram-lm",
+    "byte-level-bpe"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -2076,7 +2091,8 @@
     "pointer-generator",
     "neural-summarization",
     "adadelta",
-    "las"
+    "las",
+    "matching-net"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -2275,7 +2291,10 @@
     "mobilevit",
     "swinv2",
     "internimage",
-    "animatediff"
+    "animatediff",
+    "adafactor",
+    "byte-level-bpe",
+    "bitnet"
    ],
    "diagram": "stack",
    "extLinks": 3,
@@ -2462,7 +2481,10 @@
     "patchtst",
     "contriever",
     "ibot",
-    "data2vec"
+    "data2vec",
+    "gte",
+    "nomic-embed",
+    "musiclm"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -2521,7 +2543,8 @@
     "ctrl",
     "cbt",
     "adversarial-triggers",
-    "sentiment-bias"
+    "sentiment-bias",
+    "byte-level-bpe"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -2646,7 +2669,9 @@
     "closed-book-qa",
     "instructblip",
     "monot5",
-    "coatnet"
+    "coatnet",
+    "adafactor",
+    "unigram-lm"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -2760,7 +2785,8 @@
     "term-freq-reasoning",
     "good-in-context",
     "palms",
-    "frozen-vlm"
+    "frozen-vlm",
+    "byte-level-bpe"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -3039,7 +3065,9 @@
     "st-moe",
     "gumbel-softmax",
     "glam",
-    "deepseek-v2"
+    "deepseek-v2",
+    "expert-choice",
+    "deepseek-moe"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -3275,7 +3303,8 @@
     "self-rag",
     "gpqa",
     "ifeval",
-    "mmlu-pro"
+    "mmlu-pro",
+    "byte-level-bpe"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -3346,7 +3375,8 @@
     "palm2",
     "glu-variants",
     "gpt-neox",
-    "instructblip"
+    "instructblip",
+    "bitnet-158"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -3675,7 +3705,8 @@
     "xlnet",
     "gpt-neox",
     "deepseek-v2",
-    "longrope"
+    "longrope",
+    "nomic-embed"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -3766,7 +3797,8 @@
     "memory-efficient-attn",
     "reformer",
     "h2o",
-    "longrope"
+    "longrope",
+    "nomic-embed"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -4019,7 +4051,9 @@
     "qlora",
     "gptq",
     "awq",
-    "quantization-survey"
+    "quantization-survey",
+    "smoothquant",
+    "bitnet"
    ],
    "diagram": "split",
    "extLinks": 3,
@@ -4058,7 +4092,9 @@
     "lottery",
     "straight-through",
     "glm-130b",
-    "quantization-survey"
+    "quantization-survey",
+    "smoothquant",
+    "bitnet"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -4133,7 +4169,10 @@
     "grad-checkpointing",
     "mixed-precision",
     "gpipe",
-    "mt-nlg"
+    "mt-nlg",
+    "horovod",
+    "alpa",
+    "fsdp"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -4176,7 +4215,10 @@
     "lars",
     "one-weird-trick",
     "pipedream",
-    "gspmd"
+    "gspmd",
+    "horovod",
+    "alpa",
+    "fsdp"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -5101,7 +5143,8 @@
     "ldm",
     "flow-matching",
     "sdxl",
-    "cogvideox"
+    "cogvideox",
+    "rdt"
    ],
    "diagram": "stack",
    "extLinks": 2,
@@ -5325,7 +5368,8 @@
     "grounding-dino",
     "vilbert",
     "frozen-vlm",
-    "eva"
+    "eva",
+    "matryoshka"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -5358,7 +5402,8 @@
     "blip",
     "simvlm",
     "visual-semantic-embed",
-    "convirt"
+    "convirt",
+    "matryoshka"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -5867,7 +5912,8 @@
     "deepseek-r1",
     "constitutional",
     "gae",
-    "autoaugment"
+    "autoaugment",
+    "nasnet"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -7159,7 +7205,9 @@
     "vits",
     "encodec",
     "audiolm",
-    "jukebox"
+    "jukebox",
+    "musiclm",
+    "musicgen"
    ],
    "diagram": "flow",
    "extLinks": 1,
@@ -7194,7 +7242,8 @@
     "soundstream",
     "audiolm",
     "vall-e",
-    "jukebox"
+    "jukebox",
+    "musicgen"
    ],
    "diagram": "compare",
    "extLinks": 1,
@@ -7230,7 +7279,8 @@
     "soundstream",
     "encodec",
     "vall-e",
-    "jukebox"
+    "jukebox",
+    "musiclm"
    ],
    "diagram": "loop",
    "extLinks": 1,
@@ -7981,7 +8031,8 @@
    "in": [
     "sentence-bert",
     "e5",
-    "contriever"
+    "contriever",
+    "gte"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -8047,7 +8098,8 @@
    ],
    "in": [
     "simcse",
-    "bge"
+    "bge",
+    "nomic-embed"
    ],
    "diagram": "flow",
    "extLinks": 3,
@@ -8530,7 +8582,8 @@
     "i3d",
     "timesformer",
     "kinetics",
-    "ucf101"
+    "ucf101",
+    "vjepa"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -8763,7 +8816,9 @@
    "in": [
     "diffusion-policy",
     "pi0",
-    "mobile-aloha"
+    "mobile-aloha",
+    "dexterity",
+    "umi"
    ],
    "diagram": "stack",
    "extLinks": 2,
@@ -8794,7 +8849,9 @@
    "in": [
     "act",
     "pi0",
-    "mobile-aloha"
+    "mobile-aloha",
+    "dexterity",
+    "umi"
    ],
    "diagram": "loop",
    "extLinks": 2,
@@ -8866,7 +8923,8 @@
     "rt1",
     "rt2",
     "pi0",
-    "open-x"
+    "open-x",
+    "rdt"
    ],
    "diagram": "stack",
    "extLinks": 2,
@@ -9468,7 +9526,8 @@
    ],
    "in": [
     "large-batch",
-    "sgdr"
+    "sgdr",
+    "horovod"
    ],
    "diagram": "flow",
    "extLinks": 1,
@@ -10240,7 +10299,9 @@
    "in": [
     "bpe",
     "mt5",
-    "trocr"
+    "trocr",
+    "unigram-lm",
+    "byte-level-bpe"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -11006,7 +11067,10 @@
     "lime",
     "shap",
     "attention-not-explanation",
-    "cutmix"
+    "cutmix",
+    "saliency",
+    "integrated-gradients",
+    "tcav"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -11469,7 +11533,9 @@
    "in": [
     "adam",
     "sgdr",
-    "adadelta"
+    "adadelta",
+    "lion",
+    "sophia"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -12682,7 +12748,8 @@
     "distilbert"
    ],
    "in": [
-    "distilbert"
+    "distilbert",
+    "unigram-lm"
    ],
    "diagram": "compare",
    "extLinks": 3,
@@ -12839,7 +12906,8 @@
     "moe-efficient",
     "one-weird-trick",
     "gspmd",
-    "glam"
+    "glam",
+    "expert-choice"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -12871,7 +12939,8 @@
    "in": [
     "t5",
     "sentencepiece",
-    "xlm"
+    "xlm",
+    "unigram-lm"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -15567,7 +15636,8 @@
     "moe-shazeer"
    ],
    "in": [
-    "lm-limits"
+    "lm-limits",
+    "nomic-embed"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -16959,7 +17029,9 @@
     "palm"
    ],
    "in": [
-    "one-weird-trick"
+    "one-weird-trick",
+    "horovod",
+    "alpa"
    ],
    "diagram": "flow",
    "extLinks": 2,
@@ -21011,7 +21083,8 @@
    ],
    "in": [
     "mobilevit",
-    "efficientnetv2"
+    "efficientnetv2",
+    "mnasnet"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -21466,7 +21539,8 @@
    ],
    "in": [
     "simsiam",
-    "data2vec"
+    "data2vec",
+    "ijepa"
    ],
    "diagram": "compare",
    "extLinks": 2,
@@ -22918,7 +22992,9 @@
     "dreamer",
     "muzero"
    ],
-   "in": [],
+   "in": [
+    "genie"
+   ],
    "diagram": "loop",
    "extLinks": 2,
    "tags": [
@@ -22952,35 +23028,1228 @@
     "2021"
    ],
    "mtime": "2026-09-10"
+  },
+  "matching-net": {
+   "stage": "evergreen",
+   "bytes": 9147,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "seq2seq",
+    "maml",
+    "prototypical",
+    "reptile"
+   ],
+   "in": [
+    "maml",
+    "prototypical"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "foundations",
+    "meta",
+    "2016"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "maml": {
+   "stage": "evergreen",
+   "bytes": 8728,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "matching-net",
+    "reptile",
+    "prototypical"
+   ],
+   "in": [
+    "matching-net",
+    "prototypical",
+    "reptile"
+   ],
+   "diagram": "loop",
+   "extLinks": 2,
+   "tags": [
+    "foundations",
+    "meta",
+    "2017"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "prototypical": {
+   "stage": "evergreen",
+   "bytes": 8387,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "maml",
+    "matching-net"
+   ],
+   "in": [
+    "matching-net",
+    "maml"
+   ],
+   "diagram": "flow",
+   "extLinks": 1,
+   "tags": [
+    "foundations",
+    "meta",
+    "2017"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "reptile": {
+   "stage": "evergreen",
+   "bytes": 9467,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "maml"
+   ],
+   "in": [
+    "matching-net",
+    "maml"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "foundations",
+    "meta",
+    "2018"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "lwf": {
+   "stage": "evergreen",
+   "bytes": 8695,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "distillation",
+    "ewc",
+    "icarl"
+   ],
+   "in": [
+    "ewc",
+    "icarl"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "foundations",
+    "meta",
+    "2016"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "ewc": {
+   "stage": "evergreen",
+   "bytes": 9017,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "lwf",
+    "icarl",
+    "gem"
+   ],
+   "in": [
+    "lwf",
+    "gem"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "foundations",
+    "meta",
+    "2016"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "icarl": {
+   "stage": "evergreen",
+   "bytes": 8673,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "lwf",
+    "gem"
+   ],
+   "in": [
+    "lwf",
+    "ewc",
+    "gem"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "foundations",
+    "meta",
+    "2016"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "gem": {
+   "stage": "evergreen",
+   "bytes": 9210,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "ewc",
+    "icarl"
+   ],
+   "in": [
+    "ewc",
+    "icarl"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "foundations",
+    "meta",
+    "2017"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "nasnet": {
+   "stage": "evergreen",
+   "bytes": 8332,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "imagenet",
+    "vgg",
+    "resnet",
+    "ppo",
+    "enas",
+    "darts",
+    "mnasnet"
+   ],
+   "in": [
+    "enas",
+    "darts",
+    "mnasnet"
+   ],
+   "diagram": "flow",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "nas",
+    "2017"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "enas": {
+   "stage": "evergreen",
+   "bytes": 9090,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "nasnet",
+    "darts"
+   ],
+   "in": [
+    "nasnet",
+    "darts",
+    "mnasnet"
+   ],
+   "diagram": "compare",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "nas",
+    "2018"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "darts": {
+   "stage": "evergreen",
+   "bytes": 9977,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "enas",
+    "nasnet",
+    "mnasnet"
+   ],
+   "in": [
+    "nasnet",
+    "enas",
+    "mnasnet"
+   ],
+   "diagram": "flow",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "nas",
+    "2018"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "mnasnet": {
+   "stage": "evergreen",
+   "bytes": 9251,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "nasnet",
+    "darts",
+    "mobilenetv2",
+    "efficientnet",
+    "enas"
+   ],
+   "in": [
+    "nasnet",
+    "darts"
+   ],
+   "diagram": "loop",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "nas",
+    "2018"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "saliency": {
+   "stage": "evergreen",
+   "bytes": 9911,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "alexnet",
+    "grad-cam",
+    "integrated-gradients",
+    "tcav"
+   ],
+   "in": [
+    "integrated-gradients",
+    "tcav"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "interp",
+    "xai",
+    "2013"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "integrated-gradients": {
+   "stage": "evergreen",
+   "bytes": 10277,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "saliency",
+    "grad-cam",
+    "tcav"
+   ],
+   "in": [
+    "saliency",
+    "tcav"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "interp",
+    "xai",
+    "2017"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "tcav": {
+   "stage": "evergreen",
+   "bytes": 9990,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "saliency",
+    "grad-cam",
+    "integrated-gradients"
+   ],
+   "in": [
+    "saliency",
+    "integrated-gradients"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "interp",
+    "xai",
+    "2017"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "adafactor": {
+   "stage": "evergreen",
+   "bytes": 10129,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "adam",
+    "t5",
+    "transformer",
+    "lion",
+    "sophia"
+   ],
+   "in": [
+    "lion"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "foundations",
+    "learning",
+    "2018"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "lion": {
+   "stage": "evergreen",
+   "bytes": 11136,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "adamw",
+    "adam",
+    "adafactor",
+    "sophia"
+   ],
+   "in": [
+    "adafactor",
+    "sophia"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "foundations",
+    "learning",
+    "2023"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "sophia": {
+   "stage": "evergreen",
+   "bytes": 10592,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "adamw",
+    "lion"
+   ],
+   "in": [
+    "adafactor",
+    "lion"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "foundations",
+    "learning",
+    "2023"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "horovod": {
+   "stage": "growing",
+   "bytes": 8248,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "lr-scaling",
+    "megatron",
+    "gspmd",
+    "alpa",
+    "zero",
+    "fsdp"
+   ],
+   "in": [],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "serve",
+    "2018"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "alpa": {
+   "stage": "growing",
+   "bytes": 8289,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "megatron",
+    "gspmd",
+    "zero",
+    "fsdp"
+   ],
+   "in": [
+    "horovod",
+    "fsdp"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "serve",
+    "2022"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "fsdp": {
+   "stage": "evergreen",
+   "bytes": 9056,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "zero",
+    "megatron",
+    "alpa"
+   ],
+   "in": [
+    "horovod",
+    "alpa"
+   ],
+   "diagram": "stack",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "serve",
+    "2023"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "unigram-lm": {
+   "stage": "evergreen",
+   "bytes": 8747,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "bpe",
+    "sentencepiece",
+    "mt5",
+    "albert",
+    "t5",
+    "byte-level-bpe"
+   ],
+   "in": [
+    "byte-level-bpe"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "nlp",
+    "repr",
+    "2018"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "byte-level-bpe": {
+   "stage": "evergreen",
+   "bytes": 8499,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "bpe",
+    "transformer",
+    "gpt2",
+    "gpt3",
+    "gpt4",
+    "unigram-lm",
+    "sentencepiece"
+   ],
+   "in": [
+    "unigram-lm"
+   ],
+   "diagram": "compare",
+   "extLinks": 1,
+   "tags": [
+    "nlp",
+    "repr",
+    "2019"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "matryoshka": {
+   "stage": "evergreen",
+   "bytes": 8709,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "nomic-embed",
+    "vit",
+    "resnet",
+    "align",
+    "clip"
+   ],
+   "in": [],
+   "diagram": "stack",
+   "extLinks": 2,
+   "tags": [
+    "ir",
+    "embed",
+    "2022"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "gte": {
+   "stage": "evergreen",
+   "bytes": 9358,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "simcse",
+    "bert",
+    "nomic-embed"
+   ],
+   "in": [
+    "nomic-embed"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "ir",
+    "embed",
+    "2023"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "nomic-embed": {
+   "stage": "evergreen",
+   "bytes": 8680,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "e5",
+    "gte",
+    "bert",
+    "rope",
+    "glu-variants",
+    "flashattention"
+   ],
+   "in": [
+    "matryoshka",
+    "gte"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "ir",
+    "embed",
+    "2024"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "musiclm": {
+   "stage": "evergreen",
+   "bytes": 9987,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "audiolm",
+    "bert",
+    "soundstream",
+    "musicgen",
+    "stable-audio"
+   ],
+   "in": [
+    "musicgen",
+    "stable-audio"
+   ],
+   "diagram": "stack",
+   "extLinks": 2,
+   "tags": [
+    "speech",
+    "music",
+    "2023"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "musicgen": {
+   "stage": "evergreen",
+   "bytes": 9376,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "musiclm",
+    "encodec",
+    "soundstream",
+    "stable-audio"
+   ],
+   "in": [
+    "musiclm",
+    "stable-audio"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "speech",
+    "music",
+    "2023"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "stable-audio": {
+   "stage": "evergreen",
+   "bytes": 9102,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "musiclm",
+    "musicgen"
+   ],
+   "in": [
+    "musiclm",
+    "musicgen"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "speech",
+    "music",
+    "2024"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "dexterity": {
+   "stage": "evergreen",
+   "bytes": 10023,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "umi",
+    "act",
+    "diffusion-policy"
+   ],
+   "in": [
+    "umi"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "robotics",
+    "imitation",
+    "2018"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "umi": {
+   "stage": "evergreen",
+   "bytes": 9048,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "act",
+    "diffusion-policy",
+    "rdt",
+    "dexterity"
+   ],
+   "in": [
+    "dexterity",
+    "rdt"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "robotics",
+    "imitation",
+    "2024"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "rdt": {
+   "stage": "evergreen",
+   "bytes": 8980,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "openvla",
+    "dit",
+    "umi"
+   ],
+   "in": [
+    "umi"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "robotics",
+    "vla",
+    "2024"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "fp8": {
+   "stage": "evergreen",
+   "bytes": 8000,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "smoothquant"
+   ],
+   "in": [
+    "smoothquant"
+   ],
+   "diagram": "split",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "quant",
+    "2022"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "smoothquant": {
+   "stage": "evergreen",
+   "bytes": 8559,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "llm-int8",
+    "gptq",
+    "fp8"
+   ],
+   "in": [
+    "fp8",
+    "bitnet"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "quant",
+    "2022"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "bitnet": {
+   "stage": "evergreen",
+   "bytes": 9208,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "llm-int8",
+    "gptq",
+    "smoothquant",
+    "transformer",
+    "bitnet-158"
+   ],
+   "in": [
+    "bitnet-158"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "quant",
+    "2023"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "bitnet-158": {
+   "stage": "evergreen",
+   "bytes": 8011,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "bitnet",
+    "llama"
+   ],
+   "in": [
+    "bitnet"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "quant",
+    "2024"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "expert-choice": {
+   "stage": "evergreen",
+   "bytes": 7824,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "switch",
+    "gshard",
+    "deepseek-moe"
+   ],
+   "in": [
+    "deepseek-moe"
+   ],
+   "diagram": "compare",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "serve",
+    "2022"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "deepseek-moe": {
+   "stage": "evergreen",
+   "bytes": 8204,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "switch",
+    "expert-choice"
+   ],
+   "in": [
+    "expert-choice"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "serve",
+    "2024"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "ijepa": {
+   "stage": "evergreen",
+   "bytes": 9360,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "mae",
+    "dino",
+    "ibot",
+    "vjepa"
+   ],
+   "in": [
+    "vjepa"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "vision",
+    "selfsup",
+    "2023"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "vjepa": {
+   "stage": "evergreen",
+   "bytes": 9448,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "ijepa",
+    "mae",
+    "videomae",
+    "genie"
+   ],
+   "in": [
+    "ijepa"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "vision",
+    "selfsup",
+    "2024"
+   ],
+   "mtime": "2026-09-11"
+  },
+  "genie": {
+   "stage": "evergreen",
+   "bytes": 9227,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "dreamerv3"
+   ],
+   "in": [
+    "vjepa"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "rl",
+    "world",
+    "2024"
+   ],
+   "mtime": "2026-09-11"
   }
  },
  "stats": {
-  "total": 685,
-  "written": 685,
+  "total": 726,
+  "written": 726,
   "byStage": {
-   "evergreen": 587,
-   "growing": 98
+   "evergreen": 626,
+   "growing": 100
   },
   "byField": {
    "foundations": {
-    "total": 23,
-    "written": 23
+    "total": 34,
+    "written": 34
    },
    "nlp": {
-    "total": 25,
-    "written": 25
+    "total": 27,
+    "written": 27
    },
    "vision": {
-    "total": 120,
-    "written": 120
+    "total": 122,
+    "written": 122
    },
    "llm": {
     "total": 83,
     "written": 83
    },
    "efficiency": {
-    "total": 53,
-    "written": 53
+    "total": 66,
+    "written": 66
    },
    "generative": {
     "total": 57,
@@ -22991,24 +24260,24 @@
     "written": 27
    },
    "speech": {
-    "total": 20,
-    "written": 20
+    "total": 23,
+    "written": 23
    },
    "rl": {
-    "total": 25,
-    "written": 25
+    "total": 26,
+    "written": 26
    },
    "agent": {
     "total": 25,
     "written": 25
    },
    "ir": {
-    "total": 20,
-    "written": 20
+    "total": 23,
+    "written": 23
    },
    "interp": {
-    "total": 64,
-    "written": 64
+    "total": 67,
+    "written": 67
    },
    "privacy": {
     "total": 33,
@@ -23031,8 +24300,8 @@
     "written": 15
    },
    "robotics": {
-    "total": 12,
-    "written": 12
+    "total": 15,
+    "written": 15
    },
    "science": {
     "total": 13,

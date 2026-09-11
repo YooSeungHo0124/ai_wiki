@@ -61,40 +61,64 @@
   }
 
   var lastQuery={filters:[],free:''}, lastFull=[];
+  /* 검색 결과는 논문과 개념 두 종류다(개념 사전 신설). cur는 이제
+     {type:'paper',m}/{type:'concept',c} 를 섞은 배열 — 키보드 인덱스는
+     이 통합 배열 순서를 그대로 따른다. 필터 문법(field:/track:/…)은
+     논문 전용 문법이라 필터만 있고 자유어가 없는 "작업 큐" 모드에서는
+     개념을 아예 섞지 않는다(원래 의미와 달라지지 않게). */
   function search(raw){
     var q=parseQuery(raw);
     lastQuery=q;
-    if(!q.filters.length && !q.free) return [];
+    if(!q.filters.length && !q.free) return {papers:[], concepts:[], queryOnly:false};
     var matched=W.META.filter(function(m){
       if(q.free && !W.freeTextMatches(m,q.free)) return false;
       return q.filters.every(function(ft){ return matchFilter(m,ft); });
     });
     if(q.free) matched.sort(function(a,b){ return W.rankScore(b,q.free)-W.rankScore(a,q.free); });
     lastFull=matched;
-    /* 필터만 있고 자유어가 없으면(작업 큐) 캡 없이 전부 */
-    return (q.filters.length && !q.free) ? matched : matched.slice(0,12);
+    var queryOnly = q.filters.length && !q.free;
+    var papers = queryOnly ? matched : matched.slice(0,12);
+    var concepts=[];
+    if(q.free && typeof W.freeTextMatchesConcept==='function'){
+      concepts=(W.CONCEPT_META||[]).filter(function(c){ return W.freeTextMatchesConcept(c,q.free); });
+      concepts.sort(function(a,b){ return W.rankScoreConcept(b,q.free)-W.rankScoreConcept(a,q.free); });
+      concepts=concepts.slice(0,6);
+    }
+    return {papers:papers, concepts:concepts, queryOnly:queryOnly};
   }
   function closeRes(){
     sr.classList.remove('on');
     si.setAttribute('aria-expanded','false');
     si.removeAttribute('aria-activedescendant');
   }
+  function resultRow(x,i){
+    if(x.type==='paper'){
+      var m=x.m, f=W.field(m.field), stage=W.stageIcon(m.slug);
+      return '<div class="r'+(i===sel?' sel':'')+'" id="res-opt-'+i+'" role="option" aria-selected="'+(i===sel?'true':'false')+'" data-slug="'+m.slug+'"><b>'+W.esc(m.ko)+'</b> '+stage
+        +'<span>· '+m.year+' · '+W.esc(f?f.name:'')+'</span><br><span>'+W.esc(m.title)+'</span></div>';
+    }
+    var c=x.c, g=W.conceptGroup(c.group);
+    return '<div class="r r-concept'+(i===sel?' sel':'')+'" id="res-opt-'+i+'" role="option" aria-selected="'+(i===sel?'true':'false')+'" data-concept="'+c.slug+'"><b>'+W.esc(c.ko)+'</b>'
+      +'<span>· '+W.esc(c.name)+' · '+W.esc(g?g.name:'')+'</span></div>';
+  }
   function drawRes(){
     if(!lastQuery.filters.length && !lastQuery.free){ closeRes(); return; }
     var queryOnly = lastQuery.filters.length && !lastQuery.free;
     if(!cur.length){
       var hints=lastQuery.filters.map(unknownFieldHint).filter(Boolean).join('');
-      sr.innerHTML='<div class="r-empty">일치하는 논문이 없습니다.'+hints+'</div>';
+      sr.innerHTML='<div class="r-empty">일치하는 논문·개념이 없습니다.'+hints+'</div>';
       sr.classList.add('on');
       si.setAttribute('aria-expanded','true');
       si.removeAttribute('aria-activedescendant');
       return;
     }
+    var mixed = cur.some(function(x){return x.type==='paper';}) && cur.some(function(x){return x.type==='concept';});
     var head = queryOnly ? '<div class="r-count">'+lastFull.length+'편 · 스크롤해서 전부 보기</div>' : '';
-    sr.innerHTML=head+cur.map(function(m,i){
-      var f=W.field(m.field), stage=W.stageIcon(m.slug);
-      return '<div class="r'+(i===sel?' sel':'')+'" id="res-opt-'+i+'" role="option" aria-selected="'+(i===sel?'true':'false')+'" data-slug="'+m.slug+'"><b>'+W.esc(m.ko)+'</b> '+stage
-        +'<span>· '+m.year+' · '+W.esc(f?f.name:'')+'</span><br><span>'+W.esc(m.title)+'</span></div>';
+    sr.innerHTML=head+cur.map(function(x,i){
+      var label='';
+      if(mixed && i===0 && x.type==='paper') label='<div class="r-group-label">논문</div>';
+      if(mixed && x.type==='concept' && (i===0 || cur[i-1].type==='paper')) label='<div class="r-group-label">개념</div>';
+      return label+resultRow(x,i);
     }).join('');
     sr.classList.toggle('query-open', !!queryOnly);
     sr.classList.add('on');
@@ -102,16 +126,27 @@
     if(sel>=0) si.setAttribute('aria-activedescendant','res-opt-'+sel);
     else si.removeAttribute('aria-activedescendant');
   }
-  si.addEventListener('input',function(){ cur=search(si.value); sel=-1; drawRes(); });
+  function goToResult(x){
+    if(!x) return;
+    W.go(x.type==='paper' ? '#/p/'+x.m.slug : '#/c/'+x.c.slug);
+  }
+  si.addEventListener('input',function(){
+    var r=search(si.value);
+    cur = r.papers.map(function(m){return {type:'paper',m:m};})
+      .concat(r.concepts.map(function(c){return {type:'concept',c:c};}));
+    sel=-1; drawRes();
+  });
   si.addEventListener('keydown',function(e){
     if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);drawRes();e.preventDefault();}
     else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);drawRes();e.preventDefault();}
-    else if(e.key==='Enter'&&cur.length){ W.go('#/p/'+cur[Math.max(sel,0)].slug); si.blur(); closeRes(); si.value=''; }
+    else if(e.key==='Enter'&&cur.length){ goToResult(cur[Math.max(sel,0)]); si.blur(); closeRes(); si.value=''; }
     else if(e.key==='Escape'){ si.blur(); closeRes(); }
   });
   sr.addEventListener('click',function(e){
     var r=e.target.closest('.r'); if(!r) return;
-    W.go('#/p/'+r.dataset.slug); closeRes(); si.value='';
+    if(r.dataset.concept) W.go('#/c/'+r.dataset.concept);
+    else if(r.dataset.slug) W.go('#/p/'+r.dataset.slug);
+    closeRes(); si.value='';
   });
   document.addEventListener('click',function(e){ if(!e.target.closest('.searchbox')) closeRes(); });
   document.addEventListener('keydown',function(e){
@@ -240,7 +275,17 @@
      내려보내되(<details> 네이티브 토글로 수동 펼침이 가능해야 하므로),
      펼침 상태(open)만 "현재 보고 있는 논문의 분야·트랙"에 맞춰 계산한다.
      넓은 화면에서만 보이고(css 미디어쿼리), 좁은 화면은 ☰ 토글로 연다. */
-  function navTreeHTML(activeSlug, activeFieldId, lite){
+  /* 개념 사전 진입점 — 좌측 내비 최상단에 논문 트리와 분리된 한 칸으로 둔다
+     (분야색·연도 같은 논문 시각언어를 안 쓰고, 책 아이콘 하나로만 구분).
+     activeConceptSlug가 있으면(#/c/<slug> 보는 중) 강조한다. */
+  function conceptNavHTML(activeConceptSlug, isConceptsIndex){
+    var on = isConceptsIndex || !!activeConceptSlug;
+    return '<li class="nav-group nav-concepts"><ul class="nav-fields">'
+      +'<li><a class="nav-field-link nav-concept-link'+(on?' nav-current':'')+'" href="#/concepts"'+(on?' aria-current="page"':'')+'>📖 개념 사전<span class="nav-count">'+(W.CONCEPT_META?W.CONCEPT_META.length:0)+'</span></a></li>'
+      +'</ul></li>';
+  }
+
+  function navTreeHTML(activeSlug, activeFieldId, lite, activeConceptSlug){
     var cur = activeSlug ? W.byId(activeSlug) : null;
     var activeField = cur ? cur.field : (activeFieldId||null);
     var activeTrack = cur ? cur.track : null;
@@ -248,6 +293,9 @@
       : [{id:'all', name:'', fields:W.FIELDS.map(function(f){return f.id;})}];
     var byField={}; W.META.forEach(function(m){ (byField[m.field]=byField[m.field]||[]).push(m); });
     var stats = W.GRAPH && W.GRAPH.stats;
+    var isConceptsIndex = activeConceptSlug==='__index__';
+    var conceptSlugForNav = isConceptsIndex ? null : activeConceptSlug;
+    var conceptNav = conceptNavHTML(conceptSlugForNav, isConceptsIndex);
 
     /* lite 모드 — 홈 전용. 홈은 이미 책장(shelf.js)이 446편 전체를 DOM에
        한 번 그린다(A11Y-PERF 실측 4,226~4,306 노드). 여기서 같은 446편을
@@ -264,7 +312,7 @@
         return '<li class="nav-group">'+(g.name?'<div class="nav-group-name">'+W.esc(g.name)+'</div>':'')
           +'<ul class="nav-fields">'+itemsHtml+'</ul></li>';
       }).join('');
-      return '<nav class="nav-tree" aria-label="분야 내비게이션"><ul class="nav-groups">'+liteBody+'</ul></nav>';
+      return '<nav class="nav-tree" aria-label="분야·개념 사전 내비게이션"><ul class="nav-groups">'+conceptNav+liteBody+'</ul></nav>';
     }
 
     function paperLi(m){
@@ -301,7 +349,7 @@
       return '<li class="nav-group">'+(g.name?'<div class="nav-group-name">'+W.esc(g.name)+'</div>':'')
         +'<ul class="nav-fields">'+fieldsHtml+'</ul></li>';
     }).join('');
-    return '<nav class="nav-tree" aria-label="분야·트랙 내비게이션"><ul class="nav-groups">'+body+'</ul></nav>';
+    return '<nav class="nav-tree" aria-label="분야·트랙·개념 내비게이션"><ul class="nav-groups">'+conceptNav+body+'</ul></nav>';
   }
   function navToggleBtn(){
     return '<button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-label="분야 내비게이션 열기">☰</button>';
@@ -509,6 +557,22 @@
       +'</div>';
   }
 
+  /* ---------- 홈 진입점 — 개념 사전 (책장·계보 그래프와 나란한 위계) ---------- */
+  function conceptsTeaserHtml(){
+    var n = W.CONCEPT_META ? W.CONCEPT_META.length : 0;
+    var groups = W.CONCEPT_GROUPS || [];
+    if(!n) return '';
+    return '<section class="concepts-teaser" aria-labelledby="conceptsHeading">'
+      +'<h2 id="conceptsHeading">개념 사전 — 논문만으로는 알 수 없는 '+n+'개 용어</h2>'
+      +'<p>temperature 가 뭔지, self-attention 이 뭔지, 논문 노트는 "그 개념을 안다"고 전제하고 시작합니다. '
+      +'이 사전은 그 전제를 채웁니다 — 정의부터, 헷갈리는 짝(confuse)까지.</p>'
+      +'<div class="concepts-teaser-groups">'+groups.map(function(g){
+        return '<span class="ct-chip">'+W.esc(g.name)+'</span>';
+      }).join('')+'</div>'
+      +'<a class="entry-btn" href="#/concepts">개념 사전 열기 →</a>'
+      +'</section>';
+  }
+
   function viewHome(){
     setTitle(null);
     var stats=W.GRAPH&&W.GRAPH.stats;
@@ -562,6 +626,7 @@
       +heroP+' <span class="kbd">/</span> 키로 검색.</p></div>'
       +personalStrip()
       +shelfHtml
+      +conceptsTeaserHtml()
       +'<section class="lineage-main" aria-labelledby="lineageHeading">'
       +'<h2 id="lineageHeading">전체 계보도 — '+W.META.length+'편을 연도축 위에 한 장으로</h2>'
       +'<details class="graph-collapse lineage-collapse" id="homeGraph"'+(homeGraphOpen?' open':'')+'>'
@@ -760,6 +825,173 @@
     fieldGraphCtl = wireGraphSelection(document.getElementById('fgbox'), document.getElementById('fieldGraphCard'));
   }
 
+  /* ---------- 뷰: 개념 사전 목록 (#/concepts) ---------- */
+  var LEVEL_LABEL={1:'기초',2:'중급',3:'심화'};
+  function levelDots(level){
+    var l=level||1;
+    var dots='';
+    for(var i=1;i<=3;i++) dots += '<span class="lvl-dot'+(i<=l?' on':'')+'"></span>';
+    return '<span class="lvl" title="난이도: '+W.esc(LEVEL_LABEL[l]||l)+'" aria-label="난이도 '+W.esc(LEVEL_LABEL[l]||l)+'">'+dots+'</span>';
+  }
+  function conceptChip(c, writtenMap){
+    var state = writtenMap ? writtenMap[c.slug] : undefined; /* undefined=확인 중, true=작성됨, false=씨앗 */
+    var seedCls = state===false ? ' ct-seed' : '';
+    return '<a class="concept-chip'+seedCls+'" href="#/c/'+c.slug+'" data-concept-chip="'+c.slug+'">'
+      +'<span class="cc-ko">'+W.esc(c.ko)+'</span>'
+      +'<span class="cc-name">'+W.esc(c.name)+'</span>'
+      +levelDots(c.level)
+      +(state===false?'<span class="cc-seed-badge" aria-hidden="true">🌱</span>':'')
+      +'</a>';
+  }
+  function viewConcepts(){
+    setTitle('개념 사전');
+    var groups=W.CONCEPT_GROUPS||[];
+    var all=W.CONCEPT_META||[];
+    var byGroup={}; all.forEach(function(c){ (byGroup[c.group]=byGroup[c.group]||[]).push(c); });
+    var body=groups.map(function(g){
+      var mine=(byGroup[g.id]||[]).slice().sort(function(a,b){ return a.level-b.level || a.name.localeCompare(b.name); });
+      if(!mine.length) return '';
+      return '<section class="concept-group" id="g-'+g.id+'">'
+        +'<h2>'+W.esc(g.name)+' <span class="cg-count">'+mine.length+'개</span></h2>'
+        +(g.desc?'<p class="cg-desc">'+W.esc(g.desc)+'</p>':'')
+        +'<div class="concept-grid">'+mine.map(function(c){ return conceptChip(c,null); }).join('')+'</div>'
+        +'</section>';
+    }).join('');
+    var inner='<div class="crumb"><a href="#/">전체 지도</a> › 개념 사전'+navToggleBtn()+'</div>'
+      +'<div class="hero"><h2>개념 사전</h2>'
+      +'<p>인공지능을 개발하며 실제로 마주치는 용어 '+all.length+'개를 6개 그룹으로 모았습니다. '
+      +'난이도는 점 1~3개(●○○ 기초 · ●●○ 중급 · ●●● 심화)로 표시합니다. 헷갈리는 개념 짝은 각 문서 안에서 나란히 대비해 둡니다.</p></div>'
+      +body;
+    app.innerHTML=shell(navTreeHTML(null,null,false,'__index__'), 'wrap wide', inner);
+    wireNavToggle(app);
+    /* 목록 자체는 즉시 그리고, 각 항목이 실제로 작성됐는지(씨앗 여부)는
+       본문을 하나씩 지연 로드해 본 뒤 배지만 갱신한다 — 목록 렌더가
+       73개 본문 로드를 기다릴 필요는 없다(다른 화면과 같은 "값이 없으면
+       그 조각만 나중에 채운다" 규칙). */
+    if(typeof W.loadConcept==='function'){
+      all.forEach(function(c){
+        W.loadConcept(c.slug).then(function(body){
+          var el=app.querySelector('[data-concept-chip="'+c.slug+'"]');
+          if(!el) return;
+          if(body){ el.classList.remove('ct-seed'); var b=el.querySelector('.cc-seed-badge'); if(b) b.remove(); }
+        });
+      });
+    }
+  }
+
+  /* ---------- 뷰: 개념 문서 (#/c/<slug>) ---------- */
+  function conceptPapersHTML(slugs){
+    var items=(slugs||[]).map(W.byId).filter(Boolean);
+    if(!items.length) return '<p class="stub-inline">관련 논문이 아직 인덱스에 없습니다.</p>';
+    return '<div class="grid">'+items.map(function(m){
+      var f=W.field(m.field), stage=W.stageIcon(m.slug);
+      return '<a class="card" href="#/p/'+m.slug+'"><div class="bar" style="background:'+f.color+'"></div>'
+        +(stage?'<div class="card-stage">'+stage+'</div>':'')
+        +'<div class="en">'+m.year+' · '+W.esc(f.name)+'</div><h3>'+W.esc(m.ko)+'</h3>'
+        +'<p style="font-size:12.5px">'+W.esc(m.title)+'</p></a>';
+    }).join('')+'</div>';
+  }
+  function conceptTermsHTML(slugs){
+    var items=(slugs||[]).map(W.conceptById).filter(Boolean);
+    if(!items.length) return '';
+    return '<div class="concept-terms">'+items.map(function(c){
+      return '<a class="pill concept-pill" href="#/c/'+c.slug+'">'+W.esc(c.ko)+' <span style="color:var(--muted)">'+W.esc(c.name)+'</span></a>';
+    }).join('')+'</div>';
+  }
+  function relatedConceptsHTML(slug){
+    if(typeof W.conceptsForPaper!=='function') return '';
+    var items=W.conceptsForPaper(slug);
+    if(!items.length) return '';
+    return conceptTermsHTML(items.map(function(c){return c.slug;}));
+  }
+  function confuseHTML(list){
+    if(!list||!list.length) return '';
+    return '<div class="confuse-list">'+list.map(function(x){
+      return '<div class="confuse-pair">'
+        +'<div class="conf-term conf-a">'+W.fmt(x.a)+'</div>'
+        +'<div class="conf-vs" aria-hidden="true">vs</div>'
+        +'<div class="conf-term conf-b">'+W.fmt(x.b)+'</div>'
+        +'<div class="conf-d">'+W.fmt(x.d||'')+'</div>'
+        +'</div>';
+    }).join('')+'</div>';
+  }
+  function conceptCodeHTML(code){
+    if(!code||!code.src) return '';
+    return (code.d?'<p class="code-d">'+W.fmt(code.d)+'</p>':'')
+      +'<pre class="concept-code"><code>'+W.esc(code.src)+'</code></pre>'
+      +(code.lang?'<div class="code-lang">'+W.esc(code.lang)+'</div>':'');
+  }
+  function conceptMathHTML(list){
+    return (list||[]).map(function(x){
+      var body = x.tex ? '<div class="e tex">'+W.tex(x.tex,true)+'</div>' : '<div class="e">'+W.esc(x.expr||'')+'</div>';
+      return '<div class="math">'+body+'<div class="d">'+W.fmt(x.d||'')+'</div></div>';
+    }).join('');
+  }
+
+  function conceptGuideBox(c){
+    return '<div class="guide"><h4>🌱 이 개념의 사전 항목은 아직 없습니다</h4>'
+      +'<p style="margin:0 0 4px"><code>content/concepts/'+W.esc(c.slug)+'.js</code> 를 만들면 이 자리에 채워집니다.</p>'
+      +'<p style="margin:0">규격: <code>AUTHORING-CONCEPTS.md</code> · 필수 필드: tldr · why · sections</p>'
+      +'<div class="links"><a href="AUTHORING-CONCEPTS.md" target="_blank" rel="noopener">AUTHORING-CONCEPTS.md 보기</a></div></div>';
+  }
+
+  function renderConcept(c, p){
+    var g=W.conceptGroup(c.group);
+    var head='<div class="crumb"><a href="#/">전체 지도</a> › <a href="#/concepts">개념 사전</a> › '+W.esc(g?g.name:'')+navToggleBtn()+'</div>'
+      +'<div class="ptitle-row"><h2 class="ptitle">'+W.esc(c.ko)+'</h2></div>'
+      +'<p class="psub">'+W.esc(c.name)+'</p>'
+      +'<div class="pmeta">'
+      +'<span class="tag concept-group-tag">'+W.esc(g?g.name:'')+'</span>'
+      +levelDots(c.level)
+      +(p? '' : '<span class="tag stage stage-seed">🌱 씨앗</span>')
+      +'</div>';
+
+    if(!p){
+      var body=conceptGuideBox(c)
+        +'<h3 class="sec" style="margin-top:28px">인덱스에 있는 관련 논문</h3>'+conceptPapersHTML(c.papers);
+      app.innerHTML=shell(navTreeHTML(null,null,false,c.slug), 'wrap', head+body);
+      wireNavToggle(app);
+      return;
+    }
+
+    var secs=[]; function add(t,body2){ if(!body2) return; secs.push('<section class="csec"><h3 class="sec">'+t+'</h3>'+body2+'</section>'); }
+
+    var body='<div class="tldr concept-tldr">'+W.fmt(p.tldr||'')+'</div>';
+    add('왜 알아야 하는가', p.why? '<div class="callout">'+W.fmt(p.why)+'</div>':'');
+    add('본문', (p.sections||[]).map(function(s){
+      return '<div class="idea"><h4>'+W.esc(s.h)+'</h4><p>'+W.fmt(s.d)+'</p></div>';
+    }).join(''));
+    add('수식으로', conceptMathHTML(p.math));
+    add('구조 한눈에', p.diagram? W.diagram(p.diagram):'');
+    add('헷갈리는 것 구분', confuseHTML(p.confuse));
+    add('코드로', conceptCodeHTML(p.code));
+    add('흔한 오해', (p.pitfalls||[]).length? '<div class="callout warn"><ul class="plain">'+p.pitfalls.map(function(x){return '<li>'+W.fmt(x)+'</li>';}).join('')+'</ul></div>':'');
+    add('이 개념을 실제로 쓴 논문', conceptPapersHTML((p.papers&&p.papers.length)?p.papers:c.papers));
+    add('관련 개념', conceptTermsHTML(p.terms));
+
+    app.innerHTML=shell(navTreeHTML(null,null,false,c.slug), 'wrap', '<div>'+head+body+secs.join('')+'</div>');
+    wireNavToggle(app);
+  }
+
+  function viewConcept(slug){
+    var c=W.conceptById(slug);
+    if(!c){
+      setTitle('개념을 찾을 수 없음');
+      var inner='<div class="crumb"><a href="#/">전체 지도</a> › <a href="#/concepts">개념 사전</a>'+navToggleBtn()+'</div>'
+        +'<div class="stub">"'+W.esc(slug)+'" 는 개념 사전 인덱스에 없습니다. <a href="#/concepts">개념 사전으로 돌아가기</a></div>';
+      app.innerHTML=shell(navTreeHTML(null,null,false,'__index__'), 'wrap', inner);
+      wireNavToggle(app);
+      return;
+    }
+    setTitle(c.ko);
+    app.innerHTML=shell(navTreeHTML(null,null,false,c.slug), 'wrap',
+      '<div class="crumb"><a href="#/">전체 지도</a> › <a href="#/concepts">개념 사전</a>'+navToggleBtn()+'</div>'
+      +'<div class="tldr skeleton">불러오는 중…</div>');
+    wireNavToggle(app);
+    window.scrollTo(0,0);
+    Promise.all([W.loadConcept(slug), ensureKatex()]).then(function(r){ renderConcept(c, r[0]); });
+  }
+
   /* ---------- 뷰: 논문 ---------- */
   function buildHead(m,f,tr,p){
     var stage=W.stageBadge(m.slug);
@@ -912,9 +1144,11 @@
 
     if(!p){
       /* 씨앗 페이지 — 빈 화면 금지: 계보·백링크·이전/다음 내비는 인덱스만으로 항상 그릴 수 있다 */
+      var relC0 = relatedConceptsHTML(m.slug);
       app.innerHTML=shell(navTreeHTML(m.slug), 'wrap', head+guideBox(m)
         +'<h3 class="sec" style="margin-top:28px">계보상 위치</h3>'+lineageSection(m)
         +(backlinksSection(m)? '<h3 class="sec">백링크</h3>'+backlinksSection(m) : '')
+        +(relC0? '<h3 class="sec">관련 개념</h3>'+relC0 : '')
         +pn);
       wireNavToggle(app);
       wireGraphSelection(document.getElementById('lgBox'), document.getElementById('lgCard'));
@@ -956,6 +1190,7 @@
     add('무엇이 바뀌었나', p.impact? '<div class="callout">'+W.fmt(p.impact)+'</div>':'');
     add('이후로 이어진 것', (p.legacy||[]).length? '<ul class="plain">'+p.legacy.map(function(l){return '<li>'+W.fmt(l)+'</li>'}).join('')+'</ul>':'');
     add('흔한 오해 · 함정', (p.pitfalls||[]).length? '<div class="callout warn"><ul class="plain">'+p.pitfalls.map(function(l){return '<li>'+W.fmt(l)+'</li>'}).join('')+'</ul></div>':'');
+    add('관련 개념', relatedConceptsHTML(m.slug));
     add('계보', lineageSection(m));
     add('백링크', backlinksSection(m));
     add('함께 읽으면 좋은', togetherSection(m, prev&&prev.slug, next&&next.slug));
@@ -1183,6 +1418,8 @@
     if(h.indexOf('/p/')!==0) disconnectToc(); /* 논문 페이지를 벗어나는 모든 라우트에서 TOC 관찰자를 끊는다(viewPaper 자체도 진입 시 한 번 더 끊는다) */
     if(h.indexOf('/p/')===0) return viewPaper(h.slice(3));
     if(h.indexOf('/f/')===0) return viewField(h.slice(3));
+    if(h.indexOf('/c/')===0) return viewConcept(h.slice(3));
+    if(h==='/concepts') return viewConcepts();
     if(h==='/growing') return viewGrowing();
     if(h==='/course') return viewCourse();
     if(h==='/graph') return viewGraphFull();

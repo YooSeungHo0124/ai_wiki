@@ -12,7 +12,8 @@ WIKI.FIELDS = [
       {id:'learning', name:'학습의 발명'},
       {id:'stabilize', name:'깊게 쌓기 위한 장치'},
       {id:'data',      name:'데이터와 벤치마크'},
-      {id:'transfer',  name:'전이 · 도메인 적응'}
+      {id:'transfer',  name:'전이 · 도메인 적응'},
+      {id:'meta',      name:'메타 학습 · 연속 학습'}
     ]},
 
   { id:'vision', name:'컴퓨터 비전', en:'Vision',
@@ -56,7 +57,8 @@ WIKI.FIELDS = [
       {id:'peft',  name:'파라미터 효율 미세조정'},
       {id:'quant', name:'양자화 · 압축'},
       {id:'serve', name:'학습 · 서빙 시스템'},
-      {id:'ssm',   name:'attention 대안 (SSM)'}
+      {id:'ssm',   name:'attention 대안 (SSM)'},
+      {id:'nas',   name:'구조 탐색(NAS)'}
     ]},
 
   { id:'generative', name:'생성 모델', en:'Generative Models',
@@ -112,7 +114,8 @@ WIKI.FIELDS = [
     tracks:[
       {id:'asr',   name:'음성 인식'},
       {id:'tts',   name:'음성 합성'},
-      {id:'codec', name:'뉴럴 코덱 · 오디오 LM'}
+      {id:'codec', name:'뉴럴 코덱 · 오디오 LM'},
+      {id:'music', name:'음악 생성'}
     ]},
 
   { id:'graph', name:'그래프 신경망', en:'Graph Neural Networks',
@@ -1015,7 +1018,52 @@ WIKI.INDEX = [
 ['emu-video',2023,'Emu Video: Factorizing Text-to-Video Generation by Explicit Image Conditioning','Emu Video','video','generate',['ldm','imagen-video']],
 ['voicebox',2023,'Voicebox: Text-Guided Multilingual Universal Speech Generation at Scale','Voicebox','speech','tts',['vall-e','flow-matching']],
 ['dreamerv3',2023,'Mastering Diverse Domains through World Models (DreamerV3)','DreamerV3','rl','world',['dreamer']],
-['efficientzero',2021,'Mastering Atari Games with Limited Data (EfficientZero)','EfficientZero','rl','search',['muzero']]
+['efficientzero',2021,'Mastering Atari Games with Limited Data (EfficientZero)','EfficientZero','rl','search',['muzero']],
+
+// ════════ 15차 확장 — 메타·연속학습 · NAS · 해석성 · 분산 · 음악 ════════
+['matching-net',2016,'Matching Networks for One Shot Learning','Matching Networks','foundations','meta',['lstm','seq2seq']],
+['maml',2017,'Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks','MAML','foundations','meta',['backprop','matching-net']],
+['prototypical',2017,'Prototypical Networks for Few-shot Learning','Prototypical Networks','foundations','meta',['matching-net']],
+['reptile',2018,'On First-Order Meta-Learning Algorithms (Reptile)','Reptile','foundations','meta',['maml']],
+['lwf',2016,'Learning without Forgetting','Learning without Forgetting','foundations','meta',['distillation']],
+['ewc',2016,'Overcoming catastrophic forgetting in neural networks (EWC)','EWC 탄성 가중치 고정','foundations','meta',['backprop','dqn']],
+['icarl',2016,'iCaRL: Incremental Classifier and Representation Learning','iCaRL','foundations','meta',['lwf','resnet']],
+['gem',2017,'Gradient Episodic Memory for Continual Learning','GEM 경사 에피소드 메모리','foundations','meta',['ewc','icarl']],
+['nasnet',2017,'Learning Transferable Architectures for Scalable Image Recognition (NASNet)','NASNet','efficiency','nas',['resnet','a3c']],
+['enas',2018,'Efficient Neural Architecture Search via Parameter Sharing','ENAS','efficiency','nas',['nasnet']],
+['darts',2018,'DARTS: Differentiable Architecture Search','DARTS','efficiency','nas',['enas']],
+['mnasnet',2018,'MnasNet: Platform-Aware Neural Architecture Search for Mobile','MnasNet','efficiency','nas',['nasnet','mobilenetv2']],
+['saliency',2013,'Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps','Saliency Map','interp','xai',['alexnet']],
+['gradcam',2016,'Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization','Grad-CAM','interp','xai',['saliency','resnet']],
+['integrated-gradients',2017,'Axiomatic Attribution for Deep Networks (Integrated Gradients)','Integrated Gradients','interp','xai',['saliency','gradcam']],
+['tcav',2017,'Interpretability Beyond Feature Attribution: Quantitative Testing with Concept Activation Vectors','TCAV 개념 활성 벡터','interp','xai',['gradcam','integrated-gradients']],
+['large-minibatch',2017,'Accurate, Large Minibatch SGD: Training ImageNet in 1 Hour','대배치 SGD · 선형 스케일링','foundations','learning',['resnet','batchnorm']],
+['adafactor',2018,'Adafactor: Adaptive Learning Rates with Sublinear Memory Cost','Adafactor','foundations','learning',['adam']],
+['lion',2023,'Symbolic Discovery of Optimization Algorithms (Lion)','Lion 옵티마이저','foundations','learning',['adamw']],
+['sophia',2023,'Sophia: A Scalable Stochastic Second-order Optimizer for Language Model Pre-training','Sophia','foundations','learning',['adamw']],
+['horovod',2018,'Horovod: fast and easy distributed deep learning in TensorFlow','Horovod · 링 올리듀스','efficiency','serve',['tensorflow','large-minibatch']],
+['alpa',2022,'Alpa: Automating Inter- and Intra-Operator Parallelism for Distributed Deep Learning','Alpa','efficiency','serve',['gspmd','megatron']],
+['fsdp',2023,'PyTorch FSDP: Experiences on Scaling Fully Sharded Data Parallel','PyTorch FSDP','efficiency','serve',['zero','megatron']],
+['unigram-lm',2018,'Subword Regularization: Improving Neural Network Translation Models with Multiple Subword Candidates','유니그램 LM 토크나이저','nlp','repr',['bpe','sentencepiece']],
+['byte-level-bpe',2019,'Neural Machine Translation with Byte-Level Subwords','바이트 수준 BPE','nlp','repr',['bpe','gpt2']],
+['matryoshka',2022,'Matryoshka Representation Learning','마트료시카 표현학습','ir','embed',['sentence-bert']],
+['gte',2023,'Towards General Text Embeddings with Multi-stage Contrastive Learning (GTE)','GTE','ir','embed',['contriever','bge']],
+['nomic-embed',2024,'Nomic Embed: Training a Reproducible Long Context Text Embedder','Nomic Embed','ir','embed',['gte','bge']],
+['musiclm',2023,'MusicLM: Generating Music From Text','MusicLM','speech','music',['audiolm','soundstream']],
+['musicgen',2023,'Simple and Controllable Music Generation (MusicGen)','MusicGen','speech','music',['encodec','musiclm']],
+['stable-audio',2024,'Fast Timing-Conditioned Latent Audio Diffusion (Stable Audio)','Stable Audio','speech','music',['ldm','musicgen']],
+['dexterity',2018,'Learning Dexterous In-Hand Manipulation','손안 조작 학습','robotics','imitation',['ppo']],
+['umi',2024,'Universal Manipulation Interface: In-The-Wild Robot Teaching Without In-The-Wild Robots','UMI','robotics','imitation',['diffusion-policy','act']],
+['rdt',2024,'RDT-1B: a Diffusion Foundation Model for Bimanual Manipulation','RDT-1B','robotics','vla',['diffusion-policy','openvla']],
+['fp8',2022,'FP8 Formats for Deep Learning','FP8 형식','efficiency','quant',['mixed-precision']],
+['smoothquant',2022,'SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models','SmoothQuant','efficiency','quant',['llm-int8','gptq']],
+['bitnet',2023,'BitNet: Scaling 1-bit Transformers for Large Language Models','BitNet','efficiency','quant',['llm-int8','transformer']],
+['bitnet-158',2024,'The Era of 1-bit LLMs: All Large Language Models are in 1.58 Bits','1.58비트 LLM','efficiency','quant',['bitnet']],
+['expert-choice',2022,'Mixture-of-Experts with Expert Choice Routing','Expert Choice 라우팅','efficiency','serve',['switch','glam']],
+['deepseek-moe',2024,'DeepSeekMoE: Towards Ultimate Expert Specialization in Mixture-of-Experts Language Models','DeepSeekMoE','efficiency','serve',['switch','expert-choice']],
+['ijepa',2023,'Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture','I-JEPA','vision','selfsup',['mae','dino']],
+['vjepa',2024,'Revisiting Feature Prediction for Learning Visual Representations from Video','V-JEPA','vision','selfsup',['ijepa','videomae']],
+['genie',2024,'Genie: Generative Interactive Environments','Genie','rl','world',['dreamerv3','vqvae']]
 ];
 
 WIKI.META = WIKI.INDEX.map(function(r){

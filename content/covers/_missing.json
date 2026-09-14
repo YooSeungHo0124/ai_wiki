@@ -2,6 +2,7 @@
 "ctc",
 "gmoe",
 "lightgbm",
+"llm-biology",
 "model-compression-2006",
 "perceptron",
 "sae"

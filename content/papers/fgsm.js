@@ -61,7 +61,7 @@ legacy:[
  '**반복형 공격으로 발전** — FGSM의 단일 스텝을 여러 번 반복하는 BIM/PGD가 사실상의 표준 강한 공격이 됨',
  '**적대적 학습의 정식화** — $\\alpha$ 로 섞는 목적함수가 이후 min-max 강건 최적화(robust optimization) 정식화로 이어짐',
  '**"강건성-정확도 트레이드오프" 논쟁의 출발점** — RBF vs 선형 모델 비교가 이후 강건 정확도(robust accuracy)와 표준 정확도 사이의 근본적 긴장 논의로 확장됨',
- '**프라이버시/안전 공격 계보의 두 번째 벽돌** — [Intriguing Properties](#/p/intriguing)에서 시작된 입력 조작 공격이 여기서 실용적 도구가 되며, 이후 [멤버십 추론](#/p/membership-inference)·[범용 탈옥 공격](#/p/universal-jailbreak) 같은 다양한 공격 표면으로 방법론이 확산'
+ '**프라이버시/안전 공격 계보의 두 번째 벽돌** — [Intriguing Properties](#/p/intriguing)에서 시작된 입력 조작 공격이 여기서 실용적 도구가 되며, 이후 [멤버십 추론](#/p/membership-inference)·[범용 탈옥 공격](#/p/gcg) 같은 다양한 공격 표면으로 방법론이 확산'
 ],
 
 pitfalls:[

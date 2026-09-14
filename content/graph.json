@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-11",
+ "generated": "2026-09-14",
  "papers": {
   "perceptron": {
    "stage": "evergreen",
@@ -202,7 +202,7 @@
   },
   "dropout": {
    "stage": "evergreen",
-   "bytes": 10694,
+   "bytes": 10701,
    "sections": [
     "venue",
     "authors",
@@ -215,7 +215,7 @@
     "imagenet",
     "batchnorm",
     "transformer",
-    "lottery"
+    "lottery-ticket"
    ],
    "in": [
     "imagenet",
@@ -240,7 +240,7 @@
     "stabilize",
     "2014"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-14"
   },
   "batchnorm": {
    "stage": "evergreen",
@@ -395,7 +395,6 @@
     "dino",
     "dinov2",
     "deepseek-r1",
-    "lottery",
     "distilbert",
     "energy-policy",
     "carbon-quantify",
@@ -2455,7 +2454,6 @@
     "wav2vec2",
     "dpr",
     "realm",
-    "lottery",
     "hubert",
     "sasrec",
     "bert4rec",
@@ -3377,7 +3375,6 @@
     "mmlu",
     "alphacode",
     "swe-bench",
-    "universal-jailbreak",
     "voyager",
     "agieval",
     "stochastic-parrots-risk",
@@ -4076,7 +4073,6 @@
     "dit",
     "flamingo",
     "blip2",
-    "lottery",
     "openvla",
     "dp-sgd",
     "fedavg",
@@ -4201,7 +4197,6 @@
     "awq",
     "speculative",
     "rwkv",
-    "lottery",
     "straight-through",
     "glm-130b",
     "quantization-survey",
@@ -6761,36 +6756,6 @@
    ],
    "mtime": "2026-09-10"
   },
-  "lottery": {
-   "stage": "evergreen",
-   "bytes": 10465,
-   "sections": [
-    "venue",
-    "authors",
-    "arxiv",
-    "math",
-    "numbers",
-    "links"
-   ],
-   "out": [
-    "bert",
-    "distillation",
-    "gptq",
-    "lora"
-   ],
-   "in": [
-    "dropout",
-    "double-descent"
-   ],
-   "diagram": "compare",
-   "extLinks": 3,
-   "tags": [
-    "interp",
-    "interp",
-    "2019"
-   ],
-   "mtime": "2026-09-09"
-  },
   "induction-heads": {
    "stage": "evergreen",
    "bytes": 10236,
@@ -7079,7 +7044,6 @@
     "sae",
     "bigbench",
     "red-teaming",
-    "universal-jailbreak",
     "sleeper-agents",
     "general-assistant",
     "anthropic-hh",
@@ -9784,7 +9748,7 @@
   },
   "double-descent": {
    "stage": "evergreen",
-   "bytes": 10770,
+   "bytes": 10777,
    "sections": [
     "venue",
     "authors",
@@ -9796,7 +9760,7 @@
    "out": [
     "rethinking-generalization",
     "scaling-laws",
-    "lottery"
+    "lottery-ticket"
    ],
    "in": [
     "rethinking-generalization",
@@ -9809,7 +9773,7 @@
     "general",
     "2019"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-14"
   },
   "dp-sgd": {
    "stage": "evergreen",
@@ -9907,7 +9871,7 @@
   },
   "extracting-training-data": {
    "stage": "evergreen",
-   "bytes": 8159,
+   "bytes": 8143,
    "sections": [
     "venue",
     "authors",
@@ -9923,7 +9887,7 @@
     "dedup",
     "membership-inference",
     "emergent",
-    "universal-jailbreak"
+    "gcg"
    ],
    "in": [
     "dedup",
@@ -9940,7 +9904,7 @@
     "attack",
     "2021"
    ],
-   "mtime": "2026-09-10"
+   "mtime": "2026-09-14"
   },
   "red-teaming": {
    "stage": "evergreen",
@@ -9959,7 +9923,6 @@
    ],
    "in": [
     "watermark",
-    "universal-jailbreak",
     "realtoxicity",
     "ethical-risks",
     "red-teaming-lm",
@@ -10000,41 +9963,9 @@
    ],
    "mtime": "2026-09-09"
   },
-  "universal-jailbreak": {
-   "stage": "evergreen",
-   "bytes": 9833,
-   "sections": [
-    "venue",
-    "authors",
-    "arxiv",
-    "math",
-    "numbers",
-    "links"
-   ],
-   "out": [
-    "constitutional",
-    "red-teaming",
-    "gpt4",
-    "sleeper-agents"
-   ],
-   "in": [
-    "extracting-training-data",
-    "sleeper-agents",
-    "intriguing",
-    "fgsm"
-   ],
-   "diagram": "flow",
-   "extLinks": 2,
-   "tags": [
-    "privacy",
-    "attack",
-    "2023"
-   ],
-   "mtime": "2026-09-10"
-  },
   "sleeper-agents": {
    "stage": "growing",
-   "bytes": 10741,
+   "bytes": 10709,
    "sections": [
     "venue",
     "authors",
@@ -10044,10 +9975,9 @@
    ],
    "out": [
     "constitutional",
-    "universal-jailbreak"
+    "gcg"
    ],
    "in": [
-    "universal-jailbreak",
     "agent-alignment"
    ],
    "diagram": "loop",
@@ -10057,7 +9987,7 @@
     "safety",
     "2024"
    ],
-   "mtime": "2026-09-09"
+   "mtime": "2026-09-14"
   },
   "position-interpolation": {
    "stage": "evergreen",
@@ -15036,7 +14966,7 @@
   },
   "intriguing": {
    "stage": "evergreen",
-   "bytes": 10376,
+   "bytes": 10360,
    "sections": [
     "venue",
     "authors",
@@ -15049,7 +14979,7 @@
     "alexnet",
     "fgsm",
     "membership-inference",
-    "universal-jailbreak"
+    "gcg"
    ],
    "in": [
     "fgsm"
@@ -15061,11 +14991,11 @@
     "attack",
     "2013"
    ],
-   "mtime": "2026-09-10"
+   "mtime": "2026-09-14"
   },
   "fgsm": {
    "stage": "evergreen",
-   "bytes": 10051,
+   "bytes": 10035,
    "sections": [
     "venue",
     "authors",
@@ -15077,7 +15007,7 @@
    "out": [
     "intriguing",
     "membership-inference",
-    "universal-jailbreak"
+    "gcg"
    ],
    "in": [
     "intriguing",
@@ -15094,7 +15024,7 @@
     "attack",
     "2014"
    ],
-   "mtime": "2026-09-10"
+   "mtime": "2026-09-14"
   },
   "gae": {
    "stage": "evergreen",
@@ -19807,6 +19737,8 @@
     "movement-pruning"
    ],
    "in": [
+    "dropout",
+    "double-descent",
     "deep-compression",
     "movement-pruning"
    ],
@@ -22972,6 +22904,10 @@
     "red-teaming-lm"
    ],
    "in": [
+    "extracting-training-data",
+    "sleeper-agents",
+    "intriguing",
+    "fgsm",
     "constitutional-classifiers"
    ],
    "diagram": "flow",
@@ -26648,10 +26584,10 @@
   }
  },
  "stats": {
-  "total": 803,
-  "written": 803,
+  "total": 801,
+  "written": 801,
   "byStage": {
-   "evergreen": 680,
+   "evergreen": 678,
    "growing": 123
   },
   "byField": {
@@ -26700,12 +26636,12 @@
     "written": 25
    },
    "interp": {
-    "total": 71,
-    "written": 71
+    "total": 70,
+    "written": 70
    },
    "privacy": {
-    "total": 35,
-    "written": 35
+    "total": 34,
+    "written": 34
    },
    "graph": {
     "total": 9,

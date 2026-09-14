@@ -402,7 +402,6 @@ WIKI.INDEX = [
 ['rag',2020,'Retrieval-Augmented Generation for Knowledge-Intensive NLP','RAG','ir','dense',['dpr','bert']],
 
 // ── interp ─────────────────────────────────────────────────
-['lottery',2019,'The Lottery Ticket Hypothesis','로또 티켓 가설','interp','interp',['dropout']],
 ['induction-heads',2022,'In-context Learning and Induction Heads','Induction Heads','interp','interp',['transformer','gpt3']],
 ['grokking',2022,'Grokking: Generalization Beyond Overfitting','Grokking','interp','interp',['transformer']],
 ['sae',2023,'Towards Monosemanticity: Decomposing Language Models with Dictionary Learning','Sparse Autoencoder','interp','interp',['induction-heads']],
@@ -512,7 +511,7 @@ WIKI.INDEX = [
 ['lr-scaling',2017,'Accurate, Large Minibatch SGD: Training ImageNet in 1 Hour','선형 스케일링 규칙','theory','optim',['large-batch','resnet']],
 ['ntk',2018,'Neural Tangent Kernel: Convergence and Generalization in Neural Networks','신경 접선 커널','theory','general',['backprop']],
 ['empirical-batch',2018,'An Empirical Model of Large-Batch Training','임계 배치 크기','theory','optim',['large-batch','adam']],
-['double-descent',2019,'Deep Double Descent: Where Bigger Models and More Data Hurt','이중 하강','theory','general',['rethinking-generalization','lottery']],
+['double-descent',2019,'Deep Double Descent: Where Bigger Models and More Data Hurt','이중 하강','theory','general',['rethinking-generalization','lottery-ticket']],
 
 // ── privacy ────────────────────────────────────────────────
 ['dp-sgd',2016,'Deep Learning with Differential Privacy (DP-SGD)','DP-SGD','privacy','dp',['backprop']],
@@ -521,7 +520,6 @@ WIKI.INDEX = [
 ['extracting-training-data',2021,'Extracting Training Data from Large Language Models','학습 데이터 추출','privacy','attack',['gpt2','membership-inference']],
 ['red-teaming',2022,'Red Teaming Language Models to Reduce Harms','레드팀','privacy','safety',['instructgpt']],
 ['watermark',2023,'A Watermark for Large Language Models','LLM 워터마크','privacy','safety',['gpt3']],
-['universal-jailbreak',2023,'Universal and Transferable Adversarial Attacks on Aligned Language Models','범용 탈옥 공격','privacy','attack',['llama2','gpt4']],
 ['sleeper-agents',2024,'Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training','슬리퍼 에이전트','privacy','safety',['constitutional','instructgpt']],
 
 // ── llm / 긴 문맥 ──────────────────────────────────────────

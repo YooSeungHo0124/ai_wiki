@@ -21,13 +21,25 @@ const ROOT = path.join(__dirname, '..');
 
 const meta = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/meta.json'), 'utf8'));
 
+/* meta.json 은 arXiv 에서 긁어온 캐시라 인덱스에서 빠진 슬러그가 남아 있을 수
+   있다. 실제로 중복 논문(lottery, universal-jailbreak)을 정리한 뒤에도
+   meta.json 에는 남아, 검색 결과가 없는 페이지로 연결됐다.
+   fields.js 인덱스에 실제로 있는 슬러그만 색인한다. */
+const vmx = require('vm');
+const ictx = {}; ictx.window = ictx; vmx.createContext(ictx);
+vmx.runInContext(fs.readFileSync(path.join(ROOT, 'content/fields.js'), 'utf8'), ictx);
+const LIVE = new Set(ictx.WIKI.META.map(function (m) { return m.slug; }));
+
 const authors = {};
+let dropped = 0;
 Object.keys(meta).forEach(function (slug) {
   var rec = meta[slug];
+  if (!LIVE.has(slug)) { dropped++; return; }
   if (rec && Array.isArray(rec.authors) && rec.authors.length) {
     authors[slug] = rec.authors;
   }
 });
+if (dropped) console.log('인덱스에 없는 슬러그 ' + dropped + '개 제외');
 
 const out = {
   generated: new Date().toISOString().slice(0, 10),

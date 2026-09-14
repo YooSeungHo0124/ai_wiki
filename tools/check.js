@@ -8,6 +8,10 @@ const META=ctx.WIKI.META, SLUGS=new Set(META.map(m=>m.slug));
 const REQ=['tldr','context','ideas','diagram','impact','legacy','pitfalls'];
 const DTYPES=['flow','stack','compare','loop','split','matrix'];
 let err=[], warn=[], have=0;
+/* 같은 arXiv ID 를 가리키는 슬러그 모음 — 실제로 grad-cam/gradcam,
+   lr-scaling/large-minibatch 처럼 같은 논문을 두 번 쓴 적이 있는데,
+   슬러그가 다르니 기존 검사는 전부 통과했다. */
+const byArxiv=new Map();
 
 META.forEach(m=>{
   const f=path.join(ROOT,'content/papers',m.slug+'.js');
@@ -52,10 +56,28 @@ META.forEach(m=>{
   });
   if(p.ideas && p.ideas.length<3) warn.push('THIN     '+m.slug+': ideas '+p.ideas.length+'개');
   if(src.length<3500) warn.push('SHORT    '+m.slug+': '+src.length+' bytes');
+  /* arXiv ID 수집: links 의 "첫 항목"만 원 출처로 본다.
+     두 번째 이후는 후속작·관련 연구·초판이라 세면 안 된다 — dropout 은
+     원 출처가 JMLR 2014 이고 arXiv 1207.0580 은 2012 년 별개 논문이라,
+     "첫 arXiv 링크"로 잡으면 dropout-2012 와 중복으로 오판했다.
+     dqn(Nature 2015) / dqn-2013 도 같은 관계다. */
+  (function(){
+    var first=(p.links||[])[0];
+    var mm=/arxiv\.org\/(?:abs|pdf)\/([0-9]{4}\.[0-9]{4,5}|[a-z-]+\/[0-9]{7})/.exec((first&&first.u)||'');
+    if(!mm) return;
+    var id=mm[1];
+    if(!byArxiv.has(id)) byArxiv.set(id,[]);
+    byArxiv.get(id).push(m.slug);
+  })();
   // 내부 링크 검사
   const links=[...src.matchAll(/\(#\/p\/([a-z0-9-]+)\)/g)].map(x=>x[1]);
   [...new Set(links)].forEach(s=>{ if(!SLUGS.has(s)) err.push('DEADLINK '+m.slug+' -> #/p/'+s+'   (오타이거나, 아직 없는 논문이다 — 후자라면 인덱스에 추가할 후보)'); });
   if(links.includes(m.slug)) warn.push('SELFLINK '+m.slug);
+});
+/* 같은 원논문을 두 슬러그로 쓴 경우 */
+byArxiv.forEach(function(slugs,id){
+  if(slugs.length>1)
+    err.push('DUPARXIV arXiv '+id+' 를 '+slugs.length+'개 슬러그가 원논문으로 쓴다: '+slugs.join(', ')+' — 한쪽을 지우고 링크를 옮겨야 한다');
 });
 /* 캐시 버스터 검사 — content/fields.js 를 고치고 index.html 의 ?v= 를 안 올리면
    이미 방문한 사람은 옛 인덱스를 계속 본다. 실제로 논문 40편을 추가하고

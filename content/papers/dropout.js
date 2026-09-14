@@ -64,7 +64,7 @@ legacy:[
  '**변형의 확산** — DropConnect(가중치를 지움), Spatial Dropout(피처맵 채널 단위), stochastic depth(층 단위)로 "무엇을 지울 것인가"가 설계 변수가 됨',
  '**BN에 자리를 내줌** — [batch normalization](#/p/batchnorm) 자체에 정규화 효과가 있어 CNN에서는 dropout이 사실상 빠졌다. BN 논문은 dropout을 제거하는 것이 학습을 빠르게 한다고 명시한다',
  '**Transformer에서 부활** — [Transformer](#/p/transformer)는 attention 확률과 각 sublayer 출력에 dropout(기본 0.1)을 쓴다. 다만 사전학습 데이터가 조 단위로 커진 현대 LLM에서는 과적합 자체가 사라져 다시 0으로 두는 경우가 많다',
- '**해석의 확장** — MC dropout(추론 때도 켜서 여러 번 샘플링 → 불확실성 추정), 그리고 "학습 가능한 부분망이 이미 안에 있다"는 [로또 티켓 가설](#/p/lottery)로 이어짐'
+ '**해석의 확장** — MC dropout(추론 때도 켜서 여러 번 샘플링 → 불확실성 추정), 그리고 "학습 가능한 부분망이 이미 안에 있다"는 [로또 티켓 가설](#/p/lottery-ticket)로 이어짐'
 ],
 
 pitfalls:[

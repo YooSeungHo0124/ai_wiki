@@ -56,6 +56,7 @@ WIKI.FIELDS = [
       {id:'attn',  name:'attention 개조'},
       {id:'peft',  name:'파라미터 효율 미세조정'},
       {id:'quant', name:'양자화 · 압축'},
+      {id:'distill', name:'지식 증류'},
       {id:'serve', name:'학습 · 서빙 시스템'},
       {id:'ssm',   name:'attention 대안 (SSM)'},
       {id:'nas',   name:'구조 탐색(NAS)'}

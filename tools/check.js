@@ -55,7 +55,9 @@ META.forEach(m=>{
     if(!x.lead) warn.push('NOLEAD   '+m.slug+': ideas['+i+'] 에 lead 없음');
   });
   if(p.ideas && p.ideas.length<3) warn.push('THIN     '+m.slug+': ideas '+p.ideas.length+'개');
-  if(src.length<3500) warn.push('SHORT    '+m.slug+': '+src.length+' bytes');
+  /* 문자 수가 아니라 바이트 — 한글은 UTF-8 에서 3바이트다 */
+  const bytes=Buffer.byteLength(src,'utf8');
+  if(bytes<3500) warn.push('SHORT    '+m.slug+': '+bytes+' bytes');
   /* arXiv ID 수집: links 의 "첫 항목"만 원 출처로 본다.
      두 번째 이후는 후속작·관련 연구·초판이라 세면 안 된다 — dropout 은
      원 출처가 JMLR 2014 이고 arXiv 1207.0580 은 2012 년 별개 논문이라,

@@ -100,7 +100,11 @@ CONCEPTS.forEach(c=>{
     if(!CONCEPT_SLUGS.has(s)) err.push('TERMLINK '+c.slug+' -> terms[] "'+s+'"   (인덱스에 없는 개념 slug)');
   });
 
-  if(src.length<4096) warn.push('SHORT    '+c.slug+': '+src.length+' bytes (4KB 미만)');
+  /* 바이트로 재야 한다 — src.length 는 문자 수다. 한글은 UTF-8 에서 3바이트라
+     규격(4~9KB)을 지킨 5.5KB 파일이 "4KB 미만"으로 경고됐고, 집필자들이
+     경고를 없애려 본문을 12KB 가까이 불리는 부작용이 있었다. */
+  const bytes=Buffer.byteLength(src,'utf8');
+  if(bytes<4096) warn.push('SHORT    '+c.slug+': '+bytes+' bytes (4KB 미만)');
 });
 
 /* 캐시 버스터 — content/concepts.js 를 고치고 index.html 의 ?v= 를 안 올리면

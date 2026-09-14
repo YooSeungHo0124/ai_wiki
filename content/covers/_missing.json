@@ -1,6 +1,8 @@
 [
 "ctc",
+"gmoe",
 "lightgbm",
+"model-compression-2006",
 "perceptron",
 "sae"
 ]

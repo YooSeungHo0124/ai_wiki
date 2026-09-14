@@ -273,6 +273,7 @@
     "dcgan",
     "ddpg",
     "lr-scaling",
+    "deepinversion",
     "dropout-2012",
     "wide-resnet",
     "instance-norm",
@@ -368,6 +369,32 @@
    ],
    "mtime": "2026-09-09"
   },
+  "model-compression-2006": {
+   "stage": "sprout",
+   "bytes": 5324,
+   "sections": [
+    "venue",
+    "authors",
+    "links"
+   ],
+   "out": [
+    "distillation",
+    "fitnets",
+    "attention-transfer",
+    "rkd"
+   ],
+   "in": [
+    "fitnets"
+   ],
+   "diagram": "flow",
+   "extLinks": 1,
+   "tags": [
+    "foundations",
+    "learning",
+    "2006"
+   ],
+   "mtime": "2026-09-14"
+  },
   "distillation": {
    "stage": "evergreen",
    "bytes": 9860,
@@ -389,12 +416,28 @@
     "deepseek-r1"
    ],
    "in": [
+    "model-compression-2006",
     "mobilenet",
     "vit",
     "deit",
     "dino",
     "dinov2",
     "deepseek-r1",
+    "fitnets",
+    "seq-kd",
+    "deep-mutual",
+    "born-again",
+    "teacher-assistant",
+    "rkd",
+    "crd",
+    "efficacy-kd",
+    "dafl",
+    "does-kd-work",
+    "patient-consistent",
+    "kd-dd-survey",
+    "opd-survey",
+    "sra",
+    "moe-to-dense",
     "distilbert",
     "energy-policy",
     "carbon-quantify",
@@ -539,6 +582,7 @@
     "fcn",
     "deeplab",
     "openpose",
+    "fitnets",
     "grad-cam",
     "srgan",
     "nasnet"
@@ -578,6 +622,7 @@
     "resnet",
     "i3d",
     "senet",
+    "fitnets",
     "facenet",
     "repvgg",
     "squeezenet"
@@ -646,6 +691,7 @@
     "slowfast",
     "lr-scaling",
     "senet",
+    "attention-transfer",
     "conformer",
     "gnmt",
     "sparse-transformers",
@@ -716,6 +762,7 @@
     "batchnorm",
     "vgg",
     "resnet",
+    "born-again",
     "esrgan",
     "unetpp",
     "chexnet"
@@ -1482,6 +1529,7 @@
     "distillation",
     "vit",
     "mae",
+    "attention-transfer",
     "distilbert",
     "trocr",
     "mobilevit"
@@ -2160,6 +2208,7 @@
     "tacotron2",
     "gat",
     "din",
+    "attention-transfer",
     "attention-not-explanation",
     "graves-rnn",
     "gnmt",
@@ -2273,6 +2322,7 @@
     "spatial-transformer",
     "senet",
     "bart",
+    "blt",
     "mamba2",
     "attention-not-explanation",
     "conformer",
@@ -2465,6 +2515,10 @@
     "sentencepiece",
     "bart",
     "electra",
+    "fitnets",
+    "patient-kd",
+    "tinybert",
+    "mobilebert",
     "monobert",
     "adamw",
     "gelu",
@@ -2577,6 +2631,7 @@
     "whisper",
     "audiolm",
     "extracting-training-data",
+    "minillm",
     "sparse-transformers",
     "commonsense-lm",
     "realtoxicity",
@@ -2951,6 +3006,7 @@
     "refinedweb",
     "phi-textbooks",
     "data-constrained",
+    "distillation-scaling-law",
     "fineweb",
     "gopher",
     "generative-scaling",
@@ -3131,6 +3187,8 @@
     "moe-shazeer",
     "mixtral",
     "megatron",
+    "gmoe",
+    "moe-to-dense",
     "gshard",
     "mt-nlg",
     "moe-efficient",
@@ -3321,6 +3379,7 @@
     "gsm8k",
     "constitutional",
     "chatbot-arena",
+    "zephyr",
     "alpaca-eval",
     "rlaif",
     "kto",
@@ -3450,6 +3509,7 @@
     "starcoder",
     "position-interpolation",
     "olmo",
+    "minillm",
     "adamw",
     "opt",
     "bloom",
@@ -3559,6 +3619,7 @@
     "rope",
     "gqa",
     "awq",
+    "zephyr",
     "glu-variants"
    ],
    "diagram": "stack",
@@ -4803,6 +4864,7 @@
     "wgan",
     "ddpm",
     "ldm",
+    "add-turbo",
     "lsun",
     "biggan",
     "fid",
@@ -4995,6 +5057,7 @@
     "act",
     "diffusion-policy",
     "alphafold3",
+    "progressive-distillation",
     "glide",
     "diffusion-original",
     "lsun",
@@ -5081,6 +5144,7 @@
     "ldm",
     "flow-matching",
     "consistency",
+    "progressive-distillation",
     "diffusion-original",
     "diffusion-beats-gan",
     "iddpm",
@@ -5128,6 +5192,7 @@
     "ldm",
     "dit",
     "flow-matching",
+    "add-turbo",
     "imagen",
     "controlnet",
     "glide",
@@ -5199,6 +5264,7 @@
     "videoldm",
     "svd",
     "laion5b",
+    "progressive-distillation",
     "imagen",
     "dreambooth",
     "controlnet",
@@ -5347,6 +5413,7 @@
     "ddim",
     "cfg",
     "flow-matching",
+    "progressive-distillation",
     "diffusion-original",
     "lcm"
    ],
@@ -6322,6 +6389,9 @@
     "deepseek-r1",
     "gsm8k",
     "humaneval",
+    "rlad",
+    "rethinking-opd",
+    "sod-agent",
     "gae",
     "deepseek-llm",
     "kimi-k15"
@@ -6372,6 +6442,7 @@
     "saycan",
     "rt2",
     "reflexion",
+    "distilling-step-by-step",
     "pal",
     "least-to-most",
     "self-refine",
@@ -10326,6 +10397,8 @@
     "gan"
    ],
    "in": [
+    "does-kd-work",
+    "patient-consistent",
     "autoaugment",
     "efficientnetv2",
     "cutmix"
@@ -10416,6 +10489,8 @@
    ],
    "in": [
     "bpe",
+    "sra",
+    "blt",
     "mt5",
     "trocr",
     "unigram-lm",
@@ -10563,6 +10638,1148 @@
     "2024"
    ],
    "mtime": "2026-09-09"
+  },
+  "fitnets": {
+   "stage": "evergreen",
+   "bytes": 9099,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "distillation",
+    "model-compression-2006",
+    "vgg",
+    "googlenet",
+    "attention-transfer",
+    "rkd",
+    "crd",
+    "bert",
+    "patient-kd"
+   ],
+   "in": [
+    "model-compression-2006",
+    "attention-transfer",
+    "rkd",
+    "crd"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2015"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "attention-transfer": {
+   "stage": "evergreen",
+   "bytes": 8730,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "fitnets",
+    "resnet",
+    "rkd",
+    "deit",
+    "grad-cam",
+    "bahdanau"
+   ],
+   "in": [
+    "model-compression-2006",
+    "fitnets",
+    "rkd"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2016"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "seq-kd": {
+   "stage": "evergreen",
+   "bytes": 10833,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "distillation",
+    "llm-distill-survey",
+    "minillm",
+    "gkd"
+   ],
+   "in": [
+    "llm-distill-survey"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2016"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "deep-mutual": {
+   "stage": "evergreen",
+   "bytes": 8800,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "distillation",
+    "born-again"
+   ],
+   "in": [
+    "born-again"
+   ],
+   "diagram": "loop",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2017"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "born-again": {
+   "stage": "evergreen",
+   "bytes": 8746,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "distillation",
+    "deep-mutual",
+    "densenet",
+    "teacher-assistant"
+   ],
+   "in": [
+    "deep-mutual",
+    "teacher-assistant",
+    "rkd",
+    "gkd"
+   ],
+   "diagram": "loop",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2018"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "teacher-assistant": {
+   "stage": "sprout",
+   "bytes": 7775,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "distillation",
+    "born-again",
+    "efficacy-kd",
+    "does-kd-work"
+   ],
+   "in": [
+    "born-again",
+    "efficacy-kd",
+    "minilm"
+   ],
+   "diagram": "flow",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2019"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "rkd": {
+   "stage": "evergreen",
+   "bytes": 8636,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "distillation",
+    "fitnets",
+    "attention-transfer",
+    "crd",
+    "born-again"
+   ],
+   "in": [
+    "model-compression-2006",
+    "fitnets",
+    "attention-transfer",
+    "crd"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2019"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "crd": {
+   "stage": "evergreen",
+   "bytes": 9903,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "distillation",
+    "rkd",
+    "fitnets"
+   ],
+   "in": [
+    "fitnets",
+    "rkd"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2019"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "efficacy-kd": {
+   "stage": "evergreen",
+   "bytes": 8124,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "distillation",
+    "teacher-assistant",
+    "does-kd-work",
+    "patient-consistent"
+   ],
+   "in": [
+    "teacher-assistant",
+    "does-kd-work",
+    "patient-consistent"
+   ],
+   "diagram": "compare",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2019"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "dafl": {
+   "stage": "evergreen",
+   "bytes": 8659,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "distillation",
+    "deepinversion"
+   ],
+   "in": [
+    "deepinversion"
+   ],
+   "diagram": "flow",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2019"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "deepinversion": {
+   "stage": "evergreen",
+   "bytes": 8598,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "batchnorm",
+    "dafl"
+   ],
+   "in": [
+    "dafl"
+   ],
+   "diagram": "flow",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2019"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "patient-kd": {
+   "stage": "evergreen",
+   "bytes": 8087,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "bert",
+    "tinybert",
+    "mobilebert",
+    "minilm"
+   ],
+   "in": [
+    "fitnets",
+    "tinybert",
+    "mobilebert"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2019"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "tinybert": {
+   "stage": "evergreen",
+   "bytes": 8549,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "bert",
+    "distilbert",
+    "patient-kd",
+    "minilm",
+    "mobilebert"
+   ],
+   "in": [
+    "patient-kd",
+    "mobilebert",
+    "minilm",
+    "llm-distill-survey"
+   ],
+   "diagram": "stack",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2019"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "mobilebert": {
+   "stage": "evergreen",
+   "bytes": 8797,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "bert",
+    "distilbert",
+    "tinybert",
+    "patient-kd",
+    "minilm"
+   ],
+   "in": [
+    "patient-kd",
+    "tinybert",
+    "minilm"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2020"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "minilm": {
+   "stage": "evergreen",
+   "bytes": 7694,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "tinybert",
+    "mobilebert",
+    "teacher-assistant"
+   ],
+   "in": [
+    "patient-kd",
+    "tinybert",
+    "mobilebert"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2020"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "does-kd-work": {
+   "stage": "evergreen",
+   "bytes": 8760,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "distillation",
+    "mixup",
+    "patient-consistent",
+    "efficacy-kd"
+   ],
+   "in": [
+    "teacher-assistant",
+    "efficacy-kd",
+    "patient-consistent"
+   ],
+   "diagram": "compare",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2021"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "patient-consistent": {
+   "stage": "evergreen",
+   "bytes": 8547,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "bit",
+    "distillation",
+    "efficacy-kd",
+    "does-kd-work",
+    "mixup",
+    "progressive-distillation"
+   ],
+   "in": [
+    "efficacy-kd",
+    "does-kd-work"
+   ],
+   "diagram": "compare",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2021"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "progressive-distillation": {
+   "stage": "evergreen",
+   "bytes": 8370,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "ddim",
+    "ddpm",
+    "consistency",
+    "lcm",
+    "add-turbo",
+    "ldm"
+   ],
+   "in": [
+    "patient-consistent",
+    "add-turbo"
+   ],
+   "diagram": "loop",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2022"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "distilling-step-by-step": {
+   "stage": "evergreen",
+   "bytes": 7187,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "cot",
+    "orca"
+   ],
+   "in": [
+    "kd-dd-survey"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2023"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "orca": {
+   "stage": "growing",
+   "bytes": 6716,
+   "sections": [
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "zephyr"
+   ],
+   "in": [
+    "distilling-step-by-step",
+    "zephyr",
+    "kd-dd-survey"
+   ],
+   "diagram": "compare",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2023"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "minillm": {
+   "stage": "evergreen",
+   "bytes": 8421,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "gpt2",
+    "llama",
+    "gkd",
+    "distillm"
+   ],
+   "in": [
+    "seq-kd",
+    "gkd",
+    "distillm",
+    "llm-distill-survey",
+    "distillation-scaling-law",
+    "kd-dd-survey",
+    "opd-survey"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2023"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "gkd": {
+   "stage": "evergreen",
+   "bytes": 9898,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "minillm",
+    "rlaif",
+    "distillm",
+    "born-again"
+   ],
+   "in": [
+    "seq-kd",
+    "minillm",
+    "distillm",
+    "distillation-scaling-law",
+    "kd-dd-survey",
+    "opd-survey"
+   ],
+   "diagram": "loop",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2023"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "zephyr": {
+   "stage": "evergreen",
+   "bytes": 7454,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "dpo",
+    "mistral",
+    "orca"
+   ],
+   "in": [
+    "orca"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2023"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "add-turbo": {
+   "stage": "evergreen",
+   "bytes": 7988,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "sdxl",
+    "progressive-distillation",
+    "stylegan",
+    "cfg",
+    "lcm"
+   ],
+   "in": [
+    "progressive-distillation"
+   ],
+   "diagram": "split",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2023"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "distillm": {
+   "stage": "evergreen",
+   "bytes": 7553,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "minillm",
+    "gkd"
+   ],
+   "in": [
+    "minillm",
+    "gkd",
+    "distillation-scaling-law",
+    "kd-dd-survey",
+    "opd-survey",
+    "soda"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2024"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "llm-distill-survey": {
+   "stage": "evergreen",
+   "bytes": 9535,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "distilbert",
+    "tinybert",
+    "seq-kd",
+    "minillm",
+    "kd-dd-survey"
+   ],
+   "in": [
+    "seq-kd"
+   ],
+   "diagram": "split",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2024"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "distillation-scaling-law": {
+   "stage": "growing",
+   "bytes": 6998,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "chinchilla",
+    "minillm",
+    "gkd",
+    "distillm"
+   ],
+   "in": [],
+   "diagram": "compare",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2025"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "kd-dd-survey": {
+   "stage": "growing",
+   "bytes": 7216,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "distillation",
+    "distilling-step-by-step",
+    "orca",
+    "minillm",
+    "gkd",
+    "distillm"
+   ],
+   "in": [
+    "llm-distill-survey"
+   ],
+   "diagram": "compare",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2025"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "rlad": {
+   "stage": "evergreen",
+   "bytes": 7318,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "grpo",
+    "opd-survey",
+    "qwen3"
+   ],
+   "in": [
+    "opd-survey",
+    "rethinking-opd"
+   ],
+   "diagram": "compare",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2026"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "opd-survey": {
+   "stage": "evergreen",
+   "bytes": 8574,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "gkd",
+    "minillm",
+    "distillation",
+    "distillm",
+    "soda",
+    "rlad",
+    "rethinking-opd",
+    "sod-agent"
+   ],
+   "in": [
+    "rlad",
+    "soda",
+    "rethinking-opd",
+    "sod-agent",
+    "sra",
+    "moe-to-dense"
+   ],
+   "diagram": "split",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2026"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "soda": {
+   "stage": "evergreen",
+   "bytes": 7371,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "distillm",
+    "opd-survey"
+   ],
+   "in": [
+    "opd-survey",
+    "rethinking-opd"
+   ],
+   "diagram": "compare",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2026"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "rethinking-opd": {
+   "stage": "growing",
+   "bytes": 7010,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "qwen3",
+    "opd-survey",
+    "grpo",
+    "soda",
+    "rlad"
+   ],
+   "in": [
+    "opd-survey",
+    "sod-agent"
+   ],
+   "diagram": "flow",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2026"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "sod-agent": {
+   "stage": "evergreen",
+   "bytes": 7861,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "opd-survey",
+    "grpo",
+    "rethinking-opd",
+    "qwen3"
+   ],
+   "in": [
+    "opd-survey"
+   ],
+   "diagram": "loop",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2026"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "sra": {
+   "stage": "evergreen",
+   "bytes": 8509,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "distillation",
+    "sentencepiece",
+    "opd-survey"
+   ],
+   "in": [],
+   "diagram": "compare",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2026"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "gmoe": {
+   "stage": "growing",
+   "bytes": 5376,
+   "sections": [
+    "venue",
+    "authors",
+    "links"
+   ],
+   "out": [
+    "switch",
+    "moe-to-dense"
+   ],
+   "in": [
+    "moe-to-dense"
+   ],
+   "diagram": "split",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2026"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "moe-to-dense": {
+   "stage": "evergreen",
+   "bytes": 8583,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "switch",
+    "qwen3",
+    "distillation",
+    "opd-survey",
+    "gmoe"
+   ],
+   "in": [
+    "gmoe"
+   ],
+   "diagram": "flow",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "distill",
+    "2026"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "blt": {
+   "stage": "evergreen",
+   "bytes": 9381,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "math",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "sentencepiece",
+    "fast-blt",
+    "transformer"
+   ],
+   "in": [
+    "fast-blt"
+   ],
+   "diagram": "stack",
+   "extLinks": 2,
+   "tags": [
+    "efficiency",
+    "attn",
+    "2024"
+   ],
+   "mtime": "2026-09-14"
+  },
+  "fast-blt": {
+   "stage": "growing",
+   "bytes": 8110,
+   "sections": [
+    "venue",
+    "authors",
+    "arxiv",
+    "numbers",
+    "links"
+   ],
+   "out": [
+    "blt"
+   ],
+   "in": [
+    "blt"
+   ],
+   "diagram": "compare",
+   "extLinks": 1,
+   "tags": [
+    "efficiency",
+    "attn",
+    "2026"
+   ],
+   "mtime": "2026-09-14"
   },
   "flashattention2": {
    "stage": "evergreen",
@@ -10816,6 +12033,7 @@
     "dit"
    ],
    "in": [
+    "add-turbo",
     "imagen",
     "controlnet",
     "glide",
@@ -11194,6 +12412,7 @@
     "vit"
    ],
    "in": [
+    "attention-transfer",
     "lime",
     "shap",
     "attention-not-explanation",
@@ -12950,6 +14169,9 @@
    ],
    "in": [
     "distillation",
+    "tinybert",
+    "mobilebert",
+    "llm-distill-survey",
     "albert",
     "simclr-v2",
     "movement-pruning"
@@ -16311,6 +17533,7 @@
     "vit"
    ],
    "in": [
+    "patient-consistent",
     "billion-scale-ssl"
    ],
    "diagram": "flow",
@@ -21893,7 +23116,10 @@
     "lora",
     "animatediff"
    ],
-   "in": [],
+   "in": [
+    "progressive-distillation",
+    "add-turbo"
+   ],
    "diagram": "compare",
    "extLinks": 2,
    "tags": [
@@ -22875,6 +24101,7 @@
     "orpo"
    ],
    "in": [
+    "gkd",
     "weak-to-strong",
     "preference-ft",
     "deliberative-alignment"
@@ -25923,6 +27150,10 @@
     "deepseek-v3"
    ],
    "in": [
+    "rlad",
+    "rethinking-opd",
+    "sod-agent",
+    "moe-to-dense",
     "qwen",
     "qwen25"
    ],
@@ -26584,16 +27815,17 @@
   }
  },
  "stats": {
-  "total": 801,
-  "written": 801,
+  "total": 840,
+  "written": 840,
   "byStage": {
-   "evergreen": 678,
-   "growing": 123
+   "evergreen": 709,
+   "sprout": 2,
+   "growing": 129
   },
   "byField": {
    "foundations": {
-    "total": 36,
-    "written": 36
+    "total": 37,
+    "written": 37
    },
    "nlp": {
     "total": 29,
@@ -26608,8 +27840,8 @@
     "written": 105
    },
    "efficiency": {
-    "total": 74,
-    "written": 74
+    "total": 112,
+    "written": 112
    },
    "generative": {
     "total": 61,

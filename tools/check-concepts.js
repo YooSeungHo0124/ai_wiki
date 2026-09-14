@@ -15,6 +15,16 @@ const DTYPES=['flow','stack','compare','loop','split','matrix'];
 
 let err=[], warn=[], have=0;
 
+/* 인덱스(content/concepts.js) 자체의 논문 참조 검사 — 지금까지는 본문 파일의
+   papers[] 만 봤기 때문에, 본문을 아직 안 쓴 개념의 인덱스 행에 없는 논문
+   슬러그가 적혀 있어도 아무도 잡지 못했다(실제로 22건이 그렇게 통과했다). */
+CONCEPTS.forEach(c=>{
+  (c.papers||[]).forEach(s=>{
+    if(!PAPER_SLUGS.has(s))
+      err.push('IDXPAPER '+c.slug+' -> papers[] "'+s+'"   (인덱스 행이 없는 논문 slug 를 가리킨다)');
+  });
+});
+
 CONCEPTS.forEach(c=>{
   const f=path.join(ROOT,'content/concepts',c.slug+'.js');
   if(!fs.existsSync(f)){ warn.push('MISSING  '+c.slug+' ('+c.ko+')'); return; }

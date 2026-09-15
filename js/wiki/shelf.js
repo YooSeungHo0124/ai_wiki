@@ -197,13 +197,8 @@ window.WIKI = window.WIKI || {};
     return formatAuthors(authors, 'cover')+' 외';
   }
 
-  /* ----------------------------------------------------------------
-   * 상태(성장 단계) — DESIGN-SYSTEM §5.1 을 SHELF-SPEC §1 의 책등 규칙으로
-   * 이식. 현재 데이터는 evergreen/growing 뿐이지만(seed/sprout 0편, §6
-   * 정정) 미래를 위해 4단계 전부 지원한다.
-   * ---------------------------------------------------------------- */
-  var STAGE_CLASS={ seed:'stage-seed', sprout:'stage-sprout', growing:'stage-growing', evergreen:'' };
-  var STAGE_LABEL={ seed:'씨앗 단계', sprout:'새싹 단계', growing:'자라는 중 단계', evergreen:'상록수 단계' };
+  /* 성장 단계(씨앗·새싹·자라는 중·상록수)로 책등을 구분하던 규칙은 없앴다.
+     책등이 말하는 것은 분야색·연도·들어오는 링크 수(높이)뿐이다. */
 
   function esc(s){ return W.esc ? W.esc(s) : String(s==null?'':s); }
 
@@ -214,7 +209,6 @@ window.WIKI = window.WIKI || {};
    * ---------------------------------------------------------------- */
   function renderSpine(m, field, graph, meta, widthMap, visited){
     var g = graph && graph.papers ? graph.papers[m.slug] : null;
-    var stage = (g && g.stage) || 'evergreen';
     var inCount = inCountOf(g);
     var width = widthMap[m.slug] || SPINE_W_MIN;
     var height = heightFor(inCount);
@@ -225,7 +219,6 @@ window.WIKI = window.WIKI || {};
     var isVisited = !!(visited && visited[m.slug]);
 
     var cls='spine';
-    if(STAGE_CLASS[stage]) cls+=' '+STAGE_CLASS[stage];
     if(isVisited) cls+=' is-visited';
 
     var labelParts=[m.ko];
@@ -233,8 +226,6 @@ window.WIKI = window.WIKI || {};
     var authSentence=authorsSentence(authorsRaw);
     if(authSentence) labelParts.push(authSentence);
     labelParts.push(m.year+'년');
-    labelParts.push(STAGE_LABEL[stage]||stage);
-    if(stage==='seed') labelParts.push('아직 정리 노트 없음');
     if(isVisited) labelParts.push('이전에 봤음');
     var ariaLabel=labelParts.join(', ');
     /* 마우스 사용자용 title 툴팁 — 책등이 말줄임되더라도(§1.3) 전체 제목이
@@ -243,15 +234,12 @@ window.WIKI = window.WIKI || {};
     var titleAttr = (m.title && m.title!==m.ko) ? (m.ko+' — '+m.title) : m.ko;
 
     var fieldColor = field ? field.color : 'var(--border-strong)';
-    var bandStyle = (stage==='seed'||stage==='sprout')
-      ? 'background:transparent'
-      : 'background:'+fieldColor;
+    var bandStyle = 'background:'+fieldColor;
 
     return '<a class="'+cls+'" href="#/p/'+esc(m.slug)+'" role="option" aria-selected="false" '
       +'tabindex="-1" data-slug="'+esc(m.slug)+'" data-field="'+esc(m.field)+'" data-year="'+m.year+'" '
       +'data-search="'+esc((m.ko||'').toLowerCase())+'" '
       +'style="width:'+width+'px;height:'+height+'px;--field-color:'+fieldColor+';'
-      +((stage==='seed'||stage==='sprout')?'border-color:'+fieldColor+';':'')
       +'" aria-label="'+esc(ariaLabel)+'" title="'+esc(titleAttr)+'">'
       +'<span class="spine-band" style="'+bandStyle+'"></span>'
       +'<span class="spine-title" data-raw="'+esc(m.ko)+'">'+titleHtml+'</span>'
@@ -393,13 +381,12 @@ window.WIKI = window.WIKI || {};
           +'<ul class="mobile-list">'
           +papers.map(function(m){
             var g2=graph&&graph.papers?graph.papers[m.slug]:null;
-            var stage=(g2&&g2.stage)||'evergreen';
             var authorsRaw=(meta&&meta[m.slug]&&meta[m.slug].authors)||null;
             var authTxt=formatAuthors(authorsRaw,'cover');
             return '<li><a class="mobile-item" href="#/p/'+esc(m.slug)+'" data-slug="'+esc(m.slug)+'">'
               +'<span class="mi-title">'+esc(m.ko)+'</span>'
               +(authTxt?'<span class="mi-authors">'+esc(authTxt)+'</span>':'')
-              +'<span class="mi-year">'+m.year+(stage==='seed'?' · 씨앗':'')+'</span>'
+              +'<span class="mi-year">'+m.year+'</span>'
               +'</a></li>';
           }).join('')
           +'</ul>'

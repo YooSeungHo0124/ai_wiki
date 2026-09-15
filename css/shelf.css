@@ -177,29 +177,8 @@ html[data-theme="dark"] .spine{ background:var(--surface-raised); }
   pointer-events:none;
 }
 
-/* ---------------- 성장 단계 (DESIGN-SYSTEM §5.1 → 책등 이식, SHELF-SPEC §1) ----------------
-   evergreen: 장식 없음(기본 스타일 자체가 evergreen).
-   growing:   밴드 정상 + 몸통 8% 틴트.
-   sprout:    밴드 채우지 않음(투명) + 1.5px 분야색 실선 아웃라인.
-   seed:      밴드 채우지 않음(투명) + 1.5px 분야색 실선 아웃라인 + 흐린 텍스트.
-   (SHELF-SPEC §1 이 LIBRARY-CONCEPT §4.1의 "점선"을 "실선 아웃라인"으로
-   명시적으로 대체했다 — 촘촘히 붙은 책등에서 점선은 노이즈가 된다는 근거.
-   이 파일은 더 구체적인 상호작용 스펙인 SHELF-SPEC을 따른다.) */
-.spine.stage-growing{
-  /* 몸통 전체에 분야색 8% 틴트 — 밴드색은 js가 인라인 --field-color로 넘긴다 */
-  background:color-mix(in srgb, var(--field-color, var(--border-strong)) 8%, var(--surface));
-}
-
-/* seed·sprout: 밴드를 채우지 않고 1.5px 분야색 실선 아웃라인만(js가 인라인
-   border-color로 필드색을 지정한다). 몸통 배경은 evergreen과 동일. */
-.spine.stage-seed,
-.spine.stage-sprout{
-  border-width:1.5px;
-}
-.spine.stage-seed .spine-title{
-  color:var(--text-tertiary);
-  letter-spacing:0.03em;
-}
+/* 성장 단계(씨앗·새싹·자라는 중·상록수)별 책등 스타일은 없앴다.
+   책등이 말하는 것은 분야색·연도·들어오는 링크 수(높이)뿐이다. */
 
 /* 빈 트랙 슬롯 (§4.5) — 34px 고정폭, 점선, 클릭 불가 */
 .track-slot{

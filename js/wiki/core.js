@@ -133,29 +133,11 @@ window.WIKI = window.WIKI || {};
   W.loadGraph().then(function(g){ W.GRAPH = g; });
   W.graphOf = function(slug){ return (W.GRAPH && W.GRAPH.papers[slug]) || null; };
 
-  /* 성장 단계 배지 — DESIGN-SYSTEM.md §5.1 4단계.
-     tools/build-graph.js 가 내려주는 stage 값(seed|sprout|growing|evergreen)을
-     그대로 신뢰한다. graph.json이 없으면(아직 안 만들어졌거나 fetch 실패)
-     배지 자체를 그리지 않는다(추측으로 상태를 지어내지 않음). */
-  W.STAGE_INFO = {
-    seed:      {icon:'🌱', label:'씨앗'},
-    sprout:    {icon:'🌿', label:'새싹'},
-    growing:   {icon:'🪴', label:'자라는 중'},
-    evergreen: {icon:'🌳', label:'여문 글'}
-  };
-  /* 논문 페이지 상단 메타 줄용 — 축약 없이 아이콘+라벨 전체 */
-  W.stageBadge = function(slug){
-    var g=W.graphOf(slug); if(!g||!g.stage) return '';
-    var info=W.STAGE_INFO[g.stage]||{icon:'🌱',label:g.stage};
-    return '<span class="tag stage stage-'+W.esc(g.stage)+'" title="성장 단계: '+W.esc(info.label)+'">'
-      +info.icon+' '+W.esc(info.label)+'</span>';
-  };
-  /* 카드·검색 결과용 — 아이콘만 작게, 나머지는 title 툴팁으로 (§5.1 배치 규칙) */
-  W.stageIcon = function(slug){
-    var g=W.graphOf(slug); if(!g||!g.stage) return '';
-    var info=W.STAGE_INFO[g.stage]||{icon:'🌱',label:g.stage};
-    return '<span class="stage-ic stage-'+W.esc(g.stage)+'" title="성장 단계: '+W.esc(info.label)+'" aria-label="성장 단계: '+W.esc(info.label)+'">'+info.icon+'</span>';
-  };
+  /* 성장 단계(씨앗·새싹·자라는 중·상록수) 표시는 없앴다.
+     912편이 전부 작성된 시점에 "자라는 중" 156편은 분량이 조금 짧다는 뜻일
+     뿐인데, 독자에게는 "이 글은 덜 됐다"는 오해만 준다. 어떤 글이든 나중에
+     더 채워질 수 있다는 것은 위키의 기본 성질이지 표시할 상태가 아니다.
+     계보 그래프는 그대로 두고 단계 배지·필터·라우트만 걷어냈다. */
 
   /* ----------------------------------------------------------------
    * 검색 매칭 엔진 (자유어 부분)

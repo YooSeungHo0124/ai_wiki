@@ -273,13 +273,10 @@
     });
 
     /* 노드 — 분야색은 레인 배경·레이블만으로 전달한다(DESIGN-SYSTEM §7).
-       성장 단계는 테두리 스타일로만 보조 신호를 준다: seed=점선, 그 외=기본 실선.
        hub(차수>=8, §0.6)는 테두리만 굵게 — 색·크기 채널은 건드리지 않는다(§5.3). */
     items.forEach(function(m){
       var p=pos[m.slug]; if(!p) return;
       if(collapsed[p.lane]) return; /* 접힌 레인은 요약 스트립이 대신한다 */
-      var g=W.graphOf?W.graphOf(m.slug):null, stage=g&&g.stage;
-      var stageCls = stage==='seed' ? ' node-seed' : (stage&&stage!=='evergreen' ? ' node-'+stage : '');
       var hubCls = hubSet[m.slug] ? ' hub' : '';
       var selCls='';
       if(focus){
@@ -289,7 +286,7 @@
         else selCls=' sel-dim';
       }
       var pressed = focus && m.slug===focus ? 'true':'false';
-      b+='<g class="node'+stageCls+hubCls+selCls+'" tabindex="0" role="button" aria-pressed="'+pressed+'" aria-label="'+W.esc(m.ko)+' ('+m.year+'), 선택하면 연결된 논문이 강조됩니다" data-slug="'+m.slug+'" style="cursor:pointer">'
+      b+='<g class="node'+hubCls+selCls+'" tabindex="0" role="button" aria-pressed="'+pressed+'" aria-label="'+W.esc(m.ko)+' ('+m.year+'), 선택하면 연결된 논문이 강조됩니다" data-slug="'+m.slug+'" style="cursor:pointer">'
         +'<rect x="'+p.x+'" y="'+p.y+'" width="'+BW+'" height="'+BH+'"/>'
         +'<text x="'+(p.x+10)+'" y="'+(p.y+17)+'">'+W.esc(clip(m.ko,16))+'</text>'
         +'<text class="yr" x="'+(p.x+10)+'" y="'+(p.y+31)+'">'+m.year+'</text>'
@@ -433,9 +430,7 @@
           return;
         }
         var isCenter=(m.slug===slug);
-        var g=W.graphOf?W.graphOf(m.slug):null, stage=g&&g.stage;
-        var stageCls = !isCenter&&stage==='seed' ? ' node-seed' : (!isCenter&&stage&&stage!=='evergreen' ? ' node-'+stage : '');
-        b+='<g class="node'+(isCenter?' node-center':stageCls)+'" '
+        b+='<g class="node'+(isCenter?' node-center':'')+'" '
           +(isCenter?'':'tabindex="0" role="button" aria-pressed="false" ')
           +'aria-label="'+W.esc(m.ko)+' ('+m.year+')'+(isCenter?' — 현재 논문':', 선택하면 연결된 논문이 강조됩니다')+'" '
           +(isCenter?'':'data-slug="'+m.slug+'"')+' style="cursor:'+(isCenter?'default':'pointer')+'">'

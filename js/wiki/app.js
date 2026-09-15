@@ -47,8 +47,10 @@
       case 'parents': { var o=numOp(ft.raw); return o? cmpOp(m.parents.length,o) : true; }
       case 'children': { var o=numOp(ft.raw); return o? cmpOp(W.childrenOf(m.slug).length,o) : true; }
       case 'note': {
-        if(!g||!g.stage) return true; /* graph.json 없으면 판정 불가 — 필터를 무시(전부 통과) */
-        var has = g.stage!=='seed';
+        /* 예전에는 성장 단계(stage!=='seed')로 판정했는데 단계 개념을 없앴다.
+           이제 노트 파일이 실제로 있는지(build-graph 가 기록한 mtime)로 본다. */
+        if(!g) return true; /* graph.json 없으면 판정 불가 — 필터를 무시(전부 통과) */
+        var has = !!g.mtime;
         return ft.raw.toLowerCase()==='no' ? !has : has;
       }
       default: return true;
@@ -93,8 +95,8 @@
   }
   function resultRow(x,i){
     if(x.type==='paper'){
-      var m=x.m, f=W.field(m.field), stage=W.stageIcon(m.slug);
-      return '<div class="r'+(i===sel?' sel':'')+'" id="res-opt-'+i+'" role="option" aria-selected="'+(i===sel?'true':'false')+'" data-slug="'+m.slug+'"><b>'+W.esc(m.ko)+'</b> '+stage
+      var m=x.m, f=W.field(m.field);
+      return '<div class="r'+(i===sel?' sel':'')+'" id="res-opt-'+i+'" role="option" aria-selected="'+(i===sel?'true':'false')+'" data-slug="'+m.slug+'"><b>'+W.esc(m.ko)+'</b>'
         +'<span>· '+m.year+' · '+W.esc(f?f.name:'')+'</span><br><span>'+W.esc(m.title)+'</span></div>';
     }
     var c=x.c, g=W.conceptGroup(c.group);
@@ -196,12 +198,11 @@
      노드 좌표를 따라다니지 않고 그래프 컨테이너 하단에 고정). */
   function graphCardHTML(slug){
     var m=W.byId(slug); if(!m) return '';
-    var stage=W.stageBadge(slug);
     var pCount=m.parents.length, cCount=W.childrenOf(slug).length;
     return '<div class="graph-card-inner">'
       +'<button type="button" class="graph-card-close" aria-label="닫기" data-card-close>×</button>'
       +'<div class="graph-card-title">'+W.esc(m.ko)+'</div>'
-      +'<div class="graph-card-meta"><span class="chip-year">'+m.year+'</span>'+stage+'</div>'
+      +'<div class="graph-card-meta"><span class="chip-year">'+m.year+'</span></div>'
       +'<div class="graph-card-counts">부모 <b class="cnt-parent">'+pCount+'</b> · 자식 <b class="cnt-child">'+cCount+'</b></div>'
       +'<button type="button" class="graph-card-move" data-go="#/p/'+slug+'">이 논문으로 이동 →</button>'
       +'</div>';
@@ -316,10 +317,9 @@
     }
 
     function paperLi(m){
-      var g=W.graphOf(m.slug), seed = g && g.stage==='seed';
       var isCur = m.slug===activeSlug;
-      return '<li><a class="nav-paper'+(seed?' nav-seed':'')+(isCur?' nav-current':'')+'" href="#/p/'+m.slug+'"'
-        +(isCur?' aria-current="page"':'')+'>'+(seed?'<span aria-hidden="true">🌱</span> ':'')
+      return '<li><a class="nav-paper'+(isCur?' nav-current':'')+'" href="#/p/'+m.slug+'"'
+        +(isCur?' aria-current="page"':'')+'>'
         +W.esc(m.ko)+' <span class="nav-yr">'+m.year+'</span></a></li>';
     }
     function trackLi(f, tr){
@@ -332,13 +332,11 @@
         +'</details></li>';
     }
     function fieldLi(f){
-      var fs = stats && stats.byField && stats.byField[f.id];
-      var allSeed = fs && fs.total>0 && fs.written===0;
       var open = f.id===activeField;
       var tracksHtml = f.tracks.map(function(tr){ return trackLi(f,tr); }).join('');
       if(!tracksHtml) return '';
-      return '<li><details class="nav-field'+(allSeed?' nav-field-empty':'')+'"'+(open?' open':'')+'>'
-        +'<summary>'+W.esc(f.name)+(allSeed?' <span class="nav-seed-badge" title="이 분야는 아직 씨앗 단계입니다" aria-label="이 분야는 아직 씨앗 단계입니다">🌱</span>':'')+'</summary>'
+      return '<li><details class="nav-field"'+(open?' open':'')+'>'
+        +'<summary>'+W.esc(f.name)+'</summary>'
         +'<ul class="nav-tracks">'+tracksHtml+'</ul>'
         +'</details></li>';
     }
@@ -543,18 +541,10 @@
      링크는 seed/sprout가 0인 지금 홈에 남은 유일한 정직한 진행 신호(브리프 §6). */
   function personalStrip(){
     var recents=recentSlugs();
-    var stats=W.GRAPH&&W.GRAPH.stats;
-    var growingN = stats&&stats.byStage ? (stats.byStage.growing||0) : null;
     var left = recents.length
       ? '<div class="pstrip-block"><h3>이어보기</h3>'+continueHtml()+'</div>'
       : '<div class="pstrip-block pstrip-course"><h3>여기서 시작하세요 — 입문 7편</h3>'+coursePills()+'</div>';
-    var growing = growingN==null ? ''
-      : (growingN>0
-          ? '<a class="widget-item" href="#/growing">성장 중인 노트 '+growingN+'편 →</a>'
-          : '<div class="widget-empty">성장 중인 노트 없음</div>');
-    return '<div class="pstrip">'+left
-      +'<div class="pstrip-block pstrip-growing"><h3>더 자라는 중</h3>'+growing+'</div>'
-      +'</div>';
+    return '<div class="pstrip pstrip-single">'+left+'</div>';
   }
 
   /* ---------- 홈 진입점 — 개념 사전 (책장·계보 그래프와 나란한 위계) ---------- */
@@ -614,10 +604,8 @@
        "계보 그래프 보기" 버튼으로 되돌린다(§7.2). 사용자가 한 번 토글하면
        그 이후엔 재렌더링에도 그 상태를 유지한다(homeGraphOpen). */
     if(homeGraphOpen===null) homeGraphOpen = (window.innerWidth>=700);
-    var growingN = stats&&stats.byStage ? (stats.byStage.growing||0) : null;
     var heroP = stats
-      ? ('전체 '+W.META.length+'편, '+W.FIELDS.length+'개 분야 모두 정리돼 있습니다'
-         + (growingN? ', 그중 <a href="#/growing">'+growingN+'편은 아직 자라는 중</a>입니다.' : '.'))
+      ? ('전체 '+W.META.length+'편, '+W.FIELDS.length+'개 분야 모두 정리돼 있습니다.')
       : ('전체 '+W.META.length+'편, '+W.FIELDS.length+'개 분야.');
 
     var inner='<div class="home-nav-row">'+navToggleBtn()+'</div>'
@@ -756,31 +744,6 @@
     }
   }
 
-  /* ---------- 뷰: 성장 중인 노트 (HOME-IA §5.2 — "성장 중인 노트 N편" 링크의 목적지) ----------
-     검색 팔레트에는 stage: 필터가 없어(core.js 소관, 이번 개편 범위 밖) 그
-     문법을 그대로 재사용할 수 없다. 대신 이 전용 뷰가 같은 결과를 낸다:
-     stage==='growing'인 논문만 분야 카드 그리드와 같은 모양으로 나열. */
-  function viewGrowing(){
-    setTitle('성장 중인 노트');
-    var g=W.GRAPH;
-    var items = g ? W.META.filter(function(m){ var gg=W.graphOf(m.slug); return gg&&gg.stage==='growing'; })
-      .sort(function(a,b){ return a.year-b.year; }) : [];
-    var list = items.length ? '<div class="grid">'+items.map(function(m){
-      var f=W.field(m.field), stage=W.stageIcon(m.slug);
-      return '<a class="card" href="#/p/'+m.slug+'"><div class="bar" style="background:'+f.color+'"></div>'
-        +(stage?'<div class="card-stage">'+stage+'</div>':'')
-        +'<div class="en">'+m.year+' · '+W.esc(f.name)+'</div><h3>'+W.esc(m.ko)+'</h3>'
-        +'<p style="font-size:12.5px">'+W.esc(m.title)+'</p></a>';
-    }).join('')+'</div>' : '<div class="stub">'+(g? '성장 중인 노트가 없습니다.' : '데이터를 불러오는 중입니다…')+'</div>';
-    var inner='<div class="crumb"><a href="#/">전체 지도</a> › 성장 중인 노트'+navToggleBtn()+'</div>'
-      +'<div class="hero"><h2>성장 중인 노트</h2>'
-      +'<p>노트는 있지만 수식·숫자로 보기·딥다이브 같은 rich 섹션까지는 아직 못 채운 '+items.length+'편입니다(LIBRARY-BRIEF §6). '
-      +'분야별 완성률이 아니라 이 목록이 지금 이 위키의 정직한 "자라는 중" 신호입니다.</p></div>'
-      +list;
-    app.innerHTML=shell(navTreeHTML(null,null,true), 'wrap wide', inner);
-    wireNavToggle(app);
-  }
-
   /* ---------- 뷰: 입문 7편 코스 (personalStrip이 재방문자에게 축소해 두는 링크의 목적지) ---------- */
   function viewCourse(){
     setTitle('입문 7편 코스');
@@ -804,9 +767,7 @@
       if(!mine.length) return '';
       return '<h3 class="sec">'+W.esc(tr.name)+' <span style="color:var(--muted);font-size:12px">'+mine.length+'편</span></h3>'
         +'<div class="grid">'+mine.map(function(m){
-          var stage=W.stageIcon(m.slug);
           return '<a class="card" href="#/p/'+m.slug+'"><div class="bar" style="background:'+f.color+'"></div>'
-            +(stage?'<div class="card-stage">'+stage+'</div>':'')
             +'<div class="en">'+m.year+'</div><h3>'+W.esc(m.ko)+'</h3>'
             +'<p style="font-size:12.5px">'+W.esc(m.title)+'</p></a>';
         }).join('')+'</div>';
@@ -834,7 +795,7 @@
     return '<span class="lvl" title="난이도: '+W.esc(LEVEL_LABEL[l]||l)+'" aria-label="난이도 '+W.esc(LEVEL_LABEL[l]||l)+'">'+dots+'</span>';
   }
   function conceptChip(c, writtenMap){
-    var state = writtenMap ? writtenMap[c.slug] : undefined; /* undefined=확인 중, true=작성됨, false=씨앗 */
+    var state = writtenMap ? writtenMap[c.slug] : undefined; /* undefined=확인 중, true=본문 있음, false=본문 없음 */
     var seedCls = state===false ? ' ct-seed' : '';
     return '<a class="concept-chip'+seedCls+'" href="#/c/'+c.slug+'" data-concept-chip="'+c.slug+'">'
       +'<span class="cc-ko">'+W.esc(c.ko)+'</span>'
@@ -864,7 +825,7 @@
       +body;
     app.innerHTML=shell(navTreeHTML(null,null,false,'__index__'), 'wrap wide', inner);
     wireNavToggle(app);
-    /* 목록 자체는 즉시 그리고, 각 항목이 실제로 작성됐는지(씨앗 여부)는
+    /* 목록 자체는 즉시 그리고, 각 항목에 본문이 실제로 있는지는
        본문을 하나씩 지연 로드해 본 뒤 배지만 갱신한다 — 목록 렌더가
        73개 본문 로드를 기다릴 필요는 없다(다른 화면과 같은 "값이 없으면
        그 조각만 나중에 채운다" 규칙). */
@@ -884,9 +845,8 @@
     var items=(slugs||[]).map(W.byId).filter(Boolean);
     if(!items.length) return '<p class="stub-inline">관련 논문이 아직 인덱스에 없습니다.</p>';
     return '<div class="grid">'+items.map(function(m){
-      var f=W.field(m.field), stage=W.stageIcon(m.slug);
+      var f=W.field(m.field);
       return '<a class="card" href="#/p/'+m.slug+'"><div class="bar" style="background:'+f.color+'"></div>'
-        +(stage?'<div class="card-stage">'+stage+'</div>':'')
         +'<div class="en">'+m.year+' · '+W.esc(f.name)+'</div><h3>'+W.esc(m.ko)+'</h3>'
         +'<p style="font-size:12.5px">'+W.esc(m.title)+'</p></a>';
     }).join('')+'</div>';
@@ -943,7 +903,6 @@
       +'<div class="pmeta">'
       +'<span class="tag concept-group-tag">'+W.esc(g?g.name:'')+'</span>'
       +levelDots(c.level)
-      +(p? '' : '<span class="tag stage stage-seed">🌱 씨앗</span>')
       +'</div>';
 
     if(!p){
@@ -994,7 +953,6 @@
 
   /* ---------- 뷰: 논문 ---------- */
   function buildHead(m,f,tr,p){
-    var stage=W.stageBadge(m.slug);
     /* 태그 삼종 — 분야 → 트랙 → 연도, 강도를 다르게(DESIGN-SYSTEM §5.4).
        분야만 색을 가진 칩, 트랙은 색 없는 아웃라인, 연도는 칩 자체가 없다.
        venue/authors/arxiv는 본문(p)에만 있는 정보라 로드 전에는 생략된다 —
@@ -1007,7 +965,6 @@
       +'<div class="pmeta">'
       +'<span class="chip-field" style="color:'+f.color+';border-color:color-mix(in srgb,'+f.color+' 45%,transparent);background:color-mix(in srgb,'+f.color+' 12%,var(--surface))">'+W.esc(f.name)+'</span>'
       +(tr?'<span class="chip-track">'+W.esc(tr.name)+'</span>':'')
-      +stage
       +(p&&p.venue?'<span class="chip-track">'+W.esc(p.venue)+'</span>':'')
       +(p&&p.authors?'<span class="chip-track">'+W.esc(p.authors)+'</span>':'')
       +(p&&p.arxiv?'<a class="chip-track" href="https://arxiv.org/abs/'+W.esc(p.arxiv)+'" target="_blank" rel="noopener">arXiv:'+W.esc(p.arxiv)+'</a>':'')
@@ -1135,7 +1092,7 @@
   function renderPaper(m,f,tr,p){
     var head=buildHead(m,f,tr,p);
 
-    /* 같은 분야 앞뒤 논문 (씨앗 페이지에도 필요하므로 먼저 계산) */
+    /* 같은 분야 앞뒤 논문 (본문 없는 페이지에도 필요하므로 먼저 계산) */
     var sib=W.META.filter(function(x){return x.field===m.field}).sort(function(a,b){return a.year-b.year||a.slug.localeCompare(b.slug)});
     var i=sib.map(function(x){return x.slug}).indexOf(m.slug);
     var prev=sib[i-1], next=sib[i+1];
@@ -1143,7 +1100,7 @@
       +'<div>'+(next?'<a href="#/p/'+next.slug+'">'+W.esc(next.ko)+' ›</a>':'')+'</div></div>';
 
     if(!p){
-      /* 씨앗 페이지 — 빈 화면 금지: 계보·백링크·이전/다음 내비는 인덱스만으로 항상 그릴 수 있다 */
+      /* 본문이 아직 없는 페이지 — 빈 화면 금지: 계보·백링크·이전/다음 내비는 인덱스만으로 항상 그릴 수 있다 */
       var relC0 = relatedConceptsHTML(m.slug);
       app.innerHTML=shell(navTreeHTML(m.slug), 'wrap', head+guideBox(m)
         +'<h3 class="sec" style="margin-top:28px">계보상 위치</h3>'+lineageSection(m)
@@ -1420,7 +1377,6 @@
     if(h.indexOf('/f/')===0) return viewField(h.slice(3));
     if(h.indexOf('/c/')===0) return viewConcept(h.slice(3));
     if(h==='/concepts') return viewConcepts();
-    if(h==='/growing') return viewGrowing();
     if(h==='/course') return viewCourse();
     if(h==='/graph') return viewGraphFull();
     if(h && h[0]!=='/'){ document.getElementById(h.replace(/^#/,''))?.scrollIntoView(); return; }

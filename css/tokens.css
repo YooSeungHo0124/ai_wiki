@@ -43,9 +43,6 @@
      오류가 아니라 "아직"이고, evergreen은 훈장이 아니라 "완성된 기본값"
      이다 — 채도·명도만 단계적으로 올라가는 하나의 색 계열로 표현한다.
      seed는 색 자체를 쓰지 않고 중립(text-tertiary)+점선 처리(§5 참고). */
-  --stage-sprout-L:#726f28;   --stage-sprout-D:#d8d382;
-  --stage-growing-L:#5a6e1f;  --stage-growing-D:#b9d17a;
-  --stage-evergreen-L:#3c5c22; --stage-evergreen-D:#8fc06a;
 
   /* ---------- 1) Primitives : 10개 분야 식별색 ----------
      각 쌍은 (라이트 표면 위 텍스트/보더용, 다크 표면 위 텍스트/보더용).
@@ -170,17 +167,6 @@
   --state-info:var(--state-info-L);
   --state-ok:var(--state-ok-L);
 
-  /* 성장 단계 뱃지 (4종, §5.1) — SHELF-SPEC.md §9-4 "씨앗 책등 하단 바 색"
-     결정: 새 토큰을 만들지 않는다. LIBRARY-CONCEPT.md §4(확정 비주얼 컨셉,
-     SHELF-SPEC보다 나중에 나온 "결정문")는 책등의 seed/sprout/growing 구분을
-     이미 아웃라인 스타일+틴트만으로 전부 규정했고 "하단 바"라는 요소 자체가
-     없다 — 장식 3단계 상한(원칙 5)에도 걸린다. 즉 이 항목은 새 값이 아니라
-     기존 --stage-* 4종을 그대로 재사용하는 것으로 해소한다(seed=무채색
-     아웃라인, sprout=분야색 아웃라인, growing=분야색 8% 틴트, evergreen=장식 없음). */
-  --stage-seed:var(--text-tertiary);      /* 🌱 씨앗 — 색 없음, 점선으로만 표시 */
-  --stage-sprout:var(--stage-sprout-L);   /* 🌿 새싹 — 골격만 */
-  --stage-growing:var(--stage-growing-L); /* 🪴 자라는 중 — 핵심 섹션 충실 */
-  --stage-evergreen:var(--stage-evergreen-L); /* 🌳 여문 글 — 수식·수치까지 */
 
   /* 분야 식별색 (현재 테마용 별칭, 21개) */
   --field-foundations:var(--field-foundations-L);
@@ -410,10 +396,6 @@
     --state-info:var(--state-info-D);
     --state-ok:var(--state-ok-D);
 
-    --stage-seed:var(--text-tertiary);
-    --stage-sprout:var(--stage-sprout-D);
-    --stage-growing:var(--stage-growing-D);
-    --stage-evergreen:var(--stage-evergreen-D);
 
     --field-foundations:var(--field-foundations-D);
     --field-theory:var(--field-theory-D);
@@ -488,9 +470,6 @@ html[data-theme="dark"]{
   --state-info:var(--state-info-D);
   --state-ok:var(--state-ok-D);
 
-  --stage-seed:#e3c25c;
-  --stage-growing:var(--state-info-D);
-  --stage-evergreen:var(--field-vision-D);
 
   --field-foundations:var(--field-foundations-D);
   --field-theory:var(--field-theory-D);

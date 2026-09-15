@@ -8,7 +8,6 @@
      "generated": "2026-09-09",
      "papers": {
        "<slug>": {
-         "stage": "seed|sprout|growing|evergreen",   // 디지털 가든 성장 단계
          "bytes": 8292,                               // 노트 파일 크기
          "mtime": "2026-09-09",                       // 노트 최종 수정일 (없으면 미작성)
          "sections": ["math","numbers","deep",...],   // 실제로 채워진 선택 섹션
@@ -19,7 +18,7 @@
          "extLinks": 3
        }, ...
      },
-     "stats": { "total":150, "written":111, "byStage":{...}, "byField":{...} }
+     "stats": { "total":150, "written":111, "byField":{...} }
    }
 */
 const fs=require('fs'), vm=require('vm'), path=require('path');
@@ -33,7 +32,7 @@ const papers={};
 
 META.forEach(m=>{
   const file=path.join(ROOT,'content/papers',m.slug+'.js');
-  const rec={stage:'seed',bytes:0,sections:[],out:[],in:[],diagram:null,extLinks:0,
+  const rec={bytes:0,sections:[],out:[],in:[],diagram:null,extLinks:0,
              tags:[m.field,m.track,String(m.year)]};
   papers[m.slug]=rec;
   if(!fs.existsSync(file)) return;
@@ -41,7 +40,7 @@ META.forEach(m=>{
   rec.bytes=Buffer.byteLength(src);
   rec.mtime=fs.statSync(file).mtime.toISOString().slice(0,10);
   const c={}; c.window=c; c.WIKI={paper:o=>{c._p=o}}; vm.createContext(c);
-  try{ vm.runInContext(src,c); }catch(e){ rec.stage='seed'; rec.error=e.message; return; }
+  try{ vm.runInContext(src,c); }catch(e){ rec.error=e.message; return; }
   const p=c._p; if(!p) return;
 
   rec.diagram=p.diagram?p.diagram.type:null;
@@ -50,11 +49,9 @@ META.forEach(m=>{
   rec.out=[...new Set([...src.matchAll(/\(#\/p\/([a-z0-9-]+)\)/g)].map(x=>x[1]))]
             .filter(s=>SLUGS.has(s) && s!==m.slug);
 
-  /* 성장 단계: 분량 + 핵심 섹션 충실도로 판정 */
-  const ideas=(p.ideas||[]).length, legacy=(p.legacy||[]).length, pit=(p.pitfalls||[]).length;
-  const full = ideas>=3 && legacy>=3 && pit>=2 && p.diagram && p.impact && p.context;
-  const rich = full && (p.math||[]).length>=1 && (p.numbers||[]).length>=3 && rec.bytes>=6000;
-  rec.stage = rich ? 'evergreen' : full ? 'growing' : 'sprout';
+  /* 성장 단계(씨앗·새싹·자라는 중·상록수) 판정은 없앴다. 전편이 작성된
+     뒤에는 "자라는 중"이 분량이 조금 짧다는 뜻일 뿐인데 독자에게는 "이 글은
+     덜 됐다"는 오해만 줬다. 노트가 있는지 없는지는 mtime 유무로 알 수 있다. */
 });
 
 /* 백링크 = out 의 역인덱스 */
@@ -62,19 +59,17 @@ Object.keys(papers).forEach(s=>papers[s].out.forEach(t=>{
   if(papers[t] && papers[t].in.indexOf(s)<0) papers[t].in.push(s);
 }));
 
-const byStage={}, byField={};
+const byField={};
+let written=0;
 META.forEach(m=>{
-  const st=papers[m.slug].stage;
-  byStage[st]=(byStage[st]||0)+1;
+  const has=!!papers[m.slug].mtime;   /* 노트 파일이 실제로 있는가 */
   byField[m.field]=byField[m.field]||{total:0,written:0};
   byField[m.field].total++;
-  if(st!=='seed') byField[m.field].written++;
+  if(has){ byField[m.field].written++; written++; }
 });
-const written=META.length-(byStage.seed||0);
 const out={generated:new Date().toISOString().slice(0,10),papers,
-           stats:{total:META.length,written,byStage,byField}};
+           stats:{total:META.length,written,byField}};
 fs.writeFileSync(path.join(ROOT,'content/graph.json'), JSON.stringify(out,null,1));
 console.log('content/graph.json 생성 — 논문 '+META.length+'편, 노트 '+written+'편');
-console.log('성장 단계:', byStage);
 const linkCount=Object.values(papers).reduce((s,p)=>s+p.out.length,0);
 console.log('본문 위키링크 '+linkCount+'개, 백링크가 있는 문서 '+Object.values(papers).filter(p=>p.in.length).length+'편');

@@ -13,7 +13,7 @@
  *     "책장 빈 공간 클릭", "같은 책 재클릭 시 토글" 은 책등을 아는 shelf.js의
  *     책임이므로 여기서는 다루지 않는다(SHELF-SPEC §2 표 참고).
  *
- * 이 파일은 core.js(W.esc, W.byId, W.field, W.stageBadge)와 fields.js(WIKI.FIELDS/META)
+ * 이 파일은 core.js(W.esc, W.byId, W.field)와 fields.js(WIKI.FIELDS/META)
  * 가 이미 로드돼 있다고 가정한다. content/meta.json, content/covers/index.json,
  * content/covers/_missing.json은 이 파일이 직접, 한 번만 fetch한다(core.js의
  * loadGraph와 동일한 캐시 패턴 — 없거나 실패해도 화면은 폴백으로 정상 동작).
@@ -175,7 +175,6 @@ window.WIKI = window.WIKI || {};
     var meta = W.coverMetaOf(slug); /* null이면 아직 로딩 중이거나 결측(예: sae) */
     var authors = meta ? meta.authors : null;
     var authorsLine = authorsLineForCover(authors);
-    var stage = W.stageBadge ? W.stageBadge(slug) : '';
 
     var metaBits = [];
     if(meta && meta.venue) metaBits.push('<span class="chip-track">'+W.esc(meta.venue)+'</span>');
@@ -187,7 +186,7 @@ window.WIKI = window.WIKI || {};
     }
     html += mediaMarkup(m, f);
     html += '<div class="cover-body">';
-    html += '<div class="cover-toprow">'+fieldChip(f)+stage+'</div>';
+    html += '<div class="cover-toprow">'+fieldChip(f)+'</div>';
     html += '<h3 class="cover-title">'+W.esc(m.ko)+'</h3>';
     if(m.title && m.title!==m.ko) html += '<p class="cover-subtitle">'+W.esc(m.title)+'</p>';
     if(authorsLine) html += '<p class="cover-authors">'+authorsLine+'</p>';

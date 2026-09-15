@@ -117,3 +117,12 @@
   border-color:var(--border-subtle);background:var(--surface-sunken);
   border-radius:999px;padding:3px 10px;
 }
+
+/* ---------- 한글 본문 조판 (css/wiki.css 의 같은 규칙과 한 쌍) ----------
+   개념 본문도 논문 본문과 같은 어휘(.idea/.callout/ul.plain)를 쓰지만,
+   개념 전용 보조 클래스 두 개는 여기에만 있어 따로 건다. */
+.conf-d, .code-d{
+  word-break:keep-all;
+  overflow-wrap:break-word;
+  max-width:var(--measure-narrow);
+}

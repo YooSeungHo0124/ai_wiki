@@ -68,7 +68,7 @@ button{font-family:inherit}
 .wrap.wide{max-width:1500px}
 .hero{padding:26px 0 10px}
 .hero h2{margin:0 0 8px;font-size:27px;letter-spacing:-.02em}
-.hero p{margin:0;color:var(--text-dim);max-width:760px}
+.hero p{margin:0;color:var(--text-dim);max-width:var(--measure-body)}
 .kbd{font-family:"JetBrains Mono",monospace;font-size:11px;background:var(--panel3);
   border:1px solid var(--line);border-radius:5px;padding:1px 5px;color:var(--text-dim)}
 
@@ -227,6 +227,34 @@ ul.plain li{margin-bottom:6px}
 .pagenav{display:flex;justify-content:space-between;gap:12px;margin-top:44px;
   border-top:1px solid var(--line-soft);padding-top:16px;font-size:13px}
 .stub{background:var(--panel);border:1px dashed var(--line);border-radius:12px;padding:30px;text-align:center;color:var(--muted)}
+
+/* ---------- 한글 본문 조판 (2026-09 조판 감사) ----------
+   두 가지를 한꺼번에 고친다.
+
+   1) word-break:keep-all — design/TYPOGRAPHY.md §4.2 가 목업 대조군까지
+      렌더해 결정해 놓고도 정작 논문·개념 본문에는 적용이 안 돼 있었다.
+      없으면 `PagedAttention을`, `AlphaGo가` 처럼 한글 조사가 붙은 영문
+      토큰이 어절 중간에서 잘린다(`Trans-\nformer는`). overflow-wrap 만으로는
+      안 잡히고 keep-all 이 어절 단위 줄바꿈을 강제해야 한다.
+
+   2) max-width — 논문 본문이 약 860px 였는데 15px 기준 한 줄 57자다.
+      한글은 음절 하나가 정사각(≈1em)이라 라틴의 45~75자 가이드를 그대로
+      쓰면 안 되고 30~40자가 적정이다. 57자는 +43% 초과이고, 여기에
+      행간 1.75 가 겹치면 "가독성 좋음"이 아니라 "느슨하고 산만함"이 된다.
+      --measure-narrow(56ch) 토큰이 이미 정의돼 있었는데 쓰이지 않고 있었다.
+      ch 는 숫자 0 글리프 폭이라 한글로는 대략 그 절반 — 56ch ≈ 한글 34자쯤.
+
+   표·수식·그림·다이어그램(.math, table.nums, .paperfig, .dia)에는 걸지
+   않는다. 그쪽은 넓은 폭이 필요하고, 렌더러가 이미 본문류와 겹치지 않는
+   클래스로 분리해 두었다. 왼쪽 정렬은 그대로 둔다 — 읽기 시작점이
+   데이터 블록과 어긋나면 그게 더 어색하다. */
+.tldr, .callout, .idea, ul.plain, blockquote.quote{
+  word-break:keep-all;
+  overflow-wrap:break-word;
+  max-width:var(--measure-narrow);
+}
+/* 섹션 도입부 등 .paper 바로 아래 문단도 같은 규칙 */
+.paper > p{ word-break:keep-all; overflow-wrap:break-word; max-width:var(--measure-narrow); }
 
 /* ---------- 본문이 아직 없는 페이지의 안내 ---------- */
 .guide{background:var(--panel2);border:1px dashed var(--line);border-radius:12px;padding:18px 20px;margin:18px 0;font-size:13.5px;color:var(--text-dim)}
@@ -439,12 +467,18 @@ blockquote.quote cite{ display:block; margin-top:7px; font-style:normal; font-si
 .course-pill:hover{border-color:var(--accent-soft-border);color:var(--accent);text-decoration:none}
 .course-pill.done{color:var(--accent);border-color:var(--accent-soft-border)}
 .course-check{font-size:11px}
+/* 첫 화면 계보 예고 — 기존 course-pills 를 감싸는 얇은 껍데기뿐 */
+.lineage-teaser{margin-top:18px;padding-top:14px;border-top:1px solid var(--border-subtle)}
+.lineage-teaser-label{display:block;margin-bottom:7px;font-size:var(--fs-micro);
+  letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--text-tertiary)}
+.lineage-teaser-more{display:inline-block;margin-top:9px;font-size:var(--fs-body-sm);color:var(--text-tertiary)}
+.lineage-teaser-more:hover{color:var(--accent)}
 .course-mini{display:inline-block;margin-top:2px;font-size:12.5px;color:var(--text-tertiary)}
 
 /* 책장 섹션 헤더 + 그룹 접기 */
 .shelf-head{margin:34px 0 4px}
 .shelf-head h2{margin:0 0 6px;font-size:var(--fs-h2);letter-spacing:var(--ls-heading)}
-.shelf-head p{margin:0;font-size:13.5px;color:var(--text-secondary);max-width:760px}
+.shelf-head p{margin:0;font-size:13.5px;color:var(--text-secondary);max-width:var(--measure-body)}
 .shelf-transition{margin:26px 0;padding-top:16px;border-top:1px solid var(--border-subtle);
   font-size:13.5px;color:var(--text-secondary)}
 
@@ -452,7 +486,7 @@ blockquote.quote cite{ display:block; margin-top:7px; font-style:normal; font-si
    넣는다 — HOME-IA/LIBRARY-BRIEF가 원한 "분야 한 줄 소개"는 렌더 직후 이
    문장을 주입해 덧붙인다(shelf.js 파일은 건드리지 않는다). */
 .shelf-group-desc{margin:2px 0 0;font-size:13px;line-height:1.6;
-  color:var(--text-secondary);max-width:760px}
+  color:var(--text-secondary);max-width:var(--measure-body)}
 .shelf-block-blurb{margin:2px 0 0;font-size:12.5px;line-height:1.5;color:var(--text-secondary)}
 
 /* 표지 카드 패널 — SHELF-SPEC §2: 뷰포트 하단 고정, 데스크톱 380~420px,

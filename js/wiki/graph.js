@@ -274,6 +274,7 @@
 
     /* 노드 — 분야색은 레인 배경·레이블만으로 전달한다(DESIGN-SYSTEM §7).
        hub(차수>=8, §0.6)는 테두리만 굵게 — 색·크기 채널은 건드리지 않는다(§5.3). */
+    var tabStopSet=false;   /* 로빙 tabindex: 진입점 노드 하나만 0 (아래 참고) */
     items.forEach(function(m){
       var p=pos[m.slug]; if(!p) return;
       if(collapsed[p.lane]) return; /* 접힌 레인은 요약 스트립이 대신한다 */
@@ -286,7 +287,16 @@
         else selCls=' sel-dim';
       }
       var pressed = focus && m.slug===focus ? 'true':'false';
-      b+='<g class="node'+hubCls+selCls+'" tabindex="0" role="button" aria-pressed="'+pressed+'" aria-label="'+W.esc(m.ko)+' ('+m.year+'), 선택하면 연결된 논문이 강조됩니다" data-slug="'+m.slug+'" style="cursor:pointer">'
+      /* 로빙 tabindex — 예전에는 노드 전부에 tabindex="0" 이라 912개가 전부
+         Tab 정지점이 됐다. 데스크톱 홈은 그래프가 기본 펼침이라, 키보드
+         사용자가 그래프를 지나치려면 Tab 을 912번 눌러야 하는 사실상의
+         트랩이었다. 책장(shelf.js)은 같은 문제를 이미 로빙으로 풀어 뒀다.
+         진입점 하나만 0, 나머지는 -1 로 두고 내부 이동은 화살표 키가 맡는다
+         (app.js wireGraphSelection). tabindex 만 고치고 화살표 키를 안 붙이면
+         나머지 911개가 키보드로 아예 도달 불가해지는 회귀가 된다. */
+      var roving = (focus ? (m.slug===focus) : (tabStopSet===false));
+      if(roving) tabStopSet=true;
+      b+='<g class="node'+hubCls+selCls+'" tabindex="'+(roving?'0':'-1')+'" role="button" aria-pressed="'+pressed+'" aria-label="'+W.esc(m.ko)+' ('+m.year+'), 선택하면 연결된 논문이 강조됩니다" data-slug="'+m.slug+'" style="cursor:pointer">'
         +'<rect x="'+p.x+'" y="'+p.y+'" width="'+BW+'" height="'+BH+'"/>'
         +'<text x="'+(p.x+10)+'" y="'+(p.y+17)+'">'+W.esc(clip(m.ko,16))+'</text>'
         +'<text class="yr" x="'+(p.x+10)+'" y="'+(p.y+31)+'">'+m.year+'</text>'

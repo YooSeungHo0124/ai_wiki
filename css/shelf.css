@@ -9,13 +9,50 @@
 .shelf-group{ margin-top:var(--shelf-group-gap, var(--sp-16)); }
 .shelf-group:first-child{ margin-top:0; }
 
+/* 그룹(3개)과 분야(22개)가 둘 다 --fs-h3(17px) 이라 위계가 무너져 있었다.
+   HTML 은 h2/h3 로 구분해 놨는데 눈으로는 0단계 차이 — 3개 그룹과 22개
+   분야가 "같은 크기 제목이 계속 반복되는 목록"으로 읽혔다. 그룹만 22px 로
+   올린다(새 토큰을 파지 않고 기존 --fs-h2 재사용: 그룹 헤더는 페이지에
+   3번만 나오는데 그 한 자리를 위해 재사용 안 되는 값을 만들 이유가 없다). */
 .shelf-group-title{
   font-family:var(--font-kr);
-  font-size:var(--fs-h3);
-  font-weight:600;
+  font-size:var(--fs-h2);
+  font-weight:700;
   color:var(--text-primary);
   margin:0 0 var(--sp-4);
 }
+
+/* 그룹 접기 — 네이티브 <details>. summary 안에 h2 가 들어가므로
+   기본 마커를 없애고 직접 삼각형을 그린다. */
+.shelf-group-fold > summary{
+  list-style:none; cursor:pointer;
+  display:flex; align-items:baseline; gap:var(--sp-3);
+  padding:var(--sp-2) 0;
+}
+.shelf-group-fold > summary::-webkit-details-marker{ display:none; }
+.shelf-group-fold > summary::before{
+  content:"▸"; color:var(--text-tertiary); font-size:13px; line-height:1.4; flex:0 0 auto;
+  transition:transform var(--dur-state, 180ms) var(--ease-standard);
+}
+.shelf-group-fold[open] > summary::before{ transform:rotate(90deg); }
+.shelf-group-fold > summary:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+.shelf-group-fold > summary .shelf-group-title{ margin:0; }
+.shelf-group-count{
+  font-family:var(--font-mono); font-size:var(--fs-micro);
+  color:var(--text-faint-raised); flex:0 0 auto;
+}
+@media (prefers-reduced-motion: reduce){
+  .shelf-group-fold > summary::before{ transition-duration:0ms; }
+}
+
+/* "그 외 N권" — 표본으로 못 보여준 나머지는 감추지 않고 숫자로 밝힌다 */
+.shelf-more{
+  display:inline-block; margin-top:var(--sp-2);
+  font-family:var(--font-kr); font-size:var(--fs-body-sm);
+  color:var(--text-tertiary); text-decoration:none;
+}
+.shelf-more:hover{ color:var(--accent); }
+.shelf-more:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
 
 /* 분야/연대 서가 블록 */
 .field-shelf,.decade-shelf{

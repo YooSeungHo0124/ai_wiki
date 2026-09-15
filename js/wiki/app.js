@@ -249,12 +249,54 @@
       if(n){ toggle(n.dataset.slug); return; }
       if(e.target.closest('svg')) clear();
     });
+    /* ---------- 키보드 이동 (로빙 tabindex의 나머지 절반) ----------
+       graph.js 가 진입점 노드 하나에만 tabindex="0" 을 주고 나머지는 -1 로
+       둔다. 그 상태에서 화살표 키가 없으면 나머지 노드는 키보드로 아예
+       도달할 수 없으므로, 여기서 이동을 책임진다.
+
+       계보 그래프는 x축이 연도, y축이 분야 레인이라는 뜻을 가진 배치다.
+       그래서 문서 순서가 아니라 좌표로 움직인다 — ←→ 는 같은 레인에서
+       앞뒤 연도로, ↑↓ 는 위아래 레인으로. 이게 "이 논문 다음에 뭐가
+       나왔나"를 키보드로 따라가는 가장 자연스러운 방식이다. */
+    function nodeXY(n){
+      var r=n.querySelector('rect');
+      return { x:parseFloat(r.getAttribute('x'))||0, y:parseFloat(r.getAttribute('y'))||0 };
+    }
+    function moveFocus(from, dir){
+      var all=nodesOf(); if(!all.length) return;
+      var cur=nodeXY(from), best=null, bestScore=Infinity;
+      all.forEach(function(n){
+        if(n===from) return;
+        var p=nodeXY(n), dx=p.x-cur.x, dy=p.y-cur.y;
+        var along, across;
+        if(dir==='right'){ if(dx<=0) return; along=dx; across=Math.abs(dy); }
+        else if(dir==='left'){ if(dx>=0) return; along=-dx; across=Math.abs(dy); }
+        else if(dir==='down'){ if(dy<=0) return; along=dy; across=Math.abs(dx); }
+        else { if(dy>=0) return; along=-dy; across=Math.abs(dx); }
+        /* 진행 방향 거리보다 옆으로 벗어난 정도에 훨씬 큰 벌점을 줘서
+           "같은 줄에서 바로 옆"이 "멀리 비스듬히"를 이기게 한다 */
+        var score=along+across*4;
+        if(score<bestScore){ bestScore=score; best=n; }
+      });
+      if(!best) return;
+      from.setAttribute('tabindex','-1');
+      best.setAttribute('tabindex','0');
+      best.focus();
+    }
+    var ARROW={ArrowRight:'right',ArrowLeft:'left',ArrowDown:'down',ArrowUp:'up'};
     svgHost.addEventListener('keydown',function(e){
+      var n=e.target.closest && e.target.closest('.node[data-slug]');
       if(e.key==='Enter'||e.key===' '){
-        var n=e.target.closest('.node[data-slug]');
         if(n){ e.preventDefault(); toggle(n.dataset.slug); }
       } else if(e.key==='Escape'){
         clear();
+      } else if(ARROW[e.key] && n){
+        e.preventDefault();
+        moveFocus(n, ARROW[e.key]);
+      } else if((e.key==='Home'||e.key==='End') && n){
+        e.preventDefault();
+        var all=nodesOf(); var t=(e.key==='Home')?all[0]:all[all.length-1];
+        if(t && t!==n){ n.setAttribute('tabindex','-1'); t.setAttribute('tabindex','0'); t.focus(); }
       }
     });
     cardEl.addEventListener('click',function(e){
@@ -539,6 +581,38 @@
   /* ---------- 개인화 스트립 — HOME-IA §2·§4.3·§5.2 ----------
      이어보기(재방문자)와 입문 코스(첫 방문자)는 상호 배타적. "성장 중인 노트"
      링크는 seed/sprout가 0인 지금 홈에 남은 유일한 정직한 진행 신호(브리프 §6). */
+/* ---------- 첫 화면 계보 예고 (2026-09 UI 검토) ----------
+     이 위키의 핵심은 계보 그래프인데, 전체 그래프는 스크롤을 한참 내려야
+     나온다. 그래서 "둘러보기"가 곧 "핵심을 놓치는" 행동이 되고 있었다.
+     첫 화면에 계보가 무엇인지 한 줄로 보여준다.
+
+     노드-엣지 미니 SVG 를 새로 그리지 않는다 — 진짜 계보 그래프의 축소
+     모형처럼 오인되고, "그려진 그래프"라는 시각 문법을 하나 더 들여오게
+     된다. 이미 입문 코스가 쓰는 .course-pills / .course-arrow 를 그대로
+     재사용한다(신규 CSS 0줄).
+
+     사슬은 전부 실제 부모→자식 간선이다. 인덱스가 바뀌어 간선이 깨지면
+     거짓말이 되므로, 렌더 직전에 검증해서 하나라도 어긋나면 아무것도
+     내보내지 않는다. */
+  var LINEAGE_TEASER=['transformer','vit','sam','sam2','sam3'];
+  function lineageTeaserHtml(){
+    var ms=LINEAGE_TEASER.map(W.byId);
+    if(ms.some(function(m){ return !m; })) return '';
+    for(var i=1;i<ms.length;i++){
+      if(ms[i].parents.indexOf(ms[i-1].slug)<0) return '';  /* 실제 계보가 아니면 침묵 */
+    }
+    var inner=ms.map(function(m,i){
+      return (i? '<span class="course-arrow" aria-hidden="true">→</span>' : '')
+        +'<a class="course-pill" href="#/p/'+m.slug+'">'+W.esc(m.ko)
+        +' <span class="nav-yr">'+m.year+'</span></a>';
+    }).join('');
+    return '<div class="lineage-teaser">'
+      +'<span class="lineage-teaser-label">계보란 이런 것입니다</span>'
+      +'<div class="course-pills">'+inner+'</div>'
+      +'<a class="lineage-teaser-more" href="#/graph">전체 계보도 열기 →</a>'
+      +'</div>';
+  }
+
   function personalStrip(){
     var recents=recentSlugs();
     var left = recents.length
@@ -611,7 +685,9 @@
     var inner='<div class="home-nav-row">'+navToggleBtn()+'</div>'
       +'<div class="hero"><h2>인공지능 논문 계보</h2>'
       +'<p>분야를 나누고, 각 분야에서 실제로 흐름을 바꾼 논문만 골라, 그 논문이 <b>무엇을 해결했고 무엇을 남겼는지</b>를 한 장씩 정리한 개인 위키입니다. '
-      +heroP+' <span class="kbd">/</span> 키로 검색.</p></div>'
+      +heroP+' <span class="kbd">/</span> 키로 검색.</p>'
+      +lineageTeaserHtml()
+      +'</div>'
       +personalStrip()
       +shelfHtml
       +conceptsTeaserHtml()
@@ -644,8 +720,40 @@
         homeGraphCtl = wireGraphSelection(box, document.getElementById('homeGraphCard'));
       }
     }
-    if(det.open) buildHomeGraphBody();
+    /* 열려 있다고 바로 만들지 않는다. 데스크톱은 기본 펼침이라 예전에는
+       홈에 들어오는 순간 3,100개짜리 SVG 가 무조건 생겼는데, 이 섹션은
+       스크롤을 한참 내려야 나오는 자리에 있다 — 보이지도 않는 것을 먼저
+       만드느라 초기 렌더를 무겁게 하고 있었다. 뷰포트에 들어올 때 한 번만
+       만든다. IntersectionObserver 는 이미 목차 하이라이트에서 쓰는 API 라
+       새 의존성이 아니고, 없는 브라우저에서는 곧바로 만들어 동작은 같다. */
+    if(det.open){
+      if('IntersectionObserver' in window){
+        var gio=new IntersectionObserver(function(entries){
+          if(entries.some(function(e){ return e.isIntersecting; })){
+            gio.disconnect(); buildHomeGraphBody();
+          }
+        },{rootMargin:'400px 0px'});   /* 도달 전에 미리 만들어 깜빡임을 없앤다 */
+        /* 두 프레임 기다린 뒤 관찰한다. innerHTML 직후에 바로 observe 하면
+           서가 블록(content-visibility:auto)의 레이아웃이 아직 안 잡혀 있어
+           이 섹션이 화면 맨 위에 있는 것으로 계산되고, 옵저버의 첫 콜백이
+           곧바로 "보인다"로 떨어져 지연이 통째로 무효가 된다(실측 확인). */
+        requestAnimationFrame(function(){
+          requestAnimationFrame(function(){ gio.observe(det); });
+        });
+      } else {
+        buildHomeGraphBody();
+      }
+    }
+    /* innerHTML 로 <details open> 을 넣으면 브라우저가 삽입 직후 toggle 을
+       한 번 쏜다(상태가 바뀐 게 아닌데도). 그걸 사용자의 펼침으로 오인하면
+       위의 지연 렌더가 통째로 무효가 된다 — 실측으로 잡은 원인이다.
+       초기 상태와 같은 첫 toggle 한 번은 무시한다. */
+    var initialOpen=det.open, sawFirstToggle=false;
     det.addEventListener('toggle',function(){
+      if(!sawFirstToggle){
+        sawFirstToggle=true;
+        if(det.open===initialOpen) return;   /* 삽입 직후의 가짜 toggle */
+      }
       homeGraphOpen=det.open;
       if(det.open) buildHomeGraphBody();
     });

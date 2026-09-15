@@ -123,8 +123,15 @@ window.WIKI = window.WIKI || {};
    * 문서의 "8자/14자 상한"을 그대로 판정 기준으로 쓰고 실제 줄바꿈은
    * §1.3 우선순위(공백>슬래시>가운뎃점>하이픈>글자)를 그대로 구현한다.
    * ---------------------------------------------------------------- */
-  var HANGUL_RE=/[가-힣]/;
-  function isHangulHeavy(s){ return HANGUL_RE.test(s); }
+  var HANGUL_RE=/[가-힣]/g, LATIN_RE=/[A-Za-z0-9]/g;
+  /* 이름 그대로 "한글이 우세한가"를 본다. 예전에는 HANGUL_RE.test(s) 로
+     "한글이 하나라도 있으면" 참이었는데, 그러면 `DeepSeek-V3.2 — 희소 어텐션`
+     처럼 라틴이 대부분인 제목까지 순한글용 8자 예산을 받아
+     `DeepSeek` / `V3.2 — 희…` 로 잘렸다. 912권 실측에서 전체 말줄임 31건 중
+     24건(77%)이 한글+라틴 혼합 제목 101건(11%)에 몰려 있었고, 그 집단의
+     말줄임률은 23.8% 로 전체 평균 3.4% 의 7배였다. */
+  function countRe(s, re){ re.lastIndex=0; var m=s.match(re); return m?m.length:0; }
+  function isHangulHeavy(s){ return countRe(s,HANGUL_RE) >= countRe(s,LATIN_RE); }
 
   function findBreak(s, limit){
     var breakers=[' ','/','·','-']; /* 공백, 슬래시, 가운뎃점, 하이픈 */
@@ -256,6 +263,30 @@ window.WIKI = window.WIKI || {};
       +'</div>';
   }
 
+  /* ---------------- 홈 서가 표본 (design/HOME-IA.md §3.2) ----------------
+     홈에 912권을 전부 펼치지 않는다. 선반 하나당 최대 12권만 실제 책등으로
+     그리고 나머지는 숫자로 밝힌다.
+
+     왜 줄이는가: 성능 때문이 아니다. .field-shelf 에는 이미
+     content-visibility:auto 가 걸려 있어 화면 밖 서가는 912권이든 264권이든
+     비용이 0에 가깝다. 줄이는 이유는 (1) 문서 높이가 9,869px(7.2화면)까지
+     늘어 정작 이 위키의 핵심인 계보 그래프가 맨 뒤로 밀려났고, (2) 스크린리더
+     선형 탐색은 로빙 tabindex 와 무관하게 role="option" 912개를 순서대로 다
+     거치기 때문이다. 즉 편집과 접근성 문제다.
+
+     뽑는 방법은 연도 균등 샘플 — 가장 이른 것과 가장 최근 것을 반드시 넣고
+     중간을 등간격으로. "이 분야가 몇 년도부터 몇 년도까지 왔는지"가 선반만
+     보고 짐작되게 하려는 것이다. 백링크 상위로 뽑지 않는 이유: 그건 "핵심
+     논문 랭킹"이라는 다른 질문이고, 선반의 역할은 시간축 위의 밀도 감각이다. */
+  var SHELF_SAMPLE_MAX=12;
+  function sampleEvenly(sorted, max){
+    var n=sorted.length;
+    if(n<=max) return sorted.slice();
+    var out=[], step=(n-1)/(max-1);
+    for(var i=0;i<max;i++) out.push(sorted[Math.round(i*step)]);
+    return out;   /* 정렬이 연도순이므로 첫 권(가장 이름)과 끝 권(가장 최근)이 항상 포함된다 */
+  }
+
   /* 한 서가(분야 또는 연대) 블록 — 헤더 + shelf-row(listbox) */
   function renderShelfBlock(opts){
     var label=opts.label, papers=opts.papers, colorForItem=opts.colorForItem;
@@ -264,22 +295,32 @@ window.WIKI = window.WIKI || {};
     var blockClass=opts.blockClass||'field-shelf';
     var dataAttr=opts.dataAttr||'';
 
+    var shown = opts.sample ? sampleEvenly(papers, SHELF_SAMPLE_MAX) : papers;
+    var hidden = papers.length - shown.length;
+
     var rowHtml='';
-    papers.forEach(function(m){
+    shown.forEach(function(m){
       rowHtml+=renderSpine(m, colorForItem(m), graph, meta, widthMap, visited);
     });
     emptySlots.forEach(function(sl){
       rowHtml+=renderEmptyTrackSlot(sl.name, sl.color);
     });
+    /* 숨긴 권수는 감추지 않고 숫자로 밝히고, 전부 보려면 분야 페이지로 간다 */
+    var moreHtml = hidden>0
+      ? '<a class="shelf-more" href="#/f/'+esc(opts.fieldId||'')+'">그 외 '+hidden+'권 →</a>'
+      : '';
+    var aria = esc(label)+' 서가, 전체 '+papers.length+'권'
+      + (hidden>0 ? ' 중 '+shown.length+'권 표시' : '');
 
     return '<div class="'+blockClass+'" '+dataAttr+' style="content-visibility:auto;contain-intrinsic-size:0 200px">'
       +'<div class="shelf-header">'
         +'<h3 class="shelf-block-title">'+esc(label)+'</h3>'
         +'<span class="shelf-block-count">'+papers.length+'권</span>'
       +'</div>'
-      +'<div class="shelf-row" role="listbox" aria-label="'+esc(label)+' 서가, '+papers.length+'권">'
+      +'<div class="shelf-row" role="listbox" aria-label="'+aria+'">'
         +rowHtml
       +'</div>'
+      +moreHtml
     +'</div>';
   }
 
@@ -308,15 +349,21 @@ window.WIKI = window.WIKI || {};
     Object.keys(byField).forEach(function(k){ byField[k].sort(byYearThenSlug); });
 
     var html='';
-    groups.forEach(function(g){
-      html+='<section class="shelf-group" data-group="'+esc(g.id)+'">';
-      html+='<h2 class="shelf-group-title">'+esc(g.name)+'</h2>';
+    groups.forEach(function(g, gi){
+      /* 그룹 3개를 전부 펼치면 첫 화면부터 책장이 화면을 다 먹는다(HOME-IA §3.2).
+         첫 그룹만 펼치고 나머지는 네이티브 <details> 로 접어 둔다 — 접힘 상태는
+         브라우저가 관리하므로 별도 상태 변수가 필요 없다. */
+      var collapsed = gi>0;
+      var count = g.fields.reduce(function(n,fid){ return n + ((byField[fid]||[]).length); },0);
+      var body='';
       g.fields.forEach(function(fid){
         var field=fieldById[fid]; if(!field) return;
         var papers=byField[fid]||[];
-        html+=renderShelfBlock({
+        body+=renderShelfBlock({
           label:field.name,
           papers:papers,
+          sample:true,
+          fieldId:fid,
           colorForItem: function(){ return field; },
           graph:graph, meta:meta, widthMap:widthMap, visited:visited,
           emptySlots: emptyTracksFor(field, index),
@@ -324,6 +371,18 @@ window.WIKI = window.WIKI || {};
           dataAttr:'data-field="'+esc(fid)+'"'
         });
       });
+      html+='<section class="shelf-group" data-group="'+esc(g.id)+'">';
+      if(collapsed){
+        html+='<details class="shelf-group-fold">'
+          +'<summary><h2 class="shelf-group-title">'+esc(g.name)+'</h2>'
+          +'<span class="shelf-group-count">'+g.fields.length+'개 분야 · '+count+'권</span></summary>'
+          +body
+          +'</details>';
+      } else {
+        html+='<h2 class="shelf-group-title">'+esc(g.name)+'</h2>'
+          +'<span class="shelf-group-count">'+g.fields.length+'개 분야 · '+count+'권</span>'
+          +body;
+      }
       html+='</section>';
     });
     return html;

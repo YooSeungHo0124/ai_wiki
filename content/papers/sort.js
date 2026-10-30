@@ -58,6 +58,8 @@ impact:'검출과 추적을 분리해서 생각하게 만든 실증 논문이다
 legacy:[
  '**[DeepSORT](#/p/deepsort)** — SORT의 IOU 매칭에 외형 임베딩(CNN re-ID feature)을 추가해 ID switch 문제를 직접 겨냥',
  '**[ByteTrack](#/p/bytetrack)** — 낮은 신뢰도 검출까지 버리지 않고 매칭에 활용해 SORT 계열의 프레임 연결 안정성을 더 끌어올림',
+ '**[OC-SORT](#/p/ocsort)·[BoT-SORT](#/p/botsort)·[StrongSORT](#/p/strongsort)** — SORT/DeepSORT 골격은 그대로 두고 칼만 갱신, 카메라 모션 보상, 외형 융합을 손봐 정확도를 끌어올린 후속 계열',
+ '**[DiffMOT](#/p/diffmot)·[MambaTrack](#/p/mambatrack)** — 칼만 필터의 선형 모션 가정을 학습된 모션 예측기로 바꾸려는 시도',
  '**tracking-by-detection 표준화** — "검출은 검출기에, 연결은 칼만+헝가리안에" 라는 역할 분리가 이후 대부분의 온라인 MOT 시스템의 기본 골격이 됨',
  '**실시간 응용 확산** — 260Hz라는 속도 덕분에 자율주행·로보틱스처럼 지연에 민감한 분야에서 참조 구현으로 널리 쓰임'
 ],
